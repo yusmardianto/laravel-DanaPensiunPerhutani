@@ -58,7 +58,7 @@ $user = Auth::user();
                     <span class="fa arrow"></span>
                 </a>
             </li>
-            <li @if(Request::segment(1) == 'konfigurasi') class="active" @endif>
+            <li @if(Request::segment(1) == 'config') class="active" @endif>
                 <a href="#">
                     <i class="fa fa-cogs fa-fw"></i>
                     <span class="nav-label">Konfigurasi</span>
