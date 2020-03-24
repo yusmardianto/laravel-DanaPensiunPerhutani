@@ -22,7 +22,7 @@ $user = Auth::user();
             <li class="landing_link">
                 <a href="{{ url('home') }}">
                     <i class="fa fa-home"></i>
-                    <span class="nav-label">Dashboard</span>
+                    <span class="nav-label">Home</span>
                 </a>
             </li>
             <li @if(Request::segment(1) == 'master') class="active" @endif>
@@ -39,8 +39,11 @@ $user = Auth::user();
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                    <li @if(Request::segment(2) == 'editkepesertaan') class="active" @endif>
-                        <a href="{{ url('kepesertaan/editkepesertaan') }}">Edit Kepesertaan</a>
+                    <li @if(Request::segment(2) == 'peserta') class="active" @endif>
+                        <a href="{{ url('kepesertaan/peserta') }}">Daftar Peserta Aktif</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'skpensiun') class="active" @endif>
+                        <a href="{{ url('kepesertaan/skpensiun') }}">SK Pensiunan</a>
                     </li>
                 </ul>
             </li>
@@ -57,6 +60,14 @@ $user = Auth::user();
                     <span class="nav-label">Keuangan</span>
                     <span class="fa arrow"></span>
                 </a>
+                <ul class="nav nav-second-level collapse">
+                    <li @if(Request::segment(2) == 'pengeluaran') class="active" @endif>
+                        <a href="{{ url('keuangan/pengeluaran') }}">Transaksi Pengeluaran Kas</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'pemasukan') class="active" @endif>
+                        <a href="{{ url('keuangan/pemasukan') }}">Transaksi Pemasukan Kas</a>
+                    </li>
+                </ul>
             </li>
             <li @if(Request::segment(1) == 'config') class="active" @endif>
                 <a href="#">
@@ -68,6 +79,10 @@ $user = Auth::user();
                     <li @if(Request::segment(2) == 'user') class="active" @endif>
                         <a href="{{ url('config/user') }}">Daftar Pengguna</a>
                     </li>
+                    <li @if(Request::segment(2) == 'laporan') class="active" @endif>
+                        <a href="{{ url('config/laporan') }}">Laporan</a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>

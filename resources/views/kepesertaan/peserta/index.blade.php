@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Daftar Pengguna')
+@section('title', config('app.name').' | Daftar Peserta Aktif')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -34,7 +34,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('config/user/ajax-list') !!}',
+                url: '{!! url('kepesertaan/peserta/ajax-list') !!}',
                 method: 'POST'
             },
             columns: $column,
@@ -64,7 +64,7 @@
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('name');
-            var deleteUrl = "{{ url('config/user/hapus') }}" + "/" + dataId;
+            var deleteUrl = "{{ url('kepesertaan/peserta/hapus') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
@@ -100,15 +100,15 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Daftar Pengguna</h2>
+        <h2>Daftar Peserta Aktif</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
             </li>
-            <li class="breadcrumb-item">Konfigurasi
+            <li class="breadcrumb-item">Kepesertaan
             </li>
             <li class="breadcrumb-item active">
-                <strong>Daftar Pengguna</strong>
+                <strong>Daftar Peserta Aktif</strong>
             </li>
         </ol>
     </div>
@@ -122,9 +122,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Daftar Pengguna</h5>
+                    <h5>Daftar Peserta Aktif</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('config/user/tambah') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('kepesertaan/peserta/tambah') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
                             Tambah data
                         </a>
@@ -138,8 +138,8 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama</th>
-                                <th>Username</th>
+                                <th>Nama Peserta</th>
+                                <th>No Rekening</th>
                                 <th>Email</th>
                                 <th>Opsi</th>
                             </tr>

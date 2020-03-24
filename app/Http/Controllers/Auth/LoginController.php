@@ -54,6 +54,6 @@ class LoginController extends Controller
         if (auth()->attempt($login)) {
             return redirect('home');
         }
-        return redirect('login')->with(['error' => 'Username / Password tidak terdaftar!']);
+        return redirect('login')->with(['error' => 'Username / Password salah!']);
     }
 }

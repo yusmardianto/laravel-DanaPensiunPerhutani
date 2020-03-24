@@ -25,4 +25,9 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::get('user', 'UserController@index');
     });
+
+    Route::prefix('kepesertaan')->group(function() {
+
+        Route::get('peserta', 'PesertaController@index');
+    });
 });
