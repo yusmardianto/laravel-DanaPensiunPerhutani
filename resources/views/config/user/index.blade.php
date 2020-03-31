@@ -10,8 +10,11 @@
 
 @section('scripts')
 <!-- DataTables -->
+<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+
 <script>
-    $(document).ready(function(){
+    $(function() {
+        var $url = "{{ config('app.url') }}";
 
         $.ajaxSetup({
             headers: {
@@ -19,24 +22,34 @@
             }
         });
 
-        var $dp = [
-            { data: 'id', name: 'id' },
+        var $column = [
+            { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
             { data: 'name', name: 'name' },
-            { data: 'username', name: 'username'},
+            { data: 'username', name: 'username' },
             { data: 'email', name: 'email' },
+            { data: 'roles', name: 'roles' },
+            { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
-        $('#dt').DataTable({
+        $('#table-list').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('config/user/ajaxlist') !!}',
+                url: '{!! url('config/user/ajax-list') !!}',
                 method: 'POST'
             },
-            columns: $dp,
-            columnDefs: [],
-            dom: '<"html5buttons"B>lTfgitp',
-            buttons: [],
+            columns: $column,
+            columnDefs: [
+                {
+                    "targets": 0, // your case first column
+                    "className": "text-center",
+                    "width": "4%"
+                },
+                {
+                    "targets": 5,
+                    "width": "170px"
+                }
+            ],
             initComplete: function () {
                 this.api().columns().every(function () {
                     var column = this;
@@ -47,6 +60,39 @@
                     });
                 });
             }
+        });
+
+        $(document).on('click', '.delete-btn', function() {
+            var dataId = $(this).data('id');
+            var dataName = $(this).data('nama');
+            var deleteUrl = "{{ url('config/user/hapus') }}" + "/" + dataId;
+            var csrf = "{{ csrf_token() }}";
+
+            swal({
+                text: "Hapus data pengguna : "+ dataName +" ?" ,
+                icon: "warning",
+                dangerMode: true,
+                buttons: {
+                    cancel: {
+                        text: "Batal",
+                        value: false,
+                        visible: true,
+                        className: "btn btn-sm btn-white"
+                    },
+                    confirm: {
+                        text: "Hapus",
+                        value: true,
+                        visible: true,
+                        className: "btn btn-sm btn-danger",
+                        closeModal: true
+                    }
+                }
+            }).then((value) => {
+                if (value === true) {
+                    $.redirect(deleteUrl, {"_token": csrf});
+                }
+                swal.close();
+            });;
         });
     });
 </script>
@@ -79,7 +125,7 @@
                 <div class="ibox-title">
                     <h5>Daftar Pengguna</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('config/user/tambah') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('config/user/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
                             Tambah data
                         </a>
@@ -92,10 +138,12 @@
                         <table class="table table-striped" id="table-list">
                             <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>No</th>
                                 <th>Nama</th>
                                 <th>Username</th>
                                 <th>Email</th>
+                                <th>Roles</th>
+                                <th>Opsi</th>
                             </tr>
                             </thead>
                         </table>

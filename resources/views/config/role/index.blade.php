@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Daftar Peserta Aktif')
+@section('title', config('app.name').' | Tipe Pengguna')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -25,16 +25,15 @@
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
             { data: 'name', name: 'name' },
-            { data: 'username', name: 'username' },
-            { data: 'email', name: 'email' },
-            { data: 'option', name: 'option', orderable: false, searchable: false },
+            { data: 'guard_name', name: 'guard_name' },
+            { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
         $('#table-list').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('kepesertaan/peserta/ajax-list') !!}',
+                url: '{!! url('config/role/ajax-list') !!}',
                 method: 'POST'
             },
             columns: $column,
@@ -45,7 +44,7 @@
                     "width": "4%"
                 },
                 {
-                    "targets": 4,
+                    "targets": 3,
                     "width": "170px"
                 }
             ],
@@ -63,12 +62,12 @@
 
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
-            var dataName = $(this).data('name');
-            var deleteUrl = "{{ url('kepesertaan/peserta/hapus') }}" + "/" + dataId;
+            var dataName = $(this).data('nama');
+            var deleteUrl = "{{ url('config/role/delete') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
-                text: "Hapus Data Pengguna "+ dataName +" ?" ,
+                text: "Hapus Data Role "+ dataName +" ?" ,
                 icon: "warning",
                 dangerMode: true,
                 buttons: {
@@ -100,15 +99,15 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Daftar Peserta Aktif</h2>
+        <h2>Tipe Pengguna</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
             </li>
-            <li class="breadcrumb-item">Kepesertaan
+            <li class="breadcrumb-item">Konfigurasi
             </li>
             <li class="breadcrumb-item active">
-                <strong>Daftar Peserta Aktif</strong>
+                <strong>Tipe Pengguna</strong>
             </li>
         </ol>
     </div>
@@ -122,9 +121,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Daftar Peserta Aktif</h5>
+                    <h5>Tipe Pengguna</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('kepesertaan/peserta/create') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('config/role/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
                             Tambah data
                         </a>
@@ -138,9 +137,8 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Peserta</th>
-                                <th>No Rekening</th>
-                                <th>Email</th>
+                                <th>Nama</th>
+                                <th>Guard</th>
                                 <th>Opsi</th>
                             </tr>
                             </thead>
