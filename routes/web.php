@@ -27,7 +27,17 @@ Route::group(['middleware' => ['auth']], function() {
     });
 
     Route::prefix('kepesertaan')->group(function() {
-
         Route::get('peserta', 'PesertaController@index');
+        Route::get('skpensiunan', 'SKPensiunanController@index');
+        Route::get('iuranpensiunan', 'IuranPensiunanController@index');
+        Route::get('manfaatpensiunan', 'ManfaatPensiunanController@index');
+    });
+
+    Route::prefix('investasi')->group(function() {
+        Route::get('datatransaksi', 'DataTransaksiController@index');
+        Route::get('laporan', 'LaporanController@index');
+        Route::get('perubahanstatusorder', 'PerubahanStatusOrderController@index');
+        Route::get('statusorder', 'StatusOrderController@index');
+        Route::get('suratinstruksi', 'SuratInstruksiController@index');
     });
 });
