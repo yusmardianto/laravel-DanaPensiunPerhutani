@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\investasi;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PesertaController extends Controller
+class LaporanController extends Controller
 {
     public function index(Request $request)
     {
-        return view('kepesertaan.peserta.index');
+        return view('investasi.laporan.index');
     }
 }

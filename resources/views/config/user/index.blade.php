@@ -10,11 +10,8 @@
 
 @section('scripts')
 <!-- DataTables -->
-<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
-
 <script>
-    $(function() {
-        var $url = "{{ config('app.url') }}";
+    $(document).ready(function(){
 
         $.ajaxSetup({
             headers: {
@@ -22,33 +19,24 @@
             }
         });
 
-        var $column = [
-            { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
+        var $dp = [
+            { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
-            { data: 'username', name: 'username' },
+            { data: 'username', name: 'username'},
             { data: 'email', name: 'email' },
-            { data: 'option', name: 'option', orderable: false, searchable: false },
         ];
 
-        $('#table-list').DataTable({
+        $('#dt').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('config/user/ajax-list') !!}',
+                url: '{!! url('config/user/ajaxlist') !!}',
                 method: 'POST'
             },
-            columns: $column,
-            columnDefs: [
-                {
-                    "targets": 0, // your case first column
-                    "className": "text-center",
-                    "width": "4%"
-                },
-                {
-                    "targets": 4,
-                    "width": "170px"
-                }
-            ],
+            columns: $dp,
+            columnDefs: [],
+            dom: '<"html5buttons"B>lTfgitp',
+            buttons: [],
             initComplete: function () {
                 this.api().columns().every(function () {
                     var column = this;
@@ -59,39 +47,6 @@
                     });
                 });
             }
-        });
-
-        $(document).on('click', '.delete-btn', function() {
-            var dataId = $(this).data('id');
-            var dataName = $(this).data('name');
-            var deleteUrl = "{{ url('config/user/hapus') }}" + "/" + dataId;
-            var csrf = "{{ csrf_token() }}";
-
-            swal({
-                text: "Hapus Data Pengguna "+ dataName +" ?" ,
-                icon: "warning",
-                dangerMode: true,
-                buttons: {
-                    cancel: {
-                        text: "Batal",
-                        value: false,
-                        visible: true,
-                        className: "btn btn-sm btn-white"
-                    },
-                    confirm: {
-                        text: "Hapus",
-                        value: true,
-                        visible: true,
-                        className: "btn btn-sm btn-danger",
-                        closeModal: true
-                    }
-                }
-            }).then((value) => {
-                if (value === true) {
-                    $.redirect(deleteUrl, {"_token": csrf});
-                }
-                swal.close();
-            });;
         });
     });
 </script>
@@ -137,11 +92,10 @@
                         <table class="table table-striped" id="table-list">
                             <thead>
                             <tr>
-                                <th>No</th>
+                                <th>ID</th>
                                 <th>Nama</th>
                                 <th>Username</th>
                                 <th>Email</th>
-                                <th>Opsi</th>
                             </tr>
                             </thead>
                         </table>

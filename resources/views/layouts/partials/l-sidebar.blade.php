@@ -6,17 +6,17 @@ $user = Auth::user();
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element">
-                    <img alt="image" class="rounded-circle" src="{{asset('img/profile_small.jpg') }}" width="48"/>
+                    <img alt="image" class="square" src="{{asset('img/dapen-logoputih.png') }}" width="150"/>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <span class="block m-t-xs font-bold">{{ $user->name }}</span>
-                        <span class="text-muted text-xs block">{{ $user->email }} <b class="caret"></b></span>
+                        {{-- <span class="block m-t-xs font-bold">{{ $user->name }}</span> --}}
+                        {{-- <span class="text-muted text-xs block">{{ $user->email }} <b class="caret"></b></span> --}}
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
                         <li><a class="dropdown-item logout-btn" href="#">Logout</a></li>
                     </ul>
                 </div>
                 <div class="logo-element">
-                    siDAPEN
+                    SiDapen
                 </div>
             </li>
             <li class="landing_link">
@@ -42,8 +42,14 @@ $user = Auth::user();
                     <li @if(Request::segment(2) == 'peserta') class="active" @endif>
                         <a href="{{ url('kepesertaan/peserta') }}">Daftar Peserta Aktif</a>
                     </li>
-                    <li @if(Request::segment(2) == 'skpensiun') class="active" @endif>
-                        <a href="{{ url('kepesertaan/skpensiun') }}">SK Pensiunan</a>
+                    <li @if(Request::segment(2) == 'skpensiunan') class="active" @endif>
+                        <a href="{{ url('kepesertaan/skpensiunan') }}">SK Pensiunan</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'iuranpensiunan') class="active" @endif>
+                        <a href="{{ url('kepesertaan/iuranpensiunan') }}">Iuran Pensiunan</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'manfaatpensiunan') class="active" @endif>
+                        <a href="{{ url('kepesertaan/manfaatpensiunan') }}">Manfaat Pensiunan</a>
                     </li>
                 </ul>
             </li>
@@ -53,6 +59,23 @@ $user = Auth::user();
                     <span class="nav-label">Investasi</span>
                     <span class="fa arrow"></span>
                 </a>
+                <ul class="nav nav-second-level collapse">
+                    <li @if(Request::segment(2) == 'statusorder') class="active" @endif>
+                        <a href="{{ url('investasi/statusorder') }}">Status Order</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'datatransaksi') class="active" @endif>
+                        <a href="{{ url('investasi/datatransaksi') }}">Data Transaksi</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'laporan') class="active" @endif>
+                        <a href="{{ url('investasi/laporan') }}">Laporan</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'perubahanstatusorder') class="active" @endif>
+                        <a href="{{ url('investasi/perubahanstatusorder') }}">Perubahan Status Order</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'suratinstruksi') class="active" @endif>
+                        <a href="{{ url('investasi/suratinstruksi') }}">Surat Instruksi</a>
+                    </li>
+                </ul>
             </li>
             <li @if(Request::segment(1) == 'keuangan') class="active" @endif>
                 <a href="#">
