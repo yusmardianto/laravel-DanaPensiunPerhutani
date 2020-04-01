@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Tipe Pengguna (Roles)</label>
+                                        <label class="col-sm-3 col-form-label">Tipe Pengguna</label>
                                         <div class="col-sm-9">
                                             <select id="select-roles" name="roles">
                                                 <option value=""></option>

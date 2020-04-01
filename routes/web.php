@@ -58,11 +58,11 @@ Route::group(['middleware' => ['auth']], function() {
         Route::any('user/ajax-list', 'UserController@ajaxList');
         Route::get('user/create','UserController@getCreate');
         Route::post('user/create','UserController@postCreate');
-
         //role
         Route::get('role', 'RoleController@index');
         Route::any('role/ajax-list', 'RoleController@ajaxList');
-        Route::get('role/create','RoleController@create');
+        Route::get('role/create','RoleController@getCreate');
+        Route::post('role/create','RoleController@postCreate');
     });
 
 });

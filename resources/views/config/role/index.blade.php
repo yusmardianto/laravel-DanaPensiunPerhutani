@@ -67,7 +67,7 @@
             var csrf = "{{ csrf_token() }}";
 
             swal({
-                text: "Hapus Data Role "+ dataName +" ?" ,
+                text: "Hapus data role : "+ dataName +" ?" ,
                 icon: "warning",
                 dangerMode: true,
                 buttons: {
@@ -137,7 +137,7 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama</th>
+                                <th>Nama Role</th>
                                 <th>Guard</th>
                                 <th>Opsi</th>
                             </tr>

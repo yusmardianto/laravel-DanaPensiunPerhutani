@@ -142,7 +142,7 @@
                                 <th>Nama</th>
                                 <th>Username</th>
                                 <th>Email</th>
-                                <th>Roles</th>
+                                <th>Role</th>
                                 <th>Opsi</th>
                             </tr>
                             </thead>

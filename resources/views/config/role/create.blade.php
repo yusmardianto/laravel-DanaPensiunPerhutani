@@ -43,7 +43,7 @@ $('.dual_select').bootstrapDualListbox({
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Tambah Data Pengguna</h5>
+                    <h5>Tambah Data Role</h5>
                     <div class="ibox-tools">
                         <a href="{{ url()->previous() }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>
@@ -67,11 +67,11 @@ $('.dual_select').bootstrapDualListbox({
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Daftar Permission</label>
                             <div class="col-sm-10">
-                                {{-- <select class="form-control dual_select" multiple name="permission[]">
+                                <select class="form-control dual_select" multiple name="permission[]">
                                     @foreach ($permission as $item)
                                     <option value="{{ $item->id }}">{{ $item->name}}</option>
                                     @endforeach
-                                </select> --}}
+                                </select>
                             </div>
                         </div>
 

@@ -24,7 +24,7 @@ class UserController extends Controller
     public function ajaxList(Request $request)
     {
         $data = User::with('roles')
-            ->orderBy('created_at', 'DESC');
+            ->orderBy('created_at', 'ASC');
 
         $datatables = Datatables::of($data);
 
@@ -83,12 +83,13 @@ class UserController extends Controller
 
             if ($user->save()) {
                 $user->assignRole($request->roles);
+
                 return redirect('config/user')->with('success', 'Berhasil menginput data pengguna '. $request->name .'');
             }
             else {
+
                 return redirect('config/user')->with('error', 'Gagal menginput data pengguna '. $request->name .'')->withInput();
             }
         }
     }
-
 }

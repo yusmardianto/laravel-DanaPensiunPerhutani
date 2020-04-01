@@ -27,7 +27,7 @@ class RoleController extends Controller
             'id',
             'name',
             'guard_name',
-        ])->orderBy('created_at', 'DESC');
+        ])->orderBy('created_at', 'ASC');
 
         $datatables = Datatables::of($data);
 
@@ -44,9 +44,27 @@ class RoleController extends Controller
             ->make(true);
     }
 
-    public function create()
+    public function getCreate()
     {
-        // $permission = Permission::orderBy('name', 'ASC')->get();
-        return view('config.role.create');
+        $permission = Permission::orderBy('name', 'ASC')->get();
+        return view('config.role.create', compact('permission'));
+    }
+
+    public function postCreate(Request $request)
+    {
+        $this->validate($request, [
+            'nama' => 'required|unique:roles,name',
+            'permission' => 'required',
+        ]);
+
+        if ($role = Role::create(['name' => $request->input('nama')])) {
+            $role->syncPermissions($request->input('permission'));
+
+        return redirect('config/role')->with('success','Berhasil menambah data Role '.$role->name.'');
+        }
+        else {
+
+            return redirect('config/role')->with('error','Gagal menambah data Role '.$role->name.'')->withInput();
+        }
     }
 }
