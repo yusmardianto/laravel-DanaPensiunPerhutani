@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Daftar Pengguna')
+@section('title', config('app.name').' | Tambah Pengguna')
 
 @section('stylesheets')
 <link href="{{ asset('css/plugins/chosen/bootstrap-chosen.css') }}" rel="stylesheet">
@@ -10,11 +10,7 @@
 @section('scripts')
 <script src="{{ asset('js/plugins/chosen/chosen.jquery.js') }}"></script>
 <script>
-    $(document).ready(function() {
-        $("#select-roles").chosen({
-            width:"100%", placeholder_text_single: "- Pilih Tipe Pengguna -", allow_single_deselect : true
-        });
-    });
+$('.chosen-select').chosen({width: "100%"});
 </script>
 @endsection
 
@@ -65,19 +61,21 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Nama Lengkap</label>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-8">
                                             <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                                         </div>
                                     </div>
+                                    <br>
                                     <div class='form-group row'>
                                         <label class="col-sm-3 col-form-label">Username</label>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-8">
                                             <input type="text" class="form-control" name="username" value="{{ old('username') }}">
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Email</label>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-8">
                                             <input type="email" class="form-control" name="email" value="{{ old('email') }}">
                                         </div>
                                     </div>
@@ -85,24 +83,26 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Tipe Pengguna</label>
-                                        <div class="col-sm-9">
-                                            <select id="select-roles" name="roles">
+                                        <div class="col-sm-8">
+                                            <select data-placeholder="- Pilih Tipe Pengguna -" class="chosen-select" name="roles[]" multiple>
                                                 <option value=""></option>
                                                 @foreach ($roles as $row)
                                                 <option value="{{ $row->name }}">{{ $row->name }}</option>
                                                 @endforeach
                                             </select>
+                                            <small class="form-text m-b-none">* Tipe pengguna bisa lebih dari satu</small>
                                         </div>
                                     </div>
                                     <div class='form-group row'>
                                         <label class="col-sm-3 col-form-label">Password</label>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-8">
                                             <input type="password" class="form-control" name="password">
+                                            <small class="form-text m-b-none">* Min 8 karakter</small>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Konfirmasi Password</label>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-8">
                                             <input type="password" class="form-control" name="confirm-password">
                                         </div>
                                     </div>

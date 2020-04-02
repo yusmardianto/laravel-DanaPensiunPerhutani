@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Daftar Pengguna')
+@section('title', config('app.name').' | Tipe Pengguna')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -27,7 +27,6 @@
             { data: 'name', name: 'name' },
             { data: 'username', name: 'username' },
             { data: 'email', name: 'email' },
-            { data: 'roles', name: 'roles' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
@@ -35,7 +34,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('config/user/ajax-list') !!}',
+                url: '{!! url('config/role/ajax-user/'.$hashed_id.'') !!}',
                 method: 'POST'
             },
             columns: $column,
@@ -46,7 +45,7 @@
                     "width": "4%"
                 },
                 {
-                    "targets": 5,
+                    "targets": 4,
                     "width": "170px"
                 }
             ],
@@ -65,11 +64,11 @@
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('nama');
-            var deleteUrl = "{{ url('config/user/delete') }}" + "/" + dataId;
+            var deleteUrl = "{{ url('config/role/delete-user') }}" + "/" + "{{ $hashed_id }}" + "/" + dataId ;
             var csrf = "{{ csrf_token() }}";
 
             swal({
-                text: "Hapus data pengguna : "+ dataName +" ?" ,
+                text: "Hapus data user "+ dataName +" untuk role ini ?" ,
                 icon: "warning",
                 dangerMode: true,
                 buttons: {
@@ -101,15 +100,17 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Daftar Pengguna</h2>
+        <h2>Detail Tipe Pengguna</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
             </li>
             <li class="breadcrumb-item">Konfigurasi
             </li>
+            <li class="breadcrumb-item">Tipe Pengguna
+            </li>
             <li class="breadcrumb-item active">
-                <strong>Daftar Pengguna</strong>
+                <strong>Detail</strong>
             </li>
         </ol>
     </div>
@@ -123,14 +124,59 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
+                    <h5>Detail Tipe Pengguna</h5>
+                    <div class="ibox-tools">
+                        <a href="{{ url('config/role') }}" class="btn btn-primary btn-xs modal-form">
+                            <i class="fa fa-arrow-circle-o-left"></i>
+                            Kembali
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <dl class="row mb-0">
+                                <div class="col-sm-3 text-sm-left"><dt>Nama Role</dt> </div>
+                                <div class="col-sm-1 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $role->name }}</dd></div>
+                            </dl>
+                            <dl class="row mb-0">
+                                <div class="col-sm-3 text-sm-left"><dt>Nama Guard</dt> </div>
+                                <div class="col-sm-1 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $role->guard_name }}</dd></div>
+                            </dl>
+                        </div>
+                        <div class="col-md-6">
+                            <dl class="row mb-0">
+                                <div class="col-sm-3 text-sm-left"><dt>Permission</dt> </div>
+                                <div class="col-sm-1 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">
+                                        @if(!empty($rolePermissions))
+                                        @foreach($rolePermissions as $v)
+                                            <label class="label label-success">{{ $v->name }},</label>
+                                        @endforeach
+                                        @endif
+                                    </dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
                     <h5>Daftar Pengguna</h5>
                     <div class="ibox-tools">
-                        @if($user->hasAnyPermission(['user-create']))
-                        <a href="{{ url('config/user/create') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('config/role/add-user/'.$hashed_id.'') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
                             Tambah data pengguna
                         </a>
-                        @endif
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -144,13 +190,11 @@
                                 <th>Nama</th>
                                 <th>Username</th>
                                 <th>Email</th>
-                                <th>Role</th>
-                                <th>Opsi</th>
+                                <th></th>
                             </tr>
                             </thead>
                         </table>
                     </div>
-
                 </div>
             </div>
         </div>

@@ -16,9 +16,10 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        return view('config.user.index');
+        $user = Auth::user();
+        return view('config.user.index', compact('user'));
     }
 
     public function ajaxList(Request $request)
@@ -31,7 +32,7 @@ class UserController extends Controller
         return $datatables->addColumn('action', function ($row) {
             $hashed_id = Hasher::encode($row->id);
                 return "
-                <a class=\"btn btn-xs btn-info\" href=\"". url('config/user/show/'.$hashed_id) ."\"><i class=\"glyphicon glyphicon-eye-open\"></i> Detail</a>
+                <a class=\"btn btn-xs btn-info\" href=\"". url('config/user/detail/'.$hashed_id) ."\"><i class=\"glyphicon glyphicon-eye-open\"></i> Detail</a>
                 <a class=\"btn btn-xs btn-primary\" href=\"". url('config/user/edit/'.$hashed_id) ."\"><i class=\"glyphicon glyphicon-edit\"></i> Ubah</a>
                 <a class=\"btn btn-xs btn-warning delete-btn\" href=\"#\" data-id=\"". $hashed_id ."\" data-nama=\"". $row->name ."\"><i class=\"glyphicon glyphicon-trash\"></i> Hapus</a>
                 ";
@@ -66,9 +67,9 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'username' => 'required|unique:users,username',
-            'email' => 'nullable|email|unique:users,email',
+            'email' => 'required|email|unique:users,email',
             'roles' => 'required',
-            'password' => 'nullable|min:8|same:confirm-password',
+            'password' => 'required|min:8|same:confirm-password',
         ]);
 
         if ($validator->fails()) {
@@ -84,12 +85,116 @@ class UserController extends Controller
             if ($user->save()) {
                 $user->assignRole($request->roles);
 
-                return redirect('config/user')->with('success', 'Berhasil menginput data pengguna '. $request->name .'');
+                return redirect('config/user')->with('success', 'Berhasil menambah data pengguna '. $request->name .'');
             }
             else {
 
-                return redirect('config/user')->with('error', 'Gagal menginput data pengguna '. $request->name .'')->withInput();
+                return redirect('config/user')->with('error', 'Gagal menambah data pengguna '. $request->name .'')->withInput();
             }
         }
+    }
+
+    public function getDetail($id)
+    {
+        $id = Hasher::decode($id);
+        $user = User::find($id);
+
+        if (isset($user)) {
+            $hashed_id = Hasher::decode($user->id);
+            return view('config.user.detail', compact('user', 'hashed_id'));
+        }
+        return redirect('config/user')->with('error', 'Data tidak ditemukan')->withInput();
+    }
+
+    public function ajaxRole($id)
+    {
+        $data = Role::whereHas('users', function($q) use($id) {
+            $q->where('id', $id);
+        });
+
+        $datatables = Datatables::of($data);
+
+        return $datatables->addColumn('action', function ($row) {
+            $hashed_id = Hasher::encode($row->id);
+                return "
+                <a class=\"btn btn-xs btn-warning delete-btn\" href=\"#\" data-id=\"". $hashed_id ."\" data-nama=\"". $row->name ."\"><i class=\"glyphicon glyphicon-trash\"></i> Hapus</a>
+                ";
+            })
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
+    }
+
+    public function getEdit($id)
+    {
+        $id = Hasher::decode($id);
+        $user = User::find($id);
+
+        if (isset($user)) {
+            $roles = Role::all();
+
+            $arrayRole = array();
+            foreach($user->roles as $row) {
+                $arrayRole[] = $row->id;
+            }
+
+            return view('config.user.edit',compact('user','roles','arrayRole'));
+        }
+
+        return redirect('config/user')->with('error', 'Data tidak ditemukan')->withInput();
+    }
+
+
+    public function postEdit(Request $request, $id)
+    {
+        $id = Hasher::decode($id);
+        $user = User::find($id);
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'username' => 'required|unique:users,username,'.$id,
+            'email' => 'required|email|unique:users,email,'.$id,
+            'roles' => 'required',
+            'password' => 'required|min:8|same:confirm-password',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            $user = User::find($id);
+
+            if (isset($user)) {
+                $user->name = $request->name;
+                $user->username = $request->username;
+                $user->email = $request->email;
+                $user->password = Hash::make($request->password);
+                // $user->telp = $request->nomor_telepon;
+                // $user->is_active = ($request->aktif) ? 1 : 0;
+
+                if ($user->save()) {
+                    DB::table('model_has_roles')->where('model_id',$user->id)->delete();
+                    $user->assignRole($request->roles);
+
+                    return redirect('config/user')->with('success', 'Berhasil mengubah data pengguna '. $request->name .'');
+                }
+                return redirect()->back()->with('error', 'Gagal mengubah data pengguna '. $request->name .'')->withInput();
+            }
+        }
+        return redirect('config/user')->with('error', 'data tidak ditemukan')->withInput();
+    }
+
+    public function delete($id)
+    {
+        $id = Hasher::decode($id);
+        $user = User::find($id);
+
+        $user_name = $user->name;
+        if((Auth::user()->id == $id)) {
+            return redirect('config/user')->with('error', 'anda tidak dapat menghapus diri sendiri')->withInput();
+        }elseif ((isset($user)) && ($user->delete())) {
+            return redirect('config/user')->with('success','Berhasil menghapus data pengguna '. $user_name .'');
+        }
+
+        return redirect('config/user')->with('error', 'Data tidak ditemukan')->withInput();
     }
 }

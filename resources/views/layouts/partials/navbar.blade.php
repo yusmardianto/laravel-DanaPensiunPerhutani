@@ -4,7 +4,7 @@
     </div>
     <ul class="nav navbar-top-links navbar-right">
         <li>
-            <span class="m-r-sm text-muted welcome-message">{{ config('app.name') }}</span>
+            <span class="m-r-sm text-muted welcome-message">Sistem Informasi Dana Pensiun Perhutani </span>
         </li>
         <li class="dropdown">
             <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
