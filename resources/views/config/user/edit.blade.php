@@ -78,41 +78,11 @@ $('.chosen-select').chosen({width: "100%"});
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Password</label>
+                            <label class="col-sm-2 col-form-label">Nomor Hp</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" name="password">
-                                <small class="form-text m-b-none">* Min 8 karakter </small>
+                                <input type="number" class="form-control" name="no_hp" value="{{ $user->no_hp }}">
                             </div>
                         </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Konfirmasi Password</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" name="confirm-password">
-                            </div>
-                        </div>
-                        {{-- <div class="hr-line-dashed"></div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Nomor Telepon</label>
-                            <div class="col-sm-10">
-                                <input type="tel" class="form-control" name="nomor_telepon" value="{{ $user->telp }}">
-                            </div>
-                        </div> --}}
-                        {{-- <div class="hr-line-dashed"></div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Aktif</label>
-                            <div class="col-sm-10">
-                                <div class="switch">
-                                    <div class="onoffswitch">
-                                        <input type="checkbox" class="onoffswitch-checkbox" id="aktif-switch" name="aktif" value="1" @if($user->is_active == 1) checked="" @endif>
-                                        <label class="onoffswitch-label" for="aktif-switch">
-                                            <span class="onoffswitch-inner"></span>
-                                            <span class="onoffswitch-switch"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
                         <div class="hr-line-dashed"></div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Tipe Pengguna</label>
@@ -126,6 +96,37 @@ $('.chosen-select').chosen({width: "100%"});
                                 <small class="form-text m-b-none">* Tipe pengguna bisa lebih dari satu</small>
                             </div>
                         </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Status Pengguna</label>
+                            <div class="col-sm-10">
+                                <div class="switch">
+                                    <div class="onoffswitch">
+                                        <input type="checkbox" class="onoffswitch-checkbox" id="aktif-switch" name="status" value="1" @if($user->is_active == 1) checked="" @endif>
+                                        <label class="onoffswitch-label" for="aktif-switch">
+                                            <span class="onoffswitch-inner"></span>
+                                            <span class="onoffswitch-switch"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" name="password">
+                                <small class="form-text m-b-none">* Min 8 karakter (Masukkan password baru jika ingin merubah / masukkan password lama jika tidak ingin merubah password untuk user ini)</small>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Konfirmasi Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" name="confirm-password">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
                         <div class="form-group row">
                             <div class="col-sm-4 col-sm-offset-2">
                                 <button class="btn btn-white btn-sm" type="reset">Batal</button>

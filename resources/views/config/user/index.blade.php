@@ -26,7 +26,6 @@
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
             { data: 'name', name: 'name' },
             { data: 'username', name: 'username' },
-            { data: 'email', name: 'email' },
             { data: 'roles', name: 'roles' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
@@ -46,8 +45,8 @@
                     "width": "4%"
                 },
                 {
-                    "targets": 5,
-                    "width": "170px"
+                    "targets": 4,
+                    "width": "180px"
                 }
             ],
             initComplete: function () {
@@ -141,9 +140,8 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama</th>
+                                <th>Nama Lengkap</th>
                                 <th>Username</th>
-                                <th>Email</th>
                                 <th>Role</th>
                                 <th>Opsi</th>
                             </tr>

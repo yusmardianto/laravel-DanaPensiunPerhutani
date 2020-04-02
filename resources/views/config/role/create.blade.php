@@ -53,10 +53,8 @@ $('.dual_select').bootstrapDualListbox({
                 </div>
                 <div class="ibox-content">
                     @include('layouts.flashMessage')
-
                     <form method="post" action="{{ url()->current() }}">
                         @csrf
-
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nama Role</label>
                             <div class="col-sm-10">

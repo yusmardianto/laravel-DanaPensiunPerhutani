@@ -45,7 +45,7 @@
                 },
                 {
                     "targets": 3,
-                    "width": "170px"
+                    "width": "180px"
                 }
             ],
             initComplete: function () {

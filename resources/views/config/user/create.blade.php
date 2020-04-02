@@ -49,75 +49,72 @@ $('.chosen-select').chosen({width: "100%"});
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            Form Input Data Pengguna
-                        </div>
                     @include('layouts.flashMessage')
-                    <div class="panel-body">
-                        <form method="post" action="{{ url()->current() }}" enctype="multipart/form-data" id="form-user">
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Nama Lengkap</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class='form-group row'>
-                                        <label class="col-sm-3 col-form-label">Username</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" name="username" value="{{ old('username') }}">
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Email</label>
-                                        <div class="col-sm-8">
-                                            <input type="email" class="form-control" name="email" value="{{ old('email') }}">
-                                        </div>
+                    <form method="post" action="{{ url()->current() }}" enctype="multipart/form-data" id="form-user">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Nama Lengkap</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Tipe Pengguna</label>
-                                        <div class="col-sm-8">
-                                            <select data-placeholder="- Pilih Tipe Pengguna -" class="chosen-select" name="roles[]" multiple>
-                                                <option value=""></option>
-                                                @foreach ($roles as $row)
-                                                <option value="{{ $row->name }}">{{ $row->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <small class="form-text m-b-none">* Tipe pengguna bisa lebih dari satu</small>
-                                        </div>
+                                <div class='form-group row'>
+                                    <label class="col-sm-3 col-form-label">Username</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="username" value="{{ old('username') }}">
                                     </div>
-                                    <div class='form-group row'>
-                                        <label class="col-sm-3 col-form-label">Password</label>
-                                        <div class="col-sm-8">
-                                            <input type="password" class="form-control" name="password">
-                                            <small class="form-text m-b-none">* Min 8 karakter</small>
-                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Email</label>
+                                    <div class="col-sm-8">
+                                        <input type="email" class="form-control" name="email" value="{{ old('email') }}">
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Konfirmasi Password</label>
-                                        <div class="col-sm-8">
-                                            <input type="password" class="form-control" name="confirm-password">
-                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Nomor Hp</label>
+                                    <div class="col-sm-8">
+                                        <input type="number" class="form-control" name="no_hp" value="{{ old('no_hp') }}">
                                     </div>
                                 </div>
                             </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group row">
-                                <div class="col-sm-2 col-sm-offset-2">
-                                    <button class="btn btn-white btn-sm" type="reset">Batal</button>
-                                    <button class="btn btn-primary btn-sm" type="submit">Simpan</button>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Tipe Pengguna</label>
+                                    <div class="col-sm-8">
+                                        <select data-placeholder="- Pilih Tipe Pengguna -" class="chosen-select" name="roles[]" multiple>
+                                            <option value=""></option>
+                                            @foreach ($roles as $row)
+                                            <option value="{{ $row->name }}">{{ $row->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <small class="form-text m-b-none">* Tipe pengguna bisa lebih dari satu</small>
+                                    </div>
+                                </div>
+                                <div class='form-group row'>
+                                    <label class="col-sm-3 col-form-label">Password</label>
+                                    <div class="col-sm-8">
+                                        <input type="password" class="form-control" name="password">
+                                        <small class="form-text m-b-none">* Min 8 karakter</small>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Konfirmasi Password</label>
+                                    <div class="col-sm-8">
+                                        <input type="password" class="form-control" name="confirm-password">
+                                    </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-sm-offset-2">
+                                <button class="btn btn-white btn-sm" type="reset">Batal</button>
+                                <button class="btn btn-primary btn-sm" type="submit">Simpan</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

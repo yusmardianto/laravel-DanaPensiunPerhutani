@@ -68,6 +68,7 @@ class UserController extends Controller
             'name' => 'required',
             'username' => 'required|unique:users,username',
             'email' => 'required|email|unique:users,email',
+            'no_hp' => 'required|min:10|unique:users,no_hp',
             'roles' => 'required',
             'password' => 'required|min:8|same:confirm-password',
         ]);
@@ -80,6 +81,8 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->username = $request->username;
             $user->email = $request->email;
+            $user->no_hp = $request->no_hp;
+            $user->is_active = 1;
             $user->password = Hash::make($request->password);
 
             if ($user->save()) {
@@ -154,6 +157,7 @@ class UserController extends Controller
             'name' => 'required',
             'username' => 'required|unique:users,username,'.$id,
             'email' => 'required|email|unique:users,email,'.$id,
+            'no_hp' => 'required|min:10|unique:users,no_hp,'.$id,
             'roles' => 'required',
             'password' => 'required|min:8|same:confirm-password',
         ]);
@@ -167,9 +171,9 @@ class UserController extends Controller
                 $user->name = $request->name;
                 $user->username = $request->username;
                 $user->email = $request->email;
+                $user->no_hp = $request->no_hp;
+                $user->is_active = ($request->status) ? 1 : 0;
                 $user->password = Hash::make($request->password);
-                // $user->telp = $request->nomor_telepon;
-                // $user->is_active = ($request->aktif) ? 1 : 0;
 
                 if ($user->save()) {
                     DB::table('model_has_roles')->where('model_id',$user->id)->delete();
@@ -190,7 +194,7 @@ class UserController extends Controller
 
         $user_name = $user->name;
         if((Auth::user()->id == $id)) {
-            return redirect('config/user')->with('error', 'anda tidak dapat menghapus diri sendiri')->withInput();
+            return redirect('config/user')->with('error', 'Anda tidak dapat menghapus diri sendiri')->withInput();
         }elseif ((isset($user)) && ($user->delete())) {
             return redirect('config/user')->with('success','Berhasil menghapus data pengguna '. $user_name .'');
         }

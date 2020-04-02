@@ -114,7 +114,6 @@
         </ol>
     </div>
     <div class="col-lg-2">
-
     </div>
 </div>
 
@@ -137,38 +136,38 @@
                         <div class="col-md-5">
                             <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Nama Lengkap</dt> </div>
-                                <div class="col-sm-1 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-6 text-sm-left"><dd class="mb-1">{{ $user->name }}</dd></div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $user->name }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Username</dt> </div>
-                                <div class="col-sm-1 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-6 text-sm-left"><dd class="mb-1">{{ $user->username }}</dd> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $user->username }}</dd> </div>
                             </dl>
                         </div>
                         <div class="col-md-4">
                             <dl class="row mb-0">
                                 <div class="col-sm-3 text-sm-left"><dt>Email</dt> </div>
-                                <div class="col-sm-1 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $user->email }}</dd> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-8 text-sm-left"><dd class="mb-1">{{ $user->email }}</dd> </div>
                             </dl>
                             <dl class="row mb-0">
                                 <div class="col-sm-3 text-sm-left"><dt>No Hp</dt> </div>
-                                <div class="col-sm-1 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $user->telp }}</dd> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-8 text-sm-left"><dd class="mb-1">{{ $user->no_hp }}</dd> </div>
                             </dl>
                         </div>
                         <div class="col-md-3">
                             <dl class="row mb-0">
                                 <div class="col-sm-3 text-sm-left"><dt>Status</dt></div>
-                                <div class="col-sm-1 text-sm-left"><dt>:</dt></div>
-                                {{-- <div class="col-sm-7 text-sm-left"><dd class="mb-1">
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt></div>
+                                <div class="col-sm-8 text-sm-left"><dd class="mb-1">
                                     @if($user->is_active == 1)
                                     <label class="label label-success">Aktif</label>
                                     @else
-                                    <label class="label label-warning">Non Aktif,</label>
+                                    <label class="label label-warning">Non Aktif</label>
                                     @endif
-                                </dd></div> --}}
+                                </dd></div>
                             </dl>
                         </div>
                     </div>
