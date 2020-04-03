@@ -45,7 +45,7 @@
                 },
                 {
                     "targets": 3,
-                    "width": "170px"
+                    "width": "180px"
                 }
             ],
             initComplete: function () {
@@ -123,10 +123,12 @@
                 <div class="ibox-title">
                     <h5>Tipe Pengguna</h5>
                     <div class="ibox-tools">
+                        @if($user->hasAnyPermission(['role-create']))
                         <a href="{{ url('config/role/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
-                            Tambah data
+                            Tambah tipe pengguna
                         </a>
+                        @endif
                     </div>
                 </div>
                 <div class="ibox-content">

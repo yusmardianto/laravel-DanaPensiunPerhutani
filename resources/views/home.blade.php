@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name'). ' | Dashboard')
+@section('title', config('app.name'). ' | Home')
 
 @section('content')
 <div class="container">

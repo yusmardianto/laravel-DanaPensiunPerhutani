@@ -10,6 +10,7 @@ class Hasher
         if (!isset($uri)) {
             $uri = Request::segment(1, 'kamulahsatusatunya');
         }
+
         $hasher = new Hashids($uri, 10);
         return $hasher->encode(...$args);
     }
@@ -24,7 +25,6 @@ class Hasher
                 $uri = Request::segment(1, 'kamulahsatusatunya');
             }
             $hasher = new Hashids($uri, 10);
-
             return $hasher->decode($enc)[0];
             // return app(Hashids::class)->decode($enc)[0];
         }catch (\Exception $e) {

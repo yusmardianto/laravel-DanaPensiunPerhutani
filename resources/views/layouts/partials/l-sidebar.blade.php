@@ -6,11 +6,11 @@ $user = Auth::user();
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element">
-                    <img alt="image" class="square" src="{{asset('img/dapen-logoputih.png') }}" width="150"/>
-                    {{-- <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <img alt="image" class="rounded-circle" src="{{asset('img/dapen-bulat.png') }}" width="50"/>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="block m-t-xs font-bold">{{ $user->name }}</span>
-                        <span class="text-muted text-xs block">{{ $user->email }} <b class="caret"></b></span>
-                    </a> --}}
+                        <span class="text-muted text-xs block">{{ $user->getRoleNames()[0] ?? "" }}<b class="caret"></b></span>
+                    </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
                         <li><a class="dropdown-item logout-btn" href="#">Logout</a></li>
                     </ul>

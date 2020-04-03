@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Daftar Pengguna')
+@section('title', config('app.name').' | Detail Pengguna')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -25,8 +25,7 @@
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
             { data: 'name', name: 'name' },
-            { data: 'username', name: 'username' },
-            { data: 'roles', name: 'roles' },
+            { data: 'guard_name', name: 'guard_name' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
@@ -34,7 +33,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('config/user/ajax-list') !!}',
+                url: '{!! url('config/user/ajax-role/'.$hashed_id.'') !!}',
                 method: 'POST'
             },
             columns: $column,
@@ -45,8 +44,8 @@
                     "width": "4%"
                 },
                 {
-                    "targets": 4,
-                    "width": "180px"
+                    "targets": 3,
+                    "width": "170px"
                 }
             ],
             initComplete: function () {
@@ -64,11 +63,11 @@
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('nama');
-            var deleteUrl = "{{ url('config/user/delete') }}" + "/" + dataId;
+            var deleteUrl = "{{ url('config/user/delete-role') }}" + "/" + "{{ $hashed_id }}" + "/" + dataId ;
             var csrf = "{{ csrf_token() }}";
 
             swal({
-                text: "Hapus data pengguna : "+ dataName +" ?" ,
+                text: "Hapus data role "+ dataName +" untuk user ini ?" ,
                 icon: "warning",
                 dangerMode: true,
                 buttons: {
@@ -100,20 +99,21 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Daftar Pengguna</h2>
+        <h2>Detail Pengguna</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
             </li>
             <li class="breadcrumb-item">Konfigurasi
             </li>
+            <li class="breadcrumb-item">Daftar Pengguna
+            </li>
             <li class="breadcrumb-item active">
-                <strong>Daftar Pengguna</strong>
+                <strong>Detail</strong>
             </li>
         </ol>
     </div>
     <div class="col-lg-2">
-
     </div>
 </div>
 
@@ -122,14 +122,71 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Daftar Pengguna</h5>
+                    <h5>Detail Pengguna</h5>
                     <div class="ibox-tools">
-                        @if($user->hasAnyPermission(['user-create']))
-                        <a href="{{ url('config/user/create') }}" class="btn btn-primary btn-xs modal-form">
-                            <i class="fa fa-plus"></i>
-                            Tambah data pengguna
+                        <a href="{{ url('config/user') }}" class="btn btn-primary btn-xs modal-form">
+                            <i class="fa fa-arrow-circle-o-left"></i>
+                            Kembali
                         </a>
-                        @endif
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>Nama Lengkap</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $user->name }}</dd></div>
+                            </dl>
+                            <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>Username</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $user->username }}</dd> </div>
+                            </dl>
+                        </div>
+                        <div class="col-md-4">
+                            <dl class="row mb-0">
+                                <div class="col-sm-3 text-sm-left"><dt>Email</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-8 text-sm-left"><dd class="mb-1">{{ $user->email }}</dd> </div>
+                            </dl>
+                            <dl class="row mb-0">
+                                <div class="col-sm-3 text-sm-left"><dt>No Hp</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-8 text-sm-left"><dd class="mb-1">{{ $user->no_hp }}</dd> </div>
+                            </dl>
+                        </div>
+                        <div class="col-md-3">
+                            <dl class="row mb-0">
+                                <div class="col-sm-3 text-sm-left"><dt>Status</dt></div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt></div>
+                                <div class="col-sm-8 text-sm-left"><dd class="mb-1">
+                                    @if($user->is_active == 1)
+                                    <label class="label label-success">Aktif</label>
+                                    @else
+                                    <label class="label label-warning">Non Aktif</label>
+                                    @endif
+                                </dd></div>
+                            </dl>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Tipe Pengguna</h5>
+                    <div class="ibox-tools">
+                        <a href="{{ url('config/user/add-role/') }}" class="btn btn-primary btn-xs modal-form">
+                            <i class="fa fa-plus"></i>
+                            Tambah data tipe pengguna
+                        </a>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -140,15 +197,13 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Lengkap</th>
-                                <th>Username</th>
-                                <th>Role</th>
+                                <th>Nama Role</th>
+                                <th>Guard</th>
                                 <th>Opsi</th>
                             </tr>
                             </thead>
                         </table>
                     </div>
-
                 </div>
             </div>
         </div>
