@@ -63,6 +63,8 @@ Route::group(['middleware' => ['auth']], function() {
         Route::any('role/ajax-list', 'RoleController@ajaxList');
         Route::get('role/create','RoleController@getCreate');
         Route::post('role/create','RoleController@postCreate');
+        //module
+        Route::get('module', 'ModuleController@index');
     });
 
 });

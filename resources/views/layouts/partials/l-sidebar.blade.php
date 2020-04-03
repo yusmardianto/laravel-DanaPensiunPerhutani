@@ -64,7 +64,7 @@ $user = Auth::user();
                         <a href="{{ url('investasi/datatransaksi') }}">Data Transaksi</a>
                     </li>
                     <li @if(Request::segment(2) == 'laporan') class="active" @endif>
-                        <a href="{{ url('investasi/laporantransaksi') }}">Laporan Transaksi</a>
+                        <a href="{{ url('investasi/laporan') }}">Laporan Transaksi</a>
                     </li>
                     <li @if(Request::segment(2) == 'statusorder') class="active" @endif>
                         <a href="{{ url('investasi/statusorder') }}">Status Order</a>
@@ -104,6 +104,9 @@ $user = Auth::user();
                     </li>
                     <li @if(Request::segment(2) == 'role') class="active" @endif>
                         <a href="{{ url('config/role') }}">Tipe Pengguna</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'module') class="active" @endif>
+                        <a href="{{ url('config/module') }}">Modules</a>
                     </li>
                 </ul>
             </li>
