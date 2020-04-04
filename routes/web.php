@@ -71,6 +71,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('role/edit/{id}','RoleController@getEdit');
         Route::post('role/edit/{id}','RoleController@postEdit');
         Route::post('role/delete/{id}', 'RoleController@delete');
+        //module
+        Route::get('module', 'ModuleController@index');
+        Route::any('module\ajax-list', 'ModuleController@ajaxList');
     });
 
 });
