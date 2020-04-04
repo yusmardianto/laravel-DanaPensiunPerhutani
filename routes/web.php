@@ -35,8 +35,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::prefix('investasi')->group(function() {
         //data transaksi
         Route::get('datatransaksi', 'DataTransaksiController@index');
-        //laporan transaksi
-        Route::get('laporan', 'LaporanController@index');
         //status order
         Route::get('statusorder', 'StatusOrderController@index');
         //perubahan status order

@@ -37,6 +37,7 @@ class UserController extends Controller
                 <a class=\"btn btn-xs btn-warning delete-btn\" href=\"#\" data-id=\"". $hashed_id ."\" data-nama=\"". $row->name ."\"><i class=\"glyphicon glyphicon-trash\"></i> Hapus</a>
                 ";
             })
+
             ->addColumn('roles', function ($row) {
                 $string = "";
                 foreach($row->roles as $item) {

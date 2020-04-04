@@ -4,7 +4,6 @@
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
 @endsection
 
@@ -27,7 +26,14 @@
             { data: 'name', name: 'name' },
             { data: 'username', name: 'username' },
             { data: 'email', name: 'email' },
-            { data: 'action', name: 'action', orderable: false, searchable: false },
+            { data: 'no_hp', name: 'no_hp' },
+            { data: 'is_active', name: 'is_active', orderable: false, searchable: false, render: function (data, type, row) {
+                if (row.is_active == '1') {
+                    return '<label class="label label-success">Aktif</label>';}
+                    else {
+                        return '<label class="label label-danger">Tidak Aktif</label>';}
+                    }
+            }
         ];
 
         $('#table-list').DataTable({
@@ -45,7 +51,7 @@
                     "width": "4%"
                 },
                 {
-                    "targets": 4,
+                    "targets": 5,
                     "width": "170px"
                 }
             ],
@@ -59,39 +65,6 @@
                     });
                 });
             }
-        });
-
-        $(document).on('click', '.delete-btn', function() {
-            var dataId = $(this).data('id');
-            var dataName = $(this).data('nama');
-            var deleteUrl = "{{ url('config/role/delete-user') }}" + "/" + "{{ $hashed_id }}" + "/" + dataId ;
-            var csrf = "{{ csrf_token() }}";
-
-            swal({
-                text: "Hapus data user "+ dataName +" untuk role ini ?" ,
-                icon: "warning",
-                dangerMode: true,
-                buttons: {
-                    cancel: {
-                        text: "Batal",
-                        value: false,
-                        visible: true,
-                        className: "btn btn-sm btn-white"
-                    },
-                    confirm: {
-                        text: "Hapus",
-                        value: true,
-                        visible: true,
-                        className: "btn btn-sm btn-danger",
-                        closeModal: true
-                    }
-                }
-            }).then((value) => {
-                if (value === true) {
-                    $.redirect(deleteUrl, {"_token": csrf});
-                }
-                swal.close();
-            });;
         });
     });
 </script>
@@ -115,10 +88,8 @@
         </ol>
     </div>
     <div class="col-lg-2">
-
     </div>
 </div>
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -133,7 +104,6 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <div class="row">
                         <div class="col-md-6">
                             <dl class="row mb-0">
@@ -149,7 +119,7 @@
                         </div>
                         <div class="col-md-6">
                             <dl class="row mb-0">
-                                <div class="col-sm-3 text-sm-left"><dt>Permission</dt> </div>
+                                <div class="col-sm-3 text-sm-left"><dt>Permissions</dt> </div>
                                 <div class="col-sm-1 text-sm-left"><dt>:</dt> </div>
                                 <div class="col-sm-7 text-sm-left"><dd class="mb-1">
                                         @if(!empty($rolePermissions))
@@ -166,22 +136,14 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>Daftar Pengguna</h5>
-                    <div class="ibox-tools">
-                        <a href="{{ url('config/role/add-user/'.$hashed_id.'') }}" class="btn btn-primary btn-xs modal-form">
-                            <i class="fa fa-plus"></i>
-                            Tambah data pengguna
-                        </a>
-                    </div>
                 </div>
                 <div class="ibox-content">
                     @include('layouts.flashMessage')
-
                     <div class="table-responsive">
                         <table class="table table-striped" id="table-list">
                             <thead>
@@ -190,7 +152,8 @@
                                 <th>Nama</th>
                                 <th>Username</th>
                                 <th>Email</th>
-                                <th></th>
+                                <th>Nomor Hp</th>
+                                <th>Status Pengguna</th>
                             </tr>
                             </thead>
                         </table>

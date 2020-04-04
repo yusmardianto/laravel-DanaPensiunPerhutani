@@ -85,7 +85,7 @@ class RoleController extends Controller
     {
         $data = User::whereHas('roles', function ($q) use ($id) {
             $q->where('id', $id);
-        })->orderBy('created_at', 'DESC');
+        })->orderBy('created_at', 'ASC');
 
         $datatables = Datatables::of($data);
 

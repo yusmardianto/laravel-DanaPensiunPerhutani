@@ -36,7 +36,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Status Order</h5>
+                    <h5>Surat Instruksi</h5>
                     <div class="ibox-tools">
                         <a href="{{ url('kepesertaan/peserta/tambah') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>

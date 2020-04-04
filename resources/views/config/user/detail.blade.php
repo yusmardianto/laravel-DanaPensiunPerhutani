@@ -159,13 +159,13 @@
                         </div>
                         <div class="col-md-3">
                             <dl class="row mb-0">
-                                <div class="col-sm-3 text-sm-left"><dt>Status</dt></div>
+                                <div class="col-sm-7 text-sm-left"><dt>Status Pengguna</dt></div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt></div>
-                                <div class="col-sm-8 text-sm-left"><dd class="mb-1">
+                                <div class="col-sm-4 text-sm-left"><dd class="mb-1">
                                     @if($user->is_active == 1)
                                     <label class="label label-success">Aktif</label>
                                     @else
-                                    <label class="label label-warning">Non Aktif</label>
+                                    <label class="label label-danger">Tidak Aktif</label>
                                     @endif
                                 </dd></div>
                             </dl>
@@ -185,7 +185,7 @@
                     <div class="ibox-tools">
                         <a href="{{ url('config/user/add-role/') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
-                            Tambah data tipe pengguna
+                            Tambah tipe pengguna
                         </a>
                     </div>
                 </div>

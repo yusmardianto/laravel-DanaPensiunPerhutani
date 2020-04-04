@@ -12,7 +12,8 @@ $user = Auth::user();
                         <span class="text-muted text-xs block">{{ $user->getRoleNames()[0] ?? "" }}<b class="caret"></b></span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a class="dropdown-item logout-btn" href="#">Logout</a></li>
+                        <li><a class="dropdown-item" href="{{ url('user/profile') }}">Profil</a></li>
+                        <li><a class="dropdown-item" href="{{ url('user/resetpassword') }}">Ubah Password</a></li>
                     </ul>
                 </div>
                 <div class="logo-element">
@@ -63,9 +64,6 @@ $user = Auth::user();
                     <li @if(Request::segment(2) == 'datatransaksi') class="active" @endif>
                         <a href="{{ url('investasi/datatransaksi') }}">Data Transaksi</a>
                     </li>
-                    <li @if(Request::segment(2) == 'laporan') class="active" @endif>
-                        <a href="{{ url('investasi/laporantransaksi') }}">Laporan Transaksi</a>
-                    </li>
                     <li @if(Request::segment(2) == 'statusorder') class="active" @endif>
                         <a href="{{ url('investasi/statusorder') }}">Status Order</a>
                     </li>
@@ -99,11 +97,30 @@ $user = Auth::user();
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                    <li @if(Request::segment(2) == 'user') class="active" @endif>
-                        <a href="{{ url('config/user') }}">Daftar Pengguna</a>
+                    <li @if(Request::segment(2) == 'module') class="active" @endif>
+                        <a href="{{ url('config/module') }}">Module</a>
                     </li>
                     <li @if(Request::segment(2) == 'role') class="active" @endif>
                         <a href="{{ url('config/role') }}">Tipe Pengguna</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'user') class="active" @endif>
+                        <a href="{{ url('config/user') }}">Daftar Pengguna</a>
+                    </li>
+                </ul>
+            </li>
+            <li @if(Request::segment(1) == 'report') class="active" @endif>
+                <a href="#">
+                    <i class="fa fa-print"></i> <span class="nav-label">Laporan</span> <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse" aria-expanded="false">
+                    <li @if(Request::segment(2) == 'lap-kepesertaan') class="active" @endif>
+                        <a href="{{ url('report/evapot') }}">Laporan Kepesertaan</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'lap-investasi') class="active" @endif>
+                        <a href="{{ url('report/risalah') }}">Laporan Transaksi Investasi</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'lap-keuangan') class="active" @endif>
+                        <a href="{{ url('report/datasdh') }}">Laporan Keuangan</a>
                     </li>
                 </ul>
             </li>
