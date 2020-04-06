@@ -25,7 +25,7 @@ class UserController extends Controller
     public function ajaxList(Request $request)
     {
         $data = User::with('roles')
-            ->orderBy('created_at', 'ASC');
+            ->orderBy('created_at', 'DESC');
 
         $datatables = Datatables::of($data);
 
@@ -114,7 +114,7 @@ class UserController extends Controller
     {
         $data = Role::whereHas('users', function($q) use($id) {
             $q->where('id', $id);
-        });
+        })->orderBy('created_at', 'DESC');
 
         $datatables = Datatables::of($data);
 

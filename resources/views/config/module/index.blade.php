@@ -25,7 +25,7 @@
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
             { data: 'name', name: 'name' },
-            { data: 'guard_name', name: 'guard_name' },
+            { data: 'detail', name: 'detail' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
@@ -33,7 +33,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('config/Module/ajax-list') !!}',
+                url: '{!! url('config/module/ajax-list') !!}',
                 method: 'POST'
             },
             columns: $column,
@@ -45,7 +45,7 @@
                 },
                 {
                     "targets": 3,
-                    "width": "170px"
+                    "width": "180px"
                 }
             ],
             initComplete: function () {
@@ -67,7 +67,7 @@
             var csrf = "{{ csrf_token() }}";
 
             swal({
-                text: "Hapus data module : "+ dataName +" ?" ,
+                text: "Hapus Data Module : "+ dataName +" ?" ,
                 icon: "warning",
                 dangerMode: true,
                 buttons: {
@@ -99,7 +99,7 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Module</h2>
+        <h2>Daftar Module</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
@@ -107,7 +107,7 @@
             <li class="breadcrumb-item">Konfigurasi
             </li>
             <li class="breadcrumb-item active">
-                <strong>Module</strong>
+                <strong>Daftar Module</strong>
             </li>
         </ol>
     </div>
@@ -121,11 +121,11 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Module</h5>
+                    <h5>Daftar Module</h5>
                     <div class="ibox-tools">
                         <a href="{{ url('config/module/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
-                            Tambah data
+                            Tambah data module
                         </a>
                     </div>
                 </div>
@@ -138,12 +138,13 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Module</th>
-                                <th>Detail</th>
+                                <th>Detail Module</th>
                                 <th>Opsi</th>
                             </tr>
                             </thead>
                         </table>
                     </div>
+
                 </div>
             </div>
         </div>

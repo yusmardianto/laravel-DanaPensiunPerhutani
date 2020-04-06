@@ -112,7 +112,7 @@ $user = Auth::user();
                 <a href="#">
                     <i class="fa fa-print"></i> <span class="nav-label">Laporan</span> <span class="fa arrow"></span>
                 </a>
-                <ul class="nav nav-second-level collapse" aria-expanded="false">
+                <ul class="nav nav-second-level collapse">
                     <li @if(Request::segment(2) == 'lap-kepesertaan') class="active" @endif>
                         <a href="{{ url('report/kepesertaan') }}">Laporan Kepesertaan</a>
                     </li>

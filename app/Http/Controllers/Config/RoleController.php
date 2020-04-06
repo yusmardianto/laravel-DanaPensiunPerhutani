@@ -28,7 +28,7 @@ class RoleController extends Controller
             'id',
             'name',
             'guard_name',
-        ])->orderBy('created_at', 'ASC');
+        ])->orderBy('created_at', 'DESC');
 
         $datatables = Datatables::of($data);
 
@@ -78,14 +78,14 @@ class RoleController extends Controller
             ->where("role_has_permissions.role_id",$id)
             ->get();
 
-        return view('config.role.detail',compact('role','rolePermissions', 'hashed_id'));
+        return view('config.role.detail',compact('role', 'rolePermissions', 'hashed_id'));
     }
 
     public function ajaxUser(Request $request, $id)
     {
         $data = User::whereHas('roles', function ($q) use ($id) {
             $q->where('id', $id);
-        })->orderBy('created_at', 'ASC');
+        })->orderBy('created_at', 'DESC');
 
         $datatables = Datatables::of($data);
 

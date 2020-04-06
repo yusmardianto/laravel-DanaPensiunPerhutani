@@ -39,10 +39,10 @@ $('.chosen-select').chosen({width: "100%"});
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
-                <div class="ibox-title panel-primary">
+                <div class="ibox-title">
                     <h5>Tambah Data Pengguna</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url()->previous() }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('config/user')}}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>
                             Kembali
                         </a>

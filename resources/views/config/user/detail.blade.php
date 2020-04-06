@@ -198,7 +198,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Role</th>
-                                <th>Guard</th>
+                                <th>Platform</th>
                                 <th>Opsi</th>
                             </tr>
                             </thead>

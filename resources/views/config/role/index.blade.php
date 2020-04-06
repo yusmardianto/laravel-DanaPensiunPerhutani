@@ -123,7 +123,7 @@
                 <div class="ibox-title">
                     <h5>Tipe Pengguna</h5>
                     <div class="ibox-tools">
-                        @if($user->hasAnyPermission(['role-create']))
+                        @if($user->hasAnyPermission(['Role-create']))
                         <a href="{{ url('config/role/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
                             Tambah tipe pengguna
@@ -140,7 +140,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Role</th>
-                                <th>Guard</th>
+                                <th>Platform</th>
                                 <th>Opsi</th>
                             </tr>
                             </thead>

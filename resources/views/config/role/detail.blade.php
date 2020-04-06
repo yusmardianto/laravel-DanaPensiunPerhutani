@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Tipe Pengguna')
+@section('title', config('app.name').' | Detail Tipe Pengguna')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -29,10 +29,12 @@
             { data: 'no_hp', name: 'no_hp' },
             { data: 'is_active', name: 'is_active', orderable: false, searchable: false, render: function (data, type, row) {
                 if (row.is_active == '1') {
-                    return '<label class="label label-success">Aktif</label>';}
-                    else {
-                        return '<label class="label label-danger">Tidak Aktif</label>';}
+                    return '<label class="label label-success">Aktif</label>';
+                }
+                else {
+                    return '<label class="label label-danger">Tidak Aktif</label>';
                     }
+                }
             }
         ];
 
@@ -108,20 +110,20 @@
                         <div class="col-md-6">
                             <dl class="row mb-0">
                                 <div class="col-sm-3 text-sm-left"><dt>Nama Role</dt> </div>
-                                <div class="col-sm-1 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $role->name }}</dd></div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-8 text-sm-left"><dd class="mb-1">{{ $role->name }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
                                 <div class="col-sm-3 text-sm-left"><dt>Nama Guard</dt> </div>
-                                <div class="col-sm-1 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $role->guard_name }}</dd></div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-8 text-sm-left"><dd class="mb-1">{{ $role->guard_name }}</dd></div>
                             </dl>
                         </div>
                         <div class="col-md-6">
                             <dl class="row mb-0">
                                 <div class="col-sm-3 text-sm-left"><dt>Permissions</dt> </div>
-                                <div class="col-sm-1 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-8 text-sm-left"><dd class="mb-1">
                                         @if(!empty($rolePermissions))
                                         @foreach($rolePermissions as $v)
                                             <label class="label label-success">{{ $v->name }},</label>
@@ -149,7 +151,7 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama</th>
+                                <th>Nama Lengkap</th>
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>Nomor Hp</th>
