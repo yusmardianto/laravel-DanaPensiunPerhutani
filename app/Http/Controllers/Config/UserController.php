@@ -114,19 +114,21 @@ class UserController extends Controller
     {
         $data = Role::whereHas('users', function($q) use($id) {
             $q->where('id', $id);
-        })->orderBy('created_at', 'DESC');
+        })
+        ->orderBy('created_at', 'DESC');
 
         $datatables = Datatables::of($data);
 
-        return $datatables->addColumn('action', function ($row) {
-            $hashed_id = Hasher::encode($row->id);
-                return "
-                <a class=\"btn btn-xs btn-warning delete-btn\" href=\"#\" data-id=\"". $hashed_id ."\" data-nama=\"". $row->name ."\"><i class=\"glyphicon glyphicon-trash\"></i> Hapus</a>
-                ";
-            })
-            ->rawColumns(['action'])
-            ->addIndexColumn()
-            ->make(true);
+        return $datatables->addColumn('permissions', function ($row) {
+            $string = "";
+            foreach($row->permissions as $item) {
+                $string .= "<label class=\"badge badge-success\">".$item->name."</label> &nbsp;";
+            }
+            return $string;
+        })
+        ->rawColumns(['permissions'])
+        ->addIndexColumn()
+        ->make(true);
     }
 
     public function getEdit($id)
