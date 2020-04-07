@@ -100,7 +100,8 @@ class ModuleController extends Controller
             ->make(true);
     }
 
-    public function getAddPermission($id) {
+    public function getAddPermission($id)
+    {
         $id = Hasher::decode($id);
         $module = Module::find($id);
 
@@ -110,7 +111,8 @@ class ModuleController extends Controller
         return redirect()->back()->with('error', 'data tidak ditemukan')->withInput();
     }
 
-    public function postAddPermission(Request $request, $id) {
+    public function postAddPermission(Request $request, $id)
+    {
         $id = Hasher::decode($id);
 
         $this->validate($request, [
@@ -130,7 +132,8 @@ class ModuleController extends Controller
         return redirect()->back()->with('error', 'Gagal menambah data permissions'. $request->name .'')->withInput();
     }
 
-    public function postDeletePermission($id, $permissionId) {
+    public function postDeletePermission($id, $permissionId)
+    {
         $id = Hasher::decode($id);
         $permission = Permission::where('module_id', $id)->where('id', Hasher::decode($permissionId))->first();
 
@@ -138,6 +141,46 @@ class ModuleController extends Controller
         if ((isset($permission)) && ($permission->delete())) {
             return redirect('config/module/detail/'.$hashed_id.'')->with('success', 'Berhasil menghapus data permissions '.$permission->name.'');
         }
-        return redirect()->back()->with('error', 'data tidak ditemukan')->withInput();
+        return redirect()->back()->with('error', 'Data tidak ditemukan')->withInput();
+    }
+
+    public function getEdit($id)
+    {
+        $id = Hasher::decode($id);
+        $module = Module::find($id);
+
+        if (isset($module)) {
+            return view('config.module.edit',compact('module'));
+        }
+        return redirect()->back()->with('error', 'Data tidak ditemukan')->withInput();
+    }
+
+    public function postEdit(Request $request, $id)
+    {
+        $id = Hasher::decode($id);
+        $this->validate($request, [
+            'nama' => 'required|unique:roles,name',
+            'detail' => 'required|max:200',
+        ]);
+
+        $module = Module::find($id);
+        $module->name = $request->nama;
+        $module->detail = $request->detail;
+
+        if ($module->save()) {
+            return redirect('config/module')->with('success','Berhasil mengubah data module '.$request->name.'');
+        }
+        return redirect()->back()->with('error', 'Gagal mengubah data module '. $request->name .'')->withInput();
+    }
+
+    public function Delete($id)
+    {
+        $id = Hasher::decode($id);
+        $module = Module::with('permissions')->find($id);
+
+        if ((isset($module)) && ($module->delete())) {
+            return redirect('config/module')->with('success','Berhasil menghapus data module '.$module->name.'');
+        }
+        return redirect()->back()->with('error', 'Gagal menghapus data module '. $module->name .'')->withInput();
     }
 }

@@ -15,7 +15,7 @@ class UpdatePermissionsTable extends Migration
     {
         Schema::table('permissions', function (Blueprint $table) {
             $table->integer('module_id')->unsigned()->after('guard_name')->nullable();
-            $table->foreign('module_id')->references('id')->on('module');
+            $table->foreign('module_id')->references('id')->on('module')->onDelete('cascade');
         });
     }
 

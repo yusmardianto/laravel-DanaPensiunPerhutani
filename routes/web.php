@@ -61,6 +61,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('module/add-permission/{id}','ModuleController@getAddPermission');
         Route::post('module/add-permission/{id}','ModuleController@postAddPermission');
         Route::post('module/delete-permission/{id}/{permissionId}','ModuleController@postDeletePermission');
+        Route::get('module/edit/{id}', 'ModuleController@getEdit');
+        Route::post('module/edit/{id}', 'ModuleController@postEdit');
+        Route::post('module/delete/{id}', 'ModuleController@delete');
         //role
         Route::get('role', 'RoleController@index');
         Route::any('role/ajax-list', 'RoleController@ajaxList');

@@ -67,7 +67,7 @@
             var csrf = "{{ csrf_token() }}";
 
             swal({
-                text: "Hapus Data Module : "+ dataName +" ?" ,
+                text: "Hapus data module : "+ dataName +" ?" ,
                 icon: "warning",
                 dangerMode: true,
                 buttons: {
