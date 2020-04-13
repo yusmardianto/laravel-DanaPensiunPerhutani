@@ -49,11 +49,11 @@
                 },
                 {
                     "targets": 2,
-                    "width": "150px"
+                    "width": "100px"
                 },
                 {
                     "targets": 3,
-                    "width": "100px"
+                    "width": "200px"
                 }
             ],
             initComplete: function () {

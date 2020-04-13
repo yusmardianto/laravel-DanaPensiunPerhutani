@@ -100,11 +100,10 @@ class UserController extends Controller
 
     public function getDetail($id)
     {
-        $id = Hasher::decode($id);
         $user = User::find($id);
 
         if (isset($user)) {
-            $hashed_id = Hasher::decode($user->id);
+            $hashed_id = Hasher::encode($user->id);
             return view('config.user.detail', compact('user', 'hashed_id'));
         }
         return redirect('config/user')->with('error', 'Data tidak ditemukan')->withInput();
@@ -133,7 +132,6 @@ class UserController extends Controller
 
     public function getEdit($id)
     {
-        $id = Hasher::decode($id);
         $user = User::find($id);
 
         if (isset($user)) {
@@ -153,7 +151,6 @@ class UserController extends Controller
 
     public function postEdit(Request $request, $id)
     {
-        $id = Hasher::decode($id);
         $user = User::find($id);
 
         $validator = Validator::make($request->all(), [
@@ -192,7 +189,6 @@ class UserController extends Controller
 
     public function delete($id)
     {
-        $id = Hasher::decode($id);
         $user = User::find($id);
 
         $user_name = $user->name;

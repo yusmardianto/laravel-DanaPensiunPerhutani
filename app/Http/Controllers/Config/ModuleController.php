@@ -71,7 +71,6 @@ class ModuleController extends Controller
 
     public function getDetail($id)
     {
-        $id = Hasher::decode($id);
         $data = Module::with('permissions')->find($id);
         $hashed_id = Hasher::encode($data->id);
 
@@ -80,7 +79,6 @@ class ModuleController extends Controller
 
     public function ajaxPermission(Request $request, $id)
     {
-        $id = Hasher::decode($id);
         $data = Permission::select([
             'id',
             'name',
@@ -102,7 +100,6 @@ class ModuleController extends Controller
 
     public function getAddPermission($id)
     {
-        $id = Hasher::decode($id);
         $module = Module::find($id);
 
         if (isset($module)) {
@@ -113,8 +110,6 @@ class ModuleController extends Controller
 
     public function postAddPermission(Request $request, $id)
     {
-        $id = Hasher::decode($id);
-
         $this->validate($request, [
             'nama' => 'required|unique:roles,name',
             'platform' => 'required',
@@ -134,8 +129,7 @@ class ModuleController extends Controller
 
     public function postDeletePermission($id, $permissionId)
     {
-        $id = Hasher::decode($id);
-        $permission = Permission::where('module_id', $id)->where('id', Hasher::decode($permissionId))->first();
+        $permission = Permission::where('module_id', $id)->where('id', Hasher::encode($permissionId))->first();
 
         $hashed_id = Hasher::encode($id);
         if ((isset($permission)) && ($permission->delete())) {
@@ -146,7 +140,6 @@ class ModuleController extends Controller
 
     public function getEdit($id)
     {
-        $id = Hasher::decode($id);
         $module = Module::find($id);
 
         if (isset($module)) {
@@ -157,7 +150,6 @@ class ModuleController extends Controller
 
     public function postEdit(Request $request, $id)
     {
-        $id = Hasher::decode($id);
         $this->validate($request, [
             'nama' => 'required|unique:roles,name',
             'detail' => 'required|max:200',
@@ -173,9 +165,8 @@ class ModuleController extends Controller
         return redirect()->back()->with('error', 'Gagal mengubah data module '. $request->name .'')->withInput();
     }
 
-    public function Delete($id)
+    public function delete($id)
     {
-        $id = Hasher::decode($id);
         $module = Module::with('permissions')->find($id);
 
         if ((isset($module)) && ($module->delete())) {

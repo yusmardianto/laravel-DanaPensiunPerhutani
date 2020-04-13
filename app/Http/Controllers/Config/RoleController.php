@@ -70,9 +70,8 @@ class RoleController extends Controller
 
     public function getDetail($id)
     {
-        $id = Hasher::decode($id);
         $role = Role::find($id);
-        $hashed_id = Hasher::decode($role->id);
+        $hashed_id = Hasher::encode($role->id);
 
         $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
             ->where("role_has_permissions.role_id",$id)
@@ -102,7 +101,6 @@ class RoleController extends Controller
 
     public function getEdit($id)
     {
-        $id = Hasher::decode($id);
         $role = Role::find($id);
 
         $permission = Permission::get();
@@ -115,7 +113,6 @@ class RoleController extends Controller
 
     public function postEdit(Request $request, $id)
     {
-        $id = Hasher::decode($id);
         $role = Role::find($id);
 
         $this->validate($request, [
@@ -134,7 +131,6 @@ class RoleController extends Controller
 
     public function delete($id)
     {
-        $id = Hasher::decode($id);
         $role = Role::find($id);
 
         DB::table("roles")->where('id',$id)->delete();
