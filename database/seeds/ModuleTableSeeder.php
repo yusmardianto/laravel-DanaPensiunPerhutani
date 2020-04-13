@@ -13,7 +13,6 @@ class ModuleTableSeeder extends Seeder
     public function run()
     {
 
-
         \DB::table('module')->delete();
 
         \DB::table('module')->insert(array (

@@ -12,20 +12,12 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('roles')->delete();
-        
+
         \DB::table('roles')->insert(array (
-            0 => 
-            array (
-                'id' => 1,
-                'name' => 'Supervisor',
-                'guard_name' => 'web',
-                'created_at' => '2020-04-07 04:56:32',
-                'updated_at' => '2020-04-07 04:56:32',
-            ),
-            1 => 
+            0 =>
             array (
                 'id' => 2,
                 'name' => 'Kepesertaan',
@@ -33,7 +25,7 @@ class RolesTableSeeder extends Seeder
                 'created_at' => '2020-04-07 05:39:15',
                 'updated_at' => '2020-04-07 05:39:15',
             ),
-            2 => 
+            1 =>
             array (
                 'id' => 3,
                 'name' => 'Pengembangan dan Investasi',
@@ -41,7 +33,7 @@ class RolesTableSeeder extends Seeder
                 'created_at' => '2020-04-07 11:25:13',
                 'updated_at' => '2020-04-07 11:25:13',
             ),
-            3 => 
+            2 =>
             array (
                 'id' => 4,
                 'name' => 'Keuangan',
@@ -50,7 +42,7 @@ class RolesTableSeeder extends Seeder
                 'updated_at' => '2020-04-13 09:48:17',
             ),
         ));
-        
-        
+
+
     }
 }
