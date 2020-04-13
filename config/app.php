@@ -176,7 +176,8 @@ return [
 
         // Data Tables
         Yajra\DataTables\DataTablesServiceProvider::class,
-
+        // Iseed
+        Orangehill\Iseed\IseedServiceProvider::class,
     ],
 
     /*
@@ -228,7 +229,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-
     ],
 
 ];

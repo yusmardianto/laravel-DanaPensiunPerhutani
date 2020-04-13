@@ -124,12 +124,10 @@
                 <div class="ibox-title">
                     <h5>Daftar Pengguna</h5>
                     <div class="ibox-tools">
-                        @if($user->hasAnyPermission(['User-create']))
                         <a href="{{ url('config/user/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
                             Tambah data pengguna
                         </a>
-                        @endif
                     </div>
                 </div>
                 <div class="ibox-content">
