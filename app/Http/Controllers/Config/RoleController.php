@@ -28,7 +28,7 @@ class RoleController extends Controller
             'id',
             'name',
             'guard_name',
-        ])->orderBy('created_at', 'DESC');
+        ])->orderBy('id', 'DESC');
 
         $datatables = Datatables::of($data);
 
