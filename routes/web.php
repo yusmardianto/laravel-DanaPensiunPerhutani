@@ -88,4 +88,9 @@ Route::group(['middleware' => ['auth']], function() {
         //transaksi pengeluaran kas
         Route::get('pengeluaran', 'PengeluaranController@index');
     });
+
+    Route::prefix('masters')->group(function() {
+        Route::get('karyawan', 'KaryawanController@index');
+        Route::any('karyawan/ajax-list', 'KaryawanController@ajaxList');
+    });
 });
