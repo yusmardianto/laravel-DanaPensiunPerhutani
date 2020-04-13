@@ -32,6 +32,14 @@ $user = Auth::user();
                     <span class="nav-label">Master Data</span>
                     <span class="fa arrow"></span>
                 </a>
+                <ul class="nav nav-second-level collapse">
+                    <li @if(Request::segment(2) == 'master') class="active" @endif>
+                        <a href="{{ url('master/karyawan') }}">Master Karyawan</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'master') class="active" @endif>
+                        <a href="{{ url('master/peserta') }}">Master Peserta</a>
+                    </li>
+                </ul>
             </li>
             <li @if(Request::segment(1) == 'kepesertaan') class="active" @endif>
                 <a href="#">
