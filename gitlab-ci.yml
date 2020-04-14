@@ -1,0 +1,56 @@
+image: registry.gitlab.com/kantor-pusat/dapen:latest
+
+services:
+  - mysql:5.7
+
+variables:
+  MYSQL_DATABASE: homestead
+  MYSQL_ROOT_PASSWORD: secret
+  DB_HOST: mysql
+  DB_USERNAME: root
+
+stages:
+  - test
+  - deploy_staging
+  - deploy_production
+
+unit_test:
+  stage: test
+  script:
+    - if [[ $(php -m |grep gd |wc -l) -eq 0 ]]; then docker-php-ext-install gd; fi
+    - composer install --ignore-platform-reqs --no-scripts -q -o
+    - cp .env.example .env
+    - php artisan key:generate
+    - vendor/bin/phpunit
+
+deploy_staging:
+  stage: deploy_staging
+  script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY_STG")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - ~/.composer/vendor/bin/envoy run deploy
+  environment:
+    name: staging
+    url: https://stg.dapen.perhutani.id
+  when: manual
+  only:
+    - develop
+
+deploy_production:
+  stage: deploy_production
+  script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY_PROD")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - ~/.composer/vendor/bin/envoy run deploy
+  environment:
+    name: production
+    url: https://dapen.perhutani.co.id
+  when: manual
+  only:
+    - master
