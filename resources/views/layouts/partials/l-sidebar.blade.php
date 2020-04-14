@@ -51,8 +51,8 @@ $user = Auth::user();
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                    <li @if(Request::segment(2) == 'peserta') class="active" @endif>
-                        <a href="{{ url('kepesertaan/peserta') }}">Daftar Peserta Aktif</a>
+                    <li @if(Request::segment(2) == 'peserta-aktif') class="active" @endif>
+                        <a href="{{ url('kepesertaan/peserta-aktif') }}">Daftar Peserta Aktif</a>
                     </li>
                     <li @if(Request::segment(2) == 'skpensiunan') class="active" @endif>
                         <a href="{{ url('kepesertaan/skpensiunan') }}">SK Pensiunan</a>

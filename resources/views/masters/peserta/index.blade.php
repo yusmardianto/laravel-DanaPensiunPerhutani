@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Master Data Karyawan')
+@section('title', config('app.name').' | Master Data Peserta')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -43,7 +43,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('masters/karyawan/ajax-list') !!}',
+                url: '{!! url('masters/peserta/ajax-list') !!}',
                 method: 'POST'
             },
             columns: $column,
@@ -73,7 +73,7 @@
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('name');
-            var deleteUrl = "{{ url('masters/karyawan/destroy') }}" + "/" + dataId;
+            var deleteUrl = "{{ url('masters/peserta/destroy') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
@@ -115,7 +115,7 @@
                 <a href="{{ url('home') }}">Home</a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Daftar Karyawan</strong>
+                <strong>Daftar Peserta</strong>
             </li>
         </ol>
     </div>
@@ -129,11 +129,11 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Daftar Karyawan</h5>
+                    <h5>Daftar Peserta</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('masters/karyawan/create') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('masters/peserta/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
-                            Tambah Karyawan
+                            Tambah Peserta
                         </a>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Karyawan</th>
+                                <th>Nama Peserta</th>
                                 <th>Email</th>
                                 <th>Alamat</th>
                                 <th>Aksi</th>
