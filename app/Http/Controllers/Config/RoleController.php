@@ -121,16 +121,21 @@ class RoleController extends Controller
         $role = Role::find($id);
 
         if ($user->assignRole($role->name)) {
-            return redirect('config/role/detail/'.$hashed_id.'')->with('success','Berhasil menambah data pengguna role '.$user->username.'');
+            return redirect('config/role/detail/'.$hashed_id.'')->with('success','Berhasil menambah data pengguna '.$user->username.' untuk role ini');
         }
         return redirect()->back()->with('error', 'Data tidak ditemukan')->withInput();
     }
 
-    public function postDeleteUser(Request $request, $id) {
-        $delete = Role::where('id',$id)->delete();
+    public function postDeleteUser($id, $roleId) {
+
+        $role = DB::table('model_has_roles')->where('role_id', $id)->where('model_id', Hasher::decode($roleId));
 
         $hashed_id = Hasher::encode($id);
-            return redirect('config/role/detail/')->with('success','Berhasil menghapus data pengguna role');
+        if (isset($role)){
+            $role->delete();
+            return redirect('config/role/detail/'.$hashed_id.'')->with('success','Berhasil menghapus data pengguna role');
+        }
+        return redirect()->back()->with('error', 'data tidak ditemukan');
     }
 
     public function getEdit($id)

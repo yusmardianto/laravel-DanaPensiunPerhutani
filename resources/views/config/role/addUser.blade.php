@@ -56,7 +56,7 @@ $('.chosen-select').chosen({width: "100%"});
                         @csrf
 
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Tipe User</label>
+                            <label class="col-sm-2 col-form-label">Tipe Pengguna</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="nama" value="{{ $role->name }}" disabled>
                             </div>
