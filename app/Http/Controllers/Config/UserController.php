@@ -121,13 +121,60 @@ class UserController extends Controller
         return $datatables->addColumn('permissions', function ($row) {
             $string = "";
             foreach($row->permissions as $item) {
-                $string .= "<label class=\"badge badge-success\">".$item->name."</label> &nbsp;";
+                $string.= "<label class=\"badge badge-success\">".$item->name."</label> &nbsp;";
             }
             return $string;
         })
-        ->rawColumns(['permissions'])
-        ->addIndexColumn()
-        ->make(true);
+
+        ->addColumn('action', function ($row) {
+            $hashed_id = Hasher::encode($row->id);
+                return "
+                <a class=\"btn btn-xs btn-warning delete-btn\" href=\"#\" data-id=\"". $hashed_id ."\" data-nama=\"". $row->username ."\"><i class=\"glyphicon glyphicon-trash\"></i> Hapus</a>
+                ";
+            })
+            ->rawColumns(['permissions', 'action'])
+            ->addIndexColumn()
+            ->make(true);
+    }
+
+    public function getAddRole($id)
+    {
+        $user = User::find($id);
+
+        if (isset($user)) {
+            $roles = Role::all();
+
+            $arrayRole = array();
+            foreach($user->roles as $row) {
+                $arrayRole[] = $row->id;
+            }
+
+            return view('config.user.addRole', compact('user', 'roles', 'arrayRole'));
+        }
+        return redirect()->back()->with('error', 'Data tidak ditemukan')->withInput();
+    }
+
+    public function postAddRole(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'roles' => 'required'
+        ]);
+
+        $hashed_id = Hasher::encode($id);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            $user = User::find($id);
+
+            if ($user->save()) {
+                DB::table('model_has_roles')->where('model_id',$user->id)->delete();
+                $user->assignRole($request->roles);
+
+                return redirect('config/user/detail/'.$hashed_id.'')->with('success', 'Berhasil menambah / mengubah tipe pengguna untuk user ini');
+            }
+        }
+        return redirect('config/user')->with('error', 'data tidak ditemukan')->withInput();
     }
 
     public function getEdit($id)
@@ -147,7 +194,6 @@ class UserController extends Controller
 
         return redirect('config/user')->with('error', 'Data tidak ditemukan')->withInput();
     }
-
 
     public function postEdit(Request $request, $id)
     {

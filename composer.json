@@ -15,7 +15,8 @@
         "laravel/tinker": "^2.0",
         "orangehill/iseed": "^2.6",
         "spatie/laravel-permission": "^3.11",
-        "yajra/laravel-datatables-oracle": "^9.0"
+        "yajra/laravel-datatables-oracle": "^9.0",
+        "symfony/translation": "4.3.8"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

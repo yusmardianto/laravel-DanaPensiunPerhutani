@@ -26,7 +26,8 @@
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
             { data: 'name', name: 'name' },
             { data: 'guard_name', name: 'guard_name' },
-            { data: 'permissions', name: 'permissions', orderable: false, searchable: false },
+            { data: 'permissions', name: 'permissions' },
+            { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
         $('#table-list').DataTable({
@@ -52,8 +53,8 @@
                     "width": "100px"
                 },
                 {
-                    "targets": 3,
-                    "width": "200px"
+                    "targets": 4,
+                    "width": "100px"
                 }
             ],
             initComplete: function () {
@@ -157,6 +158,12 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>Tipe Pengguna</h5>
+                    <div class="ibox-tools">
+                        <a href="{{ url('config/user/add-role/'.$hashed_id.'') }}" class="btn btn-primary btn-xs modal-form">
+                            <i class="fa fa-edit"></i>
+                            Edit tipe pengguna
+                        </a>
+                    </div>
                 </div>
                 <div class="ibox-content">
                     @include('layouts.flashMessage')
@@ -169,6 +176,7 @@
                                 <th>Nama Role</th>
                                 <th>Platform</th>
                                 <th>Permissions</th>
+                                <th>Opsi</th>
                             </tr>
                             </thead>
                         </table>

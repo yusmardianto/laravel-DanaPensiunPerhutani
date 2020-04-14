@@ -45,6 +45,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('role/create', 'RoleController@postCreate');
         Route::get('role/detail/{id}', 'RoleController@getDetail');
         Route::any('role/ajax-user/{id}', 'RoleController@ajaxUser');
+        Route::get('role/add-user/{id}', 'RoleController@getAddUser');
+        Route::post('role/add-user/{id}', 'RoleController@postAddUser');
+        Route::post('role/delete-user/{id}/{roleId}', 'RoleController@postDeleteUser');
         Route::get('role/edit/{id}', 'RoleController@getEdit');
         Route::post('role/edit/{id}', 'RoleController@postEdit');
         Route::post('role/delete/{id}', 'RoleController@delete');
@@ -55,6 +58,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('user/create', 'UserController@postCreate');
         Route::get('user/detail/{id}', 'UserController@getDetail');
         Route::any('user/ajax-role/{id}', 'UserController@ajaxRole');
+        Route::get('user/add-role/{id}', 'UserController@getAddRole');
+        Route::post('user/add-role/{id}', 'UserController@postAddRole');
+        Route::post('user/delete-role/{id}/{roleId}', 'UserController@postDeleteRole');
         Route::get('user/edit/{id}', 'UserController@getEdit');
         Route::post('user/edit/{id}', 'UserController@postEdit');
         Route::post('user/delete/{id}', 'UserController@delete');
