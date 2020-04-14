@@ -102,8 +102,9 @@ class RoleController extends Controller
     public function getAddUser($id)
     {
         $role = Role::find($id);
-        $users = User::all();
-
+        $users = User::whereDoesntHave('roles', function($q) use($id) {
+            $q->where('id', $id);
+        })->get();
         if (isset($role)) {
             return view('config.role.addUser', compact('role', 'users'));
         }

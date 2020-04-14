@@ -58,6 +58,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('user/create', 'UserController@postCreate');
         Route::get('user/detail/{id}', 'UserController@getDetail');
         Route::any('user/ajax-role/{id}', 'UserController@ajaxRole');
+        Route::get('user/add-role/{id}', 'UserController@getAddRole');
+        Route::post('user/add-role/{id}', 'UserController@postAddRole');
+        Route::post('user/delete-role/{id}/{roleId}', 'UserController@postDeleteRole');
         Route::get('user/edit/{id}', 'UserController@getEdit');
         Route::post('user/edit/{id}', 'UserController@postEdit');
         Route::post('user/delete/{id}', 'UserController@delete');
