@@ -27,7 +27,7 @@
             { data: 'username', name: 'username' },
             { data: 'email', name: 'email' },
             { data: 'no_hp', name: 'no_hp' },
-            { data: 'is_active', name: 'is_active', orderable: false, searchable: false, render: function (data, type, row) {
+            { data: 'is_active', name: 'is_active', render: function (data, type, row) {
                 if (row.is_active == '1') {
                     return '<label class="label label-success">Aktif</label>';
                 }
@@ -35,7 +35,8 @@
                     return '<label class="label label-danger">Tidak Aktif</label>';
                     }
                 }
-            }
+            },
+            { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
         $('#table-list').DataTable({
@@ -67,6 +68,39 @@
                     });
                 });
             }
+        });
+
+        $(document).on('click', '.delete-btn', function() {
+            var dataId = $(this).data('id');
+            var dataName = $(this).data('nama');
+            var deleteUrl = "{{ url('config/role/delete-user') }}" + "/" + "{{ $hashed_id }}" + "/" + dataId ;
+            var csrf = "{{ csrf_token() }}";
+
+            swal({
+                text: "Hapus data pengguna "+ dataName +" untuk role ini ?" ,
+                icon: "warning",
+                dangerMode: true,
+                buttons: {
+                    cancel: {
+                        text: "Batal",
+                        value: false,
+                        visible: true,
+                        className: "btn btn-sm btn-white"
+                    },
+                    confirm: {
+                        text: "Hapus",
+                        value: true,
+                        visible: true,
+                        className: "btn btn-sm btn-danger",
+                        closeModal: true
+                    }
+                }
+            }).then((value) => {
+                if (value === true) {
+                    $.redirect(deleteUrl, {"_token": csrf});
+                }
+                swal.close();
+            });;
         });
     });
 </script>
@@ -143,6 +177,12 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>Daftar Pengguna</h5>
+                    <div class="ibox-tools">
+                        <a href="{{ url('config/role/add-user/'.$hashed_id.'') }}" class="btn btn-primary btn-xs modal-form">
+                            <i class="fa fa-plus"></i>
+                            Tambah data pengguna role
+                        </a>
+                    </div>
                 </div>
                 <div class="ibox-content">
                     @include('layouts.flashMessage')
@@ -156,6 +196,7 @@
                                 <th>Email</th>
                                 <th>Nomor Hp</th>
                                 <th>Status Pengguna</th>
+                                <th>Opsi</th>
                             </tr>
                             </thead>
                         </table>
