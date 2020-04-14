@@ -1,4 +1,4 @@
-image: registry.gitlab.com/kantor-pusat/dapen:latest
+image: registry.gitlab.com/kantor-pusat/dapen:php7.2
 
 services:
   - mysql:5.7
