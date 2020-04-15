@@ -68,7 +68,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::prefix('kepesertaan')->group(function() {
         //daftar peserta
-        Route::get('peserta', 'PesertaController@index');
+        Route::get('peserta-aktif', 'PesertaController@index');
         //sk pensiunan
         Route::get('skpensiunan', 'SKPensiunanController@index');
         //iuran pensiunan
@@ -98,5 +98,20 @@ Route::group(['middleware' => ['auth']], function() {
     Route::prefix('masters')->group(function() {
         Route::get('karyawan', 'KaryawanController@index');
         Route::any('karyawan/ajax-list', 'KaryawanController@ajaxList');
+        Route::get('karyawan/create', 'KaryawanController@getCreate');
+        Route::post('karyawan/create', 'KaryawanController@postCreate');
+        Route::get('karyawan/detail/{id}', 'KaryawanController@getDetail');
+        Route::get('karyawan/edit/{id}', 'KaryawanController@getEdit');
+        Route::post('karyawan/edit/{id}', 'KaryawanController@postEdit');
+        Route::post('karyawan/destroy/{id}', 'KaryawanController@destroy');
+
+        Route::get('peserta', 'PesertaAktifController@index');
+        Route::any('peserta/ajax-list', 'PesertaAktifController@ajaxList');
+        Route::get('peserta/create', 'PesertaAktifController@getCreate');
+        Route::post('peserta/create', 'PesertaAktifController@postCreate');
+        Route::get('peserta/detail/{id}', 'PesertaAktifController@getDetail');
+        Route::get('peserta/edit/{id}', 'PesertaAktifController@getEdit');
+        Route::post('peserta/edit/{id}', 'PesertaAktifController@postEdit');
+        Route::post('peserta/destroy/{id}', 'PesertaAktifController@destroy');
     });
 });

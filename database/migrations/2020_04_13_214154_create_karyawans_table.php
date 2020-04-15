@@ -18,7 +18,7 @@ class CreateKaryawansTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->date('birthdate');
-            $table->tinyInteger('phonenumber')->unique();
+            $table->integer('phonenumber')->unique();
             $table->text('address');
             $table->string('photo');
             $table->timestamps();

@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
@@ -12,21 +11,18 @@
     <div id="wrapper">
         @include('layouts.partials.l-sidebar')
 
-        <div id="page-wrapper" class="gray-bg">
+        <div id="page-wrapper" class="gray-bg dashbard-1">
             <div class="row border-bottom">
                 @include('layouts.partials.navbar')
             </div>
-
 
             <div class="wrapper wrapper-content">
                 @yield('content')
             </div>
 
             @include('layouts.partials.footer')
-
         </div>
 
-        @include('layouts.partials.r-sidebar')
     </div>
 
     @include('layouts.partials.scripts')
