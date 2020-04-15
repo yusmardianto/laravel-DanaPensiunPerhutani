@@ -177,6 +177,18 @@ class UserController extends Controller
         return redirect('config/user')->with('error', 'data tidak ditemukan')->withInput();
     }
 
+    public function postDeleteRole($id, $roleId)
+    {
+        $user = DB::table('model_has_roles')->where('model_id', $id)->where('role_id', Hasher::decode($roleId));
+
+        $hashed_id = Hasher::encode($id);
+        if (isset($user)){
+            $user->delete();
+            return redirect('config/user/detail/'.$hashed_id.'')->with('success','Berhasil menghapus data role pengguna');
+        }
+        return redirect()->back()->with('error', 'data tidak ditemukan');
+    }
+
     public function getEdit($id)
     {
         $user = User::find($id);

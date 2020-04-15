@@ -27,6 +27,7 @@ $user = Auth::user();
                 </a>
             </li>
 
+            @if($user->hasAnyPermission(['Role-list', 'User-list', 'Master-list', 'Kepesertaan-list']))
             <li @if(Request::segment(1) == 'masters') class="active" @endif>
                 <a href="#">
                     <i class="fa fa-database fa-fw"></i>
@@ -42,8 +43,9 @@ $user = Auth::user();
                     </li>
                 </ul>
             </li>
+            @endif
 
-            @if($user->hasAnyPermission(['Role-list', 'User-list', 'Kepesertaan-list']))
+            @if($user->hasAnyPermission(['Role-list', 'User-list', 'Master-list', 'Kepesertaan-list']))
             <li @if(Request::segment(1) == 'kepesertaan') class="active" @endif>
                 <a href="#">
                     <i class="fa fa-users fa-fw"></i>
@@ -67,7 +69,7 @@ $user = Auth::user();
             </li>
             @endif
 
-            @if($user->hasAnyPermission(['Role-list', 'User-list', 'Pengembangan dan Investasi-list']))
+            @if($user->hasAnyPermission(['Role-list', 'User-list', 'Master-list', 'Pengembangan dan Investasi-list']))
             <li @if(Request::segment(1) == 'investasi') class="active" @endif>
                 <a href="#">
                     <i class="fa fa-line-chart fa-fw"></i>
@@ -91,7 +93,7 @@ $user = Auth::user();
             </li>
             @endif
 
-            @if($user->hasAnyPermission(['Role-list', 'User-list', 'Keuangan-list']))
+            @if($user->hasAnyPermission(['Role-list', 'User-list', 'Master-list', 'Keuangan-list']))
             <li @if(Request::segment(1) == 'keuangan') class="active" @endif>
                 <a href="#">
                     <i class="fa fa-money fa-fw"></i>
