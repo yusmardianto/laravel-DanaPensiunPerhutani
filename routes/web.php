@@ -63,6 +63,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::prefix('kepesertaan')->group(function() {
         //daftar peserta
         Route::get('peserta', 'PesertaController@index');
+        Route::get('peserta/create', 'PesertaController@getCreate');
         //sk pensiunan
         Route::get('skpensiunan', 'SKPensiunanController@index');
         //iuran pensiunan

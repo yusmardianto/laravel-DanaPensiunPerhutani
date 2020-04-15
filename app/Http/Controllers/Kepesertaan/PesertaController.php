@@ -11,4 +11,9 @@ class PesertaController extends Controller
     {
         return view('kepesertaan.peserta.index');
     }
+
+    public function getCreate(Request $request)
+    {
+        return view('kepesertaan.peserta.create');
+    }
 }
