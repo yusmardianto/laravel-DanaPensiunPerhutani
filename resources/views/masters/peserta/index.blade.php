@@ -1,11 +1,20 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Daftar Pengguna')
+@section('title', config('app.name').' | Master Data Peserta')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+<style>
+    th {
+        text-align: center;
+        font-size: 13px;
+    }
+    td {
+        font-size: 13px;
+    }
+</style>
 @endsection
 
 @section('scripts')
@@ -25,16 +34,16 @@
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
             { data: 'name', name: 'name' },
-            { data: 'username', name: 'username' },
-            { data: 'roles', name: 'roles' },
-            { data: 'action', name: 'action', orderable: false, searchable: false },
+            { data: 'email', name: 'email' },
+            { data: 'address', name: 'address' },
+            { data: 'action', name: 'action', orderable: false, searchable: false }
         ];
 
         $('#table-list').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('config/user/ajax-list') !!}',
+                url: '{!! url('masters/peserta/ajax-list') !!}',
                 method: 'POST'
             },
             columns: $column,
@@ -46,7 +55,7 @@
                 },
                 {
                     "targets": 4,
-                    "width": "180px"
+                    "width": "21%"
                 }
             ],
             initComplete: function () {
@@ -63,12 +72,12 @@
 
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
-            var dataName = $(this).data('nama');
-            var deleteUrl = "{{ url('config/user/delete') }}" + "/" + dataId;
+            var dataName = $(this).data('name');
+            var deleteUrl = "{{ url('masters/peserta/destroy') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
-                text: "Hapus data pengguna : "+ dataName +" ?" ,
+                text: "Hapus Data Pengguna "+ dataName +" ?" ,
                 icon: "warning",
                 dangerMode: true,
                 buttons: {
@@ -100,15 +109,13 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Daftar Pengguna</h2>
+        <h2>Master Data Peserta</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
             </li>
-            <li class="breadcrumb-item">Konfigurasi
-            </li>
             <li class="breadcrumb-item active">
-                <strong>Daftar Pengguna</strong>
+                <strong>Daftar Peserta</strong>
             </li>
         </ol>
     </div>
@@ -122,11 +129,11 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Daftar Pengguna</h5>
+                    <h5>Daftar Peserta</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('config/user/create') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('masters/peserta/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
-                            Tambah data pengguna
+                            Tambah Peserta
                         </a>
                     </div>
                 </div>
@@ -138,10 +145,10 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Lengkap</th>
-                                <th>Username</th>
-                                <th>Role</th>
-                                <th>Opsi</th>
+                                <th>Nama Peserta</th>
+                                <th>Email</th>
+                                <th>Alamat</th>
+                                <th>Aksi</th>
                             </tr>
                             </thead>
                         </table>

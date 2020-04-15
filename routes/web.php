@@ -45,6 +45,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('role/create', 'RoleController@postCreate');
         Route::get('role/detail/{id}', 'RoleController@getDetail');
         Route::any('role/ajax-user/{id}', 'RoleController@ajaxUser');
+        Route::get('role/add-user/{id}', 'RoleController@getAddUser');
+        Route::post('role/add-user/{id}', 'RoleController@postAddUser');
+        Route::post('role/delete-user/{id}/{roleId}', 'RoleController@postDeleteUser');
         Route::get('role/edit/{id}', 'RoleController@getEdit');
         Route::post('role/edit/{id}', 'RoleController@postEdit');
         Route::post('role/delete/{id}', 'RoleController@delete');
@@ -55,6 +58,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('user/create', 'UserController@postCreate');
         Route::get('user/detail/{id}', 'UserController@getDetail');
         Route::any('user/ajax-role/{id}', 'UserController@ajaxRole');
+        Route::get('user/add-role/{id}', 'UserController@getAddRole');
+        Route::post('user/add-role/{id}', 'UserController@postAddRole');
+        Route::post('user/delete-role/{id}/{roleId}', 'UserController@postDeleteRole');
         Route::get('user/edit/{id}', 'UserController@getEdit');
         Route::post('user/edit/{id}', 'UserController@postEdit');
         Route::post('user/delete/{id}', 'UserController@delete');
@@ -64,6 +70,7 @@ Route::group(['middleware' => ['auth']], function() {
         //daftar peserta
         Route::get('peserta', 'PesertaController@index');
         Route::get('peserta/create', 'PesertaController@getCreate');
+        Route::get('peserta-aktif', 'PesertaController@index');
         //sk pensiunan
         Route::get('skpensiunan', 'SKPensiunanController@index');
         //iuran pensiunan
@@ -88,5 +95,25 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('pemasukan', 'PemasukanController@index');
         //transaksi pengeluaran kas
         Route::get('pengeluaran', 'PengeluaranController@index');
+    });
+
+    Route::prefix('masters')->group(function() {
+        Route::get('karyawan', 'KaryawanController@index');
+        Route::any('karyawan/ajax-list', 'KaryawanController@ajaxList');
+        Route::get('karyawan/create', 'KaryawanController@getCreate');
+        Route::post('karyawan/create', 'KaryawanController@postCreate');
+        Route::get('karyawan/detail/{id}', 'KaryawanController@getDetail');
+        Route::get('karyawan/edit/{id}', 'KaryawanController@getEdit');
+        Route::post('karyawan/edit/{id}', 'KaryawanController@postEdit');
+        Route::post('karyawan/destroy/{id}', 'KaryawanController@destroy');
+
+        Route::get('peserta', 'PesertaAktifController@index');
+        Route::any('peserta/ajax-list', 'PesertaAktifController@ajaxList');
+        Route::get('peserta/create', 'PesertaAktifController@getCreate');
+        Route::post('peserta/create', 'PesertaAktifController@postCreate');
+        Route::get('peserta/detail/{id}', 'PesertaAktifController@getDetail');
+        Route::get('peserta/edit/{id}', 'PesertaAktifController@getEdit');
+        Route::post('peserta/edit/{id}', 'PesertaAktifController@postEdit');
+        Route::post('peserta/destroy/{id}', 'PesertaAktifController@destroy');
     });
 });

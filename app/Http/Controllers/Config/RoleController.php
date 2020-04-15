@@ -28,7 +28,7 @@ class RoleController extends Controller
             'id',
             'name',
             'guard_name',
-        ])->orderBy('created_at', 'DESC');
+        ])->orderBy('id', 'DESC');
 
         $datatables = Datatables::of($data);
 
@@ -97,6 +97,46 @@ class RoleController extends Controller
             ->rawColumns(['action'])
             ->addIndexColumn()
             ->make(true);
+    }
+
+    public function getAddUser($id)
+    {
+        $role = Role::find($id);
+        $users = User::whereDoesntHave('roles', function($q) use($id) {
+            $q->where('id', $id);
+        })->get();
+        if (isset($role)) {
+            return view('config.role.addUser', compact('role', 'users'));
+        }
+        return redirect()->back()->with('error', 'Data tidak ditemukan')->withInput();
+    }
+
+    public function postAddUser(Request $request, $id) {
+        $this->validate($request, [
+            'pengguna' => 'required|exists:users,id',
+        ]);
+
+        $hashed_id = Hasher::encode($id);
+
+        $user = User::find($request->pengguna);
+        $role = Role::find($id);
+
+        if ($user->assignRole($role->name)) {
+            return redirect('config/role/detail/'.$hashed_id.'')->with('success','Berhasil menambah data pengguna '.$user->username.' untuk role ini');
+        }
+        return redirect()->back()->with('error', 'Data tidak ditemukan')->withInput();
+    }
+
+    public function postDeleteUser($id, $roleId) {
+
+        $role = DB::table('model_has_roles')->where('role_id', $id)->where('model_id', Hasher::decode($roleId));
+
+        $hashed_id = Hasher::encode($id);
+        if (isset($role)){
+            $role->delete();
+            return redirect('config/role/detail/'.$hashed_id.'')->with('success','Berhasil menghapus data pengguna role');
+        }
+        return redirect()->back()->with('error', 'data tidak ditemukan');
     }
 
     public function getEdit($id)

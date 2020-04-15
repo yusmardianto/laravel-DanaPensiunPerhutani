@@ -26,21 +26,24 @@ $user = Auth::user();
                     <span class="nav-label">Home</span>
                 </a>
             </li>
-            <li @if(Request::segment(1) == 'master') class="active" @endif>
+
+            <li @if(Request::segment(1) == 'masters') class="active" @endif>
                 <a href="#">
                     <i class="fa fa-database fa-fw"></i>
                     <span class="nav-label">Master Data</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                    <li @if(Request::segment(2) == 'master') class="active" @endif>
-                        <a href="{{ url('master/karyawan') }}">Master Karyawan</a>
+                    <li @if(Request::segment(2) == 'karyawan') class="active" @endif>
+                        <a href="{{ url('masters/karyawan') }}">Master Karyawan</a>
                     </li>
-                    <li @if(Request::segment(2) == 'master') class="active" @endif>
-                        <a href="{{ url('master/peserta') }}">Master Peserta</a>
+                    <li @if(Request::segment(2) == 'peserta') class="active" @endif>
+                        <a href="{{ url('masters/peserta') }}">Master Peserta</a>
                     </li>
                 </ul>
             </li>
+
+            @if($user->hasAnyPermission(['Role-list', 'User-list', 'Kepesertaan-list']))
             <li @if(Request::segment(1) == 'kepesertaan') class="active" @endif>
                 <a href="#">
                     <i class="fa fa-users fa-fw"></i>
@@ -48,8 +51,8 @@ $user = Auth::user();
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                    <li @if(Request::segment(2) == 'peserta') class="active" @endif>
-                        <a href="{{ url('kepesertaan/peserta') }}">Daftar Peserta Aktif</a>
+                    <li @if(Request::segment(2) == 'peserta-aktif') class="active" @endif>
+                        <a href="{{ url('kepesertaan/peserta-aktif') }}">Daftar Peserta Aktif</a>
                     </li>
                     <li @if(Request::segment(2) == 'skpensiunan') class="active" @endif>
                         <a href="{{ url('kepesertaan/skpensiunan') }}">SK Pensiunan</a>
@@ -62,6 +65,9 @@ $user = Auth::user();
                     </li>
                 </ul>
             </li>
+            @endif
+
+            @if($user->hasAnyPermission(['Role-list', 'User-list', 'Pengembangan dan Investasi-list']))
             <li @if(Request::segment(1) == 'investasi') class="active" @endif>
                 <a href="#">
                     <i class="fa fa-line-chart fa-fw"></i>
@@ -83,6 +89,9 @@ $user = Auth::user();
                     </li>
                 </ul>
             </li>
+            @endif
+
+            @if($user->hasAnyPermission(['Role-list', 'User-list', 'Keuangan-list']))
             <li @if(Request::segment(1) == 'keuangan') class="active" @endif>
                 <a href="#">
                     <i class="fa fa-money fa-fw"></i>
@@ -98,6 +107,9 @@ $user = Auth::user();
                     </li>
                 </ul>
             </li>
+            @endif
+
+            @if($user->hasAnyPermission(['Role-list', 'User-list']))
             <li @if(Request::segment(1) == 'config') class="active" @endif>
                 <a href="#">
                     <i class="fa fa-cogs fa-fw"></i>
@@ -116,6 +128,8 @@ $user = Auth::user();
                     </li>
                 </ul>
             </li>
+            @endif
+
             <li @if(Request::segment(1) == 'report') class="active" @endif>
                 <a href="#">
                     <i class="fa fa-print"></i> <span class="nav-label">Laporan</span> <span class="fa arrow"></span>
