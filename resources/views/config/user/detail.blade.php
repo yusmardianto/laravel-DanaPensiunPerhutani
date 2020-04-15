@@ -68,6 +68,39 @@
                 });
             }
         });
+
+        $(document).on('click', '.delete-btn', function() {
+            var dataId = $(this).data('id');
+            var dataName = $(this).data('nama');
+            var deleteUrl = "{{ url('config/user/delete-role') }}" + "/" + "{{ $hashed_id }}" + "/" + dataId ;
+            var csrf = "{{ csrf_token() }}";
+
+            swal({
+                text: "Hapus data role "+ dataName +" untuk user ini ?" ,
+                icon: "warning",
+                dangerMode: true,
+                buttons: {
+                    cancel: {
+                        text: "Batal",
+                        value: false,
+                        visible: true,
+                        className: "btn btn-sm btn-white"
+                    },
+                    confirm: {
+                        text: "Hapus",
+                        value: true,
+                        visible: true,
+                        className: "btn btn-sm btn-danger",
+                        closeModal: true
+                    }
+                }
+            }).then((value) => {
+                if (value === true) {
+                    $.redirect(deleteUrl, {"_token": csrf});
+                }
+                swal.close();
+            });;
+        });
     });
 </script>
 @endsection

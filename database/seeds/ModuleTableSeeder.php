@@ -35,22 +35,30 @@ class ModuleTableSeeder extends Seeder
             2 =>
             array (
                 'id' => 3,
+                'name' => 'Master Data',
+                'detail' => 'Input Master Data',
+                'created_at' => '2020-04-07 05:36:47',
+                'updated_at' => '2020-04-07 05:36:47',
+            ),
+            3 =>
+            array (
+                'id' => 4,
                 'name' => 'Kepesertaan',
                 'detail' => 'Input data kepesertaan',
                 'created_at' => '2020-04-07 05:37:00',
                 'updated_at' => '2020-04-07 05:37:00',
             ),
-            3 =>
+            4 =>
             array (
-                'id' => 4,
+                'id' => 5,
                 'name' => 'Pengembangan dan Investasi',
                 'detail' => 'Input data transaksi pengembangan dan investasi',
                 'created_at' => '2020-04-07 11:24:23',
                 'updated_at' => '2020-04-07 11:24:23',
             ),
-            4 =>
+            5 =>
             array (
-                'id' => 5,
+                'id' => 6,
                 'name' => 'Keuangan',
                 'detail' => 'Input data transaksi keuangan',
                 'created_at' => '2020-04-13 09:46:52',

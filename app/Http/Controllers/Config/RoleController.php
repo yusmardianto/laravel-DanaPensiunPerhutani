@@ -127,9 +127,9 @@ class RoleController extends Controller
         return redirect()->back()->with('error', 'Data tidak ditemukan')->withInput();
     }
 
-    public function postDeleteUser($id, $roleId) {
-
-        $role = DB::table('model_has_roles')->where('role_id', $id)->where('model_id', Hasher::decode($roleId));
+    public function postDeleteUser($id, $userId)
+    {
+        $role = DB::table('model_has_roles')->where('role_id', $id)->where('model_id', Hasher::decode($userId));
 
         $hashed_id = Hasher::encode($id);
         if (isset($role)){

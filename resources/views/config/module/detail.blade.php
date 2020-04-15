@@ -153,7 +153,7 @@
                                 <div class="col-sm-8 text-sm-left"><dd class="mb-1">
                                         @if(!empty($data->Permissions))
                                         @foreach($data->Permissions as $v)
-                                            <label class="label label-success">{{ $v->name }},</label>
+                                            <label class="label label-success">{{ $v->name }}</label>
                                         @endforeach
                                         @endif
                                     </dd>
