@@ -15,17 +15,20 @@ class CreateKepesertaanTable extends Migration
     {
         Schema::create('kepesertaan', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('kode_aktif');
             $table->string('nama');
-            $table->string('no_ktp');
+            $table->string('no_ktp')->unique();
             $table->string('nip');
+            $table->date('birthdate');
             $table->text('alamat');
-            $table->text('alamat');
+            $table->string('kota');
             $table->string('kodepos');
             $table->string('agama');
             $table->string('jenis_kelamin');
             $table->string('no_telpon');
             $table->string('email');
             $table->string('golongan');
+            $table->string('photo');
             $table->text('keterangan');
             $table->timestamps();
         });

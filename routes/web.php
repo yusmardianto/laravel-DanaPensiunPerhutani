@@ -70,6 +70,8 @@ Route::group(['middleware' => ['auth']], function() {
         //daftar peserta
         Route::get('peserta', 'PesertaController@index');
         Route::get('peserta/create', 'PesertaController@getCreate');
+        Route::post('peserta/create', 'PesertaController@postCreate');
+        Route::any('peserta/ajax-list', 'PesertaController@ajaxList');
         Route::get('peserta-aktif', 'PesertaController@index');
         //sk pensiunan
         Route::get('skpensiunan', 'SKPensiunanController@index');

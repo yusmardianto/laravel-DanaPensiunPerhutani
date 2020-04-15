@@ -3,16 +3,35 @@
 @section('title', config('app.name').' | Tambah Peserta Aktif')
 
 @section('stylesheets')
-<link href="{{ asset('css/plugins/dualListbox/bootstrap-duallistbox.min.css') }}" rel="stylesheet">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<link href="{{ asset('css/plugins/datapicker/datepicker3.css') }}" rel="stylesheet">
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/plugins/dualListbox/jquery.bootstrap-duallistbox.js') }}"></script>
-
+<script src="{{ asset('js/jquery.numeric.min.js') }}"></script>
+<script src="{{ asset('js/plugins/datapicker/bootstrap-datepicker.js') }}"></script>
 <script>
-$('.dual_select').bootstrapDualListbox({
-    selectorMinimalHeight: 400
-});
+    $(document).ready(function(){
+        $('#data_1 .input-group.date').datepicker({
+            todayBtn: "linked",
+            format: "yyyy-mm-dd",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
+        });
+
+        $('#image').change(function(){
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#image_preview_container').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+
+
+        $("#tel").numeric();
+    });
 </script>
 @endsection
 
@@ -56,6 +75,12 @@ $('.dual_select').bootstrapDualListbox({
                     <form method="post" action="{{ url()->current() }}">
                         @csrf
                         <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Kode Aktif Peserta</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="kode_aktif">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nama Peserta</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="nama">
@@ -64,13 +89,19 @@ $('.dual_select').bootstrapDualListbox({
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nomer KTP</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="ktp">
+                                <input type="text" class="form-control" name="no_ktp">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">NIP</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="nip">
+                            </div>
+                        </div>
+                        <div class="form-group row" id="data_1">
+                            <label class="col-sm-2 col-form-label">Tanggal Lahir</label>
+                            <div class="col-lg-10 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="birthdate">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -94,30 +125,19 @@ $('.dual_select').bootstrapDualListbox({
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Agama</label>
                             <div class="col-sm-10">
-                                <select class="form-control-sm form-control input-s-sm inline">
-                                    <option value="0">- Pilih Agama Peserta -</option>
-                                    <option value="1">Islam</option>
-                                    <option value="2">Kristen</option>
-                                    <option value="3">Protestan</option>
-                                    <option value="4">Hindu</option>
-                                    <option value="5">Budha</option>
-                                </select>
+                                <input type="text" class="form-control" name="agama">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
                             <div class="col-sm-10">
-                                <select class="form-control-sm form-control input-s-sm inline">
-                                    <option value="0">- Pilih Jenis Kelamin Peserta -</option>
-                                    <option value="1">Laki - Laki</option>
-                                    <option value="2">Perempuan</option>
-                                </select>
+                                <input type="text" class="form-control" name="jenis_kelamin">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nomer Telepon</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="telpon">
+                                <input type="text" class="form-control" name="no_telpon">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -136,6 +156,13 @@ $('.dual_select').bootstrapDualListbox({
                             <label class="col-sm-2 col-form-label">Keterangan</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="keterangan">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Foto</label>
+                            <div class="col-sm-10">
+                                <img id="image_preview_container" src="{{ asset('img/no_image.png') }}" alt="preview image" style="max-height: 150px;">
+                                <input type="file" class="form-control" name="photo" id="image">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
