@@ -31,6 +31,8 @@
 
 
         $("#tel").numeric();
+        $("#ktp").numeric();
+        $("#kode-pos").numeric();
     });
 </script>
 @endsection
@@ -43,9 +45,8 @@
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
             </li>
-            <li class="breadcrumb-item">Kepesertaan
-            </li>
-            <li class="breadcrumb-item">Daftar Peserta Aktif
+            <li class="breadcrumb-item">
+                <a href="{{ url('kepesertaan/peserta-aktif') }}">Daftar Peserta Aktif</a>
             </li>
             <li class="breadcrumb-item active">
                 <strong>Tambah Peserta Aktif</strong>
@@ -64,7 +65,7 @@
                 <div class="ibox-title">
                     <h5>Tambah Peserta Aktif</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('kepesertaan/peserta') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('kepesertaan/peserta-aktif') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>
                             Kembali
                         </a>
@@ -89,7 +90,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nomer KTP</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="no_ktp">
+                                <input type="text" class="form-control" name="no_ktp" id="ktp">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -119,7 +120,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Kode Pos</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="pos">
+                                <input type="text" class="form-control" name="pos" id="kode-pos">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -137,7 +138,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nomer Telepon</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="no_telpon">
+                                <input type="text" class="form-control" name="no_telpon" id="tel">
                             </div>
                         </div>
                         <div class="form-group row">

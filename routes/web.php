@@ -67,12 +67,12 @@ Route::group(['middleware' => ['auth']], function() {
     });
 
     Route::prefix('kepesertaan')->group(function() {
-        //daftar peserta
-        Route::get('peserta', 'PesertaController@index');
-        Route::get('peserta/create', 'PesertaController@getCreate');
-        Route::post('peserta/create', 'PesertaController@postCreate');
-        Route::any('peserta/ajax-list', 'PesertaController@ajaxList');
         Route::get('peserta-aktif', 'PesertaController@index');
+        Route::any('peserta-aktif/ajax-list', 'PesertaController@ajaxList');
+        Route::get('peserta-aktif/create', 'PesertaController@getCreate');
+        Route::post('peserta-aktif/create', 'PesertaController@postCreate');
+        Route::get('peserta-aktif/detail/{id}', 'PesertaController@getDetail');
+
         //sk pensiunan
         Route::get('skpensiunan', 'SKPensiunanController@index');
         //iuran pensiunan

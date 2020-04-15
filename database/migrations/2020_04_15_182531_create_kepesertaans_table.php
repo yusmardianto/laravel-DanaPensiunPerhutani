@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKepesertaanTable extends Migration
+class CreateKepesertaansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateKepesertaanTable extends Migration
      */
     public function up()
     {
-        Schema::create('kepesertaan', function (Blueprint $table) {
+        Schema::create('kepesertaans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('kode_aktif');
             $table->string('nama');
             $table->string('no_ktp')->unique();
-            $table->string('nip');
+            $table->string('nip')->unique();
             $table->date('birthdate');
             $table->text('alamat');
             $table->string('kota');
@@ -26,7 +26,7 @@ class CreateKepesertaanTable extends Migration
             $table->string('agama');
             $table->string('jenis_kelamin');
             $table->string('no_telpon');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('golongan');
             $table->string('photo');
             $table->text('keterangan');
@@ -41,6 +41,6 @@ class CreateKepesertaanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kepesertaan');
+        Schema::dropIfExists('kepesertaans');
     }
 }

@@ -6,6 +6,15 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+<style>
+    th {
+        font-size: 13px;
+        text-align: center;
+    }
+    td {
+        font-size: 13px;
+    }
+</style>
 @endsection
 
 @section('scripts')
@@ -34,7 +43,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('kepesertaan/peserta/ajax-list') !!}',
+                url: '{!! url('kepesertaan/peserta-aktif/ajax-list') !!}',
                 method: 'POST'
             },
             columns: $column,
@@ -64,7 +73,7 @@
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('name');
-            var deleteUrl = "{{ url('kepesertaan/peserta/hapus') }}" + "/" + dataId;
+            var deleteUrl = "{{ url('kepesertaan/peserta-aktif/hapus') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
@@ -105,8 +114,6 @@
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
             </li>
-            <li class="breadcrumb-item">Kepesertaan
-            </li>
             <li class="breadcrumb-item active">
                 <strong>Daftar Peserta Aktif</strong>
             </li>
@@ -124,7 +131,7 @@
                 <div class="ibox-title">
                     <h5>Daftar Peserta Aktif</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('kepesertaan/peserta/create') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('kepesertaan/peserta-aktif/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
                             Tambah data
                         </a>

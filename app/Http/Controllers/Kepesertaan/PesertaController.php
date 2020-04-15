@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\kepesertaan\Kepesertaan;
 
 class PesertaController extends Controller
 {
@@ -14,14 +15,14 @@ class PesertaController extends Controller
 
     public function ajaxList()
     {
-        $data = kepesertaan::whereNotNull('created_at');
+        $data = Kepesertaan::whereNotNull('created_at');
 
         $datatables = Datatables::of($data);
         return $datatables->addColumn('action', function ($row) {
             $hashed_id = Hasher::encode($row->id);
                 return "
-                <a class=\"btn btn-xs btn-info\" href=\"". url('masters/peserta/detail/'.$hashed_id) ."\"><i class=\"glyphicon glyphicon-eye-open\"></i> Detail</a>
-                <a class=\"btn btn-xs btn-primary\" href=\"". url('masters/peserta/edit/'.$hashed_id) ."\"><i class=\"glyphicon glyphicon-edit\"></i> Ubah</a>
+                <a class=\"btn btn-xs btn-info\" href=\"". url('kepesertaan/peserta-aktif/detail/'.$hashed_id) ."\"><i class=\"glyphicon glyphicon-eye-open\"></i> Detail</a>
+                <a class=\"btn btn-xs btn-primary\" href=\"". url('kepesertaan/peserta-aktif/edit/'.$hashed_id) ."\"><i class=\"glyphicon glyphicon-edit\"></i> Ubah</a>
                 <a class=\"btn btn-xs btn-warning delete-btn\" href=\"#\" data-id=\"". $hashed_id ."\" data-name=\"". $row->name ."\"><i class=\"glyphicon glyphicon-trash\"></i> Hapus</a>
                 ";
             })
@@ -50,16 +51,20 @@ class PesertaController extends Controller
         }
 
         $rules = [
-            'email' => 'required|unique:master_pesertas,email',
-            'phonenumber' => 'required|unique:master_pesertas,phonenumber',
+            'email' => 'required|unique:kepesertaans,email',
+            'no_telpon' => 'required|unique:kepesertaans,phonenumber',
+            'no_ktp' => 'required|unique:kepesertaans,no_ktp',
+            'nip' => 'required|unique:kepesertaans,nip',
         ];
 
         $messages = [
             'email.unique' => 'Email tersebut sudah terdaftar.',
             'phonenumber.unique' => 'No. Telepon tersebut sudah terdaftar.',
+            'no_ktp.unique' => 'No. KTP sudah terdaftar',
+            'nip.unique' => 'Nomer Induk Peserta sudah terdaftar',
         ];
 
-        $data = new kepesertaan();
+        $data = new Kepesertaan();
         $data->kode_aktif = $request->kode_aktif;
         $data->nama = $request->nama;
         $data->no_ktp = $request->no_ktp;
@@ -79,7 +84,7 @@ class PesertaController extends Controller
         if(isset($data))
         {
             $data->save();
-            return redirect('kepesertaan/peserta')->with('success', 'Berhasil menambah Peserta '.$data->name);
+            return redirect('kepesertaan/peserta-aktif')->with('success', 'Berhasil menambah Peserta Aktif'.$data->name);
         }
     }
 }
