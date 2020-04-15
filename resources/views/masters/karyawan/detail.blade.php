@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Detail Pengguna')
+@section('title', config('app.name').' | Detail Karyawan')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">

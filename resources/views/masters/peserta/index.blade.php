@@ -109,7 +109,7 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Master Data Karyawan</h2>
+        <h2>Master Data Peserta</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>

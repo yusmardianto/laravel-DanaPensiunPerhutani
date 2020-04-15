@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Detail Pengguna')
+@section('title', config('app.name').' | Detail Peserta')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -13,16 +13,16 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Detail Karyawan</h2>
+        <h2>Detail Peserta</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ url('masters/karyawan') }}">Master Karyawan</a>
+                <a href="{{ url('masters/peserta') }}">Master Peserta</a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Detail Karyawan</strong>
+                <strong>Detail Peserta</strong>
             </li>
         </ol>
     </div>
@@ -35,9 +35,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Detail Karyawan</h5>
+                    <h5>Detail Peserta</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('masters/karyawan') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('masters/peserta') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>
                             Kembali
                         </a>
@@ -51,6 +51,11 @@
                                 <div class="col-sm-4 text-sm-left"><dt>Nama Lengkap</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
                                 <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->name }}</dd></div>
+                            </dl>
+                            <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>ID Peserta</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->id_card }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Tanggal Lahir</dt> </div>
@@ -80,7 +85,7 @@
                                 <div class="col-sm-8 text-sm-left">
                                     <dd class="mb-1">
                                         <div class="photos">
-                                            <img alt="image" class="feed-photo" src="{{ asset('foto/karyawan/'.$data->photo) }}">
+                                            <img alt="image" class="feed-photo" src="{{ asset('foto/masterpeserta/'.$data->photo) }}">
                                         </div>
                                     </dd>
                                 </div>

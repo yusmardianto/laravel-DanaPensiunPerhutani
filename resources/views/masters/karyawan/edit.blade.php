@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Tambah Karyawan')
+@section('title', config('app.name').' | Ubah Karyawan')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -52,7 +52,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Input Data Karyawan</h5>
+                    <h5>Ubah Data Karyawan</h5>
                     <div class="ibox-tools">
                         <a href="{{ url('masters/karyawan') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>

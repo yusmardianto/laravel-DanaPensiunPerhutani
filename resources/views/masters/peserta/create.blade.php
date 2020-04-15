@@ -13,13 +13,22 @@
 <script>
     $(document).ready(function(){
         $('#data_1 .input-group.date').datepicker({
-        todayBtn: "linked",
-        format: "yyyy-mm-dd",
-        keyboardNavigation: false,
-        forceParse: false,
-        calendarWeeks: true,
-        autoclose: true
+            todayBtn: "linked",
+            format: "yyyy-mm-dd",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
         });
+
+        $('#image').change(function(){
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#image_preview_container').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+
 
         $("#tel").numeric();
     });
@@ -68,6 +77,12 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">ID Card Peserta</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="id_card">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Nama Lengkap</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="name">
@@ -100,7 +115,8 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Foto</label>
                                     <div class="col-sm-9">
-                                        <input type="file" class="form-control" name="photo">
+                                        <img id="image_preview_container" src="{{ asset('img/no_image.png') }}" alt="preview image" style="max-height: 150px;">
+                                        <input type="file" class="form-control" name="photo" id="image">
                                     </div>
                                 </div>
                             </div>

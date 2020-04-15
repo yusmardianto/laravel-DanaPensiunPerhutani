@@ -13,12 +13,20 @@
 <script>
     $(document).ready(function(){
         $('#data_1 .input-group.date').datepicker({
-        todayBtn: "linked",
-        format: "yyyy-mm-dd",
-        keyboardNavigation: false,
-        forceParse: false,
-        calendarWeeks: true,
-        autoclose: true
+            todayBtn: "linked",
+            format: "yyyy-mm-dd",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
+        });
+
+        $('#image').change(function(){
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#image_preview_container').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
         });
 
         $("#tel").numeric();
@@ -29,16 +37,16 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Master Data Karyawan</h2>
+        <h2>Master Data Peserta</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('/') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ url('masters/karyawan') }}">Karyawan</a>
+                <a href="{{ url('masters/peserta') }}">Peserta</a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Daftar Karyawan</strong>
+                <strong>Ubah Peserta</strong>
             </li>
         </ol>
     </div>
@@ -52,9 +60,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Input Data Karyawan</h5>
+                    <h5>Ubah Data Peserta</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('masters/karyawan') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('masters/peserta') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>
                             Kembali
                         </a>
@@ -100,7 +108,8 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Foto</label>
                                     <div class="col-sm-9">
-                                        <input type="file" class="form-control" name="photo">
+                                        <img id="image_preview_container" src="{{ asset('foto/masterpeserta/'.$data->photo) }}" alt="preview image" style="max-height: 150px;">
+                                        <input type="file" class="form-control" name="photo" id="image">
                                     </div>
                                 </div>
                             </div>
