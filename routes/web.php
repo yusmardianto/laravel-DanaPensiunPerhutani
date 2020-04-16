@@ -118,5 +118,14 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('peserta/edit/{id}', 'PesertaController@getEdit');
         Route::post('peserta/edit/{id}', 'PesertaController@postEdit');
         Route::post('peserta/destroy/{id}', 'PesertaController@destroy');
+
+        Route::get('status', 'MasterStatusController@index');
+        Route::any('status/ajax-list', 'MasterStatusController@ajaxList');
+        Route::get('status/create', 'MasterStatusController@getCreate');
+        Route::post('status/create', 'MasterStatusController@postCreate');
+        Route::get('status/detail/{id}', 'MasterStatusController@getDetail');
+        Route::get('status/edit/{id}', 'MasterStatusController@getEdit');
+        Route::post('status/edit/{id}', 'MasterStatusController@postEdit');
+        Route::post('status/destroy/{id}', 'MasterStatusController@destroy');
     });
 });
