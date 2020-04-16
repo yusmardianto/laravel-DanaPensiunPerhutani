@@ -1,9 +1,10 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Detail Tipe Pengguna')
+@section('title', config('app.name').' | Transaksi Pemasukan Kas')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
+
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
 @endsection
 
@@ -24,18 +25,7 @@
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
             { data: 'name', name: 'name' },
-            { data: 'username', name: 'username' },
-            { data: 'email', name: 'email' },
-            { data: 'no_hp', name: 'no_hp' },
-            { data: 'is_active', name: 'is_active', render: function (data, type, row) {
-                if (row.is_active == '1') {
-                    return '<label class="label label-success">Aktif</label>';
-                }
-                else {
-                    return '<label class="label label-danger">Tidak Aktif</label>';
-                    }
-                }
-            },
+            { data: 'guard_name', name: 'guard_name' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
@@ -43,7 +33,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('config/role/ajax-user/'.$hashed_id.'') !!}',
+                url: '{!! url('keuangan/pemasukan/ajax-list') !!}',
                 method: 'POST'
             },
             columns: $column,
@@ -54,8 +44,8 @@
                     "width": "4%"
                 },
                 {
-                    "targets": 5,
-                    "width": "110px"
+                    "targets": 4,
+                    "width": "21%"
                 }
             ],
             initComplete: function () {
@@ -73,11 +63,11 @@
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('nama');
-            var deleteUrl = "{{ url('config/role/delete-user') }}" + "/" + "{{ $hashed_id }}" + "/" + dataId ;
+            var deleteUrl = "{{ url('keuangan/pemasukan/delete') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
-                text: "Hapus data pengguna "+ dataName +" untuk role ini ?" ,
+                text: "Hapus data pemasukan : "+ dataName +" ?" ,
                 icon: "warning",
                 dangerMode: true,
                 buttons: {
@@ -109,98 +99,53 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Detail Tipe Pengguna</h2>
+        <h2>Transaksi Pemasukan Kas</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
             </li>
-            <li class="breadcrumb-item">Konfigurasi
-            </li>
-            <li class="breadcrumb-item">Tipe Pengguna
+            <li class="breadcrumb-item">Keuangan
             </li>
             <li class="breadcrumb-item active">
-                <strong>Detail</strong>
+                <strong>Transaksi Pemasukan Kas</strong>
             </li>
         </ol>
     </div>
     <div class="col-lg-2">
+
     </div>
 </div>
+
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Detail Tipe Pengguna</h5>
+                    <h5>Transaksi Pemasukan Kas</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('config/role') }}" class="btn btn-primary btn-xs modal-form">
-                            <i class="fa fa-arrow-circle-o-left"></i>
-                            Kembali
-                        </a>
-                    </div>
-                </div>
-                <div class="ibox-content">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <dl class="row mb-0">
-                                <div class="col-sm-3 text-sm-left"><dt>Nama Role</dt> </div>
-                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-8 text-sm-left"><dd class="mb-1">{{ $role->name }}</dd></div>
-                            </dl>
-                            <dl class="row mb-0">
-                                <div class="col-sm-3 text-sm-left"><dt>Nama Guard</dt> </div>
-                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-8 text-sm-left"><dd class="mb-1">{{ $role->guard_name }}</dd></div>
-                            </dl>
-                        </div>
-                        <div class="col-md-6">
-                            <dl class="row mb-0">
-                                <div class="col-sm-3 text-sm-left"><dt>Permissions</dt> </div>
-                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-8 text-sm-left"><dd class="mb-1">
-                                        @if(!empty($rolePermissions))
-                                        @foreach($rolePermissions as $v)
-                                            <label class="label label-success">{{ $v->name }}</label>
-                                        @endforeach
-                                        @endif
-                                    </dd>
-                                </div>
-                            </dl>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox ">
-                <div class="ibox-title">
-                    <h5>Daftar Pengguna</h5>
-                    <div class="ibox-tools">
-                        <a href="{{ url('config/role/add-user/'.$hashed_id.'') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('keuangan/pemasukan/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
-                            Tambah data pengguna role
+                            Tambah transaksi
                         </a>
                     </div>
                 </div>
                 <div class="ibox-content">
                     @include('layouts.flashMessage')
+
                     <div class="table-responsive">
                         <table class="table table-striped" id="table-list">
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Lengkap</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Nomor Hp</th>
-                                <th>Status Pengguna</th>
+                                <th>Jenis Transaksi</th>
+                                <th>Tanggal Transaksi</th>
+                                <th>Nilai Transaksi</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
                         </table>
                     </div>
+
                 </div>
             </div>
         </div>

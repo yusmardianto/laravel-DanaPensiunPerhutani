@@ -139,7 +139,7 @@
                                 <th>No</th>
                                 <th>Nama Role</th>
                                 <th>Platform</th>
-                                <th>Opsi</th>
+                                <th>Aksi</th>
                             </tr>
                             </thead>
                         </table>

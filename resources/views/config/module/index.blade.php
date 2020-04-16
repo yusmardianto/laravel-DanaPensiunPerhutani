@@ -139,7 +139,7 @@
                                 <th>No</th>
                                 <th>Nama Module</th>
                                 <th>Detail Module</th>
-                                <th>Opsi</th>
+                                <th>Aksi</th>
                             </tr>
                             </thead>
                         </table>

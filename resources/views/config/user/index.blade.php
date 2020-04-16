@@ -45,8 +45,12 @@
                     "width": "4%"
                 },
                 {
+                    "targets": 3,
+                    "className": "text-center"
+                },
+                {
                     "targets": 4,
-                    "width": "180px"
+                    "width": "21%"
                 }
             ],
             initComplete: function () {
@@ -141,7 +145,7 @@
                                 <th>Nama Lengkap</th>
                                 <th>Username</th>
                                 <th>Role</th>
-                                <th>Opsi</th>
+                                <th>Aksi</th>
                             </tr>
                             </thead>
                         </table>

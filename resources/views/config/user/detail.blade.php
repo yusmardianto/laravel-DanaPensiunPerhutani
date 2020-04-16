@@ -209,7 +209,7 @@
                                 <th>Nama Role</th>
                                 <th>Platform</th>
                                 <th>Permissions</th>
-                                <th>Opsi</th>
+                                <th>Aksi</th>
                             </tr>
                             </thead>
                         </table>

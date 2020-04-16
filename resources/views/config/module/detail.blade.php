@@ -189,7 +189,7 @@
                                 <th>No</th>
                                 <th>Nama Permissions</th>
                                 <th>Platform</th>
-                                <th>Opsi</th>
+                                <th>Aksi</th>
                             </tr>
                             </thead>
                         </table>
