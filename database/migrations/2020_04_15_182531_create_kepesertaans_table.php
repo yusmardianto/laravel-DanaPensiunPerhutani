@@ -29,7 +29,8 @@ class CreateKepesertaansTable extends Migration
             $table->string('email')->unique();
             $table->string('golongan');
             $table->string('photo');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
+            $table->boolean('status');
             $table->timestamps();
         });
     }

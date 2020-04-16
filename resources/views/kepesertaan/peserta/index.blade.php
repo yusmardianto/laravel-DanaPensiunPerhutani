@@ -33,10 +33,10 @@
 
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
-            { data: 'name', name: 'name' },
-            { data: 'username', name: 'username' },
-            { data: 'email', name: 'email' },
-            { data: 'option', name: 'option', orderable: false, searchable: false },
+            { data: 'nama', name: 'nama' },
+            { data: 'kode_aktif', name: 'kode_aktif' },
+            { data: 'nip', name: 'nip' },
+            { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
         $('#table-list').DataTable({
@@ -55,7 +55,7 @@
                 },
                 {
                     "targets": 4,
-                    "width": "170px"
+                    "width": "21%"
                 }
             ],
             initComplete: function () {
@@ -73,7 +73,7 @@
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('name');
-            var deleteUrl = "{{ url('kepesertaan/peserta-aktif/hapus') }}" + "/" + dataId;
+            var deleteUrl = "{{ url('kepesertaan/peserta-aktif/delete') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
@@ -146,9 +146,9 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Peserta</th>
-                                <th>No Rekening</th>
-                                <th>Email</th>
-                                <th>Opsi</th>
+                                <th>Kode Aktif</th>
+                                <th>Nomor Induk Pegawai</th>
+                                <th>Aksi</th>
                             </tr>
                             </thead>
                         </table>

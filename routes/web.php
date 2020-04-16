@@ -67,11 +67,14 @@ Route::group(['middleware' => ['auth']], function() {
     });
 
     Route::prefix('kepesertaan')->group(function() {
-        Route::get('peserta-aktif', 'PesertaController@index');
-        Route::any('peserta-aktif/ajax-list', 'PesertaController@ajaxList');
-        Route::get('peserta-aktif/create', 'PesertaController@getCreate');
-        Route::post('peserta-aktif/create', 'PesertaController@postCreate');
-        Route::get('peserta-aktif/detail/{id}', 'PesertaController@getDetail');
+        Route::get('peserta-aktif', 'PesertaAktifController@index');
+        Route::any('peserta-aktif/ajax-list', 'PesertaAktifController@ajaxList');
+        Route::get('peserta-aktif/create', 'PesertaAktifController@getCreate');
+        Route::post('peserta-aktif/create', 'PesertaAktifController@postCreate');
+        Route::get('peserta-aktif/detail/{id}', 'PesertaAktifController@getDetail');
+        Route::get('peserta-aktif/edit/{id}', 'PesertaAktifController@getEdit');
+        Route::post('peserta-aktif/edit/{id}', 'PesertaAktifController@postEdit');
+        Route::post('peserta-aktif/delete/{id}', 'PesertaAktifController@destroy');
 
         //sk pensiunan
         Route::get('skpensiunan', 'SKPensiunanController@index');
@@ -109,13 +112,11 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('karyawan/edit/{id}', 'KaryawanController@postEdit');
         Route::post('karyawan/destroy/{id}', 'KaryawanController@destroy');
 
-        Route::get('peserta', 'PesertaAktifController@index');
-        Route::any('peserta/ajax-list', 'PesertaAktifController@ajaxList');
-        Route::get('peserta/create', 'PesertaAktifController@getCreate');
-        Route::post('peserta/create', 'PesertaAktifController@postCreate');
-        Route::get('peserta/detail/{id}', 'PesertaAktifController@getDetail');
-        Route::get('peserta/edit/{id}', 'PesertaAktifController@getEdit');
-        Route::post('peserta/edit/{id}', 'PesertaAktifController@postEdit');
-        Route::post('peserta/destroy/{id}', 'PesertaAktifController@destroy');
+        Route::get('peserta', 'PesertaController@index');
+        Route::any('peserta/ajax-list', 'PesertaController@ajaxList');
+        Route::get('peserta/detail/{id}', 'PesertaController@getDetail');
+        Route::get('peserta/edit/{id}', 'PesertaController@getEdit');
+        Route::post('peserta/edit/{id}', 'PesertaController@postEdit');
+        Route::post('peserta/destroy/{id}', 'PesertaController@destroy');
     });
 });
