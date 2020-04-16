@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\kepesertaan\Kepesertaan;
+use App\Models\Kepesertaan\Kepesertaan;
 use DataTables, Hasher, Validator;
 
-class PesertaController extends Controller
+class PesertaAktifController extends Controller
 {
     public function index(Request $request)
     {
