@@ -84,91 +84,91 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Kode Aktif Peserta</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="kode_aktif">
+                                <input type="text" class="form-control" name="kode_aktif" value="{{ $data->kode_aktif }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nama Peserta</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="nama">
+                                <input type="text" class="form-control" name="nama" value="{{ $data->nama }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nomer KTP</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="no_ktp" id="ktp">
+                                <input type="text" class="form-control" name="no_ktp" id="ktp" value="{{ $data->no_ktp }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">NIP</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="nip">
+                                <input type="text" class="form-control" name="nip" value="{{ $data->nip }}">
                             </div>
                         </div>
                         <div class="form-group row" id="data_1">
                             <label class="col-sm-2 col-form-label">Tanggal Lahir</label>
                             <div class="col-lg-10 input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="birthdate">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="birthdate" value="{{ $data->birthdate }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Alamat Peserta</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="alamat">
+                                <input type="text" class="form-control" name="alamat" value="{{ $data->alamat }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Kota</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="kota">
+                                <input type="text" class="form-control" name="kota" value="{{ $data->kota }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Kode Pos</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="kodepos" id="kode-pos">
+                                <input type="text" class="form-control" name="kodepos" id="kode-pos" value="{{ $data->kodepos }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Agama</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="agama">
+                                <input type="text" class="form-control" name="agama" value="{{ $data->agama }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="jenis_kelamin">
+                                <input type="text" class="form-control" name="jenis_kelamin" value="{{ $data->jenis_kelamin }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nomer Telepon</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="no_telpon" id="tel">
+                                <input type="text" class="form-control" name="no_telpon" id="tel" value="{{ $data->no_telpon }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="email">
+                                <input type="text" class="form-control" name="email" value="{{ $data->email }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Golongan</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="golongan">
+                                <input type="text" class="form-control" name="golongan" value="{{ $data->golongan }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Keterangan</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="keterangan">
+                                <input type="text" class="form-control" name="keterangan" value="{{ $data->keterangan }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Foto</label>
                             <div class="col-sm-10">
-                                <img id="image_preview_container" src="{{ asset('img/no_image.png') }}" alt="preview image" style="max-height: 150px;">
+                                <img id="image_preview_container" src="{{ asset('foto/peserta/'.$data->photo) }}" alt="preview image" style="max-height: 150px;">
                                 <input type="file" class="form-control" name="photo" id="image">
                             </div>
                         </div>
@@ -176,9 +176,15 @@
                             <label class="col-sm-2 col-form-label">Status Peserta</label>
                             <div class="col-sm-10">
                                 <select name="status" id="select-status">
+                                    @if($data->status == 1)
+                                    <option value="1">Aktif</option>
+                                    @elseif($data->status == 0)
+                                    <option value="0">Nonaktif</option>
+                                    @else
                                     <option value=""></option>
                                     <option value="1">Aktif</option>
                                     <option value="0">Nonaktif</option>
+                                    @endif
                                 </select>
                             </div>
                         </div>

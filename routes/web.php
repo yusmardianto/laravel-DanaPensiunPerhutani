@@ -72,6 +72,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('peserta-aktif/create', 'PesertaController@getCreate');
         Route::post('peserta-aktif/create', 'PesertaController@postCreate');
         Route::get('peserta-aktif/detail/{id}', 'PesertaController@getDetail');
+        Route::get('peserta-aktif/edit/{id}', 'PesertaController@getEdit');
+        Route::post('peserta-aktif/edit/{id}', 'PesertaController@postEdit');
+        Route::post('peserta-aktif/delete/{id}', 'PesertaController@destroy');
 
         //sk pensiunan
         Route::get('skpensiunan', 'SKPensiunanController@index');
@@ -111,11 +114,7 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::get('peserta', 'PesertaAktifController@index');
         Route::any('peserta/ajax-list', 'PesertaAktifController@ajaxList');
-        Route::get('peserta/create', 'PesertaAktifController@getCreate');
-        Route::post('peserta/create', 'PesertaAktifController@postCreate');
         Route::get('peserta/detail/{id}', 'PesertaAktifController@getDetail');
-        Route::get('peserta/edit/{id}', 'PesertaAktifController@getEdit');
-        Route::post('peserta/edit/{id}', 'PesertaAktifController@postEdit');
         Route::post('peserta/destroy/{id}', 'PesertaAktifController@destroy');
     });
 });

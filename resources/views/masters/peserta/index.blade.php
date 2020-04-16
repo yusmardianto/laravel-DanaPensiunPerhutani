@@ -130,12 +130,6 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>Daftar Peserta</h5>
-                    <div class="ibox-tools">
-                        <a href="{{ url('masters/peserta/create') }}" class="btn btn-primary btn-xs modal-form">
-                            <i class="fa fa-plus"></i>
-                            Tambah Peserta
-                        </a>
-                    </div>
                 </div>
                 <div class="ibox-content">
                     @include('layouts.flashMessage')
