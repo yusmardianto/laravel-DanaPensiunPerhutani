@@ -86,6 +86,8 @@ class PesertaAktifController extends Controller
         $data->no_telpon = $request->no_telpon;
         $data->email = $request->email;
         $data->golongan = $request->golongan;
+        $data->id_bank = $request->id_bank;
+        $data->no_rekening = $request->no_rekening;
         $data->keterangan = $request->keterangan;
         $data->photo = $photo;
         $data->status = $request->status;
@@ -174,6 +176,8 @@ class PesertaAktifController extends Controller
             $data->no_telpon = $request->no_telpon;
             $data->email = $request->email;
             $data->golongan = $request->golongan;
+            $data->id_bank = $request->id_bank;
+            $data->no_rekening = $request->no_rekening;
             $data->keterangan = $request->keterangan;
             $data->photo = $photo;
             $data->status = $request->status;

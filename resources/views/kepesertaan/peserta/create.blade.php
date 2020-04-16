@@ -38,6 +38,7 @@
         $("#ktp").numeric();
         $("#kode-pos").numeric();
 
+        $("#select-bank").select2({width:"100%", placeholder: "Pilih Bank", allowClear: true});
         $("#select-status").select2({width:"100%", placeholder: "Pilih Status", allowClear: true});
     });
 </script>
@@ -157,6 +158,20 @@
                             <label class="col-sm-2 col-form-label">Golongan</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="golongan">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Jenis Bank</label>
+                            <div class="col-sm-10">
+                                <select name="id_bank" id="select-bank">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">No. Rekening</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="no_rekening">
                             </div>
                         </div>
                         <div class="form-group row">
