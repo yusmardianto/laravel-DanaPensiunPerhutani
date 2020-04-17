@@ -35,7 +35,15 @@
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
             { data: 'name', name: 'name' },
-            { data: 'status_pns', name: 'status_pns' },
+            { data: 'status_pns', name: 'status_pns', render: function (data, type, row) {
+                if (row.status_pns == '1') {
+                    return '<label>Ya</label>';
+                }
+                else {
+                    return '<label>Tidak</label>';
+                }
+            }
+            },
             { data: 'gapok', name: 'gapok' },
             { data: 'keterangan', name: 'keterangan' },
             { data: 'action', name: 'action', orderable: false, searchable: false }

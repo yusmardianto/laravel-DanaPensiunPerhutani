@@ -33,8 +33,8 @@
                 }
                 else {
                     return '<label class="label label-danger">Tidak Aktif</label>';
-                    }
                 }
+            }
             },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
