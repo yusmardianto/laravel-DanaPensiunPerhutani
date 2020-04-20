@@ -11,4 +11,9 @@ class PemasukanController extends Controller
     {
         return view('keuangan.pemasukan.index');
     }
+
+    public function getCreate()
+    {
+        return view('keuangan.pemasukan.create');
+    }
 }

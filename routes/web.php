@@ -101,6 +101,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::prefix('keuangan')->group(function() {
         //transaksi pemasukan kas
         Route::get('pemasukan', 'PemasukanController@index');
+        Route::any('pemasukan/ajax-list', 'PemasukanController@ajaxList');
+        Route::get('pemasukan/create', 'PemasukanController@getCreate');
+        Route::post('pemasukan/create', 'PemasukanController@postCreate');
+
         //transaksi pengeluaran kas
         Route::get('pengeluaran', 'PengeluaranController@index');
     });
