@@ -44,6 +44,24 @@ $user = Auth::user();
                     <li @if(Request::segment(2) == 'status') class="active" @endif>
                         <a href="{{ url('masters/status') }}">Master Status</a>
                     </li>
+                    <li @if(Request::segment(2) == 'bank') class="active" @endif>
+                        <a href="{{ url('masters/bank') }}">Master Bank</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'golongan') class="active" @endif>
+                        <a href="{{ url('masters/golongan') }}">Master Golongan</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'voucher') class="active" @endif>
+                        <a href="{{ url('masters/voucher') }}">Master Voucher</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'unit-kerja') class="active" @endif>
+                        <a href="{{ url('masters/unit-kerja') }}">Master Unit Kerja</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'pejabat-kerja') class="active" @endif>
+                        <a href="{{ url('masters/pejabat-kerja') }}">Master Pejabat Kerja</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'periode') class="active" @endif>
+                        <a href="{{ url('masters/periode') }}">Master Periode</a>
+                    </li>
                 </ul>
             </li>
             @endif

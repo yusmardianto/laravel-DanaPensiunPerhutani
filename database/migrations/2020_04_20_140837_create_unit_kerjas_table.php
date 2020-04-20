@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMasterStatusesTable extends Migration
+class CreateUnitKerjasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateMasterStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('master_statuses', function (Blueprint $table) {
+        Schema::create('master_unit_kerjas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('status_pns');
-            $table->bigInteger('gajipokok');
+            $table->integer('kode_unit_kerja');
+            $table->string('nama_unit_kerja');
+            $table->string('pejabat');
+            $table->text('alamat');
+            $table->string('kota');
+            $table->integer('kode_pos');
             $table->text('keterangan');
-            $table->integer('created_by');
-            $table->integer('updated_by');
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class CreateMasterStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('master_statuses');
+        Schema::dropIfExists('unit_kerjas');
     }
 }

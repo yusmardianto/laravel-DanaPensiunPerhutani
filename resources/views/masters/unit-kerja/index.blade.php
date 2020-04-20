@@ -1,19 +1,20 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | SK Pensiunan')
+@section('title', config('app.name').' | Master Unit Kerja')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
 <style>
-    th {
-        font-size: 13px;
+    #table-list th {
         text-align: center;
+        font-size: 13px;
     }
     td {
         font-size: 13px;
     }
+    td.dt-right { text-align: right; }
 </style>
 @endsection
 
@@ -33,9 +34,9 @@
 
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
-            { data: 'no_sk_pensiun', name: 'no_sk_pensiun' },
-            { data: 'kode_aktif', name: 'kode_aktif' },
-            { data: 'voucher', name: 'voucher' },
+            { data: 'kode_unit_kerja', name: 'kode_unit_kerja' },
+            { data: 'nama_unit_kerja', name: 'nama_unit_kerja' },
+            { data: 'keterangan', name: 'keterangan' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
@@ -43,7 +44,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('kepesertaan/skpensiunan/ajax-list') !!}',
+                url: '{!! url('masters/unit-kerja/ajax-list') !!}',
                 method: 'POST'
             },
             columns: $column,
@@ -73,7 +74,7 @@
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('name');
-            var deleteUrl = "{{ url('kepesertaan/skpensiunan/delete') }}" + "/" + dataId;
+            var deleteUrl = "{{ url('masters/unit-kerja/delete') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
@@ -109,15 +110,13 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>SK Pensiunan</h2>
+        <h2>Master Unit Kerja</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
             </li>
-            <li class="breadcrumb-item">Kepesertaan
-            </li>
             <li class="breadcrumb-item active">
-                <strong>SK Pensiunan</strong>
+                <strong>Daftar Unit Kerja</strong>
             </li>
         </ol>
     </div>
@@ -131,11 +130,11 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>SK Pensiunan</h5>
+                    <h5>Daftar Unit Kerja</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('kepesertaan/skpensiunan/create') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('masters/unit-kerja/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
-                            Tambah data
+                            Tambah Unit Kerja
                         </a>
                     </div>
                 </div>
@@ -147,15 +146,14 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>No SK Pensiun</th>
-                                <th>Kode Aktif</th>
-                                <th>Voucher</th>
+                                <th>Kode Unit Kerja</th>
+                                <th>Nama Unit Kerja</th>
+                                <th>Keterangan</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
                         </table>
                     </div>
-
                 </div>
             </div>
         </div>
