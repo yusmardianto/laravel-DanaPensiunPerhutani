@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePeriodesTable extends Migration
+class CreateMasterGolongansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreatePeriodesTable extends Migration
      */
     public function up()
     {
-        Schema::create('master_periodes', function (Blueprint $table) {
+        Schema::create('master_golongans', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('periode');
-            $table->text('keterangan');
+            $table->string('name');
+            $table->bigInteger('gajipokok');
+            $table->string('keterangan');
+            $table->integer('created_by');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreatePeriodesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('periodes');
+        Schema::dropIfExists('master_golongans');
     }
 }
