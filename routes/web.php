@@ -78,6 +78,9 @@ Route::group(['middleware' => ['auth']], function() {
 
         //sk pensiunan
         Route::get('skpensiunan', 'SKPensiunanController@index');
+        Route::get('skpensiunan/create', 'SKPensiunanController@getCreate');
+        Route::post('skpensiunan/create', 'SKPensiunanController@postCreate');
+        Route::any('skpensiunan/ajax-list', 'SKPensiunanController@ajaxList');
         //iuran pensiunan
         Route::get('iuranpensiunan', 'IuranPensiunanController@index');
         //manfaat pensiunan
@@ -103,6 +106,7 @@ Route::group(['middleware' => ['auth']], function() {
     });
 
     Route::prefix('masters')->group(function() {
+        //karyawan
         Route::get('karyawan', 'KaryawanController@index');
         Route::any('karyawan/ajax-list', 'KaryawanController@ajaxList');
         Route::get('karyawan/create', 'KaryawanController@getCreate');
@@ -112,6 +116,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('karyawan/edit/{id}', 'KaryawanController@postEdit');
         Route::post('karyawan/destroy/{id}', 'KaryawanController@destroy');
 
+        //peserta
         Route::get('peserta', 'PesertaController@index');
         Route::any('peserta/ajax-list', 'PesertaController@ajaxList');
         Route::get('peserta/detail/{id}', 'PesertaController@getDetail');
@@ -119,6 +124,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('peserta/edit/{id}', 'PesertaController@postEdit');
         Route::post('peserta/destroy/{id}', 'PesertaController@destroy');
 
+        //status
         Route::get('status', 'MasterStatusController@index');
         Route::any('status/ajax-list', 'MasterStatusController@ajaxList');
         Route::get('status/create', 'MasterStatusController@getCreate');
@@ -127,5 +133,29 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('status/edit/{id}', 'MasterStatusController@getEdit');
         Route::post('status/edit/{id}', 'MasterStatusController@postEdit');
         Route::post('status/destroy/{id}', 'MasterStatusController@destroy');
+
+        //voucher
+        Route::get('voucher', 'VoucherController@index');
+        Route::get('voucher/create', 'VoucherController@getCreate');
+        Route::post('voucher/create', 'VoucherController@postCreate');
+        Route::any('voucher/ajax-list', 'VoucherController@ajaxList');
+
+        //unit kerja
+        Route::get('unit-kerja', 'UnitKerjaController@index');
+        Route::get('unit-kerja/create', 'UnitKerjaController@getCreate');
+        Route::post('unit-kerja/create', 'UnitKerjaController@postCreate');
+        Route::any('unit-kerja/ajax-list', 'UnitKerjaController@ajaxList');
+
+        //pejabat kerja
+        Route::get('pejabat-kerja', 'PejabatKerjaController@index');
+        Route::get('pejabat-kerja/create', 'PejabatKerjaController@getCreate');
+        Route::post('pejabat-kerja/create', 'PejabatKerjaController@postCreate');
+        Route::any('pejabat-kerja/ajax-list', 'PejabatKerjaController@ajaxList');
+
+        //periode
+        Route::get('periode', 'PeriodeController@index');
+        Route::get('periode/create', 'PeriodeController@getCreate');
+        Route::post('periode/create', 'PeriodeController@postCreate');
+        Route::any('periode/ajax-list', 'PeriodeController@ajaxList');
     });
 });
