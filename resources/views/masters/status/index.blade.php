@@ -64,6 +64,10 @@
                     "width": "4%"
                 },
                 {
+                    "targets": 2, // your case first column
+                    "className": "text-center",
+                },
+                {
                     "targets": 3, // your case first column
                     "className": "dt-right",
                 },
