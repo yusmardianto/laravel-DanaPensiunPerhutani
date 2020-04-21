@@ -56,7 +56,7 @@
                 <div class="ibox-title">
                     <h5>Edit SK Pensiun</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('kepesertaan/peserta-aktif') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('kepesertaan/skpensiunan') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>
                             Kembali
                         </a>
@@ -111,7 +111,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Keterangan</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="keterangan" value="{{ $data->keterangan }}">
+                                <textarea id="" cols="30" rows="10" class="form-control" name="keterangan" value="{{ $data->keterangan }}"></textarea>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>

@@ -94,12 +94,20 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('pejabat-kerja/create', 'PejabatKerjaController@getCreate');
         Route::post('pejabat-kerja/create', 'PejabatKerjaController@postCreate');
         Route::any('pejabat-kerja/ajax-list', 'PejabatKerjaController@ajaxList');
+        Route::get('pejabat-kerja/detail/{id}', 'PejabatKerjaController@getDetail');
+        Route::get('pejabat-kerja/edit/{id}', 'PejabatKerjaController@getEdit');
+        Route::post('pejabat-kerja/edit/{id}', 'PejabatKerjaController@postEdit');
+        Route::post('pejabat-kerja/destroy/{id}', 'PejabatKerjaController@destroy');
 
         //periode
         Route::get('periode', 'PeriodeController@index');
         Route::get('periode/create', 'PeriodeController@getCreate');
         Route::post('periode/create', 'PeriodeController@postCreate');
         Route::any('periode/ajax-list', 'PeriodeController@ajaxList');
+        Route::get('periode/detail/{id}', 'PeriodeController@getDetail');
+        Route::get('periode/edit/{id}', 'PeriodeController@getEdit');
+        Route::post('periode/edit/{id}', 'PeriodeController@postEdit');
+        Route::post('periode/destroy/{id}', 'PeriodeController@destroy');
     });
 
     Route::prefix('config')->group(function() {

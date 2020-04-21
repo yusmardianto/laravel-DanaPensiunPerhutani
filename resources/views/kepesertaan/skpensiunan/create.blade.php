@@ -116,7 +116,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Keterangan</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="keterangan">
+                                <textarea id="" cols="30" rows="10" class="form-control" name="keterangan"></textarea>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>

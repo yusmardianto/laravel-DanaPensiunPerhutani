@@ -73,7 +73,7 @@
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('name');
-            var deleteUrl = "{{ url('kepesertaan/skpensiunan/delete') }}" + "/" + dataId;
+            var deleteUrl = "{{ url('masters/skpensiunan/destroy') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({

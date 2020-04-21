@@ -20,7 +20,6 @@ class CreateMasterStatusesTable extends Migration
             $table->bigInteger('gajipokok');
             $table->text('keterangan');
             $table->integer('created_by');
-            $table->integer('updated_by');
             $table->timestamps();
         });
     }

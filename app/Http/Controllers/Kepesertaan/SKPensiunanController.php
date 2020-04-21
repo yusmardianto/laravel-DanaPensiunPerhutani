@@ -28,7 +28,7 @@ class SKPensiunanController extends Controller
                 return "
                 <a class=\"btn btn-xs btn-info\" href=\"". url('kepesertaan/skpensiunan/detail/'.$hashed_id) ."\"><i class=\"glyphicon glyphicon-eye-open\"></i> Detail</a>
                 <a class=\"btn btn-xs btn-primary\" href=\"". url('kepesertaan/skpensiunan/edit/'.$hashed_id) ."\"><i class=\"glyphicon glyphicon-edit\"></i> Ubah</a>
-                <a class=\"btn btn-xs btn-warning delete-btn\" href=\"#\" data-id=\"". $hashed_id ."\" data-name=\"". $row->nama ."\"><i class=\"glyphicon glyphicon-trash\"></i> Hapus</a>
+                <a class=\"btn btn-xs btn-warning delete-btn\" href=\"#\" data-id=\"". $hashed_id ."\" data-name=\"". $row->no_sk_pensiun ."\"><i class=\"glyphicon glyphicon-trash\"></i> Hapus</a>
                 ";
             })
             ->rawColumns(['action'])
@@ -68,7 +68,7 @@ class SKPensiunanController extends Controller
         if(isset($data))
         {
             $data->save();
-            return redirect('kepesertaan/skpensiunan')->with('success', 'Berhasil menambah SK Pensiunan'.$data->name);
+            return redirect('kepesertaan/skpensiunan')->with('success', 'Berhasil menambah SK Pensiunan'.$data->no_sk_pensiun);
         }
     }
 
@@ -130,7 +130,7 @@ class SKPensiunanController extends Controller
             $data->keterangan = $request->keterangan;
 
             $data->save();
-            return redirect('kepesertaan/skpensiunan')->with('success', 'Berhasil mengubah SK Pensiun '.$data->name);
+            return redirect('kepesertaan/skpensiunan')->with('success', 'Berhasil mengubah SK Pensiun '.$data->no_sk_pensiun);
         }
     }
 
@@ -139,7 +139,7 @@ class SKPensiunanController extends Controller
         $data = SkPensiun::find($id);
         if(isset($data))
         {
-            return redirect()->back()->with('success', 'Berhasil menghapus SK Pensiunan '.$data->name);
+            return redirect()->back()->with('success', 'Berhasil menghapus SK Pensiunan '.$data->no_sk_pensiun);
         }
         else
         {
