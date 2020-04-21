@@ -57,7 +57,7 @@
                 <a href="{{ url('masters/golongan') }}">Golongan</a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Daftar Golongan</strong>
+                <strong>Tambah Golongan</strong>
             </li>
         </ol>
     </div>
@@ -95,7 +95,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Gaji Pokok</label>
                                     <div class="col-lg-9">
-                                        <input type="text" id="rupiah" class="form-control">
+                                        <input type="text" id="rupiah" class="form-control" name="gajipokok">
                                     </div>
                                 </div>
                                 <div class="form-group row">
