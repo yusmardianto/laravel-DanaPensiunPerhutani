@@ -21,8 +21,7 @@ class SKPensiunanController extends Controller
 
     public function ajaxList()
     {
-        $data = SkPensiun::where('status', '=', 1);
-
+        $data = SkPensiun::whereNotNull('created_at');
         $datatables = Datatables::of($data);
         return $datatables->addColumn('action', function ($row) {
             $hashed_id = Hasher::encode($row->id);
@@ -70,6 +69,81 @@ class SKPensiunanController extends Controller
         {
             $data->save();
             return redirect('kepesertaan/skpensiunan')->with('success', 'Berhasil menambah SK Pensiunan'.$data->name);
+        }
+    }
+
+    public function getDetail($id)
+    {
+        $data = SkPensiun::find($id);
+        if(isset($data))
+        {
+            return view('kepesertaan.skpensiunan.detail', compact('data'));
+        }
+        else
+        {
+            return redirect()->back()->with('error', 'Data Peserta Aktif tidak ditemukan');
+        }
+    }
+
+    public function getEdit($id)
+    {
+        $data = SkPensiun::find($id);
+        if(isset($data))
+        {
+            return view('kepesertaan.skpensiunan.edit', compact('data'));
+        }
+        else
+        {
+            return redirect()->back()->with('error', 'Data Peserta Aktif tidak ditemukan');
+        }
+    }
+
+    public function postEdit(Request $request, $id)
+    {
+        $data = SkPensiun::find($id);
+
+        $rules = [
+            'no_sk_pensiun' => 'required|unique:sk_pensiuns,no_sk_pensiun,'.$id,
+            'npwp' => 'required|unique:sk_pensiuns,npwp,'.$id,
+        ];
+
+        $messages = [
+            'no_sk_pensiun.unique' => 'Nomer SK Pensiun tersebut sudah terdaftar.',
+            'npwp.unique' => 'NPWP tersebut sudah terdaftar.',
+        ];
+
+        $error = Validator::make($request->all(), $rules, $messages);
+
+        if($error->fails())
+        {
+            return redirect()->back()->withErrors($error)->withInput();
+        }
+        else
+        {
+            $data->no_sk_pensiun = $request->no_sk_pensiun;
+            $data->tanggal_pensiun = $request->tanggal_pensiun;
+            $data->periode = $request->periode;
+            $data->voucher = $request->voucher;
+            $data->tanggungan = $request->tanggungan;
+            $data->unit_kerja = $request->unit_kerja;
+            $data->npwp = $request->npwp;
+            $data->keterangan = $request->keterangan;
+
+            $data->save();
+            return redirect('kepesertaan/skpensiunan')->with('success', 'Berhasil mengubah SK Pensiun '.$data->name);
+        }
+    }
+
+    public function destroy($id)
+    {
+        $data = SkPensiun::find($id);
+        if(isset($data))
+        {
+            return redirect()->back()->with('success', 'Berhasil menghapus SK Pensiunan '.$data->name);
+        }
+        else
+        {
+            return redirect()->back()->with('error', 'Gagal menghapus SK Pensiunan');
         }
     }
 }

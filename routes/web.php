@@ -155,6 +155,10 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('skpensiunan/create', 'SKPensiunanController@getCreate');
         Route::post('skpensiunan/create', 'SKPensiunanController@postCreate');
         Route::any('skpensiunan/ajax-list', 'SKPensiunanController@ajaxList');
+        Route::get('skpensiunan/detail/{id}', 'SKPensiunanController@getDetail');
+        Route::get('skpensiunan/edit/{id}', 'SKPensiunanController@getEdit');
+        Route::post('skpensiunan/edit/{id}', 'SKPensiunanController@postEdit');
+        Route::post('skpensiunan/delete/{id}', 'SKPensiunanController@destroy');
         //iuran pensiunan
         Route::get('iuranpensiunan', 'IuranPensiunanController@index');
         //manfaat pensiunan
