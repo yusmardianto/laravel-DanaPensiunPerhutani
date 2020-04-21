@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Kepesertaan\Kepesertaan;
+use App\Models\Masters\MasterBank;
+use App\Models\Masters\MasterGolongan;
 use DataTables, Hasher, Validator;
 
 class PesertaAktifController extends Controller
@@ -34,7 +36,9 @@ class PesertaAktifController extends Controller
 
     public function getCreate(Request $request)
     {
-        return view('kepesertaan.peserta.create');
+        $golongan = MasterGolongan::all();
+        $bank = MasterBank::all();
+        return view('kepesertaan.peserta.create', compact('golongan','bank'));
     }
 
     public function postCreate(Request $request)
@@ -101,7 +105,7 @@ class PesertaAktifController extends Controller
 
     public function getDetail($id)
     {
-        $data = Kepesertaan::find($id);
+        $data = Kepesertaan::with('bank','gol')->find($id);
         if(isset($data))
         {
             return view('kepesertaan.peserta.detail', compact('data'));
@@ -114,10 +118,12 @@ class PesertaAktifController extends Controller
 
     public function getEdit($id)
     {
+        $golongan = MasterGolongan::all();
+        $bank = MasterBank::all();
         $data = Kepesertaan::find($id);
         if(isset($data))
         {
-            return view('kepesertaan.peserta.edit', compact('data'));
+            return view('kepesertaan.peserta.edit', compact('data','golongan','bank'));
         }
         else
         {

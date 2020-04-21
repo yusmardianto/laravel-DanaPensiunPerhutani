@@ -14,7 +14,7 @@ class UpdateNoRek extends Migration
     public function up()
     {
         Schema::table('kepesertaans', function (Blueprint $table) {
-            $table->integer('id_bank')->after('golongan');
+            $table->string('id_bank')->after('golongan');
             $table->string('no_rekening')->after('id_bank');
         });
     }

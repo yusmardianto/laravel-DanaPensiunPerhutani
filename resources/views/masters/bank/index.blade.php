@@ -104,8 +104,6 @@
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
             </li>
-            <li class="breadcrumb-item">Master Data
-            </li>
             <li class="breadcrumb-item active">
                 <strong>Master Bank</strong>
             </li>
