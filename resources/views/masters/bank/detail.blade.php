@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Detail Voucher')
+@section('title', config('app.name').' | Detail Bank')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -13,16 +13,16 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Detail Voucher</h2>
+        <h2>Detail Bank</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ url('masters/voucher') }}">Master Golongan</a>
+                <a href="{{ url('masters/bank') }}">Master Bank</a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Detail Voucher</strong>
+                <strong>Detail Bank</strong>
             </li>
         </ol>
     </div>
@@ -35,9 +35,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Detail Voucher</h5>
+                    <h5>Detail Bank</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('masters/voucher') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('masters/bank') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>
                             Kembali
                         </a>
@@ -48,19 +48,14 @@
                     <div class="row">
                         <div class="col-md-5">
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Nama Voucher</dt> </div>
+                                <div class="col-sm-4 text-sm-left"><dt>Kode Bank</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->nama_voucher }}</dd></div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->kd_bank }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Kode Voucher</dt> </div>
+                                <div class="col-sm-4 text-sm-left"><dt>Nama Bank</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->kode_voucher }}</dd></div>
-                            </dl>
-                            <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Keterangan</dt> </div>
-                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->keterangan }}</dd></div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->name }}</dd></div>
                             </dl>
                         </div>
                     </div>

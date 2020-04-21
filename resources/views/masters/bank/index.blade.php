@@ -63,11 +63,11 @@
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('nama');
-            var deleteUrl = "{{ url('masters/bank/delete') }}" + "/" + dataId;
+            var deleteUrl = "{{ url('masters/bank/destroy') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
-                text: "Hapus data bank : "+ dataName +" ?" ,
+                text: "Hapus data : "+ dataName +" ?" ,
                 icon: "warning",
                 dangerMode: true,
                 buttons: {

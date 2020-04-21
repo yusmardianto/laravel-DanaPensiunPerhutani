@@ -48,19 +48,19 @@
                     <div class="row">
                         <div class="col-md-5">
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Kode Pejabat Kerja</dt> </div>
+                                <div class="col-sm-5 text-sm-left"><dt>Kode Pejabat Kerja</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->kode_pejabat_kerja }}</dd></div>
+                                <div class="col-sm-6 text-sm-left"><dd class="mb-1">{{ $data->kode_pejabat_kerja }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Nama Pejabat Kerja</dt> </div>
+                                <div class="col-sm-5 text-sm-left"><dt>Nama Pejabat Kerja</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">Rp {{ $data->nama_pejabat_kerja }}</dd></div>
+                                <div class="col-sm-6 text-sm-left"><dd class="mb-1">{{ $data->nama_pejabat_kerja }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Keterangan</dt> </div>
+                                <div class="col-sm-5 text-sm-left"><dt>Keterangan</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->keterangan }}</dd></div>
+                                <div class="col-sm-6 text-sm-left"><dd class="mb-1">{{ $data->keterangan }}</dd></div>
                             </dl>
                         </div>
                     </div>

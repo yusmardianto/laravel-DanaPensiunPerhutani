@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Ubah Data Pejabat Kerja')
+@section('title', config('app.name').' | Tambah Daftar Bank')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -18,16 +18,16 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Master Data Pejabat Kerja</h2>
+        <h2>Tambah Daftar Bank</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('/') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ url('masters/pejabat-kerja') }}">Pejabat Kerja</a>
+                <a href="{{ url('masters/bank') }}">Master Bank</a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Ubah Data Pejabat Kerja</strong>
+                <strong>Tambah Daftar Bank</strong>
             </li>
         </ol>
     </div>
@@ -41,9 +41,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Ubah Data Pejabat Kerja</h5>
+                    <h5>Input Data Bank</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('masters/pejabat-kerja') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('masters/bank') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>
                             Kembali
                         </a>
@@ -57,21 +57,15 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Kode Pejabat Kerja</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="kode_pejabat_kerja" value="{{ $data->kode_pejabat_kerja }}">
+                                    <label class="col-sm-2 col-form-label">Kode Bank</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="kd_bank">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Nama Pejabat Kerja</label>
-                                    <div class="col-lg-9 input-group date">
-                                        <input type="text" class="form-control" name="nama_pejabat_kerja" value="{{ $data->nama_pejabat_kerja }}">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Keterangan</label>
-                                    <div class="col-lg-9 input-group date">
-                                        <textarea name="keterangan" id="" cols="30" rows="10" class="form-control">{{ $data->keterangan }}</textarea>
+                                    <label class="col-sm-2 col-form-label">Nama Bank</label>
+                                    <div class="col-lg-10 input-group date">
+                                        <input type="text" class="form-control" name="name">
                                     </div>
                                 </div>
                             </div>
