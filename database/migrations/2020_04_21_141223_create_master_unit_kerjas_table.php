@@ -15,13 +15,16 @@ class CreateMasterUnitKerjasTable extends Migration
     {
         Schema::create('master_unit_kerjas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('kode_unit_kerja');
-            $table->string('nama_unit_kerja');
-            $table->string('pejabat');
-            $table->text('alamat');
-            $table->string('kota');
-            $table->integer('kode_pos');
-            $table->text('keterangan');
+            $table->integer('kd_unit');
+            $table->string('name');
+            $table->string('pejabat')->nullable();
+            $table->string('alamat1')->nullable();
+            $table->string('alamat2')->nullable();
+            $table->string('kota')->nullable();
+            $table->integer('kd_pos')->nullable();
+            $table->string('provinsi')->nullable();
+            $table->string('telepon')->nullable()->unique();
+            $table->text('keterangan')->nullable();
             $table->timestamps();
         });
     }
