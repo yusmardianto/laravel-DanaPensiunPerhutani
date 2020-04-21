@@ -78,6 +78,10 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('voucher/create', 'VoucherController@getCreate');
         Route::post('voucher/create', 'VoucherController@postCreate');
         Route::any('voucher/ajax-list', 'VoucherController@ajaxList');
+        Route::get('voucher/detail/{id}', 'VoucherController@getDetail');
+        Route::get('voucher/edit/{id}', 'VoucherController@getEdit');
+        Route::post('voucher/edit/{id}', 'VoucherController@postEdit');
+        Route::post('voucher/destroy/{id}', 'VoucherController@destroy');
 
         //unit kerja
         Route::get('unit-kerja', 'UnitKerjaController@index');

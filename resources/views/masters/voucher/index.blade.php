@@ -74,7 +74,7 @@
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('name');
-            var deleteUrl = "{{ url('kepesertaan/peserta-aktif/delete') }}" + "/" + dataId;
+            var deleteUrl = "{{ url('masters/voucher/destroy') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({

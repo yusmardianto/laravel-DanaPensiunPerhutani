@@ -16,7 +16,7 @@ class CreateMasterGolongansTable extends Migration
         Schema::create('master_golongans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->bigInteger('gajipokok');
+            $table->string('gajipokok');
             $table->string('keterangan');
             $table->integer('created_by');
             $table->timestamps();
