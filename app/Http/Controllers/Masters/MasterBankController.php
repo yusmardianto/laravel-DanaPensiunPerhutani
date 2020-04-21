@@ -18,7 +18,6 @@ class MasterBankController extends Controller
     {
         $data = MasterBank::whereNotNull('created_at')
         ->orderBy('kd_bank', 'ASC');
-        ;
         $datatables = Datatables::of($data);
 
         return $datatables->addColumn('action', function ($row) {
