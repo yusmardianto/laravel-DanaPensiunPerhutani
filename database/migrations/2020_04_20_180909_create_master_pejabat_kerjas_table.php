@@ -15,7 +15,7 @@ class CreateMasterPejabatKerjasTable extends Migration
     {
         Schema::create('master_pejabat_kerjas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('kode_pejabat_kerja');
+            $table->string('kode_pejabat_kerja');
             $table->string('nama_pejabat_kerja');
             $table->text('keterangan');
             $table->timestamps();
