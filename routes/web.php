@@ -54,14 +54,14 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('status/destroy/{id}', 'MasterStatusController@destroy');
 
         //bank
-        Route::get('bank', 'MasterStatusController@index');
-        Route::any('bank/ajax-list', 'MasterStatusController@ajaxList');
-        Route::get('bank/create', 'MasterStatusController@getCreate');
-        Route::post('bank/create', 'MasterStatusController@postCreate');
-        Route::get('bank/detail/{id}', 'MasterStatusController@getDetail');
-        Route::get('bank/edit/{id}', 'MasterStatusController@getEdit');
-        Route::post('bank/edit/{id}', 'MasterStatusController@postEdit');
-        Route::post('bank/destroy/{id}', 'MasterStatusController@destroy');
+        Route::get('bank', 'MasterBankController@index');
+        Route::any('bank/ajax-list', 'MasterBankController@ajaxList');
+        Route::get('bank/create', 'MasterBankController@getCreate');
+        Route::post('bank/create', 'MasterBankController@postCreate');
+        Route::get('bank/detail/{id}', 'MasterBankController@getDetail');
+        Route::get('bank/edit/{id}', 'MasterBankController@getEdit');
+        Route::post('bank/edit/{id}', 'MasterBankController@postEdit');
+        Route::post('bank/destroy/{id}', 'MasterBankController@destroy');
 
         //golongan
         Route::get('golongan', 'GolonganController@index');
