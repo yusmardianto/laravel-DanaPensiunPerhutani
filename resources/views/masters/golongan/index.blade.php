@@ -82,7 +82,7 @@
             var csrf = "{{ csrf_token() }}";
 
             swal({
-                text: "Hapus Data Pengguna "+ dataName +" ?" ,
+                text: "Hapus Data Golongan "+ dataName +" ?" ,
                 icon: "warning",
                 dangerMode: true,
                 buttons: {

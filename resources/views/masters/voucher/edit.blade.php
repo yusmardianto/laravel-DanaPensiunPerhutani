@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Tambah Voucher')
+@section('title', config('app.name').' | Ubah Voucher')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -27,7 +27,7 @@
                 <a href="{{ url('masters/voucher') }}">Voucher</a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Tambah Voucher</strong>
+                <strong>Ubah Voucher</strong>
             </li>
         </ol>
     </div>
@@ -41,7 +41,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Input Data Voucher</h5>
+                    <h5>Ubah Voucher</h5>
                     <div class="ibox-tools">
                         <a href="{{ url('masters/voucher') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>
@@ -59,19 +59,19 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Kode Voucher</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="kode_voucher">
+                                        <input type="text" class="form-control" name="kode_voucher" value="{{ $data->kode_voucher }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Nama Voucher</label>
                                     <div class="col-lg-9 input-group date">
-                                        <input type="text" class="form-control" name="nama_voucher">
+                                        <input type="text" class="form-control" name="nama_voucher" value="{{ $data->nama_voucher }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Keterangan</label>
                                     <div class="col-lg-9 input-group date">
-                                        <textarea name="keterangan" id="" cols="30" rows="10" class="form-control"></textarea>
+                                        <textarea name="keterangan" id="" cols="30" rows="10" class="form-control">{{ $data->keterangan }}</textarea>
                                     </div>
                                 </div>
                             </div>

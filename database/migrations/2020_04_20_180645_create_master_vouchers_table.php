@@ -15,7 +15,7 @@ class CreateMasterVouchersTable extends Migration
     {
         Schema::create('master_vouchers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('kode_voucher');
+            $table->string('kode_voucher');
             $table->string('nama_voucher');
             $table->text('keterangan');
             $table->timestamps();
