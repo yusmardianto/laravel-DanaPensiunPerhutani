@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Tambah SK Pensiunan')
+@section('title', config('app.name').' | Edit SK Pensiun')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -24,10 +24,6 @@
             calendarWeeks: true,
             autoclose: true
         });
-
-        $("#select-periode").select2({width:"100%", placeholder: "Pilih Periode", allowClear: true});
-        $("#select-voucher").select2({width:"100%", placeholder: "Pilih Voucher", allowClear: true});
-        $("#select-unitkerja").select2({width:"100%", placeholder: "Pilih Unit Kerja", allowClear: true});
     });
 </script>
 @endsection
@@ -35,31 +31,30 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Tambah SK Pensiunan</h2>
+        <h2>Edit SK Pensiun</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="#">Kepesertaan</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="{{ url('kepesertaan/skpensiunan') }}">SK Pensiunan</a>
+                <a href="{{ url('kepesertaan/peserta-aktif') }}">Daftar SK Pensiun</a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Tambah SK Pensiunan</strong>
+                <strong>Edit SK Pensiun</strong>
             </li>
         </ol>
     </div>
     <div class="col-lg-2">
+
     </div>
 </div>
+
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Tambah SK Pensiunan</h5>
+                    <h5>Edit SK Pensiun</h5>
                     <div class="ibox-tools">
                         <a href="{{ url('kepesertaan/skpensiunan') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>
@@ -74,49 +69,49 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">No SK Pensiunan</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="no_sk_pensiun">
+                                <input type="text" class="form-control" name="no_sk_pensiun" value="{{ $data->no_sk_pensiun }}">
                             </div>
                         </div>
                         <div class="form-group row" id="data_1">
                             <label class="col-sm-2 col-form-label">Tanggal Pensiun</label>
                             <div class="col-lg-10 input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tanggal_pensiun">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tanggal_pensiun" value="{{ $data->tanggal_pensiun }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Periode</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="periode">
+                                <input type="text" class="form-control" name="periode" value="{{ $data->periode }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Kode Voucher</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="voucher">
+                                <input type="text" class="form-control" name="voucher" value="{{ $data->voucher }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Tanggungan</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="tanggungan">
+                                <input type="text" class="form-control" name="tanggungan" value="{{ $data->tanggungan }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Unit Kerja</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="unit_kerja">
+                                <input type="text" class="form-control" name="unit_kerja" value="{{ $data->unit_kerja }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">NPWP</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="npwp">
+                                <input type="text" class="form-control" name="npwp" value="{{ $data->npwp }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Keterangan</label>
                             <div class="col-sm-10">
-                                <textarea id="" cols="30" rows="10" class="form-control" name="keterangan"></textarea>
+                                <textarea id="" cols="30" rows="10" class="form-control" name="keterangan" value="{{ $data->keterangan }}"></textarea>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
