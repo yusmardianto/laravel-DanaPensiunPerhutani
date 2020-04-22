@@ -15,4 +15,9 @@ class Kepesertaan extends Model
     {
         return $this->belongsTo('App\Models\Masters\MasterBank', 'id_bank', 'kd_bank');
     }
+
+    public function sk()
+    {
+        return $this->belongsTo('App\Models\Kepesertaan\SkPensiun', 'kode_aktif');
+    }
 }

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kepesertaan\SkPensiun;
+use App\Models\Masters\MasterPeriode;
+use App\Models\Masters\MasterVoucher;
+use App\Models\Masters\MasterUnitKerja;
+use App\Models\Kepesertaan\Kepesertaan;
 use Illuminate\Http\Request;
 use DataTables, Hasher, Validator;
 
@@ -16,7 +20,11 @@ class SKPensiunanController extends Controller
 
     public function getCreate(Request $request)
     {
-        return view('kepesertaan.skpensiunan.create');
+        $periode = MasterPeriode::all();
+        $voucher = MasterVoucher::all();
+        $unit_kerja = MasterUnitKerja::all();
+        $kodeaktif = Kepesertaan::all();
+        return view('kepesertaan.skpensiunan.create', compact('kodeaktif','periode','voucher','unit_kerja'));
     }
 
     public function ajaxList()
@@ -57,6 +65,7 @@ class SKPensiunanController extends Controller
 
         $data = new SkPensiun();
         $data->no_sk_pensiun = $request->no_sk_pensiun;
+        $data->kode_aktif = $request->kode_aktif;
         $data->tanggal_pensiun = $request->tanggal_pensiun;
         $data->periode = $request->periode;
         $data->voucher = $request->voucher;
@@ -68,16 +77,20 @@ class SKPensiunanController extends Controller
         if(isset($data))
         {
             $data->save();
-            return redirect('kepesertaan/skpensiunan')->with('success', 'Berhasil menambah SK Pensiunan'.$data->no_sk_pensiun);
+            return redirect('kepesertaan/skpensiunan')->with('success', 'Berhasil menambah SK Pensiunan '.$data->no_sk_pensiun);
         }
     }
 
     public function getDetail($id)
     {
+        $periode = MasterPeriode::all();
+        $voucher = MasterVoucher::all();
+        $unit_kerja = MasterUnitKerja::all();
+        $kodeaktif = Kepesertaan::all();
         $data = SkPensiun::find($id);
         if(isset($data))
         {
-            return view('kepesertaan.skpensiunan.detail', compact('data'));
+            return view('kepesertaan.skpensiunan.detail', compact('kodeaktif','data','periode','voucher','unit_kerja'));
         }
         else
         {
@@ -87,10 +100,14 @@ class SKPensiunanController extends Controller
 
     public function getEdit($id)
     {
+        $periode = MasterPeriode::all();
+        $voucher = MasterVoucher::all();
+        $unit_kerja = MasterUnitKerja::all();
+        $kodeaktif = Kepesertaan::all();
         $data = SkPensiun::find($id);
         if(isset($data))
         {
-            return view('kepesertaan.skpensiunan.edit', compact('data'));
+            return view('kepesertaan.skpensiunan.edit', compact('kodeaktif','data','periode','voucher','unit_kerja'));
         }
         else
         {
@@ -121,6 +138,7 @@ class SKPensiunanController extends Controller
         else
         {
             $data->no_sk_pensiun = $request->no_sk_pensiun;
+            $data->kode_aktif = $request->kode_aktif;
             $data->tanggal_pensiun = $request->tanggal_pensiun;
             $data->periode = $request->periode;
             $data->voucher = $request->voucher;

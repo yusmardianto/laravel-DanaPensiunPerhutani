@@ -53,6 +53,11 @@
                                 <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->no_sk_pensiun }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>Kode AKtif Peserta</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->kode_aktif }}</dd></div>
+                            </dl>
+                            <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Tanggal Pensiun</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
                                 <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->tanggal_pensiun }}</dd></div>
