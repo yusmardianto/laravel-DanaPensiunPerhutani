@@ -18,6 +18,6 @@ class Kepesertaan extends Model
 
     public function sk()
     {
-        return $this->belongsTo('App\Models\Kepesertaan\SkPensiun', 'kode_aktif');
+        return $this->belongsTo('App\Models\Kepesertaan\SkPensiun', 'kode_aktif', 'kode_aktif');
     }
 }

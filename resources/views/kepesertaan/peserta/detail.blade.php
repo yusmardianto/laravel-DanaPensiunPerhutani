@@ -48,6 +48,11 @@
                     <div class="row">
                         <div class="col-md-6">
                             <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>Nomor SK Pensiun</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->sk->no_sk_pensiun }}</dd></div>
+                            </dl>
+                            <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Nomor Induk Pegawai</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
                                 <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->nip }}</dd></div>

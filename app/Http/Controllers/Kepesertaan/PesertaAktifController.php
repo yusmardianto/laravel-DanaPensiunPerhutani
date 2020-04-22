@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Kepesertaan\Kepesertaan;
 use App\Models\Masters\MasterBank;
 use App\Models\Masters\MasterGolongan;
-use DataTables, Hasher, Validator;
+use DataTables, Hasher, Validator, DB;
 
 class PesertaAktifController extends Controller
 {
@@ -105,8 +105,7 @@ class PesertaAktifController extends Controller
 
     public function getDetail($id)
     {
-        $data = Kepesertaan::with('bank','gol','sk')->find($id);
-        return $data;
+        $data = Kepesertaan::with('sk')->find($id);
         if(isset($data))
         {
             return view('kepesertaan.peserta.detail', compact('data'));
