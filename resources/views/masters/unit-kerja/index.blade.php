@@ -76,12 +76,12 @@
 
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
-            var dataName = $(this).data('name');
-            var deleteUrl = "{{ url('masters/unit-kerja/delete') }}" + "/" + dataId;
+            var dataName = $(this).data('nama');
+            var deleteUrl = "{{ url('masters/unit-kerja/destroy') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
-                text: "Hapus Data Pengguna "+ dataName +" ?" ,
+                text: "Hapus data unit kerja : "+ dataName +" ?" ,
                 icon: "warning",
                 dangerMode: true,
                 buttons: {

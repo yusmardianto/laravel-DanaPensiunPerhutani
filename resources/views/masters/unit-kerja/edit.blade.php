@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Tambah Unit Kerja')
+@section('title', config('app.name').' | Ubah Data Unit Kerja')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -18,7 +18,7 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Tambah Unit Kerja</h2>
+        <h2>Ubah Data Unit Kerja</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('/') }}">Home</a>
@@ -27,7 +27,7 @@
                 <a href="{{ url('masters/unit-kerja') }}">Master Unit Kerja</a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Tambah Unit Kerja</strong>
+                <strong>Ubah Data Unit Kerja</strong>
             </li>
         </ol>
     </div>
@@ -41,7 +41,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Input Data Unit Kerja</h5>
+                    <h5>Ubah Data Unit Kerja</h5>
                     <div class="ibox-tools">
                         <a href="{{ url('masters/unit-kerja') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>
@@ -59,61 +59,61 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Kode Unit Kerja</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="kd_unit">
+                                        <input type="text" class="form-control" name="kd_unit" value="{{ $data->kd_unit }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Nama Unit Kerja</label>
                                     <div class="col-lg-10 input-group date">
-                                        <input type="text" class="form-control" name="name">
+                                        <input type="text" class="form-control" name="name" value="{{ $data->name }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Pejabat</label>
                                     <div class="col-lg-10 input-group date">
-                                        <input type="text" class="form-control" name="pejabat">
+                                        <input type="text" class="form-control" name="pejabat" value="{{ $data->pejabat }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Alamat 1</label>
                                     <div class="col-lg-10 input-group date">
-                                        <input type="text" class="form-control" name="alamat1">
+                                        <input type="text" class="form-control" name="alamat1" value="{{ $data->alamat1 }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Alamat 2</label>
                                     <div class="col-lg-10 input-group date">
-                                        <input type="text" class="form-control" name="alamat2">
+                                        <input type="text" class="form-control" name="alamat2" value="{{ $data->alamat2 }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Kota</label>
                                     <div class="col-lg-10 input-group date">
-                                        <input type="text" class="form-control" name="kota">
+                                        <input type="text" class="form-control" name="kota" value="{{ $data->kota }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Kode Pos</label>
                                     <div class="col-lg-10 input-group date">
-                                        <input type="number" class="form-control" name="kd_pos">
+                                        <input type="text" class="form-control" name="kd_pos" value="{{ $data->kd_pos }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Provinsi</label>
                                     <div class="col-lg-10 input-group date">
-                                        <input type="text" class="form-control" name="provinsi">
+                                        <input type="text" class="form-control" name="provinsi" value="{{ $data->provinsi }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">No. Telepon</label>
                                     <div class="col-lg-10 input-group date">
-                                        <input type="number" class="form-control" name="telepon">
+                                        <input type="text" class="form-control" name="telepon" value="{{ $data->telepon }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Keterangan</label>
                                     <div class="col-lg-10 input-group date">
-                                        <textarea name="keterangan" id="" cols="30" rows="10" class="form-control"></textarea>
+                                        <textarea name="keterangan" id="" cols="30" rows="10" class="form-control">{{ $data->keterangan }}></textarea>
                                     </div>
                                 </div>
                             </div>
