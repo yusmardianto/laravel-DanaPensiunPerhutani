@@ -85,9 +85,13 @@ Route::group(['middleware' => ['auth']], function() {
 
         //unit kerja
         Route::get('unit-kerja', 'MasterUnitKerjaController@index');
+        Route::any('unit-kerja/ajax-list', 'MasterUnitKerjaController@ajaxList');
         Route::get('unit-kerja/create', 'MasterUnitKerjaController@getCreate');
         Route::post('unit-kerja/create', 'MasterUnitKerjaController@postCreate');
-        Route::any('unit-kerja/ajax-list', 'MasterUnitKerjaController@ajaxList');
+        Route::get('unit-kerja/detail/{id}', 'MasterUnitKerjaController@getDetail');
+        Route::get('unit-kerja/edit/{id}', 'MasterUnitKerjaController@getEdit');
+        Route::post('unit-kerja/edit/{id}', 'MasterUnitKerjaController@postEdit');
+        Route::post('unit-kerja/destroy/{id}', 'MasterUnitKerjaController@destroy');
 
         //pejabat kerja
         Route::get('pejabat-kerja', 'PejabatKerjaController@index');
