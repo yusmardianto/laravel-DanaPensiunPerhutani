@@ -13,6 +13,15 @@
 <script src="{{ asset('js/jquery.numeric.min.js') }}"></script>
 <script src="{{ asset('js/plugins/datapicker/bootstrap-datepicker.js') }}"></script>
 <script src="{{ asset('js/plugins/select2/select2.full.min.js') }}"></script>
+
+<script>
+    $(document).ready(function(){
+        $("#pos").numeric();
+
+        $("#select-group-pembayaran").select2({width:"100%", placeholder: "Pilih Group Pembayaran", allowClear: true});
+    });
+</script>
+
 @endsection
 
 @section('content')
@@ -70,8 +79,13 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Kode Group Pembayaran</label>
-                                    <div class="col-lg-10 input-group date">
-                                        <input type="text" class="form-control" name="kode_group" value="{{ $data->kode_group }}">
+                                    <div class="col-sm-10">
+                                        <select name="kode_group" id="select-group-pembayaran">
+                                            <option value=""></option>
+                                            @foreach($kodegroup as $group)
+                                            <option value="{{ $group->kode_group }}" @if($data->kode_group == $group->kode_group) selected="" @endif>{{ $group->kode_group }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">

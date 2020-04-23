@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Masters\MasterGroupPembayaran;
 use App\Models\Masters\MasterUnitPembayaran;
 use Illuminate\Http\Request;
 use DataTables, Hasher, Validator;
@@ -36,7 +37,8 @@ class UnitPembayaranController extends Controller
 
     public function getCreate()
     {
-        return view('masters.unit-pembayaran.create');
+        $kodegroup = MasterGroupPembayaran::all();
+        return view('masters.unit-pembayaran.create', compact('kodegroup'));
     }
 
     public function postCreate(Request $request)
@@ -73,10 +75,11 @@ class UnitPembayaranController extends Controller
 
     public function getDetail($id)
     {
+        $kodegroup = MasterGroupPembayaran::all();
         $data = MasterUnitPembayaran::find($id);
         if(isset($data))
         {
-            return view('masters.unit-pembayaran.detail', compact('data'));
+            return view('masters.unit-pembayaran.detail', compact('data','kodegroup'));
         }
         else
         {
@@ -86,10 +89,11 @@ class UnitPembayaranController extends Controller
 
     public function getEdit($id)
     {
+        $kodegroup = MasterGroupPembayaran::all();
         $data = MasterUnitPembayaran::find($id);
         if(isset($data))
         {
-            return view('masters.unit-pembayaran.edit', compact('data'));
+            return view('masters.unit-pembayaran.edit', compact('data','kodegroup'));
         }
         else
         {

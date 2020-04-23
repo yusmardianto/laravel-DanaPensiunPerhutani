@@ -50,7 +50,7 @@
                             <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Kode Unit Pembayaran</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->kode_group }}</dd></div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->kode_unit }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Nama Unit Pembayaran</dt> </div>
