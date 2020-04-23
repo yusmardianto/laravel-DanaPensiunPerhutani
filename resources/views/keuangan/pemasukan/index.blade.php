@@ -24,8 +24,9 @@
 
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
-            { data: 'name', name: 'name' },
-            { data: 'guard_name', name: 'guard_name' },
+            { data: 'jenis_trx', name: 'jenis_trx' },
+            { data: 'tgl_trxIn', name: 'tgl_trxIn' },
+            { data: 'nilai', name: 'nilai' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 

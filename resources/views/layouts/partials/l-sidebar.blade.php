@@ -65,11 +65,14 @@ $user = Auth::user();
                     <li @if(Request::segment(2) == 'group-pembayaran') class="active" @endif>
                         <a href="{{ url('masters/group-pembayaran') }}">Master Group Pembayaran</a>
                     </li>
-                    <li @if(Request::segment(2) == 'group-pembayaran') class="active" @endif>
+                    <li @if(Request::segment(2) == 'unit-pembayaran') class="active" @endif>
                         <a href="{{ url('masters/unit-pembayaran') }}">Master Unit Pembayaran</a>
                     </li>
                     <li @if(Request::segment(2) == 'alasan') class="active" @endif>
                         <a href="{{ url('masters/alasan') }}">Master Alasan</a>
+                    </li>
+                    <li @if(Request::segment(2) == 'prosentase') class="active" @endif>
+                        <a href="{{ url('masters/prosentase') }}">Master Prosentase</a>
                     </li>
                 </ul>
             </li>
