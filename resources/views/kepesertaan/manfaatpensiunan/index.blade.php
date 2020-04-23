@@ -19,8 +19,6 @@
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
             </li>
-            <li class="breadcrumb-item">Kepesertaan
-            </li>
             <li class="breadcrumb-item active">
                 <strong>Manfaat Pensiunan</strong>
             </li>

@@ -44,10 +44,7 @@
                 <a href="{{ url('home') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="#">Kepesertaan</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="{{ url('kepesertaan/skpensiunan') }}">SK Pensiunan</a>
+                <a href="{{ url('kepesertaan/skpensiunan') }}">Daftar SK Pensiunan</a>
             </li>
             <li class="breadcrumb-item active">
                 <strong>Tambah SK Pensiunan</strong>
