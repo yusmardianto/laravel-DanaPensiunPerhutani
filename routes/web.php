@@ -112,6 +112,26 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('periode/edit/{id}', 'PeriodeController@getEdit');
         Route::post('periode/edit/{id}', 'PeriodeController@postEdit');
         Route::post('periode/destroy/{id}', 'PeriodeController@destroy');
+
+        //group pembayaran
+        Route::get('group-pembayaran', 'GroupPembayaranController@index');
+        Route::get('group-pembayaran/create', 'GroupPembayaranController@getCreate');
+        Route::post('group-pembayaran/create', 'GroupPembayaranController@postCreate');
+        Route::any('group-pembayaran/ajax-list', 'GroupPembayaranController@ajaxList');
+        Route::get('group-pembayaran/detail/{id}', 'GroupPembayaranController@getDetail');
+        Route::get('group-pembayaran/edit/{id}', 'GroupPembayaranController@getEdit');
+        Route::post('group-pembayaran/edit/{id}', 'GroupPembayaranController@postEdit');
+        Route::post('group-pembayaran/destroy/{id}', 'GroupPembayaranController@destroy');
+
+        //unit pembayaran
+        Route::get('unit-pembayaran', 'UnitPembayaranController@index');
+        Route::get('unit-pembayaran/create', 'UnitPembayaranController@getCreate');
+        Route::post('unit-pembayaran/create', 'UnitPembayaranController@postCreate');
+        Route::any('unit-pembayaran/ajax-list', 'UnitPembayaranController@ajaxList');
+        Route::get('unit-pembayaran/detail/{id}', 'UnitPembayaranController@getDetail');
+        Route::get('unit-pembayaran/edit/{id}', 'UnitPembayaranController@getEdit');
+        Route::post('unit-pembayaran/edit/{id}', 'UnitPembayaranController@postEdit');
+        Route::post('unit-pembayaran/destroy/{id}', 'UnitPembayaranController@destroy');
     });
 
     Route::prefix('kepesertaan')->group(function() {
