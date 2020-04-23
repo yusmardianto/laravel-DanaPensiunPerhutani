@@ -132,6 +132,16 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('unit-pembayaran/edit/{id}', 'UnitPembayaranController@getEdit');
         Route::post('unit-pembayaran/edit/{id}', 'UnitPembayaranController@postEdit');
         Route::post('unit-pembayaran/destroy/{id}', 'UnitPembayaranController@destroy');
+
+        //Alasan
+        Route::get('alasan', 'AlasanPensiunController@index');
+        Route::get('alasan/create', 'AlasanPensiunController@getCreate');
+        Route::post('alasan/create', 'AlasanPensiunController@postCreate');
+        Route::any('alasan/ajax-list', 'AlasanPensiunController@ajaxList');
+        Route::get('alasan/detail/{id}', 'AlasanPensiunController@getDetail');
+        Route::get('alasan/edit/{id}', 'AlasanPensiunController@getEdit');
+        Route::post('alasan/edit/{id}', 'AlasanPensiunController@postEdit');
+        Route::post('alasan/destroy/{id}', 'AlasanPensiunController@destroy');
     });
 
     Route::prefix('kepesertaan')->group(function() {
