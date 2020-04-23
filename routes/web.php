@@ -112,6 +112,16 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('periode/edit/{id}', 'PeriodeController@getEdit');
         Route::post('periode/edit/{id}', 'PeriodeController@postEdit');
         Route::post('periode/destroy/{id}', 'PeriodeController@destroy');
+
+        //Alasan
+        Route::get('alasan', 'AlasanPensiunController@index');
+        Route::get('alasan/create', 'AlasanPensiunController@getCreate');
+        Route::post('alasan/create', 'AlasanPensiunController@postCreate');
+        Route::any('alasan/ajax-list', 'AlasanPensiunController@ajaxList');
+        Route::get('alasan/detail/{id}', 'AlasanPensiunController@getDetail');
+        Route::get('alasan/edit/{id}', 'AlasanPensiunController@getEdit');
+        Route::post('alasan/edit/{id}', 'AlasanPensiunController@postEdit');
+        Route::post('alasan/destroy/{id}', 'AlasanPensiunController@destroy');
     });
 
     Route::prefix('kepesertaan')->group(function() {

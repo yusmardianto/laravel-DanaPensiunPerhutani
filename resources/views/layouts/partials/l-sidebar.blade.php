@@ -62,6 +62,9 @@ $user = Auth::user();
                     <li @if(Request::segment(2) == 'periode') class="active" @endif>
                         <a href="{{ url('masters/periode') }}">Master Periode</a>
                     </li>
+                    <li @if(Request::segment(2) == 'alasan') class="active" @endif>
+                        <a href="{{ url('masters/alasan') }}">Master Alasan</a>
+                    </li>
                 </ul>
             </li>
             @endif
