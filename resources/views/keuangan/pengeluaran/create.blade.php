@@ -118,8 +118,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group row" id="data_1">
-                                    <label class="col-sm-3 col-form-label">Tanggal Transaksi</label>
-                                    <div class="col-lg-9 input-group date">
+                                    <label class="col-sm-2 col-form-label">Tanggal Transaksi</label>
+                                    <div class="col-lg-10 input-group date">
                                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_trxOut">
                                     </div>
                                 </div>
