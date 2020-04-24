@@ -94,7 +94,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Jenis Pensiun</label>
                                     <div class="col-lg-9">
-                                        <input type="text" class="form-control" name="syarat_pensiun">
+                                        <input type="text" class="form-control" name="jenis_pensiun">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -118,7 +118,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Kode Aktuaria</label>
                                     <div class="col-lg-9">
-                                        <input type="text" class="form-control" name="kode_akturia">
+                                        <input type="text" class="form-control" name="kode_aktuaria">
                                     </div>
                                 </div>
                             </div>

@@ -56,7 +56,7 @@
                     "width": "4%"
                 },
                 {
-                    "targets": 4,
+                    "targets": 5,
                     "width": "21%"
                 }
             ],
