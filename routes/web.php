@@ -189,6 +189,13 @@ Route::group(['middleware' => ['auth']], function() {
 
         //transaksi pengeluaran kas
         Route::get('pengeluaran', 'PengeluaranController@index');
+        Route::any('pengeluaran/ajax-list', 'PengeluaranController@ajaxList');
+        Route::get('pengeluaran/create', 'PengeluaranController@getCreate');
+        Route::post('pengeluaran/create', 'PengeluaranController@postCreate');
+        Route::get('pengeluaran/detail/{id}', 'PengeluaranController@getDetail');
+        Route::get('pengeluaran/edit/{id}', 'PengeluaranController@getEdit');
+        Route::post('pengeluaran/edit/{id}', 'PengeluaranController@postEdit');
+        Route::post('pengeluaran/destroy/{id}', 'PengeluaranController@destroy');
     });
 
     Route::prefix('config')->group(function() {
