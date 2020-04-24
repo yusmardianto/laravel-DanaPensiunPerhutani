@@ -114,7 +114,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Gaji Pokok</label>
                                     <div class="col-lg-9 input-group date">
-                                        <input type="text" id="rupiah" class="form-control">
+                                        <input type="text" id="rupiah" class="form-control" name="gajipokok">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -128,8 +128,8 @@
                         <div class="hr-line-dashed"></div>
                         <div class="form-group row">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-white btn-sm" type="reset">Cancel</button>
-                                <button class="btn btn-primary btn-sm" type="submit">Save changes</button>
+                                <button class="btn btn-white btn-sm" type="reset">Batal</button>
+                                <button class="btn btn-primary btn-sm" type="submit">Simpan</button>
                             </div>
                         </div>
                     </form>

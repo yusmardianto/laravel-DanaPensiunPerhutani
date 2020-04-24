@@ -26,7 +26,7 @@
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
             { data: 'jenis_trx', name: 'jenis_trx' },
             { data: 'tgl_trxIn', name: 'tgl_trxIn' },
-            { data: 'nilai_trxIn', name: 'nilai_trxIn' },
+            { data: 'nilai', name: 'nilai' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
@@ -60,7 +60,6 @@
                 });
             }
         });
-
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('name');

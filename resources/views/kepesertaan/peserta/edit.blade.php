@@ -39,6 +39,8 @@
         $("#kode-pos").numeric();
 
         $("#select-status").select2({width:"100%", placeholder: "Pilih Status", allowClear: true});
+        $("#select-golongan").select2({width:"100%", placeholder: "Pilih Golongan", allowClear: true});
+        $("#select-bank").select2({width:"100%", placeholder: "Pilih Bank", allowClear: true});
     });
 </script>
 @endsection
@@ -156,7 +158,23 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Golongan</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="golongan" value="{{ $data->golongan }}">
+                                <select name="golongan" id="select-golongan">
+                                    <option value=""></option>
+                                    @foreach($golongan as $gol)
+                                    <option value="{{ $gol->id }}" @if($data->golongan == $gol->id) selected="" @endif>{{ $gol->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Jenis Bank</label>
+                            <div class="col-sm-10">
+                                <select name="id_bank" id="select-bank">
+                                    <option value=""></option>
+                                    @foreach($bank as $bang)
+                                    <option value="{{ $bang->kd_bank }}" @if($data->id_bank == $bang->kd_bank) selected="" @endif>{{ $bang->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -169,7 +187,7 @@
                             <label class="col-sm-2 col-form-label">Foto</label>
                             <div class="col-sm-10">
                                 <img id="image_preview_container" src="{{ asset('foto/peserta/'.$data->photo) }}" alt="preview image" style="max-height: 150px;">
-                                <input type="file" class="form-control" name="photo" id="image">
+                                <input type="file" class="form-control" name="photo" id="image" value="{{ $data->photo }}">
                             </div>
                         </div>
                         <div class="form-group row">

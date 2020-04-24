@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUnitKerjasTable extends Migration
+class CreateMasterVouchersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateUnitKerjasTable extends Migration
      */
     public function up()
     {
-        Schema::create('master_unit_kerjas', function (Blueprint $table) {
+        Schema::create('master_vouchers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('kode_unit_kerja');
-            $table->string('nama_unit_kerja');
-            $table->string('pejabat');
-            $table->text('alamat');
-            $table->string('kota');
-            $table->integer('kode_pos');
+            $table->string('kode_voucher');
+            $table->string('nama_voucher');
             $table->text('keterangan');
             $table->timestamps();
         });
@@ -33,6 +29,6 @@ class CreateUnitKerjasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unit_kerjas');
+        Schema::dropIfExists('master_vouchers');
     }
 }

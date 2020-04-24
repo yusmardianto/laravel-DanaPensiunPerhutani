@@ -40,6 +40,7 @@
 
         $("#select-bank").select2({width:"100%", placeholder: "Pilih Bank", allowClear: true});
         $("#select-status").select2({width:"100%", placeholder: "Pilih Status", allowClear: true});
+        $("#select-golongan").select2({width:"100%", placeholder: "Pilih Golongan", allowClear: true});
     });
 </script>
 @endsection
@@ -145,7 +146,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nomer Telepon</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="no_telpon" id="tel">
+                                <input type="tel" class="form-control" name="no_telpon" id="tel">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -157,7 +158,12 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Golongan</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="golongan">
+                                <select name="golongan" id="select-golongan">
+                                    <option value=""></option>
+                                    @foreach($golongan as $gol)
+                                    <option value="{{ $gol->id }}">{{ $gol->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -165,6 +171,9 @@
                             <div class="col-sm-10">
                                 <select name="id_bank" id="select-bank">
                                     <option value=""></option>
+                                    @foreach($bank as $bang)
+                                    <option value="{{ $bang->kd_bank }}">{{ $bang->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

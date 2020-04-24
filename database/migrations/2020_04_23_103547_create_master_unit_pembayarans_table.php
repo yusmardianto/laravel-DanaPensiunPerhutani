@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePeriodesTable extends Migration
+class CreateMasterUnitPembayaransTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class CreatePeriodesTable extends Migration
      */
     public function up()
     {
-        Schema::create('master_periodes', function (Blueprint $table) {
+        Schema::create('master_unit_pembayarans', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('periode');
+            $table->string('kode_unit');
+            $table->string('name');
+            $table->string('kode_group');
+            $table->text('alamat');
+            $table->string('kota');
+            $table->integer('pos');
             $table->text('keterangan');
             $table->timestamps();
         });
@@ -28,6 +33,6 @@ class CreatePeriodesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('periodes');
+        Schema::dropIfExists('master_unit_pembayarans');
     }
 }

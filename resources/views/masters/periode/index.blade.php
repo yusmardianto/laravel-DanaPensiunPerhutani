@@ -43,7 +43,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('masters/pejabat-kerja/ajax-list') !!}',
+                url: '{!! url('masters/periode/ajax-list') !!}',
                 method: 'POST'
             },
             columns: $column,
@@ -54,7 +54,7 @@
                     "width": "4%"
                 },
                 {
-                    "targets": 4,
+                    "targets": 3,
                     "width": "21%"
                 }
             ],

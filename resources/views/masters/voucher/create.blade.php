@@ -27,7 +27,7 @@
                 <a href="{{ url('masters/voucher') }}">Voucher</a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Daftar Voucher</strong>
+                <strong>Tambah Voucher</strong>
             </li>
         </ol>
     </div>
@@ -79,8 +79,8 @@
                         <div class="hr-line-dashed"></div>
                         <div class="form-group row">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-white btn-sm" type="reset">Cancel</button>
-                                <button class="btn btn-primary btn-sm" type="submit">Save changes</button>
+                                <button class="btn btn-white btn-sm" type="reset">Batal</button>
+                                <button class="btn btn-primary btn-sm" type="submit">Simpan</button>
                             </div>
                         </div>
                     </form>

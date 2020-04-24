@@ -34,9 +34,8 @@
 
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
-            { data: 'kode_unit_kerja', name: 'kode_unit_kerja' },
-            { data: 'nama_unit_kerja', name: 'nama_unit_kerja' },
-            { data: 'keterangan', name: 'keterangan' },
+            { data: 'kd_unit', name: 'kd_unit' },
+            { data: 'name', name: 'name' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
@@ -55,7 +54,11 @@
                     "width": "4%"
                 },
                 {
-                    "targets": 4,
+                    "targets": 1,
+                    "className": "text-center"
+                },
+                {
+                    "targets": 3,
                     "width": "21%"
                 }
             ],
@@ -73,12 +76,12 @@
 
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
-            var dataName = $(this).data('name');
-            var deleteUrl = "{{ url('masters/unit-kerja/delete') }}" + "/" + dataId;
+            var dataName = $(this).data('nama');
+            var deleteUrl = "{{ url('masters/unit-kerja/destroy') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
-                text: "Hapus Data Pengguna "+ dataName +" ?" ,
+                text: "Hapus data unit kerja : "+ dataName +" ?" ,
                 icon: "warning",
                 dangerMode: true,
                 buttons: {
@@ -148,7 +151,6 @@
                                 <th>No</th>
                                 <th>Kode Unit Kerja</th>
                                 <th>Nama Unit Kerja</th>
-                                <th>Keterangan</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>

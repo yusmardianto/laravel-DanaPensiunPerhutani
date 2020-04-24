@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePejabatKerjasTable extends Migration
+class CreateMasterPejabatKerjasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreatePejabatKerjasTable extends Migration
     {
         Schema::create('master_pejabat_kerjas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('kode_pejabat_kerja');
+            $table->string('kode_pejabat_kerja');
             $table->string('nama_pejabat_kerja');
             $table->text('keterangan');
             $table->timestamps();
@@ -29,6 +29,6 @@ class CreatePejabatKerjasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pejabat_kerjas');
+        Schema::dropIfExists('master_pejabat_kerjas');
     }
 }

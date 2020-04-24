@@ -18,16 +18,16 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Master Unit Kerja</h2>
+        <h2>Tambah Unit Kerja</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('/') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ url('masters/voucher') }}">Unit Kerja</a>
+                <a href="{{ url('masters/unit-kerja') }}">Master Unit Kerja</a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Daftar Unit Kerja</strong>
+                <strong>Tambah Unit Kerja</strong>
             </li>
         </ol>
     </div>
@@ -57,44 +57,62 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Kode Unit Kerja</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="kode_unit_kerja">
+                                    <label class="col-sm-2 col-form-label">Kode Unit Kerja</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="kd_unit">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Nama Unit Kerja</label>
-                                    <div class="col-lg-9 input-group date">
-                                        <input type="text" class="form-control" name="nama_unit_kerja">
+                                    <label class="col-sm-2 col-form-label">Nama Unit Kerja</label>
+                                    <div class="col-lg-10 input-group date">
+                                        <input type="text" class="form-control" name="name">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Pejabat Kerja</label>
-                                    <div class="col-lg-9 input-group date">
+                                    <label class="col-sm-2 col-form-label">Pejabat</label>
+                                    <div class="col-lg-10 input-group date">
                                         <input type="text" class="form-control" name="pejabat">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Alamat</label>
-                                    <div class="col-lg-9 input-group date">
-                                        <input type="text" class="form-control" name="alamat">
+                                    <label class="col-sm-2 col-form-label">Alamat 1</label>
+                                    <div class="col-lg-10 input-group date">
+                                        <input type="text" class="form-control" name="alamat1">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Kota</label>
-                                    <div class="col-lg-9 input-group date">
+                                    <label class="col-sm-2 col-form-label">Alamat 2</label>
+                                    <div class="col-lg-10 input-group date">
+                                        <input type="text" class="form-control" name="alamat2">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Kota</label>
+                                    <div class="col-lg-10 input-group date">
                                         <input type="text" class="form-control" name="kota">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Kode Pos</label>
-                                    <div class="col-lg-9 input-group date">
-                                        <input type="text" class="form-control" name="kode_pos">
+                                    <label class="col-sm-2 col-form-label">Kode Pos</label>
+                                    <div class="col-lg-10 input-group date">
+                                        <input type="number" class="form-control" name="kd_pos">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Keterangan</label>
-                                    <div class="col-lg-9 input-group date">
+                                    <label class="col-sm-2 col-form-label">Provinsi</label>
+                                    <div class="col-lg-10 input-group date">
+                                        <input type="text" class="form-control" name="provinsi">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">No. Telepon</label>
+                                    <div class="col-lg-10 input-group date">
+                                        <input type="number" class="form-control" name="telepon">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Keterangan</label>
+                                    <div class="col-lg-10 input-group date">
                                         <textarea name="keterangan" id="" cols="30" rows="10" class="form-control"></textarea>
                                     </div>
                                 </div>
@@ -103,8 +121,8 @@
                         <div class="hr-line-dashed"></div>
                         <div class="form-group row">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-white btn-sm" type="reset">Cancel</button>
-                                <button class="btn btn-primary btn-sm" type="submit">Save changes</button>
+                                <button class="btn btn-white btn-sm" type="reset">Batal</button>
+                                <button class="btn btn-primary btn-sm" type="submit">Simpan</button>
                             </div>
                         </div>
                     </form>

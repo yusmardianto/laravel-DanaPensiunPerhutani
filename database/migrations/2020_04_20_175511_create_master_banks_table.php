@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVouchersTable extends Migration
+class CreateMasterBanksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateVouchersTable extends Migration
      */
     public function up()
     {
-        Schema::create('master_vouchers', function (Blueprint $table) {
+        Schema::create('master_banks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('kode_voucher');
-            $table->string('nama_voucher');
-            $table->text('keterangan');
+            $table->string('kd_bank');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateVouchersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vouchers');
+        Schema::dropIfExists('master_banks');
     }
 }

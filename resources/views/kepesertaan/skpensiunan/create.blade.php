@@ -25,9 +25,12 @@
             autoclose: true
         });
 
+        $("#npwp").numeric();
+
         $("#select-periode").select2({width:"100%", placeholder: "Pilih Periode", allowClear: true});
         $("#select-voucher").select2({width:"100%", placeholder: "Pilih Voucher", allowClear: true});
         $("#select-unitkerja").select2({width:"100%", placeholder: "Pilih Unit Kerja", allowClear: true});
+        $("#select-kode-aktif").select2({width:"100%", placeholder: "Pilih Kode Aktif Peserta", allowClear: true});
     });
 </script>
 @endsection
@@ -41,10 +44,7 @@
                 <a href="{{ url('home') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="#">Kepesertaan</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="{{ url('kepesertaan/skpensiunan') }}">SK Pensiunan</a>
+                <a href="{{ url('kepesertaan/skpensiunan') }}">Daftar SK Pensiunan</a>
             </li>
             <li class="breadcrumb-item active">
                 <strong>Tambah SK Pensiunan</strong>
@@ -77,6 +77,17 @@
                                 <input type="text" class="form-control" name="no_sk_pensiun">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Kode Aktif Peserta</label>
+                            <div class="col-sm-10">
+                                <select name="kode_aktif" id="select-kode-aktif">
+                                    <option value=""></option>
+                                    @foreach($kodeaktif as $aktif)
+                                    <option value="{{ $aktif->kode_aktif }}">{{ $aktif->kode_aktif }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group row" id="data_1">
                             <label class="col-sm-2 col-form-label">Tanggal Pensiun</label>
                             <div class="col-lg-10 input-group date">
@@ -86,13 +97,23 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Periode</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="periode">
+                                <select name="periode" id="select-periode">
+                                    <option value=""></option>
+                                    @foreach($periode as $periodes)
+                                    <option value="{{ $periodes->periode }}">{{ $periodes->periode }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Kode Voucher</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="voucher">
+                                <select name="voucher" id="select-voucher">
+                                    <option value=""></option>
+                                    @foreach($voucher as $vocer)
+                                    <option value="{{ $vocer->kode_voucher }}">{{ $vocer->kode_voucher }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -104,19 +125,24 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Unit Kerja</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="unit_kerja">
+                                <select name="unit_kerja" id="select-unitkerja">
+                                    <option value=""></option>
+                                    @foreach($unit_kerja as $kerjas)
+                                    <option value="{{ $kerjas->kd_unit }}">{{ $kerjas->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">NPWP</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="npwp">
+                                <input type="text" class="form-control" name="npwp" id="npwp">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Keterangan</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="keterangan">
+                                <textarea id="" cols="30" rows="10" class="form-control" name="keterangan"></textarea>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>

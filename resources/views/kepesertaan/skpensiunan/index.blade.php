@@ -34,8 +34,8 @@
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
             { data: 'no_sk_pensiun', name: 'no_sk_pensiun' },
-            { data: 'kode_aktif', name: 'kode_aktif' },
             { data: 'voucher', name: 'voucher' },
+            { data: 'tanggal_pensiun', name: 'tanggal_pensiun' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
@@ -73,7 +73,7 @@
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('name');
-            var deleteUrl = "{{ url('kepesertaan/skpensiunan/delete') }}" + "/" + dataId;
+            var deleteUrl = "{{ url('masters/skpensiunan/destroy') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
@@ -114,8 +114,6 @@
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
             </li>
-            <li class="breadcrumb-item">Kepesertaan
-            </li>
             <li class="breadcrumb-item active">
                 <strong>SK Pensiunan</strong>
             </li>
@@ -148,8 +146,8 @@
                             <tr>
                                 <th>No</th>
                                 <th>No SK Pensiun</th>
-                                <th>Kode Aktif</th>
                                 <th>Voucher</th>
+                                <th>Tanggal Pensiun</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
