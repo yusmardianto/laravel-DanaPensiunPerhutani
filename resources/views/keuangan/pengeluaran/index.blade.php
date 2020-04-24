@@ -73,7 +73,7 @@
        $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('name');
-            var deleteUrl = "{{ url('keuangan/pengeluaran/delete') }}" + "/" + dataId;
+            var deleteUrl = "{{ url('keuangan/pengeluaran/destroy') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
