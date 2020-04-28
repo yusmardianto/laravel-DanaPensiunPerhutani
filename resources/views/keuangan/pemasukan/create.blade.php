@@ -104,12 +104,6 @@
                                     <label class="col-sm-2 col-form-label">Jenis Transaksi</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" name="jenis_trx">
-<<<<<<< HEAD
-=======
-                                        {{-- <select name="jenis_trx" id="select-jenisTrx">
-                                            <option value=""></option>
-                                        </select> --}}
->>>>>>> d2f64e9b92971548014570dbfec3bb9dc67bb23d
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -131,12 +125,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Voucher</label>
+                                    <label class="col-sm-2 col-form-label">Kode Voucher</label>
                                     <div class="col-sm-10">
                                         <select name="kd_voucher" id="select-kd_voucher">
                                             <option value=""></option>
                                             @foreach($voucher as $row)
-                                            <option value="{{ $row->kode_voucher }}">{{ $row->nama_voucher }}</option>
+                                            <option value="{{ $row->kode_voucher }}">{{ $row->kode_voucher }} ({{ $row->nama_voucher }})</option>
                                             @endforeach
                                         </select>
                                     </div>

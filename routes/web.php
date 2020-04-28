@@ -186,6 +186,10 @@ Route::group(['middleware' => ['auth']], function() {
         Route::any('pemasukan/ajax-list', 'PemasukanController@ajaxList');
         Route::get('pemasukan/create', 'PemasukanController@getCreate');
         Route::post('pemasukan/create', 'PemasukanController@postCreate');
+        Route::get('pemasukan/detail/{id}', 'PemasukanController@getDetail');
+        Route::get('pemasukan/edit/{id}', 'PemasukanController@getEdit');
+        Route::post('pemasukan/edit/{id}', 'PemasukanController@postEdit');
+        Route::post('pemasukan/destroy/{id}', 'PemasukanController@destroy');
 
         //transaksi pengeluaran kas
         Route::get('pengeluaran', 'PengeluaranController@index');

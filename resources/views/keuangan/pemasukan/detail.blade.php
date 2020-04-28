@@ -68,7 +68,7 @@
                                 <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->tgl_trxIn }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Kode Voucher</dt> </div>
+                                <div class="col-sm-4 text-sm-left"><dt>Voucher</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
                                 <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->kd_voucher }}</dd></div>
                             </dl>
@@ -77,15 +77,13 @@
                             <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Nilai Transaksi</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->nilai_trxIn }}</dd> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">Rp. {{ $data->nilai_trxIn }}</dd> </div>
                             </dl>
                             <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Keterangan</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
                                 <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->keterangan }}</dd></div>
                             </dl>
-
-
                         </div>
                     </div>
                 </div>

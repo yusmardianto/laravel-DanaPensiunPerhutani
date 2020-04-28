@@ -40,8 +40,6 @@ class PengeluaranController extends Controller
     }
     public function postCreate(Request $request)
     {
-
-
         $data = new Pengeluaran();
         $data->jenis_trx = $request->jenis_trx;
         $data->kd_periode = $request->kd_periode;

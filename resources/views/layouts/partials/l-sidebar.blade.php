@@ -27,7 +27,7 @@ $user = Auth::user();
                 </a>
             </li>
 
-            @if($user->hasAnyPermission(['Role-list', 'User-list', 'Master-list', 'Kepesertaan-list']))
+            @if($user->hasAnyPermission(['Role-list', 'User-list', 'Master-list']))
             <li @if(Request::segment(1) == 'masters') class="active" @endif>
                 <a href="#">
                     <i class="fa fa-database fa-fw"></i>
@@ -70,9 +70,6 @@ $user = Auth::user();
                     </li>
                     <li @if(Request::segment(2) == 'alasan') class="active" @endif>
                         <a href="{{ url('masters/alasan') }}">Master Alasan</a>
-                    </li>
-                    <li @if(Request::segment(2) == 'prosentase') class="active" @endif>
-                        <a href="{{ url('masters/prosentase') }}">Master Prosentase</a>
                     </li>
                 </ul>
             </li>

@@ -45,12 +45,7 @@ class PemasukanController extends Controller
     public function postCreate(Request $request)
     {
         $rules = [
-            // 'jenis_trx' => 'required',
-            // 'kd_periode' => 'required',
             'no_trxIn' => 'required|unique:pemasukans,no_trxIn',
-            // 'tgl_trxIn' => 'reuired',
-            // 'kd_voucher' => 'required',
-            // 'nilai_trxIn' => 'required',
         ];
 
         $messages = [
@@ -78,25 +73,6 @@ class PemasukanController extends Controller
             return redirect('keuangan/pemasukan')->with('success', 'Berhasil menambah data transaksi pemasukan');
         }
     }
-    public function postCreate(Request $request)
-    {
-
-
-        $data = new Pemasukan();
-        $data->jenis_trx = $request->jenis_trx;
-        $data->kd_periode = $request->kd_periode;
-        $data->no_trxIn = $request->no_trxIn;
-        $data->tgl_trxIn = $request->tgl_trxIn;
-        $data->kd_voucher = $request->kd_voucher;
-        $data->nilai_trxIn = $request->nilai_trxIn;
-        $data->keterangan     = $request->keterangan;
-
-
-        if (isset($data)) {
-            $data->save();
-            return redirect('keuangan/pemasukan')->with('success', 'Berhasil menambah Pemasukan Kas ' . $data->name);
-        }
-    }
 
     public function getDetail($id)
     {
@@ -110,9 +86,10 @@ class PemasukanController extends Controller
 
     public function getEdit($id)
     {
+        $voucher = MasterVoucher::all();
         $data = Pemasukan::find($id);
         if (isset($data)) {
-            return view('keuangan.pemasukan.edit', compact('data'));
+            return view('keuangan.pemasukan.edit', compact('data', 'voucher'));
         } else {
             return redirect()->back()->with('error', 'Data Pemasukan Kas tidak ditemukan');
         }
@@ -132,7 +109,7 @@ class PemasukanController extends Controller
 
         if (isset($data)) {
             $data->save();
-            return redirect('keuangan/pemasukan')->with('success', 'Berhasil mengubah Data Pemasukan Kas ' . $data->name);
+            return redirect('keuangan/pemasukan')->with('success', 'Berhasil mengubah Data Pemasukan Kas ');
         }
     }
 
@@ -143,7 +120,7 @@ class PemasukanController extends Controller
 
             $data->delete();
 
-            return redirect()->back()->with('success', 'Berhasil menghapus Data Pemasukan Kas ' . $data->name);
+            return redirect('keuangan/pemasukan')->with('success', 'Berhasil menghapus Data Pemasukan Kas ');
         } else {
             return redirect()->back()->with('error', 'Data tidak ditemukan');
         }
