@@ -1,11 +1,20 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Transaksi pengeluaran Kas')
+@section('title', config('app.name').' | Transaksi Pengeluaran Kas')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+<style>
+    th {
+        font-size: 13px;
+        text-align: center;
+    }
+    td {
+        font-size: 13px;
+    }
+</style>
 @endsection
 
 @section('scripts')
@@ -24,8 +33,9 @@
 
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
-            { data: 'name', name: 'name' },
-            { data: 'guard_name', name: 'guard_name' },
+            { data: 'jenis_trx', name: 'jenis_trx' },
+            { data: 'tgl_trxOut', name: 'tgl_trxOut' },
+            { data: 'nilai_trxOut', name: 'nilai_trxOut' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
@@ -60,14 +70,14 @@
             }
         });
 
-        $(document).on('click', '.delete-btn', function() {
+       $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
-            var dataName = $(this).data('nama');
-            var deleteUrl = "{{ url('keuangan/pengeluaran/delete') }}" + "/" + dataId;
+            var dataName = $(this).data('name');
+            var deleteUrl = "{{ url('keuangan/pengeluaran/destroy') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
-                text: "Hapus data pengeluaran : "+ dataName +" ?" ,
+                text: "Hapus Data Pengeluaran Kas "+ dataName +" ?" ,
                 icon: "warning",
                 dangerMode: true,
                 buttons: {
@@ -99,7 +109,7 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Transaksi pengeluaran Kas</h2>
+        <h2>Transaksi Pengeluaran Kas</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
@@ -107,7 +117,7 @@
             <li class="breadcrumb-item">Keuangan
             </li>
             <li class="breadcrumb-item active">
-                <strong>Transaksi pengeluaran Kas</strong>
+                <strong>Transaksi Pengeluaran Kas</strong>
             </li>
         </ol>
     </div>
@@ -121,7 +131,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Transaksi pengeluaran Kas</h5>
+                    <h5>Transaksi Pengeluaran Kas</h5>
                     <div class="ibox-tools">
                         <a href="{{ url('keuangan/pengeluaran/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>

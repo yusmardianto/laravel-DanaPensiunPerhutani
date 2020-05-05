@@ -51,7 +51,8 @@
 			return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
 		}
 
-        $("#select-jenisTrx").select2({width:"100%", placeholder: "- Pilih Jenis Transaksi -", allowClear: true});
+        // $("#select-jenisTrx").select2({width:"100%", placeholder: "- Pilih Jenis Transaksi -", allowClear: true});
+        $("#select-kd_voucher").select2({width:"100%", placeholder: "- Pilih Voucher -", allowClear: true});
     });
 </script>
 @endsection
@@ -102,9 +103,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Jenis Transaksi</label>
                                     <div class="col-sm-10">
-                                        <select name="jenis_trx" id="select-jenisTrx">
-                                            <option value=""></option>
-                                        </select>
+                                        <input type="text" class="form-control" name="jenis_trx">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -128,13 +127,18 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Kode Voucher</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="kd_voucher">
+                                        <select name="kd_voucher" id="select-kd_voucher">
+                                            <option value=""></option>
+                                            @foreach($voucher as $row)
+                                            <option value="{{ $row->kode_voucher }}">{{ $row->kode_voucher }} ({{ $row->nama_voucher }})</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Nilai Transaksi</label>
                                     <div class="col-lg-10 input-group date">
-                                        <input type="text" id="rupiah" class="form-control">
+                                        <input type="text" id="rupiah" class="form-control" name="nilai_trxIn">
                                     </div>
                                 </div>
                                 <div class="form-group row">

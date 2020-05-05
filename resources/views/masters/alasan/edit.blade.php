@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Ubah Golongan')
+@section('title', config('app.name').' | Edit Alasan')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -16,31 +16,6 @@
 <script>
     $(document).ready(function(){
         $("#tel").numeric();
-
-        var rupiah = document.getElementById('rupiah');
-		rupiah.addEventListener('keyup', function(e){
-			// tambahkan 'Rp.' pada saat form di ketik
-			// gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-			rupiah.value = formatRupiah(this.value);
-		});
-
-        /* Fungsi formatRupiah */
-		function formatRupiah(angka, prefix){
-			var number_string = angka.replace(/[^,\d]/g, '').toString(),
-			split   		= number_string.split(','),
-			sisa     		= split[0].length % 3,
-			rupiah     		= split[0].substr(0, sisa),
-			ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
-
-			// tambahkan titik jika yang di input sudah menjadi angka ribuan
-			if(ribuan){
-				separator = sisa ? '.' : '';
-				rupiah += separator + ribuan.join('.');
-			}
-
-			rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-			return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
-		}
     });
 </script>
 @endsection
@@ -48,16 +23,16 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Master Data Golongan</h2>
+        <h2>Master Data Alasan</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('/') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ url('masters/golongan') }}">Golongan</a>
+                <a href="{{ url('masters/golongan') }}">Alasan</a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Ubah Golongan</strong>
+                <strong>Edit Alasan</strong>
             </li>
         </ol>
     </div>
@@ -71,9 +46,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Input Data Golongan</h5>
+                    <h5>Input Data Alasan</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('masters/golongan') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('masters/alasan') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>
                             Kembali
                         </a>
@@ -87,21 +62,63 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Golongan</label>
+                                    <label class="col-sm-3 col-form-label">Kode</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="name" value="{{ $data->name }}">
+                                        <input type="text" class="form-control" name="kode" value="{{ $data->kode }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Gaji Pokok</label>
+                                    <label class="col-sm-3 col-form-label">Alasan</label>
                                     <div class="col-lg-9">
-                                        <input type="text" id="rupiah" class="form-control" name="gajipokok" value="{{ $data->gajipokok }}">
+                                        <input type="text" class="form-control" name="alasan" value="{{ $data->name }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Keterangan</label>
+                                    <label class="col-sm-3 col-form-label">Syarat Pensiun</label>
                                     <div class="col-lg-9">
-                                        <input type="text" class="form-control" name="keterangan" value="{{ $data->keterangan }}">
+                                        <input type="text" class="form-control" name="syarat_pensiun" value="{{ $data->syarat_pensiun }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Formula MP</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" name="formula_mp" value="{{ $data->formula_mp }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Jenis SK</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" name="jenis_sk" value="{{ $data->jenis_sk }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Jenis Pensiun</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" name="jenis_pensiun" value="{{ $data->jenis_pensiun }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Jenis Sisa MK</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" name="jenis_sisa_mk" value="{{ $data->jenis_sisa_mk }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Usia Faktor Sekarang</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" name="usia_faktor_sekarang" value="{{ $data->usia_faktor_sekarang }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Usia Faktor Sekaligus</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" name="usia_faktor_sekaligus" value="{{ $data->usia_faktor_sekaligus }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Kode Aktuaria</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" name="kode_aktuaria" value="{{ $data->kode_aktuaria }}">
                                     </div>
                                 </div>
                             </div>

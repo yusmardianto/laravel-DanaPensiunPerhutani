@@ -20,7 +20,7 @@ class PesertaAktifController extends Controller
     {
         $data = Kepesertaan::where('status', '=', 1);
 
-        $datatables = Datatables::of($data);
+        $datatables = DataTables::of($data);
         return $datatables->addColumn('action', function ($row) {
             $hashed_id = Hasher::encode($row->id);
                 return "
