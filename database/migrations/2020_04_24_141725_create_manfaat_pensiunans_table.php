@@ -15,6 +15,16 @@ class CreateManfaatPensiunansTable extends Migration
     {
         Schema::create('manfaat_pensiunans', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('no_transaksi');
+            $table->string('kode_aktif');
+            $table->string('kd_rapel');
+            $table->string('alasan');
+            $table->string('kode_unit');
+            $table->bigInteger('nilai_manfaat');
+            $table->bigInteger('tunjangan_pph');
+            $table->bigInteger('biaya_pensiun');
+            $table->bigInteger('penghasilan_kenapajak');
+            $table->text('keterangan');
             $table->timestamps();
         });
     }

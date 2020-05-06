@@ -76,10 +76,10 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Peserta Aktif</label>
                             <div class="col-sm-10">
-                                <select name="peserta_aktif" id="select-peserta">
+                                <select name="kode_aktif" id="select-peserta">
                                     <option value=""></option>
                                     @foreach($peserta as $pesertas)
-                                    <option value="{{ $pesertas->peserta_aktif }}">{{ $pesertas->peserta_aktif }}</option>
+                                    <option value="{{ $pesertas->kode_aktif }}">{{ $pesertas->kode_aktif }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -87,7 +87,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Kode Rapel</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="kode_rapel">
+                                <input type="text" class="form-control" name="kd_rapel">
                             </div>
                         </div>
                         <div class="form-group row" id="data_1">
@@ -99,10 +99,10 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Unit Pembayaran</label>
                             <div class="col-sm-10">
-                                <select name="unit_pembayaran" id="select-unit">
+                                <select name="kode_unit" id="select-unit">
                                     <option value=""></option>
                                     @foreach($unit as $units)
-                                    <option value="{{ $units->unit_pembayaran }}">{{ $units->unit_pembayaran }}</option>
+                                    <option value="{{ $units->kode_unit }}">{{ $units->kode_unit }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -110,25 +110,25 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nilai Manfaat Pensiunan</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="nilai">
+                                <input type="text" class="form-control" name="nilai_manfaat">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Tunjangan PPH</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="tunjangan">
+                                <input type="text" class="form-control" name="tunjangan_pph">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Biaya Pensiun</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="biaya">
+                                <input type="text" class="form-control" name="biaya_pensiun">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Penghasilan Kena Pajak</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="penghasilan">
+                                <input type="text" class="form-control" name="penghasilan_kenapajak">
                             </div>
                         </div>
                         <div class="form-group row">
