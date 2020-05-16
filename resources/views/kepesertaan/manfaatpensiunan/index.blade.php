@@ -9,6 +9,92 @@
 @endsection
 
 @section('scripts')
+<!-- DataTables -->
+<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(function() {
+        var $url = "{{ config('app.url') }}";
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        var $column = [
+            { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
+            { data: 'no_transaksi', name: 'no_transaksi' },
+            { data: 'peserta_aktif', name: 'peserta_aktif' },
+            { data: 'unit_pembayaran', name: 'unit_pembayaran' },
+            { data: 'action', name: 'action', orderable: false, searchable: false },
+        ];
+
+        $('#table-list').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: '{!! url('kepesertaan/manfaatpensiunan/ajax-list') !!}',
+                method: 'POST'
+            },
+            columns: $column,
+            columnDefs: [
+                {
+                    "targets": 0, // your case first column
+                    "className": "text-center",
+                    "width": "4%"
+                },
+                {
+                    "targets": 4,
+                    "width": "21%"
+                }
+            ],
+            initComplete: function () {
+                this.api().columns().every(function () {
+                    var column = this;
+                    var input = document.createElement("input");
+                    $(input).appendTo($(column.footer()).empty())
+                    .on('change', function () {
+                        column.search($(this).val(), false, false, true).draw();
+                    });
+                });
+            }
+        });
+
+        $(document).on('click', '.delete-btn', function() {
+            var dataId = $(this).data('id');
+            var dataName = $(this).data('name');
+            var deleteUrl = "{{ url('masters/manfaatpensiunan/destroy') }}" + "/" + dataId;
+            var csrf = "{{ csrf_token() }}";
+
+            swal({
+                text: "Hapus Data Pengguna "+ dataName +" ?" ,
+                icon: "warning",
+                dangerMode: true,
+                buttons: {
+                    cancel: {
+                        text: "Batal",
+                        value: false,
+                        visible: true,
+                        className: "btn btn-sm btn-white"
+                    },
+                    confirm: {
+                        text: "Hapus",
+                        value: true,
+                        visible: true,
+                        className: "btn btn-sm btn-danger",
+                        closeModal: true
+                    }
+                }
+            }).then((value) => {
+                if (value === true) {
+                    $.redirect(deleteUrl, {"_token": csrf});
+                }
+                swal.close();
+            });;
+        });
+    });
+</script>
 @endsection
 
 @section('content')
@@ -36,7 +122,7 @@
                 <div class="ibox-title">
                     <h5>Manfaat Pensiunan</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('kepesertaan/peserta/tambah') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('kepesertaan/manfaatpensiunan/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
                             Tambah data
                         </a>
@@ -50,9 +136,9 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Peserta</th>
-                                <th>No Rekening</th>
-                                <th>Email</th>
+                                <th>Nomer Transaksi</th>
+                                <th>Peserta Aktif</th>
+                                <th>Unit Pembayaran</th>
                                 <th>Opsi</th>
                             </tr>
                             </thead>

@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MasterPejabatKerjasTableSeeder::class);
         $this->call(MasterUnitKerjasTableSeeder::class);
         $this->call(MasterGroupPembayaransTableSeeder::class);
+        $this->call(MasterUnitPembayaransTableSeeder::class);
     }
 }

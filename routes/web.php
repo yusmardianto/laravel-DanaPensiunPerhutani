@@ -167,6 +167,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('iuranpensiunan', 'IuranPensiunanController@index');
         //manfaat pensiunan
         Route::get('manfaatpensiunan', 'ManfaatPensiunanController@index');
+        Route::get('manfaatpensiunan/create', 'ManfaatPensiunanController@getCreate');
+        Route::post('manfaatpensiunan/create', 'ManfaatPensiunanController@postCreate');
+        Route::any('manfaatpensiunan/ajax-list', 'ManfaatPensiunanController@ajaxList');
     });
 
     Route::prefix('investasi')->group(function() {
