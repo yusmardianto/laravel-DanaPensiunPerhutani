@@ -163,8 +163,10 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('skpensiunan/edit/{id}', 'SKPensiunanController@getEdit');
         Route::post('skpensiunan/edit/{id}', 'SKPensiunanController@postEdit');
         Route::post('skpensiunan/delete/{id}', 'SKPensiunanController@destroy');
+
         //iuran pensiunan
         Route::get('iuranpensiunan', 'IuranPensiunanController@index');
+
         //manfaat pensiunan
         Route::get('manfaatpensiunan', 'ManfaatPensiunanController@index');
         Route::get('manfaatpensiunan/create', 'ManfaatPensiunanController@getCreate');
