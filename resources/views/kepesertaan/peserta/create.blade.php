@@ -25,22 +25,33 @@
             autoclose: true
         });
 
-        $('#image').change(function(){
-            let reader = new FileReader();
-            reader.onload = (e) => {
-                $('#image_preview_container').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(this.files[0]);
-        });
-
-
         $("#tel").numeric();
-        $("#ktp").numeric();
         $("#kode-pos").numeric();
 
-        $("#select-bank").select2({width:"100%", placeholder: "Pilih Bank", allowClear: true});
+        function resetGapok(theObject) {
+            $("#gaji_pokok").html("<input type=\"text\" class=\"form-control\" value=\"\">");
+        }
+
+        $("#select-golongan").on('change', function(){
+            if (($(this).val() !== null) && ($(this).val() !== "") && ($(this).val() !== undefined) && ($(this).val().length !== 0)) {
+                $.ajax({
+                    url: "{{ url('kepesertaan/peserta-aktif/ajax-byGolongan') }}" + "/" + $(this).val(),
+                    method: 'GET',
+                    success: function(data) {
+                        $("#gaji_pokok").val(data.html);
+                    }
+                }).fail(function() {
+                    $("#gaji_pokok").val('2');
+                });
+            }
+        });
+
+        $("#select-regencies").select2({width:"100%", placeholder: "Pilih Tempat", allowClear: true});
+        $("#select-jeniskelamin").select2({width:"100%", placeholder: "Jenis Kelamin", allowClear: true});
+        $("#select-agama").select2({width:"100%", placeholder: "Pilih Agama", allowClear: true});
+        $("#select-tanggungan").select2({width:"100%", placeholder: "Pilih Tanggungan", allowClear: true});
         $("#select-status").select2({width:"100%", placeholder: "Pilih Status", allowClear: true});
-        $("#select-golongan").select2({width:"100%", placeholder: "Pilih Golongan", allowClear: true});
+        $("#select-golongan").select2({width:"100%", placeholder: "Pilih Golongan"});
     });
 </script>
 @endsection
@@ -85,80 +96,62 @@
                         @csrf
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Kode Aktif Peserta</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-6">
                                 <input type="text" class="form-control" name="kode_aktif">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nama Peserta</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-6">
                                 <input type="text" class="form-control" name="nama">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Nomer KTP</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="no_ktp" id="ktp">
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label class="col-sm-2 col-form-label">NIP</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-6">
                                 <input type="text" class="form-control" name="nip">
                             </div>
                         </div>
                         <div class="form-group row" id="data_1">
-                            <label class="col-sm-2 col-form-label">Tanggal Lahir</label>
-                            <div class="col-lg-10 input-group date">
+                            <label class="col-sm-2 col-form-label">Tempat / Tanggal Lahir</label>
+                            <div class="col-sm-3">
+                                <select name="regencies_id" id="select-regencies">
+                                    <option value=""></option>
+                                    @foreach($regencies as $regen)
+                                    <option value="{{ $regen->id }}">{{ $regen->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-lg-3 input-group date">
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="birthdate">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Alamat Peserta</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="alamat">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Kota</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="kota">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Kode Pos</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="kodepos" id="kode-pos">
+                            <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                            <div class="col-sm-6">
+                                <select name="golongan" id="select-jeniskelamin">
+                                    <option value=""></option>
+                                    @foreach($gender as $gen)
+                                    <option value="{{ $gen->kode }}">{{ $gen->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Agama</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="agama">
+                            <div class="col-sm-6">
+                                <select name="golongan" id="select-agama">
+                                    <option value=""></option>
+                                    @foreach($religion as $rel)
+                                    <option value="{{ $rel->id }}">{{ $rel->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="jenis_kelamin">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Nomer Telepon</label>
-                            <div class="col-sm-10">
-                                <input type="tel" class="form-control" name="no_telpon" id="tel">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="email">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Golongan</label>
-                            <div class="col-sm-10">
-                                <select name="golongan" id="select-golongan">
+                            <label class="col-sm-2 col-form-label">Tanggungan</label>
+                            <div class="col-sm-6">
+                                <select name="golongan" id="select-tanggungan">
                                     <option value=""></option>
                                     @foreach($golongan as $gol)
                                     <option value="{{ $gol->id }}">{{ $gol->name }}</option>
@@ -166,44 +159,68 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Jenis Bank</label>
-                            <div class="col-sm-10">
-                                <select name="id_bank" id="select-bank">
-                                    <option value=""></option>
-                                    @foreach($bank as $bang)
-                                    <option value="{{ $bang->kd_bank }}">{{ $bang->name }}</option>
-                                    @endforeach
-                                </select>
+                        <div class="form-group row" id="data_1">
+                            <label class="col-sm-2 col-form-label">Tanggal Jadi Pegawai</label>
+                            <div class="col-lg-6 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="birthdate">
+                            </div>
+                        </div>
+                        <div class="form-group row" id="data_1">
+                            <label class="col-sm-2 col-form-label">Tanggal Jadi Peserta</label>
+                            <div class="col-lg-6 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="birthdate">
+                            </div>
+                        </div>
+                        <div class="form-group row" id="data_1">
+                            <label class="col-sm-2 col-form-label">MK Luar</label>
+                            <div class="col-lg-6 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="birthdate">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">No. Rekening</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="no_rekening">
+                            <label class="col-sm-2 col-form-label">Golongan</label>
+                            <div class="col-sm-3">
+                                <select name="golongan" id="select-golongan">
+                                    <option value=""></option>
+                                    @foreach($golongan as $gol)
+                                    <option value="{{ $gol->id }}">{{ $gol->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="gaji_pokok" id="gaji_pokok" placeholder="Gaji Pokok" readonly style="text-align:right;">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Status</label>
+                            <div class="col-sm-3">
+                                <select name="golongan" id="select-status">
+                                    <option value=""></option>
+                                    @foreach($status as $stat)
+                                    <option value="{{ $stat->id }}">{{ $stat->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="phdp">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Pangkat</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="alamat">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="email">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Keterangan</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-6">
                                 <input type="text" class="form-control" name="keterangan">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Foto</label>
-                            <div class="col-sm-10">
-                                <img id="image_preview_container" src="{{ asset('img/no_image.png') }}" alt="preview image" style="max-height: 150px;">
-                                <input type="file" class="form-control" name="photo" id="image">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Status Peserta</label>
-                            <div class="col-sm-10">
-                                <select name="status" id="select-status">
-                                    <option value=""></option>
-                                    <option value="1">Aktif</option>
-                                    <option value="0">Nonaktif</option>
-                                </select>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
