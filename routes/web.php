@@ -165,7 +165,10 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('skpensiunan/delete/{id}', 'SKPensiunanController@destroy');
 
         //iuran pensiunan
-        Route::get('iuranpensiunan', 'IuranPensiunanController@index');
+        Route::prefix('iuranpensiunan')->group(function() {
+            Route::get('rapel-extra', 'RapelExtraController@index');
+            Route::get('rapel-extra/create', 'RapelExtraController@getCreate');
+    });
 
         //manfaat pensiunan
         Route::get('manfaatpensiunan', 'ManfaatPensiunanController@index');
