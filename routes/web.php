@@ -168,8 +168,10 @@ Route::group(['middleware' => ['auth']], function() {
         //iuran pensiunan
         Route::prefix('iuranpensiunan')->group(function() {
             Route::get('rapel-extra', 'RapelExtraController@index');
+            Route::any('rapel-extra/ajax-list', 'RapelExtraController@ajaxList');
             Route::get('rapel-extra/create', 'RapelExtraController@getCreate');
-    });
+            Route::post('rapel-extra/create', 'RapelExtraController@postCreate');
+        });
 
         //manfaat pensiunan
         Route::get('manfaatpensiunan', 'ManfaatPensiunanController@index');

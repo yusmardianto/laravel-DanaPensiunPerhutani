@@ -18,6 +18,7 @@ class CreateRapelExtrasTable extends Migration
             $table->string('kd_voucher');
             $table->string('no_transaksi');
             $table->date('tgl_transaksi');
+            $table->string('kd_peserta');
             $table->string('nama_peserta');
             $table->date('berlaku_dari');
             $table->date('berlaku_sampai');
@@ -26,7 +27,7 @@ class CreateRapelExtrasTable extends Migration
             $table->string('beban_peserta');
             $table->string('beban_pemberikerja');
             $table->string('total_rapel');
-            $table->integer('created_by');
+            $table->text('keterangan')->nullable();
             $table->timestamps();
         });
     }
