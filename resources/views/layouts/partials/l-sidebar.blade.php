@@ -90,8 +90,27 @@ $user = Auth::user();
                         <a href="{{ url('kepesertaan/skpensiunan') }}">SK Pensiunan</a>
                     </li>
                     <li @if(Request::segment(2) == 'iuranpensiunan') class="active" @endif>
-                        <a href="{{ url('kepesertaan/iuranpensiunan') }}">Iuran Pensiunan</a>
-                    </li>
+                        <a href="#">
+                            <span class="nav-label">Iuran Pensiunan</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-third-level collapse">
+                            <li @if(Request::segment(3) == 'rapel-extra') class="active" @endif>
+                                <a href="{{ url('kepesertaan/iuranpensiunan/rapel-extra') }}">Rapel & Extra Iuran Normal per Peserta</a>
+                            </li>
+                            <li @if(Request::segment(3) == 'prosentase') class="active" @endif>
+                                <a href="{{ url('kepesertaan/iuranpensiunan/prosentase') }}">Prosentase Iuran Pensiun</a>
+                            </li>
+                            <li @if(Request::segment(3) == 'form') class="active" @endif>
+                                <a href="{{ url('kepesertaan/iuranpensiunan/form') }}">Form Iuran pensiun Dari Pemberi Kerja</a>
+                            </li>
+                            <li @if(Request::segment(3) == 'kalkulasi') class="active" @endif>
+                                <a href="{{ url('kepesertaan/iuranpensiunan/kalkulasi') }}">Kalkulasi Piutang Iuran Pensiun</a>
+                            </li>
+                            <li @if(Request::segment(3) == 'tambahan') class="active" @endif>
+                                <a href="{{ url('kepesertaan/iuranpensiunan/tambahan') }}">Iuran Tambahan</a>
+                            </li>
+                        </ul>
                     <li @if(Request::segment(2) == 'manfaatpensiunan') class="active" @endif>
                         <a href="{{ url('kepesertaan/manfaatpensiunan') }}">Manfaat Pensiunan</a>
                     </li>

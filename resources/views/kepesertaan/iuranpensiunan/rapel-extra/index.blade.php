@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Master Bank')
+@section('title', config('app.name').' | Rapel & Extra Iuran')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -24,8 +24,10 @@
 
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
-            { data: 'kd_bank', name: 'kd_bank' },
-            { data: 'name', name: 'name' },
+            { data: 'kd_voucher', name: 'kd_voucher' },
+            { data: 'no_transaksi', name: 'no_transaksi' },
+            { data: 'tgl_transaksi', name: 'tgl_transaksi' },
+            { data: 'nama_peserta', name: 'nama_peserta' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
@@ -33,7 +35,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('masters/bank/ajax-list') !!}',
+                url: '{!! url('kepesertaan/iuranpensiunan/rapel-extra/ajax-list') !!}',
                 method: 'POST'
             },
             columns: $column,
@@ -44,7 +46,7 @@
                     "width": "4%"
                 },
                 {
-                    "targets": 3,
+                    "targets": 5,
                     "width": "21%"
                 }
             ],
@@ -62,12 +64,11 @@
 
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
-            var dataName = $(this).data('name');
-            var deleteUrl = "{{ url('masters/bank/destroy') }}" + "/" + dataId;
+            var deleteUrl = "{{ url('kepesertaan/iuranpensiunan/rapel-extra/delete') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
-                text: "Hapus data : "+ dataName +" ?" ,
+                text: "Hapus data transaksi ?" ,
                 icon: "warning",
                 dangerMode: true,
                 buttons: {
@@ -99,13 +100,17 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Master Bank</h2>
+        <h2>Rapel & Extra Iuran Normal per Peserta</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
             </li>
+            <li class="breadcrumb-item">Kepesertaan
+            </li>
+            <li class="breadcrumb-item">Iuran Pensiunan
+            </li>
             <li class="breadcrumb-item active">
-                <strong>Master Bank</strong>
+                <strong>Rapel & Extra Iuran Normal per Peserta</strong>
             </li>
         </ol>
     </div>
@@ -119,11 +124,11 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Master Bank</h5>
+                    <h5>Transaksi Rapel & Extra Iuran Normal per Peserta</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('masters/bank/create') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('kepesertaan/iuranpensiunan/rapel-extra/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
-                            Tambah data bank
+                            Tambah Transaksi
                         </a>
                     </div>
                 </div>
@@ -135,8 +140,10 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kode bank</th>
-                                <th>Nama Bank</th>
+                                <th>Kode Voucher</th>
+                                <th>No Transaksi</th>
+                                <th>Tanggal Transaksi</th>
+                                <th>Nama Peserta</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
