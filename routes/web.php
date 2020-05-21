@@ -171,6 +171,10 @@ Route::group(['middleware' => ['auth']], function() {
             Route::any('rapel-extra/ajax-list', 'RapelExtraController@ajaxList');
             Route::get('rapel-extra/create', 'RapelExtraController@getCreate');
             Route::post('rapel-extra/create', 'RapelExtraController@postCreate');
+            Route::get('rapel-extra/detail/{id}', 'RapelExtraController@getDetail');
+            Route::get('rapel-extra/edit/{id}', 'RapelExtraController@getEdit');
+            Route::post('rapel-extra/edit/{id}', 'RapelExtraController@postEdit');
+            Route::post('rapel-extra/delete/{id}', 'RapelExtraController@destroy');
         });
 
         //manfaat pensiunan

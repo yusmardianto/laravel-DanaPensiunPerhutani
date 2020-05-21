@@ -64,12 +64,11 @@
 
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
-            var dataName = $(this).data('nama');
             var deleteUrl = "{{ url('kepesertaan/iuranpensiunan/rapel-extra/delete') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
-                text: "Hapus data transaksi : "+ dataName +" ?" ,
+                text: "Hapus data transaksi ?" ,
                 icon: "warning",
                 dangerMode: true,
                 buttons: {

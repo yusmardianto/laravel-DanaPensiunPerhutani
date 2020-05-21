@@ -75,4 +75,62 @@ class RapelExtraController extends Controller
             return redirect('kepesertaan/iuranpensiunan/rapel-extra')->with('success', 'Berhasil menambah data transaksi iuran');
         }
     }
+
+    public function getDetail($id)
+    {
+        $data = RapelExtra::find($id);
+        if (isset($data)) {
+            return view('kepesertaan.iuranpensiunan.rapel-extra.detail', compact('data'));
+        } else {
+            return redirect()->back()->with('error', 'Data transaksi iuran tidak ditemukan');
+        }
+    }
+
+    public function getEdit($id)
+    {
+        $voucher = MasterVoucher::all();
+        $data = RapelExtra::find($id);
+        if (isset($data)) {
+            return view('kepesertaan.iuranpensiunan.rapel-extra.edit', compact('data', 'voucher'));
+        } else {
+            return redirect()->back()->with('error', 'Data transaksi iuran tidak ditemukan');
+        }
+    }
+
+    public function postEdit(Request $request, $id)
+    {
+        $data = RapelExtra::find($id);
+
+        $data->kd_voucher = $request->kd_voucher;
+        $data->no_transaksi = $request->no_transaksi;
+        $data->tgl_transaksi = $request->tgl_transaksi;
+        $data->kd_peserta = $request->kd_peserta;
+        $data->nama_peserta = $request->nama_peserta;
+        $data->berlaku_dari = $request->berlaku_dari;
+        $data->berlaku_sampai = $request->berlaku_sampai;
+        $data->gaji_pokok = $request->gaji_pokok;
+        $data->phdp = $request->phdp;
+        $data->beban_peserta = $request->beban_peserta;
+        $data->beban_pemberikerja = $request->beban_pemberikerja;
+        $data->total_rapel = $request->total_rapel;
+        $data->keterangan = $request->keterangan;
+
+        if (isset($data)) {
+            $data->save();
+            return redirect('kepesertaan/iuranpensiunan/rapel-extra')->with('success', 'Berhasil mengubah data transaksi iuran ');
+        }
+    }
+
+    public function destroy($id)
+    {
+        $data = RapelExtra::find($id);
+        if (isset($data)) {
+
+            $data->delete();
+
+            return redirect('kepesertaan/iuranpensiunan/rapel-extra')->with('success', 'Berhasil menghapus data transaksi iuran ');
+        } else {
+            return redirect()->back()->with('error', 'Data tidak ditemukan');
+        }
+    }
 }
