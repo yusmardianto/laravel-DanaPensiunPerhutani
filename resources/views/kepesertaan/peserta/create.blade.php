@@ -22,15 +22,12 @@
             keyboardNavigation: false,
             forceParse: false,
             calendarWeeks: true,
-            autoclose: true
+            autoclose: true,
+            min: "2020-05-01"
         });
 
         $("#tel").numeric();
         $("#kode-pos").numeric();
-
-        function resetGapok(theObject) {
-            $("#gaji_pokok").html("<input type=\"text\" class=\"form-control\" value=\"\">");
-        }
 
         $("#select-golongan").on('change', function(){
             if (($(this).val() !== null) && ($(this).val() !== "") && ($(this).val() !== undefined) && ($(this).val().length !== 0)) {
@@ -38,10 +35,24 @@
                     url: "{{ url('kepesertaan/peserta-aktif/ajax-byGolongan') }}" + "/" + $(this).val(),
                     method: 'GET',
                     success: function(data) {
-                        $("#gaji_pokok").val(data.html);
+                        $("#golongan_gaji").val(data.html);
                     }
                 }).fail(function() {
-                    $("#gaji_pokok").val('2');
+                    $("#golongan_gaji").val();
+                });
+            }
+        });
+
+        $("#select-status").on('change', function(){
+            if (($(this).val() !== null) && ($(this).val() !== "") && ($(this).val() !== undefined) && ($(this).val().length !== 0)) {
+                $.ajax({
+                    url: "{{ url('kepesertaan/peserta-aktif/ajax-byStatus') }}" + "/" + $(this).val(),
+                    method: 'GET',
+                    success: function(data) {
+                        $("#status_gaji").val(data.html);
+                    }
+                }).fail(function() {
+                    $("#status_gaji").val(data.html);
                 });
             }
         });
@@ -188,13 +199,13 @@
                                 </select>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" name="gaji_pokok" id="gaji_pokok" placeholder="Gaji Pokok" readonly style="text-align:right;">
+                                <input type="text" class="form-control" name="golongan_gaji" id="golongan_gaji" placeholder="Gaji Pokok" readonly style="text-align:right;">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Status</label>
                             <div class="col-sm-3">
-                                <select name="golongan" id="select-status">
+                                <select name="status_id" id="select-status">
                                     <option value=""></option>
                                     @foreach($status as $stat)
                                     <option value="{{ $stat->id }}">{{ $stat->name }}</option>
@@ -202,7 +213,7 @@
                                 </select>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" name="phdp">
+                                <input type="text" class="form-control" name="status_gaji" id="status_gaji" placeholder="Gaji Pokok" readonly style="text-align:right;">
                             </div>
                         </div>
                         <div class="form-group row">

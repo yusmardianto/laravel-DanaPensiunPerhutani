@@ -226,4 +226,15 @@ class PesertaAktifController extends Controller
         }
         return response()->json(['html' => $html]);
     }
+
+    public function getByStatus($statId)
+    {
+        $html = 'Rp'. "";
+        $data = MasterStatus::where('id', $statId)->first();
+        if(isset($data))
+        {
+            $html = 'Rp '. number_format($data->gajipokok, 2, ".", ",");
+        }
+        return response()->json(['html' => $html]);
+    }
 }

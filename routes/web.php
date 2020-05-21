@@ -154,6 +154,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('peserta-aktif/edit/{id}', 'PesertaAktifController@postEdit');
         Route::post('peserta-aktif/delete/{id}', 'PesertaAktifController@destroy');
         Route::get('peserta-aktif/ajax-byGolongan/{golId}', 'PesertaAktifController@getByGolongan');
+        Route::get('peserta-aktif/ajax-byStatus/{statId}', 'PesertaAktifController@getByStatus');
 
         //sk pensiunan
         Route::get('skpensiunan', 'SKPensiunanController@index');
