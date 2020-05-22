@@ -93,7 +93,15 @@ $user = Auth::user();
                         <a href="{{ url('kepesertaan/iuranpensiunan') }}">Iuran Pensiunan</a>
                     </li>
                     <li @if(Request::segment(2) == 'manfaatpensiunan') class="active" @endif>
-                        <a href="{{ url('kepesertaan/manfaatpensiunan') }}">Manfaat Pensiunan</a>
+                        <a href="{{ url('kepesertaan/manfaatpensiunan') }}">Manfaat Pensiunan
+                            <ul class="nav nav-second-level collapse">
+                                <li @if(Request::segment(3) == 'rapelextramanfaat') class="active" @endif>
+                                    <a href="{{ url('kepesertaan/manfaatpensiunan/rapelextramanfaat') }}">Rapel Extra Manfaat Pensiunan</a>
+                                </li>
+                            </ul>
+                        </a>
+
+                </a>
                     </li>
                 </ul>
             </li>

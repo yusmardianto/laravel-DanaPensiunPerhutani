@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Tambah Manfaat Pensiunan')
+@section('title', config('app.name').' | Tambah Rapel Manfaat Pensiunan')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -40,7 +40,7 @@
                 <a href="{{ url('home') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ url('kepesertaan/manfaatpensiunan') }}">Daftar Manfaat Pensiunan</a>
+                <a href="{{ url('kepesertaan/manfaatpensiunan/rapelextramanfaat') }}">Daftar Manfaat Pensiunan</a>
             </li>
             <li class="breadcrumb-item active">
                 <strong>Tambah Manfaat Pensiunan</strong>
@@ -57,7 +57,7 @@
                 <div class="ibox-title">
                     <h5>Tambah Manfaat Pensiunan</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('kepesertaan/manfaatpensiunan') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('kepesertaan/manfaatpensiunan/rapelextramanfaat') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>
                             Kembali
                         </a>

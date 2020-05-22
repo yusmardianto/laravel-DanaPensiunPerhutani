@@ -6,20 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Models\Kepesertaan\ManfaatPensiunan;
 use App\Models\Kepesertaan\Kepesertaan;
 use App\Models\Masters\MasterUnitPembayaran;
-use DataTables, Hasher, Validator;
+use DataTables, Hasher, Validator,DB;
 
 class ManfaatPensiunanController extends Controller
 {
     public function index(Request $request)
     {
-        return view('kepesertaan.manfaatpensiunan.index');
+        return view('kepesertaan.manfaatpensiunan.rapelextramanfaat.index');
     }
 
     public function getCreate(Request $request)
     {
         $peserta = Kepesertaan::all();
         $unit = MasterUnitPembayaran::all();
-        return view('kepesertaan.manfaatpensiunan.create', compact('peserta','unit'));
+        return view('kepesertaan.manfaatpensiunan.rapelextramanfaat.create', compact('peserta','unit'));
     }
 
     public function ajaxList()
@@ -29,8 +29,8 @@ class ManfaatPensiunanController extends Controller
         return $datatables->addColumn('action', function ($row) {
             $hashed_id = Hasher::encode($row->id);
                 return "
-                <a class=\"btn btn-xs btn-info\" href=\"". url('kepesertaan/manfaatpensiunan/detail/'.$hashed_id) ."\"><i class=\"glyphicon glyphicon-eye-open\"></i> Detail</a>
-                <a class=\"btn btn-xs btn-primary\" href=\"". url('kepesertaan/manfaatpensiunan/edit/'.$hashed_id) ."\"><i class=\"glyphicon glyphicon-edit\"></i> Ubah</a>
+                <a class=\"btn btn-xs btn-info\" href=\"". url('kepesertaan/manfaatpensiunan/rapelextramanfaat/detail/'.$hashed_id) ."\"><i class=\"glyphicon glyphicon-eye-open\"></i> Detail</a>
+                <a class=\"btn btn-xs btn-primary\" href=\"". url('kepesertaan/manfaatpensiunan/rapelextramanfaat/edit/'.$hashed_id) ."\"><i class=\"glyphicon glyphicon-edit\"></i> Ubah</a>
                 <a class=\"btn btn-xs btn-warning delete-btn\" href=\"#\" data-id=\"". $hashed_id ."\" data-name=\"". $row->no_transaksi ."\"><i class=\"glyphicon glyphicon-trash\"></i> Hapus</a>
                 ";
             })
@@ -42,7 +42,7 @@ class ManfaatPensiunanController extends Controller
     public function postCreate(Request $request)
     {
         $rules = [
-            'no_transaksi' => 'required|unique:no_transaksi,no_transaksi',
+            'no_transaksi' => 'required|unique:manfaat_pensiunans,no_transaksi',
         ];
 
         $messages = [
@@ -71,7 +71,7 @@ class ManfaatPensiunanController extends Controller
         if(isset($data))
         {
             $data->save();
-            return redirect('kepesertaan/manfaatpensiunan')->with('success', 'Berhasil menambah Manfaat Pensiunan '.$data->no_transaksi);
+            return redirect('kepesertaan/manfaatpensiunan/rapelextramanfaat')->with('success', 'Berhasil menambah Manfaat Pensiunan '.$data->no_transaksi);
         }
     }
 
@@ -82,7 +82,7 @@ class ManfaatPensiunanController extends Controller
         $data = ManfaatPensiunan::find($id);
         if(isset($data))
         {
-            return view('kepesertaan.manfaatpensiunan.detail', compact('peserta','unit'));
+            return view('kepesertaan.manfaatpensiunan.rapelextramanfaat.detail', compact('data'));
         }
         else
         {
@@ -97,11 +97,11 @@ class ManfaatPensiunanController extends Controller
         $data = ManfaatPensiunan::find($id);
         if(isset($data))
         {
-            return view('kepesertaan.manfaatpensiunan.edit', compact('peserta','unit'));
+            return view('kepesertaan.manfaatpensiunan.rapelextramanfaat.edit', compact('peserta','unit'));
         }
         else
         {
-            return redirect()->back()->with('error', 'Data Manfaat Pensiunan tidak ditemukan');
+            return redirect()->back()->with('error', 'Data Rapel Extra Manfaat Pensiunan tidak ditemukan');
         }
     }
 
@@ -137,7 +137,7 @@ class ManfaatPensiunanController extends Controller
             $data->keterangan = $request->keterangan;
 
             $data->save();
-            return redirect('kepesertaan/manfaatpensiunan')->with('success', 'Berhasil mengubah Manfaat Pensiunan '.$data->no_transaksi);
+            return redirect('kepesertaan/manfaatpensiunan/rapelextramanfaat')->with('success', 'Berhasil mengubah Manfaat Pensiunan '.$data->no_transaksi);
         }
     }
 

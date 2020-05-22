@@ -165,11 +165,16 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('skpensiunan/delete/{id}', 'SKPensiunanController@destroy');
         //iuran pensiunan
         Route::get('iuranpensiunan', 'IuranPensiunanController@index');
+
         //manfaat pensiunan
-        Route::get('manfaatpensiunan', 'ManfaatPensiunanController@index');
-        Route::get('manfaatpensiunan/create', 'ManfaatPensiunanController@getCreate');
-        Route::post('manfaatpensiunan/create', 'ManfaatPensiunanController@postCreate');
-        Route::any('manfaatpensiunan/ajax-list', 'ManfaatPensiunanController@ajaxList');
+        Route::get('manfaatpensiunan/rapelextramanfaat', 'ManfaatPensiunanController@index');
+        Route::get('manfaatpensiunan/rapelextramanfaat/create', 'ManfaatPensiunanController@getCreate');
+        Route::post('manfaatpensiunan/rapelextramanfaat/create', 'ManfaatPensiunanController@postCreate');
+        Route::any('manfaatpensiunan/rapelextramanfaat/ajax-list', 'ManfaatPensiunanController@ajaxList');
+        Route::get('manfaatpensiunan/rapelextramanfaat/detail/{id}', 'ManfaatPensiunanController@getDetail');
+        Route::get('manfaatpensiunan/rapelextramanfaat/edit/{id}', 'ManfaatPensiunanController@getEdit');
+        Route::post('manfaatpensiunan/rapelextramanfaat/edit/{id}', 'ManfaatPensiunanController@postEdit');
+        Route::post('manfaatpensiunan/rapelextramanfaat/delete/{id}', 'ManfaatPensiunanController@destroy');
     });
 
     Route::prefix('investasi')->group(function() {

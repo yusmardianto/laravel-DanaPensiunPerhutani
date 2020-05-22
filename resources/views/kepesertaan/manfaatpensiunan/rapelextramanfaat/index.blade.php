@@ -25,8 +25,8 @@
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
             { data: 'no_transaksi', name: 'no_transaksi' },
-            { data: 'peserta_aktif', name: 'peserta_aktif' },
-            { data: 'unit_pembayaran', name: 'unit_pembayaran' },
+            { data: 'kode_aktif', name: 'kode_aktif' },
+            { data: 'kode_unit', name: 'kode_unit' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
@@ -34,7 +34,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('kepesertaan/manfaatpensiunan/ajax-list') !!}',
+                url: '{!! url('kepesertaan/manfaatpensiunan/rapelextramanfaat/ajax-list') !!}',
                 method: 'POST'
             },
             columns: $column,
@@ -64,7 +64,7 @@
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('name');
-            var deleteUrl = "{{ url('masters/manfaatpensiunan/destroy') }}" + "/" + dataId;
+            var deleteUrl = "{{ url('kepesertaan/manfaatpensiunan/rapelextramanfaat/destroy') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
@@ -122,7 +122,7 @@
                 <div class="ibox-title">
                     <h5>Manfaat Pensiunan</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('kepesertaan/manfaatpensiunan/create') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('kepesertaan/manfaatpensiunan/rapelextramanfaat/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
                             Tambah data
                         </a>
