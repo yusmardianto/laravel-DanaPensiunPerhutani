@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Tambah Peserta Aktif')
+@section('title', config('app.name').' | Ubah Peserta Aktif')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -16,31 +16,87 @@
 
 <script>
     $(document).ready(function(){
+        $('#birthdate .input-group.date').datepicker({
+            todayBtn: "linked",
+            format: "yyyy-mm-dd",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true,
+            endDate: new Date()
+        });
+
         $('#data_1 .input-group.date').datepicker({
             todayBtn: "linked",
             format: "yyyy-mm-dd",
             keyboardNavigation: false,
             forceParse: false,
             calendarWeeks: true,
-            autoclose: true
+            autoclose: true,
+            endDate: new Date(),
+        }).on('changeDate', function (selected) {
+            var minDate = new Date(selected.date.valueOf());
+            $('#data_2 .input-group.date').datepicker('setStartDate', minDate);
         });
 
-        $('#image').change(function(){
-            let reader = new FileReader();
-            reader.onload = (e) => {
-                $('#image_preview_container').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(this.files[0]);
+        $('#data_2 .input-group.date').datepicker({
+            todayBtn: "linked",
+            format: "yyyy-mm-dd",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true,
+            endDate: new Date()
         });
 
+        $('#data_3 .input-group.date').datepicker({
+            todayBtn: "linked",
+            format: "yyyy-mm-dd",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true,
+            endDate: new Date()
+        });
 
         $("#tel").numeric();
-        $("#ktp").numeric();
         $("#kode-pos").numeric();
 
-        $("#select-status").select2({width:"100%", placeholder: "Pilih Status", allowClear: true});
-        $("#select-golongan").select2({width:"100%", placeholder: "Pilih Golongan", allowClear: true});
-        $("#select-bank").select2({width:"100%", placeholder: "Pilih Bank", allowClear: true});
+        $("#select-golongan").on('change', function(){
+            if (($(this).val() !== null) && ($(this).val() !== "") && ($(this).val() !== undefined) && ($(this).val().length !== 0)) {
+                $.ajax({
+                    url: "{{ url('kepesertaan/peserta-aktif/ajax-byGolongan') }}" + "/" + $(this).val(),
+                    method: 'GET',
+                    success: function(data) {
+                        $("#golongan_gaji").val(data.html);
+                    }
+                }).fail(function() {
+                    $("#golongan_gaji").val();
+                });
+            }
+        });
+
+        $("#select-status").on('change', function(){
+            if (($(this).val() !== null) && ($(this).val() !== "") && ($(this).val() !== undefined) && ($(this).val().length !== 0)) {
+                $.ajax({
+                    url: "{{ url('kepesertaan/peserta-aktif/ajax-byStatus') }}" + "/" + $(this).val(),
+                    method: 'GET',
+                    success: function(data) {
+                        $("#status_gaji").val(data.html);
+                    }
+                }).fail(function() {
+                    $("#status_gaji").val(data.html);
+                });
+            }
+        });
+
+        $("#select-regencies").select2({width:"100%", placeholder: "Pilih Tempat", allowClear: true});
+        $("#select-jeniskelamin").select2({width:"100%", placeholder: "Jenis Kelamin", allowClear: true});
+        $("#select-agama").select2({width:"100%", placeholder: "Pilih Agama", allowClear: true});
+        $("#select-tanggungan").select2({width:"100%", placeholder: "Pilih Tanggungan", allowClear: true});
+        $("#select-aktif").select2({width:"100%", placeholder: "Status Aktif", allowClear: true});
+        $("#select-status").select2({width:"100%", placeholder: "Pilih Status"});
+        $("#select-golongan").select2({width:"100%", placeholder: "Pilih Golongan"});
     });
 </script>
 @endsection
@@ -48,7 +104,7 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Tambah Peserta Aktif</h2>
+        <h2>Ubah Peserta Aktif</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
@@ -57,7 +113,7 @@
                 <a href="{{ url('kepesertaan/peserta-aktif') }}">Daftar Peserta Aktif</a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Tambah Peserta Aktif</strong>
+                <strong>Ubah Peserta Aktif</strong>
             </li>
         </ol>
     </div>
@@ -71,7 +127,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Tambah Peserta Aktif</h5>
+                    <h5>Ubah Peserta Aktif</h5>
                     <div class="ibox-tools">
                         <a href="{{ url('kepesertaan/peserta-aktif') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>
@@ -85,79 +141,90 @@
                         @csrf
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Kode Aktif Peserta</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="kode_aktif" value="{{ $data->kode_aktif }}">
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="kode_aktif" value="{{ $data->kode_aktif }}" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nama Peserta</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-6">
                                 <input type="text" class="form-control" name="nama" value="{{ $data->nama }}">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Nomer KTP</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="no_ktp" id="ktp" value="{{ $data->no_ktp }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label class="col-sm-2 col-form-label">NIP</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-6">
                                 <input type="text" class="form-control" name="nip" value="{{ $data->nip }}">
                             </div>
                         </div>
-                        <div class="form-group row" id="data_1">
-                            <label class="col-sm-2 col-form-label">Tanggal Lahir</label>
-                            <div class="col-lg-10 input-group date">
+                        <div class="form-group row" id="birthdate">
+                            <label class="col-sm-2 col-form-label">Tempat / Tanggal Lahir</label>
+                            <div class="col-sm-3">
+                                <select name="tempat_lahir" id="select-regencies">
+                                    <option value=""></option>
+                                    @foreach($regencies as $regen)
+                                    <option value="{{ $regen->id }}" @if($data->tempat_lahir == $regen->id) selected="" @endif>{{ $regen->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-lg-3 input-group date">
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="birthdate" value="{{ $data->birthdate }}">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Alamat Peserta</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="alamat" value="{{ $data->alamat }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Kota</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="kota" value="{{ $data->kota }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Kode Pos</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="kodepos" id="kode-pos" value="{{ $data->kodepos }}">
+                            <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                            <div class="col-sm-6">
+                                <select name="jenis_kelamin" id="select-jeniskelamin">
+                                    <option value=""></option>
+                                    @foreach($gender as $gen)
+                                    <option value="{{ $gen->kode }}" @if($data->jenis_kelamin == $gen->kode) selected="" @endif>{{ $gen->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Agama</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="agama" value="{{ $data->agama }}">
+                            <div class="col-sm-6">
+                                <select name="agama" id="select-agama">
+                                    <option value=""></option>
+                                    @foreach($religion as $rel)
+                                    <option value="{{ $rel->id }}" @if($data->agama == $rel->id) selected="" @endif>{{ $rel->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="jenis_kelamin" value="{{ $data->jenis_kelamin }}">
+                            <label class="col-sm-2 col-form-label">Tanggungan</label>
+                            <div class="col-sm-6">
+                                <select name="tanggungan" id="select-tanggungan">
+                                    <option value=""></option>
+                                    @foreach($golongan as $gol)
+                                    <option value="{{ $gol->id }}" @if($data->tanggungan == $gol->id) selected="" @endif>{{ $gol->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Nomer Telepon</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="no_telpon" id="tel" value="{{ $data->no_telpon }}">
+                        <div class="form-group row" id="data_1">
+                            <label class="col-sm-2 col-form-label">Tanggal Jadi Pegawai</label>
+                            <div class="col-lg-6 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_jadi_pegawai" value="{{ $data->tgl_jadi_pegawai }}">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="email" value="{{ $data->email }}">
+                        <div class="form-group row" id="data_2">
+                            <label class="col-sm-2 col-form-label">Tanggal Jadi Peserta</label>
+                            <div class="col-lg-6 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_jadi_peserta" value="{{ $data->tgl_jadi_peserta }}">
+                            </div>
+                        </div>
+                        <div class="form-group row" id="data_3">
+                            <label class="col-sm-2 col-form-label">MK Luar</label>
+                            <div class="col-lg-6 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="mk_peserta" value="{{ $data->mk_peserta }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Golongan</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-3">
                                 <select name="golongan" id="select-golongan">
                                     <option value=""></option>
                                     @foreach($golongan as $gol)
@@ -165,44 +232,49 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="golongan_gaji" id="golongan_gaji" placeholder="Gaji Pokok" readonly style="text-align:right;" value="{{ $data->golongan_gaji }}">
+                            </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Jenis Bank</label>
-                            <div class="col-sm-10">
-                                <select name="id_bank" id="select-bank">
+                            <label class="col-sm-2 col-form-label">Status</label>
+                            <div class="col-sm-3">
+                                <select name="status" id="select-status">
                                     <option value=""></option>
-                                    @foreach($bank as $bang)
-                                    <option value="{{ $bang->kd_bank }}" @if($data->id_bank == $bang->kd_bank) selected="" @endif>{{ $bang->name }}</option>
+                                    @foreach($status as $stat)
+                                    <option value="{{ $stat->id }}" @if($data->status == $stat->id) selected="" @endif>{{ $stat->name }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="status_gaji" id="status_gaji" placeholder="Gaji Pokok" readonly style="text-align:right;" value="{{ $data->status_gaji }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Pangkat</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="pangkat" value="{{ $data->pangkat }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="email" value="{{ $data->email }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Keterangan</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="keterangan" value="{{ $data->keterangan }}">
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="keterangan" {{ $data->keterangan }}>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Foto</label>
-                            <div class="col-sm-10">
-                                <img id="image_preview_container" src="{{ asset('foto/peserta/'.$data->photo) }}" alt="preview image" style="max-height: 150px;">
-                                <input type="file" class="form-control" name="photo" id="image" value="{{ $data->photo }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Status Peserta</label>
-                            <div class="col-sm-10">
-                                <select name="status" id="select-status">
-                                    @if($data->status == 1)
-                                    <option value="1">Aktif</option>
-                                    @elseif($data->status == 0)
-                                    <option value="0">Nonaktif</option>
-                                    @else
+                            <label class="col-sm-2 col-form-label">Status Aktif</label>
+                            <div class="col-sm-6">
+                                <select name="is_active" id="select-aktif">
                                     <option value=""></option>
-                                    <option value="1">Aktif</option>
-                                    <option value="0">Nonaktif</option>
-                                    @endif
+                                    <option value="1" @if($data->is_active == 1) selected="" @endif>Aktif</option>
+                                    <option value="2" @if($data->is_active == 0) selected="" @endif>Nonaktif</option>
                                 </select>
                             </div>
                         </div>

@@ -23,7 +23,30 @@
             forceParse: false,
             calendarWeeks: true,
             autoclose: true,
-            min: "2020-05-01"
+            endDate: new Date(),
+        }).on('changeDate', function (selected) {
+            var minDate = new Date(selected.date.valueOf());
+            $('#data_2 .input-group.date').datepicker('setStartDate', minDate);
+        });
+
+        $('#data_2 .input-group.date').datepicker({
+            todayBtn: "linked",
+            format: "yyyy-mm-dd",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true,
+            endDate: new Date()
+        });
+
+        $('#data_3 .input-group.date').datepicker({
+            todayBtn: "linked",
+            format: "yyyy-mm-dd",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true,
+            endDate: new Date()
         });
 
         $("#tel").numeric();
@@ -61,7 +84,7 @@
         $("#select-jeniskelamin").select2({width:"100%", placeholder: "Jenis Kelamin", allowClear: true});
         $("#select-agama").select2({width:"100%", placeholder: "Pilih Agama", allowClear: true});
         $("#select-tanggungan").select2({width:"100%", placeholder: "Pilih Tanggungan", allowClear: true});
-        $("#select-status").select2({width:"100%", placeholder: "Pilih Status", allowClear: true});
+        $("#select-status").select2({width:"100%", placeholder: "Pilih Status"});
         $("#select-golongan").select2({width:"100%", placeholder: "Pilih Golongan"});
     });
 </script>
@@ -126,7 +149,7 @@
                         <div class="form-group row" id="data_1">
                             <label class="col-sm-2 col-form-label">Tempat / Tanggal Lahir</label>
                             <div class="col-sm-3">
-                                <select name="regencies_id" id="select-regencies">
+                                <select name="tempat_lahir" id="select-regencies">
                                     <option value=""></option>
                                     @foreach($regencies as $regen)
                                     <option value="{{ $regen->id }}">{{ $regen->name }}</option>
@@ -140,7 +163,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
                             <div class="col-sm-6">
-                                <select name="golongan" id="select-jeniskelamin">
+                                <select name="jenis_kelamin" id="select-jeniskelamin">
                                     <option value=""></option>
                                     @foreach($gender as $gen)
                                     <option value="{{ $gen->kode }}">{{ $gen->name }}</option>
@@ -151,7 +174,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Agama</label>
                             <div class="col-sm-6">
-                                <select name="golongan" id="select-agama">
+                                <select name="agama" id="select-agama">
                                     <option value=""></option>
                                     @foreach($religion as $rel)
                                     <option value="{{ $rel->id }}">{{ $rel->name }}</option>
@@ -162,7 +185,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Tanggungan</label>
                             <div class="col-sm-6">
-                                <select name="golongan" id="select-tanggungan">
+                                <select name="tanggungan" id="select-tanggungan">
                                     <option value=""></option>
                                     @foreach($golongan as $gol)
                                     <option value="{{ $gol->id }}">{{ $gol->name }}</option>
@@ -173,19 +196,19 @@
                         <div class="form-group row" id="data_1">
                             <label class="col-sm-2 col-form-label">Tanggal Jadi Pegawai</label>
                             <div class="col-lg-6 input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="birthdate">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_jadi_pegawai">
                             </div>
                         </div>
-                        <div class="form-group row" id="data_1">
+                        <div class="form-group row" id="data_2">
                             <label class="col-sm-2 col-form-label">Tanggal Jadi Peserta</label>
                             <div class="col-lg-6 input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="birthdate">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_jadi_peserta">
                             </div>
                         </div>
-                        <div class="form-group row" id="data_1">
+                        <div class="form-group row" id="data_3">
                             <label class="col-sm-2 col-form-label">MK Luar</label>
                             <div class="col-lg-6 input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="birthdate">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="mk_peserta">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -205,7 +228,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Status</label>
                             <div class="col-sm-3">
-                                <select name="status_id" id="select-status">
+                                <select name="status" id="select-status">
                                     <option value=""></option>
                                     @foreach($status as $stat)
                                     <option value="{{ $stat->id }}">{{ $stat->name }}</option>
@@ -219,7 +242,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Pangkat</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="alamat">
+                                <input type="text" class="form-control" name="pangkat">
                             </div>
                         </div>
                         <div class="form-group row">
