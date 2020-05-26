@@ -86,22 +86,23 @@ class PesertaAktifController extends Controller
         $data = new Kepesertaan();
         $data->kode_aktif = $request->kode_aktif;
         $data->nama = $request->nama;
-        $data->no_ktp = $request->no_ktp;
         $data->nip = $request->nip;
+        $data->tempat_lahir = $request->tempat_lahir;
         $data->birthdate = $request->birthdate;
-        $data->alamat = $request->alamat;
-        $data->kota = $request->kota;
-        $data->kodepos = $request->kodepos;
-        $data->agama = $request->agama;
         $data->jenis_kelamin = $request->jenis_kelamin;
-        $data->no_telpon = $request->no_telpon;
-        $data->email = $request->email;
+        $data->agama = $request->agama;
+        $data->tanggungan = $request->tanggungan;
+        $data->tgl_jadi_pegawai = $request->tgl_jadi_pegawai;
+        $data->tgl_jadi_peserta = $request->tgl_jadi_peserta;
+        $data->mk_peserta = $request->mk_peserta;
         $data->golongan = $request->golongan;
-        $data->id_bank = $request->id_bank;
-        $data->no_rekening = $request->no_rekening;
-        $data->keterangan = $request->keterangan;
-        $data->photo = $photo;
+        $data->golongan_gaji = $request->golongan_gaji;
         $data->status = $request->status;
+        $data->status_gaji = $request->status_gaji;
+        $data->pangkat = $request->pangkat;
+        $data->email = $request->email;
+        $data->keterangan = $request->keterangan;
+        $data->is_active = $request->is_active;
 
         if(isset($data))
         {
@@ -178,22 +179,23 @@ class PesertaAktifController extends Controller
         {
             $data->kode_aktif = $request->kode_aktif;
             $data->nama = $request->nama;
-            $data->no_ktp = $request->no_ktp;
             $data->nip = $request->nip;
+            $data->tempat_lahir = $request->tempat_lahir;
             $data->birthdate = $request->birthdate;
-            $data->alamat = $request->alamat;
-            $data->kota = $request->kota;
-            $data->kodepos = $request->kodepos;
-            $data->agama = $request->agama;
             $data->jenis_kelamin = $request->jenis_kelamin;
-            $data->no_telpon = $request->no_telpon;
-            $data->email = $request->email;
+            $data->agama = $request->agama;
+            $data->tanggungan = $request->tanggungan;
+            $data->tgl_jadi_pegawai = $request->tgl_jadi_pegawai;
+            $data->tgl_jadi_peserta = $request->tgl_jadi_peserta;
+            $data->mk_peserta = $request->mk_peserta;
             $data->golongan = $request->golongan;
-            $data->id_bank = $request->id_bank;
-            $data->no_rekening = $request->no_rekening;
-            $data->keterangan = $request->keterangan;
-            $data->photo = $photo;
+            $data->golongan_gaji = $request->golongan_gaji;
             $data->status = $request->status;
+            $data->status_gaji = $request->status_gaji;
+            $data->pangkat = $request->pangkat;
+            $data->email = $request->email;
+            $data->keterangan = $request->keterangan;
+            $data->is_active = $request->is_active;
 
             $data->save();
             return redirect('kepesertaan/peserta-aktif')->with('success', 'Berhasil mengubah Peserta Aktif '.$data->name);
