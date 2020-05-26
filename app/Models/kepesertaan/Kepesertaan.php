@@ -20,4 +20,24 @@ class Kepesertaan extends Model
     {
         return $this->belongsTo('App\Models\Kepesertaan\SkPensiun', 'kode_aktif', 'kode_aktif');
     }
+
+    public function regency()
+    {
+        return $this->belongsTo('App\Models\Regencies', 'tempat_lahir');
+    }
+
+    public function jeniskelamin()
+    {
+        return $this->belongsTo('App\Models\Gender', 'jenis_kelamin', 'kode');
+    }
+
+    public function religi()
+    {
+        return $this->belongsTo('App\Models\Religion', 'agama');
+    }
+
+    public function stat()
+    {
+        return $this->belongsTo('App\Models\Masters\MasterStatus', 'status');
+    }
 }

@@ -97,7 +97,7 @@ class PesertaAktifController extends Controller
 
     public function getDetail($id)
     {
-        $data = Kepesertaan::with('sk')->find($id);
+        $data = Kepesertaan::with('sk','regency','jeniskelamin','religi','gol','stat')->find($id);
         if(isset($data))
         {
             return view('kepesertaan.peserta.detail', compact('data'));
