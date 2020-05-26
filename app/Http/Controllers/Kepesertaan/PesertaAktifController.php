@@ -50,29 +50,13 @@ class PesertaAktifController extends Controller
 
     public function postCreate(Request $request)
     {
-        $foto = $request->file('photo');
-        if(isset($foto))
-        {
-            $destinationPath = 'foto/peserta';
-            $foto->move($destinationPath, $foto->getClientOriginalName());
-            $photo = $foto->getClientOriginalName();
-        }
-        else
-        {
-            $photo = null;
-        }
-
         $rules = [
             'email' => 'required|unique:kepesertaans,email',
-            'no_telpon' => 'required|unique:kepesertaans,no_telpon',
-            'no_ktp' => 'required|unique:kepesertaans,no_ktp',
             'nip' => 'required|unique:kepesertaans,nip',
         ];
 
         $messages = [
             'email.unique' => 'Email tersebut sudah terdaftar.',
-            'no_telpon.unique' => 'No. Telepon tersebut sudah terdaftar.',
-            'no_ktp.unique' => 'No. KTP sudah terdaftar',
             'nip.unique' => 'Nomer Induk Peserta sudah terdaftar',
         ];
 
@@ -102,18 +86,18 @@ class PesertaAktifController extends Controller
         $data->pangkat = $request->pangkat;
         $data->email = $request->email;
         $data->keterangan = $request->keterangan;
-        $data->is_active = $request->is_active;
+        $data->is_active = 1;
 
         if(isset($data))
         {
             $data->save();
-            return redirect('kepesertaan/peserta-aktif')->with('success', 'Berhasil menambah Peserta Aktif'.$data->name);
+            return redirect('kepesertaan/peserta-aktif')->with('success', 'Berhasil menambah Peserta Aktif '.$data->nama);
         }
     }
 
     public function getDetail($id)
     {
-        $data = Kepesertaan::with('sk')->find($id);
+        $data = Kepesertaan::with('sk','regency','jeniskelamin','religi','gol','stat')->find($id);
         if(isset($data))
         {
             return view('kepesertaan.peserta.detail', compact('data'));
@@ -126,12 +110,16 @@ class PesertaAktifController extends Controller
 
     public function getEdit($id)
     {
+        $regencies = Regencies::all();
+        $gender = Gender::all();
+        $religion = Religion::all();
         $golongan = MasterGolongan::all();
-        $bank = MasterBank::all();
+        $status = MasterStatus::all();
+
         $data = Kepesertaan::find($id);
         if(isset($data))
         {
-            return view('kepesertaan.peserta.edit', compact('data','golongan','bank'));
+            return view('kepesertaan.peserta.edit', compact('regencies','gender','religion','golongan','status','data'));
         }
         else
         {
@@ -142,30 +130,14 @@ class PesertaAktifController extends Controller
     public function postEdit(Request $request, $id)
     {
         $data = Kepesertaan::find($id);
-        $foto = $request->file('photo');
-        if(isset($foto))
-        {
-            $destinationPath = 'foto/peserta';
-            $foto->move($destinationPath, $foto->getClientOriginalName());
-            $photo = $foto->getClientOriginalName();
-            unlink(public_path('foto/peserta/'.$data->photo));
-        }
-        else
-        {
-            $photo = null;
-        }
 
         $rules = [
             'email' => 'required|unique:kepesertaans,email,'.$id,
-            'no_telpon' => 'required|unique:kepesertaans,no_telpon,'.$id,
-            'no_ktp' => 'required|unique:kepesertaans,no_ktp,'.$id,
             'nip' => 'required|unique:kepesertaans,nip,'.$id,
         ];
 
         $messages = [
             'email.unique' => 'Email tersebut sudah terdaftar.',
-            'no_telpon.unique' => 'No. Telepon tersebut sudah terdaftar.',
-            'no_ktp.unique' => 'No. KTP sudah terdaftar',
             'nip.unique' => 'Nomer Induk Peserta sudah terdaftar',
         ];
 
@@ -198,7 +170,7 @@ class PesertaAktifController extends Controller
             $data->is_active = $request->is_active;
 
             $data->save();
-            return redirect('kepesertaan/peserta-aktif')->with('success', 'Berhasil mengubah Peserta Aktif '.$data->name);
+            return redirect('kepesertaan/peserta-aktif')->with('success', 'Berhasil mengubah Peserta Aktif '.$data->nama);
         }
     }
 
@@ -207,10 +179,9 @@ class PesertaAktifController extends Controller
         $data = Kepesertaan::find($id);
         if(isset($data))
         {
-            unlink(public_path('foto/peserta/'.$data->photo));
             $data->delete();
 
-            return redirect()->back()->with('success', 'Berhasil menghapus Peserta Aktif '.$data->name);
+            return redirect()->back()->with('success', 'Berhasil menghapus Peserta Aktif '.$data->nama);
         }
         else
         {
