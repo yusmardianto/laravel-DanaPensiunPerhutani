@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Manfaat Pensiunan')
+@section('title', config('app.name').' | Rapel Extra Manfaat Pensiunan')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -24,8 +24,8 @@
 
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
-            { data: 'jenis_transaksi', name: 'jenis_transaksi' },
             { data: 'kode_voucher', name: 'kode_voucher' },
+            { data: 'jenis_transaksi', name: 'jenis_transaksi' },
             { data: 'tgl_trx', name: 'tgl_trx' },
             { data: 'nama', name: 'nama' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
@@ -64,12 +64,11 @@
 
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
-            var dataName = $(this).data('name');
-            var deleteUrl = "{{ url('kepesertaan/manfaatpensiunan/rapelextramanfaat/destroy') }}" + "/" + dataId;
+            var deleteUrl = "{{ url('kepesertaan/manfaatpensiunan/rapelextramanfaat/delete') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
-                text: "Hapus Data Pengguna "+ dataName +" ?" ,
+                text: "Hapus Data Transaksi ?" ,
                 icon: "warning",
                 dangerMode: true,
                 buttons: {
@@ -141,8 +140,8 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Jenis Transaksi</th>
                                 <th>Kode Voucher</th>
+                                <th>Jenis Transaksi</th>
                                 <th>Tanggal Transaksi</th>
                                 <th>Nama</th>
                                 <th>Opsi</th>

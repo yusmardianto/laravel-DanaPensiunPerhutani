@@ -178,16 +178,15 @@ Route::group(['middleware' => ['auth']], function() {
             Route::post('rapel-extra/delete/{id}', 'RapelExtraController@destroy');
         });
 
-        //manfaat pensiunan
-        Route::prefix('manfaatpensiunan')->group(function () {
-            Route::get('rapelextramanfaat', 'RapelExtraManfaatController@index');
-            Route::get('rapelextramanfaat/create', 'RapelExtraManfaatController@getCreate');
-            Route::post('rapelextramanfaat/create', 'RapelExtraManfaatController@postCreate');
-            Route::any('rapelextramanfaat/ajax-list', 'RapelExtraManfaatController@ajaxList');
-            Route::get('rapelextramanfaat/detail/{id}', 'RapelExtraManfaatController@getDetail');
-            Route::get('rapelextramanfaat/edit/{id}', 'RapelExtraManfaatController@getEdit');
-            Route::post('rapelextramanfaat/edit/{id}', 'RapelExtraManfaatController@postEdit');
-            Route::post('rapelextramanfaat/delete/{id}', 'RapelExtraManfaatControllerr@destroy');
+        //rapel extra manfaat pensiunan
+            Route::get('manfaatpensiunan/rapelextramanfaat', 'RapelExtraManfaatController@index');
+            Route::any('manfaatpensiunan/rapelextramanfaat/ajax-list', 'RapelExtraManfaatController@ajaxList');
+            Route::get('manfaatpensiunan/rapelextramanfaat/create', 'RapelExtraManfaatController@getCreate');
+            Route::post('manfaatpensiunan/rapelextramanfaat/create', 'RapelExtraManfaatController@postCreate');
+            Route::get('manfaatpensiunan/rapelextramanfaat/detail/{id}', 'RapelExtraManfaatController@getDetail');
+            Route::get('manfaatpensiunan/rapelextramanfaat/edit/{id}', 'RapelExtraManfaatController@getEdit');
+            Route::post('manfaatpensiunan/rapelextramanfaat/edit/{id}', 'RapelExtraManfaatController@postEdit');
+            Route::post('manfaatpensiunan/rapelextramanfaat/destroy/{id}', 'RapelExtraManfaatControllerr@destroy');
         });
 
         Route::prefix('investasi')->group(function () {
@@ -265,4 +264,4 @@ Route::group(['middleware' => ['auth']], function() {
             Route::post('user/delete/{id}', 'UserController@delete');
         });
     });
-});
+

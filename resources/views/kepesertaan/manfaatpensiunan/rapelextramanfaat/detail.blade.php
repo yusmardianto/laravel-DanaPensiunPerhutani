@@ -47,58 +47,69 @@
 
                     <div class="row">
                         <div class="col-md-6">
+                             <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>Jenis Transaksi</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->jenis_transaksi}}</dd></div>
+                            </dl>
+                             <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>Kode Voucher</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->kode_voucher}}</dd></div>
+                            </dl>
                             <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>No Transaksi</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->no_transaksi}}</dd></div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->no_trx}}</dd></div>
                             </dl>
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Peserta Aktif</dt> </div>
+                                <div class="col-sm-4 text-sm-left"><dt>Tanggal Transaksi</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->kode_aktif }}</dd></div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->tgl_trx }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Kode Rapel</dt> </div>
+                                <div class="col-sm-4 text-sm-left"><dt>No Daftar Bayar MP</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->kd_rapel }}</dd></div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->no_daftar_bayar_MP}}</dd></div>
                             </dl>
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Alasan</dt> </div>
+                                <div class="col-sm-4 text-sm-left"><dt>Kode Pensiun</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->alasan }}</dd></div>
-                            </dl>
-                            <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Unit Pembayaran</dt> </div>
-                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->kode_unit }}</dd></div>
-                            </dl>
-                            <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Nilai Manfaat Pensiunan</dt> </div>
-                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->nilai_manfaat }}</dd></div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->kode_pensiun}}</dd></div>
                             </dl>
                         </div>
-                        <div class="col-md-6">
+                            <div class="col-md-6">
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Tunjangan PPH</dt> </div>
+                                <div class="col-sm-4 text-sm-left"><dt>Nama</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->tunjangan_pph }}</dd> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->nama}}</dd></div>
                             </dl>
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Biaya Pensiun</dt> </div>
+                                <div class="col-sm-4 text-sm-left"><dt>Berlaku Dari</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->biaya_pensiun }}</dd></div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->berlaku_dari }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Penghasilan Kena Pajak</dt> </div>
+                                <div class="col-sm-4 text-sm-left"><dt>Berlaku Sampai</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->penghasilan_kenapajak }}</dd> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->berlaku_sampai }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>PPH21</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->pph21}}</dd></div>
+                            </dl>
+                            <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>Non PPH21</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->nonpph21}}</dd></div>
+                            </dl>
+                             <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Keterangan</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->keterangan }}</dd> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->keterangan}}</dd></div>
                             </dl>
+
                         </div>
                     </div>
                 </div>

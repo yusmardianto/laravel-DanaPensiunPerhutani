@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Kepesertaan\ManfaatPensiunan\RapelExtraManfaat;
@@ -21,6 +22,7 @@ class RapelExtraManfaatController extends Controller
     public function ajaxList()
     {
         $data = RapelExtraManfaat::whereNotNull('created_at');
+
         $datatables = Datatables::of($data);
         return $datatables->addColumn('action', function ($row) {
             $hashed_id = Hasher::encode($row->id);
@@ -46,20 +48,20 @@ class RapelExtraManfaatController extends Controller
 
     public function postCreate(Request $request)
     {
-        $rules = [
-            'no_trx' => 'required|unique:rapel_extra_manfaats,no_trx  ',
-        ];
+        // $rules = [
+        //     'no_trx' => 'required|unique:rapel_extra_manfaats,no_trx  ',
+        // ];
 
-        $messages = [
-            'no_trx.unique' => 'Jenis Transaksi tersebut sudah terdaftar.',
-        ];
+        // $messages = [
+        //     'no_trx.unique' => 'Jenis Transaksi tersebut sudah terdaftar.',
+        // ];
 
-        $error = Validator::make($request->all(), $rules, $messages);
+        // $error = Validator::make($request->all(), $rules, $messages);
 
-        if($error->fails())
-        {
-            return redirect()->back()->withErrors($error)->withInput();
-        }
+        // if($error->fails())
+        // {
+        //     return redirect()->back()->withErrors($error)->withInput();
+        // }
 
         $data = new RapelExtraManfaat();
         $data->jenis_transaksi = $request->jenis_transaksi;
@@ -74,8 +76,7 @@ class RapelExtraManfaatController extends Controller
         $data->pph21 = $request->pph21;
         $data->nonpph21 = $request->nonpph21;
         $data->keterangan = $request->keterangan;
-
-        if(isset($data))
+        if (isset($data))
         {
             $data->save();
             return redirect('kepesertaan/manfaatpensiunan/rapelextramanfaat')->with('success', 'Berhasil menambah Manfaat Pensiunan ');
@@ -84,8 +85,7 @@ class RapelExtraManfaatController extends Controller
 
     public function getDetail($id)
     {
-        $peserta = Kepesertaan::all();
-        $unit = MasterUnitPembayaran::all();
+
         $data = RapelExtraManfaat::find($id);
         if(isset($data))
         {
@@ -99,12 +99,14 @@ class RapelExtraManfaatController extends Controller
 
     public function getEdit($id)
     {
+        $jenistrx = JenisTransaksi::all();
         $peserta = Kepesertaan::all();
-        $unit = MasterUnitPembayaran::all();
+        $kodepensiun = MasterAlasanPensiun::all();
+        $kodvcr = MasterVoucher::all();
         $data = RapelExtraManfaat::find($id);
         if(isset($data))
         {
-            return view('kepesertaan.manfaatpensiunan.rapelextramanfaat.edit', compact('peserta','unit'));
+            return view('kepesertaan.manfaatpensiunan.rapelextramanfaat.edit', compact('jenistrx','peserta','kodepensiun','kodvcr','data'));
         }
         else
         {
@@ -129,21 +131,21 @@ class RapelExtraManfaatController extends Controller
         $data->nonpph21 = $request->nonpph21;
         $data->keterangan = $request->keterangan;
 
-        $rules = [
-            'no_transaksi' => 'required|unique:no_transaksi,no_transaksi',
-        ];
+        // $rules = [
+        //     'no_transaksi' => 'required|unique:rapel_extra_manfaats,no_transaksi',
+        // ];
 
-        $messages = [
-            'no_transaksi.unique' => 'Nomer Transaksi tersebut sudah terdaftar.',
-        ];
+        // $messages = [
+        //     'no_transaksi.unique' => 'Nomer Transaksi tersebut sudah terdaftar.',
+        // ];
 
-        $error = Validator::make($request->all(), $rules, $messages);
+        // $error = Validator::make($request->all(), $rules, $messages);
 
-        if($error->fails())
-        {
-            return redirect()->back()->withErrors($error)->withInput();
-        }
-        else
+        // if($error->fails())
+        // {
+        //     return redirect()->back()->withErrors($error)->withInput();
+        // }
+        // else
         {
 
 
@@ -151,27 +153,26 @@ class RapelExtraManfaatController extends Controller
             return redirect('kepesertaan/manfaatpensiunan/rapelextramanfaat')->with('success', 'Berhasil mengubah Manfaat Pensiunan '.$data->no_transaksi);
         }
     }
-    public function getByJenis($jensId)
-    {
-        $data = MasterVoucher::where('id', $jensId)->first();
-        if (isset($data))
-        {
-            $data->kode_voucher;
-        }
+    // public function getByJenis($jensId)
+    // {
+    //     $data = MasterVoucher::where('id', $jensId)->first();
+    //     if (isset($data))
+    //     {
+    //         $data->kode_voucher;
+    //     }
 
-    }
+    // }
 
     public function destroy($id)
     {
         $data = RapelExtraManfaat::find($id);
-        if(isset($data))
-        {
+        if (isset($data)) {
+
             $data->delete();
-            return redirect()->back()->with('success', 'Berhasil menghapus Manfaat Pensiunan '.$data->no_transaksi);
-        }
-        else
-        {
-            return redirect()->back()->with('error', 'Gagal menghapus Manfaat Pensiunan');
+
+            return redirect('kepesertaan/manfaatpensiunan/rapelextramanfaat')->with('success', 'Berhasil menghapus data transaksi ');
+        } else {
+            return redirect()->back()->with('error', 'Data tidak ditemukan');
         }
     }
 }
