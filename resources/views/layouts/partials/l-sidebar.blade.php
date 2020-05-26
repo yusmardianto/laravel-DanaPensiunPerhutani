@@ -89,20 +89,52 @@ $user = Auth::user();
                     <li @if(Request::segment(2) == 'skpensiunan') class="active" @endif>
                         <a href="{{ url('kepesertaan/skpensiunan') }}">SK Pensiunan</a>
                     </li>
+
                     <li @if(Request::segment(2) == 'iuranpensiunan') class="active" @endif>
-                        <a href="{{ url('kepesertaan/iuranpensiunan') }}">Iuran Pensiunan</a>
-                    </li>
+                        <a href="#">
+                            <span class="nav-label">Iuran Pensiunan</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-third-level collapse">
+                            <li @if(Request::segment(3) == 'rapel-extra') class="active" @endif>
+                                <a href="{{ url('kepesertaan/iuranpensiunan/rapel-extra') }}">Rapel & Extra Iuran Normal per Peserta</a>
+                            </li>
+                            <li @if(Request::segment(3) == 'prosentase') class="active" @endif>
+                                <a href="{{ url('kepesertaan/iuranpensiunan/prosentase') }}">Prosentase Iuran Pensiun</a>
+                            </li>
+                            <li @if(Request::segment(3) == 'form') class="active" @endif>
+                                <a href="{{ url('kepesertaan/iuranpensiunan/form') }}">Form Iuran pensiun Dari Pemberi Kerja</a>
+                            </li>
+                            <li @if(Request::segment(3) == 'kalkulasi') class="active" @endif>
+                                <a href="{{ url('kepesertaan/iuranpensiunan/kalkulasi') }}">Kalkulasi Piutang Iuran Pensiun</a>
+                            </li>
+                            <li @if(Request::segment(3) == 'tambahan') class="active" @endif>
+                                <a href="{{ url('kepesertaan/iuranpensiunan/tambahan') }}">Iuran Tambahan</a>
+                            </li>
+                        </ul>
+
+
                     <li @if(Request::segment(2) == 'manfaatpensiunan') class="active" @endif>
-                        <a href="{{ url('kepesertaan/manfaatpensiunan') }}">Manfaat Pensiunan
-                            <ul class="nav nav-second-level collapse">
-                                <li @if(Request::segment(3) == 'rapelextramanfaat') class="active" @endif>
+                        <a href="#">
+                            <span class="nav-label">Manfaat Pensiunan</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-third-level collapse">
+                                <li @if(Request::segment(3) == 'rapel-extra-manfaat') class="active" @endif>
                                     <a href="{{ url('kepesertaan/manfaatpensiunan/rapelextramanfaat') }}">Rapel Extra Manfaat Pensiunan</a>
                                 </li>
-                            </ul>
-                        </a>
-
-                </a>
+                                <li @if(Request::segment(3) == 'kalkulasi-pembayaran-manfaat') class="active" @endif>
+                                    <a href="{{ url('kepesertaan/manfaatpensiunan/kalkulasimanfaat') }}">Kalkulasi Daftar Pembayaran Manfaat Pensiunan</a>
+                                </li>
+                                <li @if(Request::segment(3) == 'koreksi-pembayaran-manfaat') class="active" @endif>
+                                    <a href="{{ url('kepesertaan/manfaatpensiunan/koreksimanfaat') }}">Koreksi Daftar Pembayaran Manfaat Pensiunan</a>
+                                </li>
+                                <li @if(Request::segment(3) == 'kalkulasi-ulang-manfaat') class="active" @endif>
+                                    <a href="{{ url('kepesertaan/manfaatpensiunan/kalkulasiulang') }}">Kalkulasi Ulang Manfaat Pensiunan</a>
+                                </li>
+                        </ul>
                     </li>
+
                 </ul>
             </li>
             @endif

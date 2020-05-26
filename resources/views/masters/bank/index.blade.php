@@ -62,7 +62,7 @@
 
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
-            var dataName = $(this).data('nama');
+            var dataName = $(this).data('name');
             var deleteUrl = "{{ url('masters/bank/destroy') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 

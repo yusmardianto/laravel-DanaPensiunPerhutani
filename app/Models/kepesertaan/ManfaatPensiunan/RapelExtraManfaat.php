@@ -1,14 +1,18 @@
 <?php
 
-namespace App\Models\Kepesertaan;
+namespace App\Models\Kepesertaan\ManfaatPensiunan;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ManfaatPensiunan extends Model
+class RapelExtraManfaat extends Model
 {
     public function u_bayar()
     {
         return $this->belongsTo('App\Models\Masters\UnitPembayaran', 'kode_unit');
+    }
+        public function voucher()
+    {
+        return $this->belongsTo('App\Models\Masters\Voucher', 'kode_voucher','jenis_transaksi');
     }
 
     public function kodeaktif()

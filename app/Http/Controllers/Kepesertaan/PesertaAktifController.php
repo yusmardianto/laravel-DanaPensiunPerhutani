@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Gender;
 use App\Models\Kepesertaan\Kepesertaan;
 use App\Models\Masters\MasterBank;
 use App\Models\Masters\MasterGolongan;
+use App\Models\Masters\MasterStatus;
+use App\Models\Regencies;
+use App\Models\Religion;
 use DataTables, Hasher, Validator, DB;
 
 class PesertaAktifController extends Controller
@@ -36,9 +40,12 @@ class PesertaAktifController extends Controller
 
     public function getCreate(Request $request)
     {
+        $regencies = Regencies::all();
+        $gender = Gender::all();
+        $religion = Religion::all();
         $golongan = MasterGolongan::all();
-        $bank = MasterBank::all();
-        return view('kepesertaan.peserta.create', compact('golongan','bank'));
+        $status = MasterStatus::all();
+        return view('kepesertaan.peserta.create', compact('golongan','status','regencies','gender','religion'));
     }
 
     public function postCreate(Request $request)
@@ -207,5 +214,27 @@ class PesertaAktifController extends Controller
         {
             return redirect()->back()->with('error', 'Gagal menghapus Peserta Aktif');
         }
+    }
+
+    public function getByGolongan($golId)
+    {
+        $html = 'Rp'. "";
+        $data = MasterGolongan::where('id', $golId)->first();
+        if(isset($data))
+        {
+            $html = 'Rp '. number_format($data->gajipokok, 2, ".", ",");
+        }
+        return response()->json(['html' => $html]);
+    }
+
+    public function getByStatus($statId)
+    {
+        $html = 'Rp'. "";
+        $data = MasterStatus::where('id', $statId)->first();
+        if(isset($data))
+        {
+            $html = 'Rp '. number_format($data->gajipokok, 2, ".", ",");
+        }
+        return response()->json(['html' => $html]);
     }
 }

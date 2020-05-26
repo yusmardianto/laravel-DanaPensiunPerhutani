@@ -49,7 +49,6 @@ class PengeluaranController extends Controller
         $data->nilai_trxOut = $request->nilai_trxOut;
         $data->keterangan	 = $request->keterangan;
 
-
         if (isset($data)) {
             $data->save();
             return redirect('keuangan/pengeluaran')->with('success', 'Berhasil menambah Pengeluran ' . $data->name);

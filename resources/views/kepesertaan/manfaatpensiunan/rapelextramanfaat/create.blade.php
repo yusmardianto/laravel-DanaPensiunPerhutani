@@ -25,8 +25,24 @@
             autoclose: true
         });
 
-        $("#select-unit").select2({width:"100%", placeholder: "Pilih Unit Pembayaran", allowClear: true});
-        $("#select-peserta").select2({width:"100%", placeholder: "Pilih Peserta Aktif", allowClear: true});
+
+
+        $("#select-jenistrx").select2({width:"100%", placeholder: "Pilih Jenis Transaksi", allowClear: true});
+        $("#select-kodepensiun").select2({width:"100%", placeholder: "Pilih Kode Pensiun", allowClear: true});
+        $("#select-kodevouchers").select2({width:"100%", placeholder: "Pilih Kode Voucher", allowClear: true});
+        // $("#select-jenis").on('change', function(){
+        //     if (($(this).val() !== null) && ($(this).val() !== "") && ($(this).val() !== undefined) && ($(this).val().length !== 0)) {
+        //         $.ajax({
+        //             url: "{{ url('kepesertaan/manfaatpensiunan/rapelextramanfaat/ajax-byJenis') }}" + "/" + $(this).val(),
+        //             method: 'GET',
+        //             success: function(data) {
+        //                 $("#kode_voucher");
+        //             }
+        //         }).fail(function() {
+        //             $("#kode_voucher").val();
+        //         });
+        //     }
+        // });
     });
 </script>
 @endsection
@@ -68,75 +84,93 @@
                     <form method="post" action="{{ url()->current() }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">No Transaksi</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="no_transaksi">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Peserta Aktif</label>
-                            <div class="col-sm-10">
-                                <select name="kode_aktif" id="select-peserta">
+                            <label class="col-sm-2 col-form-label">Jenis Transaksi</label>
+                            <div class="col-sm-6">
+                                <select name="rapelextra" id="select-jenistrx">
                                     <option value=""></option>
-                                    @foreach($peserta as $pesertas)
-                                    <option value="{{ $pesertas->kode_aktif }}">{{ $pesertas->kode_aktif }}</option>
+                                    @foreach($jenistrx as $row)
+                                    <option value="{{ $row->id }}">{{ $row->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Kode Rapel</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="kd_rapel">
+                            <label class="col-sm-2 col-form-label">Kode Voucher</label>
+                            <div class="col-sm-6">
+                                <select name="rapelextra" id="select-kodevouchers">
+                                    <option value=""></option>
+                                    @foreach($kodvcr as $row)
+                                    <option value="{{ $row->kode_voucher }}">{{ $row->kode_voucher }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">No Transaksi</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="no_trx">
                             </div>
                         </div>
                         <div class="form-group row" id="data_1">
-                            <label class="col-sm-2 col-form-label">Alasan</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="alasan">
+                            <label class="col-sm-2 col-form-label">Tanggal Transaksi</label>
+                            <div class="col-lg-6 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tanggalTRX">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Unit Pembayaran</label>
-                            <div class="col-sm-10">
-                                <select name="kode_unit" id="select-unit">
+                            <label class="col-sm-2 col-form-label">No Daftar Bayar MP</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="no_daftar_bayar_MP">
+                            </div>
+                        </div>
+                         <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Kode Pensiun</label>
+                            <div class="col-sm-6">
+                                <select name="rapelextra" id="select-kodepensiun">
                                     <option value=""></option>
-                                    @foreach($unit as $units)
-                                    <option value="{{ $units->kode_unit }}">{{ $units->kode_unit }}</option>
+                                    @foreach($kodepensiun as $kdpensiun)
+                                    <option value="{{ $kdpensiun->id }}">{{ $kdpensiun->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Nilai Manfaat Pensiunan</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="nilai_manfaat">
+                            <label class="col-sm-2 col-form-label">Nama</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="nama">
+                            </div>
+                        </div>
+                         <div class="form-group row" id="data_1">
+                            <label class="col-sm-2 col-form-label">Berlaku / Bulan</label>
+                            <div class="col-lg-2 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tanggalTRX">
+                            </div>
+                            <label class="col-sm-0 col-form-label">s/d</label>
+                            <div class="col-lg-2 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tanggalTRX" style="text-align: right">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Tunjangan PPH</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="tunjangan_pph">
+                            <label class="col-sm-2 col-form-label">MP PPH21</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="pph21">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Biaya Pensiun</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="biaya_pensiun">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Penghasilan Kena Pajak</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="penghasilan_kenapajak">
+                            <label class="col-sm-2 col-form-label">Non MP PPH21</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="nonpph21">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Keterangan</label>
-                            <div class="col-sm-10">
-                                <textarea id="" cols="30" rows="10" class="form-control" name="keterangan"></textarea>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="keterangan">
                             </div>
                         </div>
+
                         <div class="hr-line-dashed"></div>
                         <div class="form-group row">
                             <div class="col-sm-2 col-sm-offset-2">
