@@ -15,14 +15,17 @@ class CreateSkPensiunsTable extends Migration
     {
         Schema::create('sk_pensiuns', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('no_sk_pensiun');
-            $table->string('kode_aktif');
-            $table->date('tanggal_pensiun');
-            $table->bigInteger('periode');
+            $table->string('kode_pasif');
+            $table->string('jenis_transaksi');
             $table->string('voucher');
-            $table->string('tanggungan');
             $table->string('unit_kerja');
-            $table->bigInteger('npwp');
+            $table->date('tanggal_pensiun');
+            $table->string('no_trx_sk');
+            $table->date('tgl_trx_sk');
+            $table->string('no_sk_pensiun');
+            $table->date('tgl_sk_pensiun');
+            $table->string('no_sk_phk');
+            $table->date('tgl_sk_phk');
             $table->text('keterangan');
             $table->timestamps();
         });

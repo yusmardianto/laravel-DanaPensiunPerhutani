@@ -45,7 +45,7 @@
                 <a href="{{ url('home') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ url('kepesertaan/peserta-aktif') }}">Daftar SK Pensiun</a>
+                <a href="{{ url('kepesertaan/skpensiunan/transaksiskpensiun') }}">Daftar SK Pensiun</a>
             </li>
             <li class="breadcrumb-item active">
                 <strong>Edit SK Pensiun</strong>
@@ -64,7 +64,7 @@
                 <div class="ibox-title">
                     <h5>Edit SK Pensiun</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('kepesertaan/skpensiunan') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('kepesertaan/skpensiunan/transaksiskpensiun') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>
                             Kembali
                         </a>
@@ -75,35 +75,18 @@
                     <form method="post" action="{{ url()->current() }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">No SK Pensiunan</label>
+                            <label class="col-sm-2 col-form-label">Jenis Transaksi</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="no_sk_pensiun" value="{{ $data->no_sk_pensiun }}">
+                                <input type="text" class="form-control" name="jenis_transaksi" value="{{ $data->jenis_transaksi }}">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Kode Aktif Peserta</label>
+                            <label class="col-sm-2 col-form-label">Kode Peserta Pasif</label>
                             <div class="col-sm-10">
                                 <select name="kode_aktif" id="select-kode-aktif">
                                     <option value=""></option>
                                     @foreach($kodeaktif as $aktif)
                                     <option value="{{ $aktif->kode_aktif }}" @if($data->kode_aktif == $aktif->kode_aktif) selected="" @endif>{{ $aktif->kode_aktif }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row" id="data_1">
-                            <label class="col-sm-2 col-form-label">Tanggal Pensiun</label>
-                            <div class="col-lg-10 input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tanggal_pensiun" value="{{ $data->tanggal_pensiun }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Periode</label>
-                            <div class="col-sm-10">
-                                <select name="periode" id="select-periode">
-                                    <option value=""></option>
-                                    @foreach($periode as $periodes)
-                                    <option value="{{ $periodes->periode }}" @if($data->periode == $periodes->periode) selected="" @endif>{{ $periodes->periode }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -120,12 +103,6 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Tanggungan</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="tanggungan" value="{{ $data->tanggungan }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Unit Kerja</label>
                             <div class="col-sm-10">
                                 <select name="unit_kerja" id="select-unitkerja">
@@ -136,10 +113,46 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group row" id="data_1">
+                            <label class="col-sm-2 col-form-label">Tanggal Pensiun</label>
+                            <div class="col-lg-10 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tanggal_pensiun" value="{{ $data->tanggal_pensiun }}">
+                            </div>
+                        </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">NPWP</label>
+                            <label class="col-sm-2 col-form-label">No Transaksi SK</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="npwp" id="npwp" value="{{ $data->npwp }}">
+                                <input type="text" class="form-control" name="no_trx_sk" value="{{ $data->no_trx_sk }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Tanggal Transaksi SK</label>
+                            <div class="col-lg-10 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_trx_sk" value="{{ $data->tgl_trx_sk }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">No SK Pensiun</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="no_sk_pensiun" value="{{ $data->no_sk_pensiun }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Tanggal SK Pensiun</label>
+                            <div class="col-lg-10 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_sk_pensiun" value="{{ $data->tgl_sk_pensiun }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">No SK PHK</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="no_sk_phk" value="{{ $data->no_sk_phk }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Tanggal SK PHK</label>
+                            <div class="col-lg-10 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_sk_phk" value="{{ $data->tgl_sk_phk }}">
                             </div>
                         </div>
                         <div class="form-group row">

@@ -30,7 +30,7 @@
         $("#select-periode").select2({width:"100%", placeholder: "Pilih Periode", allowClear: true});
         $("#select-voucher").select2({width:"100%", placeholder: "Pilih Voucher", allowClear: true});
         $("#select-unitkerja").select2({width:"100%", placeholder: "Pilih Unit Kerja", allowClear: true});
-        $("#select-kode-aktif").select2({width:"100%", placeholder: "Pilih Kode Aktif Peserta", allowClear: true});
+        $("#select-kode-pasif").select2({width:"100%", placeholder: "Pilih Peserta Pasif", allowClear: true});
     });
 </script>
 @endsection
@@ -61,7 +61,7 @@
                 <div class="ibox-title">
                     <h5>Tambah SK Pensiunan</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('kepesertaan/skpensiunan') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('kepesertaan/skpensiunan/transaksiskpensiun') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>
                             Kembali
                         </a>
@@ -72,35 +72,18 @@
                     <form method="post" action="{{ url()->current() }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">No SK Pensiunan</label>
+                            <label class="col-sm-2 col-form-label">Jenis Transaksi</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="no_sk_pensiun">
+                                <input type="text" class="form-control" name="jenis_transaksi">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Kode Aktif Peserta</label>
+                            <label class="col-sm-2 col-form-label">Peserta Pasif</label>
                             <div class="col-sm-10">
-                                <select name="kode_aktif" id="select-kode-aktif">
+                                <select name="kode_aktif" id="select-kode-pasif">
                                     <option value=""></option>
                                     @foreach($kodeaktif as $aktif)
                                     <option value="{{ $aktif->kode_aktif }}">{{ $aktif->kode_aktif }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row" id="data_1">
-                            <label class="col-sm-2 col-form-label">Tanggal Pensiun</label>
-                            <div class="col-lg-10 input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tanggal_pensiun">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Periode</label>
-                            <div class="col-sm-10">
-                                <select name="periode" id="select-periode">
-                                    <option value=""></option>
-                                    @foreach($periode as $periodes)
-                                    <option value="{{ $periodes->periode }}">{{ $periodes->periode }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -117,12 +100,6 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Tanggungan</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="tanggungan">
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Unit Kerja</label>
                             <div class="col-sm-10">
                                 <select name="unit_kerja" id="select-unitkerja">
@@ -133,10 +110,46 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group row" id="data_1">
+                            <label class="col-sm-2 col-form-label">Tanggal Pensiun</label>
+                            <div class="col-lg-10 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tanggal_pensiun">
+                            </div>
+                        </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">NPWP</label>
+                            <label class="col-sm-2 col-form-label">No Transaksi SK </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="npwp" id="npwp">
+                                <input type="text" class="form-control" name="no_trx_sk">
+                            </div>
+                        </div>
+                        <div class="form-group row" id="data_1">
+                            <label class="col-sm-2 col-form-label">Tanggal Transaksi SK </label>
+                            <div class="col-lg-10 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_trx_sk">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">No SK Pensiun</label>
+                            <div class="col-lg-10 input-group date">
+                                <input type="text" class="form-control" name="no_sk_pensiun">
+                            </div>
+                        </div>
+                        <div class="form-group row" id="data_1">
+                            <label class="col-sm-2 col-form-label">Tanggal SK Pensiun</label>
+                            <div class="col-lg-10 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_sk_pensiun">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">No SK PHK</label>
+                            <div class="col-lg-10 input-group date">
+                                <input type="text" class="form-control" name="no_sk_phk">
+                            </div>
+                        </div>
+                        <div class="form-group row" id="data_1">
+                            <label class="col-sm-2 col-form-label">Tanggal SK PHK</label>
+                            <div class="col-lg-10 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_sk_phk">
                             </div>
                         </div>
                         <div class="form-group row">

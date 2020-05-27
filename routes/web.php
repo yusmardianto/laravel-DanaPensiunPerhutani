@@ -157,14 +157,14 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('peserta-aktif/ajax-byStatus/{statId}', 'PesertaAktifController@getByStatus');
 
         //sk pensiunan
-        Route::get('skpensiunan', 'SKPensiunanController@index');
-        Route::get('skpensiunan/create', 'SKPensiunanController@getCreate');
-        Route::post('skpensiunan/create', 'SKPensiunanController@postCreate');
-        Route::any('skpensiunan/ajax-list', 'SKPensiunanController@ajaxList');
-        Route::get('skpensiunan/detail/{id}', 'SKPensiunanController@getDetail');
-        Route::get('skpensiunan/edit/{id}', 'SKPensiunanController@getEdit');
-        Route::post('skpensiunan/edit/{id}', 'SKPensiunanController@postEdit');
-        Route::post('skpensiunan/delete/{id}', 'SKPensiunanController@destroy');
+        Route::get('skpensiunan/transaksiskpensiun', 'SKPensiunanController@index');
+        Route::get('skpensiunan/transaksiskpensiun/create', 'SKPensiunanController@getCreate');
+        Route::post('skpensiunan/transaksiskpensiun/create', 'SKPensiunanController@postCreate');
+        Route::any('skpensiunan/transaksiskpensiun/ajax-list', 'SKPensiunanController@ajaxList');
+        Route::get('skpensiunan/transaksiskpensiun/detail/{id}', 'SKPensiunanController@getDetail');
+        Route::get('skpensiunan/transaksiskpensiun/edit/{id}', 'SKPensiunanController@getEdit');
+        Route::post('skpensiunan/transaksiskpensiun/edit/{id}', 'SKPensiunanController@postEdit');
+        Route::post('skpensiunan/transaksiskpensiun/delete/{id}', 'SKPensiunanController@destroy');
 
         //iuran pensiunan
         Route::prefix('iuranpensiunan')->group(function () {

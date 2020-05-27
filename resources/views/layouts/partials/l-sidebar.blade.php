@@ -87,7 +87,18 @@ $user = Auth::user();
                         <a href="{{ url('kepesertaan/peserta-aktif') }}">Daftar Peserta Aktif</a>
                     </li>
                     <li @if(Request::segment(2) == 'skpensiunan') class="active" @endif>
-                        <a href="{{ url('kepesertaan/skpensiunan') }}">SK Pensiunan</a>
+                        <a href="#">
+                            <span class="nav-label">SK Pensiun</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-third-level collapse">
+                            <li @if(Request::segment(3) == 'rapel-extra') class="active" @endif>
+                                <a href="{{ url('kepesertaan/skpensiunan/transaksiskpensiun') }}">Transaksi SK Pensiun</a>
+                            </li>
+                            <li @if(Request::segment(3) == 'prosentase') class="active" @endif>
+                                <a href="{{ url('kepesertaan/iuranpensiunan/prosentase') }}">Simulasi Manfaat Pensiun</a>
+                            </li>
+                        </ul>
                     </li>
 
                     <li @if(Request::segment(2) == 'iuranpensiunan') class="active" @endif>

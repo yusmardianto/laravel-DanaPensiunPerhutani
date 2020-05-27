@@ -43,7 +43,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('kepesertaan/skpensiunan/ajax-list') !!}',
+                url: '{!! url('kepesertaan/skpensiunan/transaksiskpensiun/ajax-list') !!}',
                 method: 'POST'
             },
             columns: $column,
@@ -73,7 +73,7 @@
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('name');
-            var deleteUrl = "{{ url('masters/skpensiunan/destroy') }}" + "/" + dataId;
+            var deleteUrl = "{{ url('masters/skpensiunan/transaksiskpensiun/destroy') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
@@ -131,7 +131,7 @@
                 <div class="ibox-title">
                     <h5>SK Pensiunan</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('kepesertaan/skpensiunan/create') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('kepesertaan/skpensiunan/transaksiskpensiun/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
                             Tambah data
                         </a>

@@ -19,7 +19,7 @@
                 <a href="{{ url('home') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ url('masters/skpensiunan') }}">Daftar SK Pensiun</a>
+                <a href="{{ url('masters/skpensiunan/transaksiskpensiun') }}">Daftar SK Pensiun</a>
             </li>
             <li class="breadcrumb-item active">
                 <strong>Detail SK Pensiun</strong>
@@ -37,7 +37,7 @@
                 <div class="ibox-title">
                     <h5>Detail SK Pensiun</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('kepesertaan/skpensiunan') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('kepesertaan/skpensiunan/transaksiskpensiun') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>
                             Kembali
                         </a>
@@ -48,24 +48,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Nomor SK Pensiun</dt> </div>
+                                <div class="col-sm-4 text-sm-left"><dt>Jenis Transaksi</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->no_sk_pensiun }}</dd></div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->jenis_transaksi }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Kode AKtif Peserta</dt> </div>
+                                <div class="col-sm-4 text-sm-left"><dt>Peserta Pasif</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->kode_aktif }}</dd></div>
-                            </dl>
-                            <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Tanggal Pensiun</dt> </div>
-                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->tanggal_pensiun }}</dd></div>
-                            </dl>
-                            <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Periode</dt> </div>
-                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->periode }}</dd></div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->kode_pasif }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Kode Voucher</dt> </div>
@@ -73,21 +63,46 @@
                                 <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->voucher }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Tanggungan</dt> </div>
+                                <div class="col-sm-4 text-sm-left"><dt>Unit Kerja</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->tanggungan }}</dd></div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->unit_kerja }}</dd></div>
+                            </dl>
+                            <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>Tanggal Pensiun</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->tanggal_pensiun }}</dd></div>
                             </dl>
                         </div>
                         <div class="col-md-6">
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Unit Kerja</dt> </div>
+                                <div class="col-sm-4 text-sm-left"><dt>No Transaksi SK</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->unit_kerja }}</dd> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->no_trx_sk }}</dd> </div>
                             </dl>
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>NPWP</dt> </div>
+                                <div class="col-sm-4 text-sm-left"><dt>Tanggal Transaksi SK</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->npwp }}</dd></div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->tgl_trx_sk }}</dd></div>
+                            </dl>
+                            <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>No SK Pensiun</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->no_sk_pensiun }}</dd> </div>
+                            </dl>
+                            <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>Tanggal SK Pensiun</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->tgl_sk_pensiun }}</dd></div>
+                            </dl>
+                            <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>No SK PHK</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->no_sk_phk }}</dd> </div>
+                            </dl>
+                            <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>Tanggal SK PHK</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->tgl_sk_phk }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Keterangan</dt> </div>

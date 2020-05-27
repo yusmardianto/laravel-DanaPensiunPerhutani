@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Kepesertaan;
+namespace App\Models\Kepesertaan\SkPensiun;
 
 use Illuminate\Database\Eloquent\Model;
 
