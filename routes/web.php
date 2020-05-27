@@ -179,14 +179,15 @@ Route::group(['middleware' => ['auth']], function() {
         });
 
         //rapel extra manfaat pensiunan
-            Route::get('manfaatpensiunan/rapelextramanfaat', 'RapelExtraManfaatController@index');
-            Route::any('manfaatpensiunan/rapelextramanfaat/ajax-list', 'RapelExtraManfaatController@ajaxList');
-            Route::get('manfaatpensiunan/rapelextramanfaat/create', 'RapelExtraManfaatController@getCreate');
-            Route::post('manfaatpensiunan/rapelextramanfaat/create', 'RapelExtraManfaatController@postCreate');
-            Route::get('manfaatpensiunan/rapelextramanfaat/detail/{id}', 'RapelExtraManfaatController@getDetail');
-            Route::get('manfaatpensiunan/rapelextramanfaat/edit/{id}', 'RapelExtraManfaatController@getEdit');
-            Route::post('manfaatpensiunan/rapelextramanfaat/edit/{id}', 'RapelExtraManfaatController@postEdit');
-            Route::post('manfaatpensiunan/rapelextramanfaat/destroy/{id}', 'RapelExtraManfaatControllerr@destroy');
+        Route::prefix('manfaatpensiunan')->group(function(){
+            Route::get('rapelextramanfaat', 'RapelExtraManfaatController@index');
+            Route::any('rapelextramanfaat/ajax-list', 'RapelExtraManfaatController@ajaxList');
+            Route::get('rapelextramanfaat/create', 'RapelExtraManfaatController@getCreate');
+            Route::post('rapelextramanfaat/create', 'RapelExtraManfaatController@postCreate');
+            Route::get('rapelextramanfaat/detail/{id}', 'RapelExtraManfaatController@getDetail');
+            Route::get('rapelextramanfaat/edit/{id}', 'RapelExtraManfaatController@getEdit');
+            Route::post('rapelextramanfaat/edit/{id}', 'RapelExtraManfaatController@postEdit');
+            Route::post('rapelextramanfaat/destroy/{id}', 'RapelExtraManfaatControllerr@destroy');
         });
 
         Route::prefix('investasi')->group(function () {
@@ -261,7 +262,8 @@ Route::group(['middleware' => ['auth']], function() {
             Route::post('user/delete-role/{id}/{roleId}', 'UserController@postDeleteRole');
             Route::get('user/edit/{id}', 'UserController@getEdit');
             Route::post('user/edit/{id}', 'UserController@postEdit');
-            Route::post('user/delete/{id}', 'UserController@delete');
+           Route::post('user/delete/{id}', 'UserController@delete');
         });
     });
 
+});
