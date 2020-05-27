@@ -178,7 +178,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::post('rapel-extra/delete/{id}', 'RapelExtraController@destroy');
         });
 
-        //rapel extra manfaat pensiunan
+        //ranfaat pensiunan
         Route::prefix('manfaatpensiunan')->group(function(){
             Route::get('rapelextramanfaat', 'RapelExtraManfaatController@index');
             Route::any('rapelextramanfaat/ajax-list', 'RapelExtraManfaatController@ajaxList');
