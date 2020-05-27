@@ -131,7 +131,7 @@ $user = Auth::user();
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-third-level collapse">
-                                <li @if(Request::segment(3) == 'rapel-extra-manfaat') class="active" @endif>
+                                <li @if(Request::segment(3) == 'rapelextramanfaat') class="active" @endif>
                                     <a href="{{ url('kepesertaan/manfaatpensiunan/rapelextramanfaat') }}">Rapel Extra Manfaat Pensiunan</a>
                                 </li>
                                 <li @if(Request::segment(3) == 'kalkulasi-pembayaran-manfaat') class="active" @endif>
