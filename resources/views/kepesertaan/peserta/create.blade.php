@@ -84,8 +84,8 @@
         $("#select-jeniskelamin").select2({width:"100%", placeholder: "Jenis Kelamin", allowClear: true});
         $("#select-agama").select2({width:"100%", placeholder: "Pilih Agama", allowClear: true});
         $("#select-tanggungan").select2({width:"100%", placeholder: "Pilih Tanggungan", allowClear: true});
-        $("#select-status").select2({width:"100%", placeholder: "Pilih Status"});
-        $("#select-golongan").select2({width:"100%", placeholder: "Pilih Golongan"});
+        $("#select-status").select2({width:"100%", placeholder: "Pilih Status", allowClear: true});
+        $("#select-golongan").select2({width:"100%", placeholder: "Pilih Golongan", allowClear: true});
     });
 </script>
 @endsection
