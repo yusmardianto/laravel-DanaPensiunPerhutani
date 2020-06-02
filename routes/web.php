@@ -157,14 +157,23 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('peserta-aktif/ajax-byStatus/{statId}', 'PesertaAktifController@getByStatus');
 
         //sk pensiunan
-        Route::get('skpensiunan/transaksiskpensiun', 'SKPensiunanController@index');
-        Route::get('skpensiunan/transaksiskpensiun/create', 'SKPensiunanController@getCreate');
-        Route::post('skpensiunan/transaksiskpensiun/create', 'SKPensiunanController@postCreate');
-        Route::any('skpensiunan/transaksiskpensiun/ajax-list', 'SKPensiunanController@ajaxList');
-        Route::get('skpensiunan/transaksiskpensiun/detail/{id}', 'SKPensiunanController@getDetail');
-        Route::get('skpensiunan/transaksiskpensiun/edit/{id}', 'SKPensiunanController@getEdit');
-        Route::post('skpensiunan/transaksiskpensiun/edit/{id}', 'SKPensiunanController@postEdit');
-        Route::post('skpensiunan/transaksiskpensiun/delete/{id}', 'SKPensiunanController@destroy');
+        Route::prefix('skpensiunan')->group(function () {
+            //Transaksi SK Pensiunan
+            Route::get('transaksiskpensiun', 'SKPensiunanController@index');
+            Route::get('transaksiskpensiun/create', 'SKPensiunanController@getCreate');
+            Route::post('transaksiskpensiun/create', 'SKPensiunanController@postCreate');
+            Route::any('transaksiskpensiun/ajax-list', 'SKPensiunanController@ajaxList');
+            Route::get('transaksiskpensiun/detail/{id}', 'SKPensiunanController@getDetail');
+            Route::get('transaksiskpensiun/edit/{id}', 'SKPensiunanController@getEdit');
+            Route::post('transaksiskpensiun/edit/{id}', 'SKPensiunanController@postEdit');
+            Route::post('transaksiskpensiun/delete/{id}', 'SKPensiunanController@destroy');
+
+            //Simulasi Manfaat Pensiunan
+            Route::get('simulasimp', 'SimulasiManfaatPensiunController@index');
+            Route::get('simulasimp/create', 'SimulasiManfaatPensiunController@getCreate');
+            // Route::post('simulasimp/create', 'SimulasiManfaatPensiunController@postCreate');
+            Route::any('simulasimp/ajax-list', 'SimulasiManfaatPensiunController@ajaxList');
+        });
 
         //iuran pensiunan
         Route::prefix('iuranpensiunan')->group(function () {
