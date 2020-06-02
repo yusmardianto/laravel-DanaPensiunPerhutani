@@ -95,8 +95,8 @@
         $("#select-agama").select2({width:"100%", placeholder: "Pilih Agama", allowClear: true});
         $("#select-tanggungan").select2({width:"100%", placeholder: "Pilih Tanggungan", allowClear: true});
         $("#select-aktif").select2({width:"100%", placeholder: "Status Aktif", allowClear: true});
-        $("#select-status").select2({width:"100%", placeholder: "Pilih Status"});
-        $("#select-golongan").select2({width:"100%", placeholder: "Pilih Golongan"});
+        $("#select-status").select2({width:"100%", placeholder: "Pilih Status", allowClear: true});
+        $("#select-golongan").select2({width:"100%", placeholder: "Pilih Golongan", allowClear: true});
     });
 </script>
 @endsection
@@ -265,7 +265,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Keterangan</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="keterangan" {{ $data->keterangan }}>
+                                <textarea id="" cols="30" rows="10" class="form-control" name="keterangan">{{ $data->keterangan }}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">

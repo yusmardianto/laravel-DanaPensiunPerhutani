@@ -81,7 +81,7 @@
             var csrf = "{{ csrf_token() }}";
 
             swal({
-                text: "Hapus Data Pengguna "+ dataName +" ?" ,
+                text: "Hapus Data Peserta "+ dataName +" ?" ,
                 icon: "warning",
                 dangerMode: true,
                 buttons: {
@@ -137,7 +137,7 @@
                     <div class="ibox-tools">
                         <a href="{{ url('kepesertaan/peserta-aktif/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
-                            Tambah data
+                            Tambah Peserta Aktif
                         </a>
                     </div>
                 </div>

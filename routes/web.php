@@ -24,7 +24,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function() {
+
     Route::prefix('masters')->group(function () {
+
         //karyawan
         Route::get('karyawan', 'KaryawanController@index');
         Route::any('karyawan/ajax-list', 'KaryawanController@ajaxList');
@@ -142,9 +144,11 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('alasan/edit/{id}', 'AlasanPensiunController@getEdit');
         Route::post('alasan/edit/{id}', 'AlasanPensiunController@postEdit');
         Route::post('alasan/destroy/{id}', 'AlasanPensiunController@destroy');
+
     });
 
     Route::prefix('kepesertaan')->group(function () {
+
         Route::get('peserta-aktif', 'PesertaAktifController@index');
         Route::any('peserta-aktif/ajax-list', 'PesertaAktifController@ajaxList');
         Route::get('peserta-aktif/create', 'PesertaAktifController@getCreate');
@@ -173,10 +177,12 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('simulasimp/create', 'SimulasiManfaatPensiunController@getCreate');
             // Route::post('simulasimp/create', 'SimulasiManfaatPensiunController@postCreate');
             Route::any('simulasimp/ajax-list', 'SimulasiManfaatPensiunController@ajaxList');
+
         });
 
         //iuran pensiunan
         Route::prefix('iuranpensiunan')->group(function () {
+
             Route::get('rapel-extra', 'RapelExtraController@index');
             Route::any('rapel-extra/ajax-list', 'RapelExtraController@ajaxList');
             Route::get('rapel-extra/create', 'RapelExtraController@getCreate');
@@ -185,10 +191,12 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('rapel-extra/edit/{id}', 'RapelExtraController@getEdit');
             Route::post('rapel-extra/edit/{id}', 'RapelExtraController@postEdit');
             Route::post('rapel-extra/delete/{id}', 'RapelExtraController@destroy');
+
         });
 
-        //ranfaat pensiunan
+        //manfaat pensiunan
         Route::prefix('manfaatpensiunan')->group(function(){
+
             Route::get('rapelextramanfaat', 'RapelExtraManfaatController@index');
             Route::any('rapelextramanfaat/ajax-list', 'RapelExtraManfaatController@ajaxList');
             Route::get('rapelextramanfaat/create', 'RapelExtraManfaatController@getCreate');
@@ -197,22 +205,29 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('rapelextramanfaat/edit/{id}', 'RapelExtraManfaatController@getEdit');
             Route::post('rapelextramanfaat/edit/{id}', 'RapelExtraManfaatController@postEdit');
             Route::post('rapelextramanfaat/destroy/{id}', 'RapelExtraManfaatControllerr@destroy');
+
         });
 
     });
 
     Route::prefix('investasi')->group(function () {
+
         //data transaksi
         Route::get('datatransaksi', 'DataTransaksiController@index');
+
         //status order
         Route::get('statusorder', 'StatusOrderController@index');
+
         //perubahan status order
         Route::get('perubahanstatusorder', 'PerubahanStatusOrderController@index');
+
         //surat instruksi
         Route::get('suratinstruksi', 'SuratInstruksiController@index');
+
     });
 
     Route::prefix('keuangan')->group(function () {
+
         //transaksi pemasukan kas
         Route::get('pemasukan', 'PemasukanController@index');
         Route::any('pemasukan/ajax-list', 'PemasukanController@ajaxList');
@@ -232,9 +247,11 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('pengeluaran/edit/{id}', 'PengeluaranController@getEdit');
         Route::post('pengeluaran/edit/{id}', 'PengeluaranController@postEdit');
         Route::post('pengeluaran/destroy/{id}', 'PengeluaranController@destroy');
+
     });
 
     Route::prefix('config')->group(function () {
+
         //module
         Route::get('module', 'ModuleController@index');
         Route::any('module/ajax-list', 'ModuleController@ajaxList');
@@ -248,6 +265,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('module/edit/{id}', 'ModuleController@getEdit');
         Route::post('module/edit/{id}', 'ModuleController@postEdit');
         Route::post('module/delete/{id}', 'ModuleController@delete');
+
         //role
         Route::get('role', 'RoleController@index');
         Route::any('role/ajax-list', 'RoleController@ajaxList');
@@ -261,6 +279,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('role/edit/{id}', 'RoleController@getEdit');
         Route::post('role/edit/{id}', 'RoleController@postEdit');
         Route::post('role/delete/{id}', 'RoleController@delete');
+
         //user
         Route::get('user', 'UserController@index');
         Route::any('user/ajax-list', 'UserController@ajaxList');
@@ -274,6 +293,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('user/edit/{id}', 'UserController@getEdit');
         Route::post('user/edit/{id}', 'UserController@postEdit');
         Route::post('user/delete/{id}', 'UserController@delete');
+
     });
 
 });
