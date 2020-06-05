@@ -51,6 +51,7 @@
 		}
 
         $("#select-kd_voucher").select2({width:"100%", placeholder: "- Pilih Voucher -", allowClear: true});
+        $("#select-peserta").select2({width:"100%", placeholder: "- Pilih Peserta -", allowClear: true});
     });
 </script>
 @endsection
@@ -122,11 +123,13 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Kode Aktif / Nama</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" name="kd_peserta" value="{{ $data->kd_peserta }}">
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" name="nama_peserta" value="{{ $data->nama_peserta }}">
+                                    <div class="col-sm-10">
+                                        <select name="kd_peserta" id="select-peserta">
+                                            <option value=""></option>
+                                            @foreach($peserta as $row)
+                                            <option value="{{ $row->kode_aktif }} - {{ $row->nama }}"  @if ($data->kd_peserta == $row->kode_aktif) selected="" @endif>{{ $row->kode_aktif }} - {{ $row->nama }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row" id="data_1">
