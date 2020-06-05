@@ -34,7 +34,8 @@
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
             { data: 'no_sk_pensiun', name: 'no_sk_pensiun' },
-            { data: 'voucher', name: 'voucher' },
+            { data: 'nama_peserta', name: 'nama_peserta' },
+            { data: 'kode_voucher', name: 'kode_voucher' },
             { data: 'tanggal_pensiun', name: 'tanggal_pensiun' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
@@ -54,7 +55,7 @@
                     "width": "4%"
                 },
                 {
-                    "targets": 4,
+                    "targets": 5,
                     "width": "21%"
                 }
             ],
@@ -73,7 +74,7 @@
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('name');
-            var deleteUrl = "{{ url('masters/skpensiunan/transaksiskpensiun/destroy') }}" + "/" + dataId;
+            var deleteUrl = "{{ url('kepesertaan/skpensiunan/transaksiskpensiun/destroy') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
@@ -146,6 +147,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>No SK Pensiun</th>
+                                <th>Nama Peserta</th>
                                 <th>Voucher</th>
                                 <th>Tanggal Pensiun</th>
                                 <th>Aksi</th>

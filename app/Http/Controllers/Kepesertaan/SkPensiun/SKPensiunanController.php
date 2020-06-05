@@ -63,9 +63,12 @@ class SKPensiunanController extends Controller
 
         $data = new SkPensiun();
         $data->jenis_transaksi = $request->jenis_transaksi;
-        $data->kode_pasif = $request->kode_aktif;
-        $data->voucher = $request->voucher;
-        $data->unit_kerja = $request->unit_kerja;
+        $data->kode_peserta = $request->kode_aktif;
+        $data->nama_peserta = $request->kode_aktif;
+        $data->kode_voucher = $request->voucher;
+        $data->nama_voucher = $request->voucher;
+        $data->kode_unit_kerja = $request->unit_kerja;
+        $data->nama_unit_kerja = $request->unit_kerja;
         $data->tanggal_pensiun = $request->tanggal_pensiun;
         $data->no_trx_sk = $request->no_trx_sk;
         $data->tgl_trx_sk = $request->tgl_trx_sk;
@@ -136,18 +139,21 @@ class SKPensiunanController extends Controller
         }
         else
         {
-            $data->jenis_transaksi = $request->jenis_transaksi;
-            $data->kode_pasif = $request->kode_aktif;
-            $data->voucher = $request->voucher;
-            $data->unit_kerja = $request->unit_kerja;
-            $data->tanggal_pensiun = $request->tanggal_pensiun;
-            $data->no_trx_sk = $request->no_trx_sk;
-            $data->tgl_trx_sk = $request->tgl_trx_sk;
-            $data->no_sk_pensiun = $request->no_sk_pensiun;
-            $data->tgl_sk_pensiun = $request->tgl_sk_pensiun;
-            $data->no_sk_phk = $request->no_sk_phk;
-            $data->tgl_sk_phk = $request->tgl_sk_phk;
-            $data->keterangan = $request->keterangan;
+        $data->jenis_transaksi = $request->jenis_transaksi;
+        $data->kode_peserta = $request->kode_aktif;
+        $data->nama_peserta = $request->kode_aktif;
+        $data->kode_voucher = $request->voucher;
+        $data->nama_voucher = $request->voucher;
+        $data->kode_unit_kerja = $request->unit_kerja;
+        $data->nama_unit_kerja = $request->unit_kerja;
+        $data->tanggal_pensiun = $request->tanggal_pensiun;
+        $data->no_trx_sk = $request->no_trx_sk;
+        $data->tgl_trx_sk = $request->tgl_trx_sk;
+        $data->no_sk_pensiun = $request->no_sk_pensiun;
+        $data->tgl_sk_pensiun = $request->tgl_sk_pensiun;
+        $data->no_sk_phk = $request->no_sk_phk;
+        $data->tgl_sk_phk = $request->tgl_sk_phk;
+        $data->keterangan = $request->keterangan;
 
             $data->save();
             return redirect('kepesertaan/skpensiunan/transaksiskpensiun')->with('success', 'Berhasil mengubah SK Pensiun '.$data->no_sk_pensiun);

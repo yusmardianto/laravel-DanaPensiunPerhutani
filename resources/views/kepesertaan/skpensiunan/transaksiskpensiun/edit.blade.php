@@ -86,7 +86,7 @@
                                 <select name="kode_aktif" id="select-kode-aktif">
                                     <option value=""></option>
                                     @foreach($kodeaktif as $aktif)
-                                    <option value="{{ $aktif->kode_aktif }}" @if($data->kode_aktif == $aktif->kode_aktif) selected="" @endif>{{ $aktif->kode_aktif }}</option>
+                                    <option value="{{ $aktif->kode_aktif }}" @if($data->kode_aktif == $aktif->kode_aktif) selected="" @endif>{{ $aktif->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>

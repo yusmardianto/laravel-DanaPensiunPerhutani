@@ -99,9 +99,6 @@ $user = Auth::user();
                             <li @if(Request::segment(3) == 'prosentase') class="active" @endif>
                                 <a href="{{ url('kepesertaan/skpensiunan/simulasimp') }}">Simulasi Manfaat Pensiun</a>
                             </li>
-                            <li @if(Request::segment(3) == 'simulasi') class="active" @endif>
-                                <a href="{{ url('kepesertaan/skpensiunan/simulasi') }}">Simulasi Manfaat Pensiun</a>
-                            </li>
                         </ul>
                     </li>
 
