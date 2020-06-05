@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Kepesertaan\IuranPensiunan\RapelExtra;
 use App\Models\Masters\MasterVoucher;
+use App\Models\Kepesertaan\Kepesertaan;
 use Illuminate\Http\Request;
 use DataTables, Hasher, Validator, DB;
 
@@ -35,11 +36,15 @@ class RapelExtraController extends Controller
     public function getCreate()
     {
         $voucher = MasterVoucher::all();
-        return view('kepesertaan.iuranpensiunan.rapel-extra.create', compact('voucher'));
+        $peserta = Kepesertaan::all();
+        return view('kepesertaan.iuranpensiunan.rapel-extra.create', compact('voucher', 'peserta'));
     }
 
     public function postCreate(Request $request)
     {
+        $peserta = $request->kd_peserta;
+        $arr_peserta = explode(' - ', $peserta);
+
         $rules = [
             'no_transaksi' => 'required|unique:rapel_extras,no_transaksi',
         ];
@@ -60,8 +65,8 @@ class RapelExtraController extends Controller
             $data->kd_voucher = $request->kd_voucher;
             $data->no_transaksi = $request->no_transaksi;
             $data->tgl_transaksi = $request->tgl_transaksi;
-            $data->kd_peserta = $request->kd_peserta;
-            $data->nama_peserta = $request->nama_peserta;
+            $data->kd_peserta = $arr_peserta[0];
+            $data->nama_peserta = $arr_peserta[1];
             $data->berlaku_dari = $request->berlaku_dari;
             $data->berlaku_sampai = $request->berlaku_sampai;
             $data->gaji_pokok = $request->gaji_pokok;
@@ -89,9 +94,10 @@ class RapelExtraController extends Controller
     public function getEdit($id)
     {
         $voucher = MasterVoucher::all();
+        $peserta = Kepesertaan::all();
         $data = RapelExtra::find($id);
         if (isset($data)) {
-            return view('kepesertaan.iuranpensiunan.rapel-extra.edit', compact('data', 'voucher'));
+            return view('kepesertaan.iuranpensiunan.rapel-extra.edit', compact('data', 'voucher', 'peserta'));
         } else {
             return redirect()->back()->with('error', 'Data transaksi iuran tidak ditemukan');
         }
@@ -99,13 +105,16 @@ class RapelExtraController extends Controller
 
     public function postEdit(Request $request, $id)
     {
+        $peserta = $request->kd_peserta;
+        $arr_peserta = explode(' - ', $peserta);
+
         $data = RapelExtra::find($id);
 
         $data->kd_voucher = $request->kd_voucher;
         $data->no_transaksi = $request->no_transaksi;
         $data->tgl_transaksi = $request->tgl_transaksi;
-        $data->kd_peserta = $request->kd_peserta;
-        $data->nama_peserta = $request->nama_peserta;
+        $data->kd_peserta = $arr_peserta[0];
+        $data->nama_peserta = $arr_peserta[1];
         $data->berlaku_dari = $request->berlaku_dari;
         $data->berlaku_sampai = $request->berlaku_sampai;
         $data->gaji_pokok = $request->gaji_pokok;
