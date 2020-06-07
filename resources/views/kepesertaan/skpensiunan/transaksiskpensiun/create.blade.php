@@ -108,7 +108,7 @@
                                 <select name="kode_aktif" id="select-kode-aktif">
                                     <option value=""></option>
                                     @foreach($kodeaktif as $aktif)
-                                    <option value="{{ $aktif->kode_aktif }}">{{ $aktif->kode_aktif }} - {{ $aktif->nama }} </option>
+                                    <option value="{{ $aktif->kode_aktif }} - {{ $aktif->nama }}">{{ $aktif->kode_aktif }} - {{ $aktif->nama }} </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -125,7 +125,7 @@
                                 <select name="voucher" id="select-voucher">
                                     <option value=""></option>
                                     @foreach($voucher as $vocer)
-                                    <option value="{{ $vocer->kode_voucher }}">{{ $vocer->kode_voucher }} - {{ $vocer->nama_voucher }}</option>
+                                    <option value="{{ $vocer->kode_voucher }} - {{ $vocer->nama_voucher }}">{{ $vocer->kode_voucher }} - {{ $vocer->nama_voucher }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -136,7 +136,7 @@
                                 <select name="unit_kerja" id="select-unitkerja">
                                     <option value=""></option>
                                     @foreach($unit_kerja as $kerjas)
-                                    <option value="{{ $kerjas->kd_unit }}">{{ $kerjas->name }}</option>
+                                    <option value="{{ $kerjas->kd_unit }} - {{ $kerjas->name }}">{{ $kerjas->kd_unit }} - {{ $kerjas->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

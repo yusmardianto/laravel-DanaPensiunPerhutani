@@ -46,6 +46,15 @@ class SKPensiunanController extends Controller
 
     public function postCreate(Request $request)
     {
+        $peserta_aktif = $request->kode_aktif;
+        $arr_aktif = explode(' - ', $peserta_aktif);
+
+        $voucher = $request->voucher;
+        $arr_voucher = explode(' - ', $voucher);
+
+        $unit_kerja = $request->unit_kerja;
+        $arr_unit_kerja = explode(' - ', $unit_kerja);
+
         $rules = [
             'no_trx_sk' => 'required|unique:sk_pensiuns,no_trx_sk',
         ];
@@ -63,12 +72,12 @@ class SKPensiunanController extends Controller
 
         $data = new SkPensiun();
         $data->jenis_transaksi = $request->jenis_transaksi;
-        $data->kode_peserta = $request->kode_aktif;
-        $data->nama_peserta = $request->kode_aktif;
-        $data->kode_voucher = $request->voucher;
-        $data->nama_voucher = $request->voucher;
-        $data->kode_unit_kerja = $request->unit_kerja;
-        $data->nama_unit_kerja = $request->unit_kerja;
+        $data->kode_peserta = $arr_aktif[0];
+        $data->nama_peserta = $arr_aktif[1];
+        $data->kode_voucher = $arr_voucher[0];
+        $data->nama_voucher = $arr_voucher[1];
+        $data->kode_unit_kerja = $arr_unit_kerja[0];
+        $data->nama_unit_kerja = $arr_unit_kerja[1];
         $data->tanggal_pensiun = $request->tanggal_pensiun;
         $data->no_trx_sk = $request->no_trx_sk;
         $data->tgl_trx_sk = $request->tgl_trx_sk;

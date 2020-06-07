@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class SkPensiun extends Model
 {
+    protected $Fillable = 'is_active' ;
+
     public function u_kerja()
     {
         return $this->belongsTo('App\Models\Masters\UnitKerja', 'unit_kerja');
