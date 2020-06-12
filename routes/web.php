@@ -171,6 +171,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('transaksiskpensiun/edit/{id}', 'SKPensiunanController@getEdit');
             Route::post('transaksiskpensiun/edit/{id}', 'SKPensiunanController@postEdit');
             Route::post('transaksiskpensiun/destroy/{id}', 'SKPensiunanController@destroy');
+            Route::post('transaksiskpensiun/import', 'SKPensiunanController@postImport');
 
             //Simulasi Manfaat Pensiunan
             Route::get('simulasimp', 'SimulasiManfaatPensiunController@index');
