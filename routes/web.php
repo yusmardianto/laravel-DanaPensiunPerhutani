@@ -159,6 +159,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('peserta-aktif/delete/{id}', 'PesertaAktifController@destroy');
         Route::get('peserta-aktif/ajax-byGolongan/{golId}', 'PesertaAktifController@getByGolongan');
         Route::get('peserta-aktif/ajax-byStatus/{statId}', 'PesertaAktifController@getByStatus');
+        Route::post('peserta-aktif/upload', 'PesertaAktifController@uploadExcel');
 
         //sk pensiunan
         Route::prefix('skpensiunan')->group(function () {

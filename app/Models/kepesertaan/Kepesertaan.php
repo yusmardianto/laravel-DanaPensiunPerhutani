@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kepesertaan extends Model
 {
+    protected $fillable = [
+        'kode_aktif', 'nama', 'nip', 'unit_kerja', 'mutasi_dari', 'tempat_lahir', 'birthdate', 'jenis_kelamin', 'agama', 'tanggungan', 'tgl_jadi_pegawai', 'tgl_jadi_peserta', 'mk_peserta', 'golongan', 'golongan_gaji', 'status', 'status_gaji', 'gaji_pokok', 'gaji_pns', 'phdp', 'iuran', 'pangkat', 'email', 'keterangan', 'is_active'
+    ];
     public function gol()
     {
-        return $this->belongsTo('App\Models\Masters\MasterGolongan', 'golongan');
+        return $this->belongsTo('App\Models\Masters\MasterGolongan', 'golongan', 'name');
     }
 
     public function bank()
@@ -18,7 +21,7 @@ class Kepesertaan extends Model
 
     public function sk()
     {
-        return $this->belongsTo('App\Models\Kepesertaan\SkPensiun', 'kode_aktif', 'kode_aktif');
+        return $this->belongsTo('App\Models\Kepesertaan\SkPensiun\SkPensiun', 'kode_aktif', 'kode_peserta');
     }
 
     public function regency()
@@ -38,6 +41,6 @@ class Kepesertaan extends Model
 
     public function stat()
     {
-        return $this->belongsTo('App\Models\Masters\MasterStatus', 'status');
+        return $this->belongsTo('App\Models\Masters\MasterStatus', 'status', 'name');
     }
 }

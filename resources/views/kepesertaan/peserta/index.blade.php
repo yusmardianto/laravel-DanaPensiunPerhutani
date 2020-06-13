@@ -39,29 +39,6 @@
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
-        $(document).on('click', '.modal-form', function() {
-            $('#import-sk').modal({show:true});
-            $('#sk').select2({
-                placeholder: "Choose File SK...",
-                minimumInputLength: 2,
-                ajax: {
-                    url: "{{ url('load-member') }}",
-                    dataType: 'json',
-                    data: function (params) {
-                        return {
-                            q: $.trim(params.term)
-                        };
-                    },
-                    processResults: function (data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
-                }
-            });
-        });
-
         $('#table-list').DataTable({
             processing: true,
             serverSide: true,
@@ -127,7 +104,7 @@
                     $.redirect(deleteUrl, {"_token": csrf});
                 }
                 swal.close();
-            });;
+            });
         });
     });
 </script>
@@ -158,14 +135,11 @@
                 <div class="ibox-title">
                     <h5>Daftar Peserta Aktif</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('kepesertaan/peserta-aktif/create') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('kepesertaan/peserta-aktif/create') }}" class="btn btn-primary btn-xs">
                             <i class="fa fa-plus"></i>
                             Tambah Peserta Aktif
                         </a>
-                        <a href="#" class="btn btn-primary btn-xs modal-form">
-                            <i class="fa fa-plus"></i>
-                            Import data
-                        </a>
+                        <a href="#modalUpload" class="btn btn-primary btn-xs" data-toggle="modal">Upload Excel <i class="fa fa-upload"></i></a>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -191,35 +165,25 @@
     </div>
 </div>
 
-<div class="modal inmodal fade" id="import-peserta" tabindex="-1" role="dialog"  aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+<div class="modal inmodal" id="modalUpload" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content animated bounceInRight">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Import Data Kepesertaan</h4>
-                <small class="font-bold">Masukkan file csv</small>
+                <h4 class="modal-title">Upload Excel</h4>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <form action="{{ url('kepesertaan/peserta-aktif/import') }}" method="POST" class="form-horizontal" id="inputForm" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                            <div class="form-group row">
-                                <div class="custom-file">
-                                    <input id="logo" type="file" class="custom-file-input" name="peserta_file">
-                                    <label for="logo" class="custom-file-label">Choose file...</label>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-sm-offset-2">
-                                    <button class="btn btn-white btn-sm" type="reset">Cancel</button>
-                                    <button class="btn btn-primary btn-sm" type="submit">Submit data</button>
-                                </div>
-                            </div>
-                        </form>
+            <form action="{{ url('kepesertaan/peserta-aktif/upload') }}" method="post" role="form" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="file" class="form-control" name="excel">
                     </div>
                 </div>
-            </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-white" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Upload <i class="fa fa-upload"></i></button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
