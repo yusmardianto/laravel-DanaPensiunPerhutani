@@ -26,7 +26,7 @@ class Kepesertaan extends Model
 
     public function regency()
     {
-        return $this->belongsTo('App\Models\Regencies', 'tempat_lahir');
+        return $this->belongsTo('App\Models\Regencies', 'tempat_lahir', 'name');
     }
 
     public function jeniskelamin()
@@ -36,11 +36,16 @@ class Kepesertaan extends Model
 
     public function religi()
     {
-        return $this->belongsTo('App\Models\Religion', 'agama');
+        return $this->belongsTo('App\Models\Religion', 'agama', 'name');
     }
 
     public function stat()
     {
         return $this->belongsTo('App\Models\Masters\MasterStatus', 'status', 'name');
+    }
+
+    public function iuran()
+    {
+        return $this->belongsTo('App\Models\Kepesertaan\IuranPensiunan\RapelExtra', 'kode_aktif', 'kd_peserta');
     }
 }

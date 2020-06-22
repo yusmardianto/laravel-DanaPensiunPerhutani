@@ -193,6 +193,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('rapel-extra/edit/{id}', 'RapelExtraController@getEdit');
             Route::post('rapel-extra/edit/{id}', 'RapelExtraController@postEdit');
             Route::post('rapel-extra/delete/{id}', 'RapelExtraController@destroy');
+            Route::post('rapel-extra/upload', 'RapelExtraController@uploadExcel');
 
         });
 
