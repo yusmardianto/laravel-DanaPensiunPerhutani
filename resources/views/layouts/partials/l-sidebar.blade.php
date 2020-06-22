@@ -111,7 +111,7 @@ $user = Auth::user();
                             <li @if(Request::segment(3) == 'rapel-extra') class="active" @endif>
                                 <a href="{{ url('kepesertaan/iuranpensiunan/rapel-extra') }}">Rapel & Extra Iuran Normal per Peserta</a>
                             </li>
-                            <li @if(Request::segment(3) == 'prosentase') class="active" @endif>
+                            {{-- <li @if(Request::segment(3) == 'prosentase') class="active" @endif>
                                 <a href="{{ url('kepesertaan/iuranpensiunan/prosentase') }}">Prosentase Iuran Pensiun</a>
                             </li>
                             <li @if(Request::segment(3) == 'form') class="active" @endif>
@@ -119,7 +119,7 @@ $user = Auth::user();
                             </li>
                             <li @if(Request::segment(3) == 'kalkulasi') class="active" @endif>
                                 <a href="{{ url('kepesertaan/iuranpensiunan/kalkulasi') }}">Kalkulasi Piutang Iuran Pensiun</a>
-                            </li>
+                            </li> --}}
                             <li @if(Request::segment(3) == 'tambahan') class="active" @endif>
                                 <a href="{{ url('kepesertaan/iuranpensiunan/tambahan') }}">Iuran Tambahan</a>
                             </li>
