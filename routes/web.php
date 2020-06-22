@@ -198,7 +198,7 @@ Route::group(['middleware' => ['auth']], function() {
 
         //manfaat pensiunan
         Route::prefix('manfaatpensiunan')->group(function(){
-
+            //rapelextra
             Route::get('rapelextramanfaat', 'RapelExtraManfaatController@index');
             Route::any('rapelextramanfaat/ajax-list', 'RapelExtraManfaatController@ajaxList');
             Route::get('rapelextramanfaat/create', 'RapelExtraManfaatController@getCreate');
@@ -207,6 +207,15 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('rapelextramanfaat/edit/{id}', 'RapelExtraManfaatController@getEdit');
             Route::post('rapelextramanfaat/edit/{id}', 'RapelExtraManfaatController@postEdit');
             Route::post('rapelextramanfaat/destroy/{id}', 'RapelExtraManfaatControllerr@destroy');
+            Route::post('rapelextramanfaat/upload', 'RapelExtraManfaatControllerr@uploadExcel');
+
+            //kalkulasimanfaat
+            Route::get('kalkulasimanfaat', 'KalkulasiManfaatController@index');
+            Route::any('kalkulasimanfaat/ajax-list', 'KalkulasiManfaatController@ajaxList');
+            Route::get('kalkulasimanfaat/detail/{id}', 'KalkulasiManfaatController@getDetail');
+            Route::get('kalkulasimanfaat/edit/{id}', 'KalkulasiManfaatController@getEdit');
+            Route::post('kalkulasimanfaat/edit/{id}', 'KalkulasiManfaatController@postEdit');
+            Route::post('kalkulasimanfaat/destroy/{id}', 'KalkulasiManfaatControllerr@destroy');
 
         });
 

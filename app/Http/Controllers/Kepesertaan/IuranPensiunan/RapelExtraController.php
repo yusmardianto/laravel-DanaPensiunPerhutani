@@ -105,8 +105,8 @@ class RapelExtraController extends Controller
 
     public function postEdit(Request $request, $id)
     {
-        $peserta = $request->kd_peserta;
-        $arr_peserta = explode(' - ', $peserta);
+            $peserta = $request->kd_peserta;
+            $arr_peserta = explode(' - ', $peserta);
 
         $data = RapelExtra::find($id);
 
