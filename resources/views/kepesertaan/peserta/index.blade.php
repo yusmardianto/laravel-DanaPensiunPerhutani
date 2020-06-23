@@ -25,7 +25,7 @@
     $(function() {
         var $url = "{{ config('app.url') }}";
 
-        $.ajaxSetup({
+        $.ajaxSetup({   
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
@@ -33,8 +33,8 @@
 
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
-            { data: 'nama', name: 'nama' },
             { data: 'kode_aktif', name: 'kode_aktif' },
+            { data: 'nama', name: 'nama' },
             { data: 'nip', name: 'nip' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
@@ -54,7 +54,7 @@
                     "width": "4%"
                 },
                 {
-                    "targets": [2,3],
+                    "targets": [1,3],
                     "className": "text-center",
                 },
                 {
@@ -150,8 +150,8 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Peserta</th>
                                 <th>Kode Aktif</th>
+                                <th>Nama Peserta</th>
                                 <th>Nomor Induk Pegawai</th>
                                 <th>Aksi</th>
                             </tr>

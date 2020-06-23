@@ -119,26 +119,14 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Kode Pensiun</label>
+                                        <label class="col-sm-2 col-form-label">Kode Pensiun / Nama</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" name="kode_pensiun" value="{{ $data->kode_pensiun }}">
-                                        </div>
-                                    </div>
-                                {{-- <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Kode Pensiun</label>
-                                    <div class="col-sm-6">
-                                        <select name="rapelextra" id="select-kodepensiun">
-                                            <option value=""></option>
-                                            @foreach($kodepensiun as $kdpensiun)
-                                            <option value="{{ $kdpensiun->id }}">{{ $kdpensiun->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div> --}}
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Nama</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" name="nama" value="{{ $data->nama }}">
+                                            <select name="kd_peserta" id="select-kodepensiun">
+                                                <option value=""></option>
+                                                @foreach($peserta as $row)
+                                                <option value="{{ $row->kode_aktif }} - {{ $row->nama }}"  @if ($data->kode_pensiun == $row->kode_aktif) selected="" @endif>{{ $row->kode_aktif }} - {{ $row->nama }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row" id="data_1">

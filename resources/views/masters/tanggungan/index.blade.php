@@ -1,20 +1,11 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Rapel & Extra Iuran')
+@section('title', config('app.name').' | Master Tanggungan')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
-<style>
-    th {
-        font-size: 13px;
-        text-align: center;
-    }
-    td {
-        font-size: 13px;
-    }
-</style>
 @endsection
 
 @section('scripts')
@@ -33,10 +24,8 @@
 
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
-            { data: 'kd_voucher', name: 'kd_voucher' },
-            { data: 'no_transaksi', name: 'no_transaksi' },
-            { data: 'tgl_transaksi', name: 'tgl_transaksi' },
-            { data: 'nama_peserta', name: 'nama_peserta' },
+            { data: 'name', name: 'name' },
+            { data: 'keterangan', name: 'keterangan' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
@@ -44,7 +33,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('kepesertaan/iuranpensiunan/rapel-extra/ajax-list') !!}',
+                url: '{!! url('masters/tanggungan/ajax-list') !!}',
                 method: 'POST'
             },
             columns: $column,
@@ -55,7 +44,12 @@
                     "width": "4%"
                 },
                 {
-                    "targets": 5,
+                    "targets": 1, // your case first column
+                    "className": "text-center",
+                    "width": "30%"
+                },
+                {
+                    "targets": 3,
                     "width": "21%"
                 }
             ],
@@ -73,11 +67,12 @@
 
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
-            var deleteUrl = "{{ url('kepesertaan/iuranpensiunan/rapel-extra/delete') }}" + "/" + dataId;
+            var dataName = $(this).data('name');
+            var deleteUrl = "{{ url('masters/tanggungan/destroy') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
-                text: "Hapus data transaksi ?" ,
+                text: "Hapus data : "+ dataName +" ?" ,
                 icon: "warning",
                 dangerMode: true,
                 buttons: {
@@ -109,17 +104,13 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Rapel & Extra Iuran Normal per Peserta</h2>
+        <h2>Master Tanggungan</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
             </li>
-            <li class="breadcrumb-item">Kepesertaan
-            </li>
-            <li class="breadcrumb-item">Iuran Pensiunan
-            </li>
             <li class="breadcrumb-item active">
-                <strong>Rapel & Extra Iuran Normal per Peserta</strong>
+                <strong>Master Tanggungan</strong>
             </li>
         </ol>
     </div>
@@ -133,13 +124,12 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Transaksi Rapel & Extra Iuran Normal per Peserta</h5>
+                    <h5>Master Tanggungan</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('kepesertaan/iuranpensiunan/rapel-extra/create') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('masters/tanggungan/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
-                            Tambah Transaksi
+                            Tambah data tanggungan
                         </a>
-                        <a href="#modalUpload" class="btn btn-primary btn-xs" data-toggle="modal">Upload Excel <i class="fa fa-upload"></i></a>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -150,10 +140,8 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kode Voucher</th>
-                                <th>No Transaksi</th>
-                                <th>Tanggal Transaksi</th>
-                                <th>Nama Peserta</th>
+                                <th>Tanggungan</th>
+                                <th>Keterangan</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
@@ -162,29 +150,6 @@
 
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal inmodal" id="modalUpload" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content animated bounceInRight">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Upload Excel</h4>
-            </div>
-            <form action="{{ url('kepesertaan/iuranpensiunan/rapel-extra/upload') }}" method="post" role="form" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input type="file" class="form-control" name="excel">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-white" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Upload <i class="fa fa-upload"></i></button>
-                </div>
-            </form>
         </div>
     </div>
 </div>

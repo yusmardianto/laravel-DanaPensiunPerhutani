@@ -25,22 +25,12 @@
             autoclose: true
         });
 
+
         $("#select-jenis_transaksi").select2({width:"100%", placeholder: "Pilih Jenis Transaksi", allowClear: true});
         $("#select-kodepensiun").select2({width:"100%", placeholder: "Pilih Kode Pensiun", allowClear: true});
         $("#select-kode_voucher").select2({width:"100%", placeholder: "Pilih Kode Voucher", allowClear: true});
-        // $("#select-jenis").on('change', function(){
-        //     if (($(this).val() !== null) && ($(this).val() !== "") && ($(this).val() !== undefined) && ($(this).val().length !== 0)) {
-        //         $.ajax({
-        //             url: "{{ url('kepesertaan/manfaatpensiunan/rapelextramanfaat/ajax-byJenis') }}" + "/" + $(this).val(),
-        //             method: 'GET',
-        //             success: function(data) {
-        //                 $("#kode_voucher");
-        //             }
-        //         }).fail(function() {
-        //             $("#kode_voucher").val();
-        //         });
-        //     }
-        // });
+
+
     });
 </script>
 @endsection
@@ -100,7 +90,7 @@
                                         <select name="kode_voucher" id="select-kode_voucher">
                                             <option value=""></option>
                                             @foreach($kodvcr as $row)
-                                            <option value="{{ $row->kode_voucher }}">{{ $row->kode_voucher }}</option>
+                                            <option value="{{ $row->kode_voucher }}">{{ $row->kode_voucher }} ({{ $row->nama_voucher }}) </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -125,28 +115,17 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Kode Pensiun</label>
+                                    <label class="col-sm-2 col-form-label">Kode Pensiun / Nama</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" name="kode_pensiun">
-                                    </div>
-                                </div>
-                                {{-- <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Kode Pensiun</label>
-                                    <div class="col-sm-6">
-                                        <select name="rapelextra" id="select-kodepensiun">
+                                        <select name="kode_pensiun" id="select-kodepensiun">
                                             <option value=""></option>
-                                            @foreach($kodepensiun as $kdpensiun)
-                                            <option value="{{ $kdpensiun->id }}">{{ $kdpensiun->name }}</option>
+                                            @foreach($peserta as $row)
+                                            <option value="{{ $row->kode_aktif }} - {{ $row->nama }}">{{ $row->kode_aktif }} - {{ $row->nama }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                </div> --}}
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Nama</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" name="nama">
-                                    </div>
                                 </div>
+
                                 <div class="form-group row" id="data_1">
                                     <label class="col-sm-2 col-form-label">Berlaku / Bulan</label>
                                     <div class="col-lg-2 input-group date">
@@ -181,8 +160,8 @@
                                     <div class="col-sm-2 col-sm-offset-2">
                                         <button class="btn btn-white btn-sm" type="reset">Batal</button>
                                         <button class="btn btn-primary btn-sm" type="submit">Simpan</button>
-                                    </div>
                                 </div>
+                            </div>
                     </form>
                 </div>
             </div>

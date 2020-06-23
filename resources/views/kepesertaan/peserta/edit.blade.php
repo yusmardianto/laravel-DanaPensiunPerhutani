@@ -157,6 +157,17 @@
                                 <input type="text" class="form-control" name="nip" value="{{ $data->nip }}">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Unit Kerja</label>
+                            <div class="col-sm-6">
+                                <select name="tanggungan" id="select-tanggungan">
+                                    <option value=""></option>
+                                    @foreach($unit_kerja as $kerjas)
+                                    <option value="{{ $kerjas->kd_unit }}" @if($data->unit_kerja == $kerjas->kd_unit) selected="" @endif>{{ $kerjas->kd_unit }} - {{ $kerjas->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group row" id="birthdate">
                             <label class="col-sm-2 col-form-label">Tempat / Tanggal Lahir</label>
                             <div class="col-sm-3">
@@ -198,8 +209,8 @@
                             <div class="col-sm-6">
                                 <select name="tanggungan" id="select-tanggungan">
                                     <option value=""></option>
-                                    @foreach($golongan as $gol)
-                                    <option value="{{ $gol->id }}" @if($data->tanggungan == $gol->id) selected="" @endif>{{ $gol->name }}</option>
+                                    @foreach($tanggungan as $row)
+                                    <option value="{{ $row->name }}" @if($data->tanggungan == $row->name) selected="" @endif>{{ $row->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

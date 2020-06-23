@@ -48,16 +48,6 @@
                     <div class="row">
                         <div class="col-md-6">
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Nomor SK Pensiun</dt> </div>
-                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1"></dd></div>
-                            </dl>
-                            <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Nomor Induk Pegawai</dt> </div>
-                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->nip }}</dd></div>
-                            </dl>
-                            <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Kode Aktif</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
                                 <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->kode_aktif }}</dd></div>
@@ -68,9 +58,19 @@
                                 <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->nama }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>Nomor Induk Pegawai</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->nip }}</dd></div>
+                            </dl>
+                            <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>Unit Kerja</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->unit_kerja }}</dd></div>
+                            </dl>
+                            <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Tempat Lahir</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->regency->name }}</dd></div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->tempat_lahir }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Tanggal Lahir</dt> </div>
@@ -80,12 +80,12 @@
                             <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Jenis Kelamin</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->jeniskelamin->name }}</dd> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->jenis_kelamin }}</dd> </div>
                             </dl>
                             <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Agama</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->religi->name }}</dd></div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->agama }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Email</dt> </div>
@@ -110,29 +110,34 @@
                                 <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->mk_peserta }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>Tanggungan</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->tanggungan }}</dd> </div>
+                            </dl>
+                            <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Golongan</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->gol->name }}</dd> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->golongan }}</dd> </div>
                             </dl>
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Gaji Golongan</dt> </div>
+                                <div class="col-sm-4 text-sm-left"><dt>Gaji Pokok</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->golongan_gaji }}</dd> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">Rp. {{ $data->gaji_pokok }}</dd> </div>
                             </dl>
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Status</dt> </div>
+                                <div class="col-sm-4 text-sm-left"><dt>Gaji PNS</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->stat->name }}</dd> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">Rp. {{ $data->gaji_pns }}</dd> </div>
                             </dl>
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Gaji Status</dt> </div>
+                                <div class="col-sm-4 text-sm-left"><dt>PhDP</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->status_gaji }}</dd> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">Rp. {{ $data->phdp }}</dd> </div>
                             </dl>
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Pangkat</dt> </div>
+                                <div class="col-sm-4 text-sm-left"><dt>Iuran Normal</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->pangkat }}</dd> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">Rp. {{ $data->iuran }}</dd> </div>
                             </dl>
                             <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Keterangan</dt> </div>

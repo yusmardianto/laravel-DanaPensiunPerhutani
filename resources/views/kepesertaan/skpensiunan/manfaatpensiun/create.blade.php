@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Tambah SK Pensiunan')
+@section('title', config('app.name').' | Tambah Manfaat Pensiunan')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -53,8 +53,8 @@
         });
 
         $("#select-periode").select2({width:"100%", placeholder: "- Pilih Periode -", allowClear: true});
-        $("#select-voucher").select2({width:"100%", placeholder: "- Pilih Voucher -", allowClear: true});
-        $("#select-unitkerja").select2({width:"100%", placeholder: "- Pilih Unit Kerja -", allowClear: true});
+        $("#select-voucher").select2({width:"100%", placeholder: "- Pilih Alasan -", allowClear: true});
+        $("#select-unitkerja").select2({width:"100%", placeholder: "- Pilih Unit Pembayaran -", allowClear: true});
         $("#select-kode-aktif").select2({width:"100%", placeholder: "- Pilih Peserta Aktif -", allowClear: true});
     });
 </script>
@@ -63,7 +63,7 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Tambah SK Pensiunan</h2>
+        <h2>Tambah Manfaat Pensiunan</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
@@ -72,7 +72,7 @@
                 <a href="{{ url('kepesertaan/skpensiunan/transaksiskpensiun') }}">Daftar SK Pensiunan</a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Tambah SK Pensiunan</strong>
+                <strong>Tambah Manfaat Pensiunan</strong>
             </li>
         </ol>
     </div>
@@ -84,7 +84,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Tambah SK Pensiunan</h5>
+                    <h5>Tambah Manfaat Pensiunan</h5>
                     <div class="ibox-tools">
                         <a href="{{ url('kepesertaan/skpensiunan/transaksiskpensiun') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>
@@ -96,10 +96,24 @@
                     @include('layouts.flashMessage')
                     <form method="post" action="{{ url()->current() }}" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Jenis Transaksi</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="jenis_transaksi">
+                        <div class="form-group row" id="data_1">
+                            <label class="col-sm-2 col-form-label">Penangguhan</label>
+                            <div class="col-lg-4 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="berlaku_dari">
+                            </div>
+                            <label class="col-sm-0 col-form-label"> - </label>
+                            <div class="col-lg-4 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="berlaku_sampai" style="text-align: right">
+                            </div>
+                        </div>
+                        <div class="form-group row" id="data_1">
+                            <label class="col-sm-2 col-form-label">Total MKp/MK</label>
+                            <div class="col-lg-4 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="berlaku_dari">
+                            </div>
+                            <label class="col-sm-0 col-form-label"> - </label>
+                            <div class="col-lg-4 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="berlaku_sampai" style="text-align: right">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -114,67 +128,63 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Kode Voucher</label>
+                            <label class="col-sm-2 col-form-label">Alasan</label>
                             <div class="col-sm-10">
                                 <select name="voucher" id="select-voucher">
                                     <option value=""></option>
-                                    @foreach($voucher as $vocer)
-                                    <option value="{{ $vocer->kode_voucher }} - {{ $vocer->nama_voucher }}">{{ $vocer->kode_voucher }} - {{ $vocer->nama_voucher }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Unit Kerja</label>
-                            <div class="col-sm-10">
-                                <select name="unit_kerja" id="select-unitkerja">
-                                    <option value=""></option>
-                                    @foreach($unit_kerja as $kerjas)
-                                    <option value="{{ $kerjas->kd_unit }} - {{ $kerjas->name }}">{{ $kerjas->kd_unit }} - {{ $kerjas->name }}</option>
+                                    @foreach($alasan as $rows)
+                                    <option value="{{ $rows->kode }} - {{ $rows->name }}">{{ $rows->kode }} - {{ $rows->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row" id="data_1">
-                            <label class="col-sm-2 col-form-label">Tanggal Pensiun</label>
+                            <label class="col-sm-2 col-form-label">Tanggal Alasan</label>
                             <div class="col-lg-10 input-group date">
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tanggal_pensiun">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">No Transaksi SK </label>
+                            <label class="col-sm-2 col-form-label">Unit Pembayaran</label>
+                            <div class="col-sm-10">
+                                <select name="unit_kerja" id="select-unitkerja">
+                                    <option value=""></option>
+                                    @foreach($unit_pembayaran as $rows)
+                                    <option value="{{ $rows->kode_unit }} - {{ $rows->name }}">{{ $rows->kode_unit }} - {{ $rows->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="data_1">
+                            <label class="col-sm-2 col-form-label">Tanggal MP DIbayar</label>
+                            <div class="col-lg-10 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tanggal_pensiun">
+                            </div>
+                        </div>
+                        <div class="form-group row" id="data_1">
+                            <label class="col-sm-2 col-form-label">Tanggal MP Turunan</label>
+                            <div class="col-lg-10 input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tanggal_pensiun">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">MP Sekaligus</label>
+                            <div class="col-lg-2 input-group date">
+                                <input type="text" class="form-control" name="berlaku_dari">
+                            </div>
+                            <label class="col-sm-0 col-form-label">MP Pertama</label>
+                            <div class="col-lg-2 input-group date">
+                                <input type="text" class="form-control" name="berlaku_sampai" style="text-align: right">
+                            </div>
+                            <label class="col-sm-0 col-form-label">MP Bulanan</label>
+                            <div class="col-lg-2 input-group date">
+                                <input type="text" class="form-control" name="berlaku_sampai" style="text-align: right">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">No.Rekening A/N Lain</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="no_trx_sk">
-                            </div>
-                        </div>
-                        <div class="form-group row" id="data_2">
-                            <label class="col-sm-2 col-form-label">Tanggal Transaksi SK </label>
-                            <div class="col-lg-10 input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_trx_sk">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">No SK Pensiun</label>
-                            <div class="col-lg-10 input-group date">
-                                <input type="text" class="form-control" name="no_sk_pensiun">
-                            </div>
-                        </div>
-                        <div class="form-group row" id="data_3">
-                            <label class="col-sm-2 col-form-label">Tanggal SK Pensiun</label>
-                            <div class="col-lg-10 input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_sk_pensiun">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">No SK PHK</label>
-                            <div class="col-lg-10 input-group date">
-                                <input type="text" class="form-control" name="no_sk_phk">
-                            </div>
-                        </div>
-                        <div class="form-group row" id="data_4">
-                            <label class="col-sm-2 col-form-label">Tanggal SK PHK</label>
-                            <div class="col-lg-10 input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_sk_phk">
                             </div>
                         </div>
                         <input type="text" class="form-control" hidden name="status" value="0">
