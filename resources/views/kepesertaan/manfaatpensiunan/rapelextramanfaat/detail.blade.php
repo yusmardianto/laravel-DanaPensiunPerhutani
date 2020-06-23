@@ -104,12 +104,16 @@
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
                                 <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->nonpph21}}</dd></div>
                             </dl>
+                            <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>Jumlah Manfaat</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{ }</dd></div>
+                            </dl>
                              <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Keterangan</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
                                 <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->keterangan}}</dd></div>
                             </dl>
-
                         </div>
                     </div>
                 </div>
