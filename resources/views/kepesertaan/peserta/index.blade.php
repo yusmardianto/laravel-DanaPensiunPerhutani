@@ -25,7 +25,7 @@
     $(function() {
         var $url = "{{ config('app.url') }}";
 
-        $.ajaxSetup({
+        $.ajaxSetup({   
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }

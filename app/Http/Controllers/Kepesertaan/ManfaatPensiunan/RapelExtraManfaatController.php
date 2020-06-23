@@ -91,7 +91,7 @@ class RapelExtraManfaatController extends Controller
             $excel1 = null;
         }
 
-        Excel::import(new RapelManfaatImport, public_path('/files/'.$excel1));
+        Excel::import(new ManfaatImport, public_path('/files/'.$excel1));
         return redirect()->back()->with('success', 'Berhasil Upload File');
     }
 
@@ -165,5 +165,9 @@ class RapelExtraManfaatController extends Controller
         } else {
             return redirect()->back()->with('error', 'Data tidak ditemukan');
         }
+    }
+    public function hitung($id)
+    {
+
     }
 }
