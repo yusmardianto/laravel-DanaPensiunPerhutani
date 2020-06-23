@@ -40,7 +40,7 @@
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
-        $('#table-list').DataTable({
+        $('#table-list1').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
@@ -71,27 +71,66 @@
             }
         });
 
-        $(document).on('click', '.modal-form', function() {
-            $('#import-sk').modal({show:true});
-            $('#sk').select2({
-                placeholder: "Choose File SK...",
-                minimumInputLength: 2,
-                ajax: {
-                    url: "{{ url('load-member') }}",
-                    dataType: 'json',
-                    data: function (params) {
-                        return {
-                            q: $.trim(params.term)
-                        };
-                    },
-                    processResults: function (data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
+        $('#table-list2').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: '{!! url('kepesertaan/skpensiunan/manfaatpensiun/ajax-list') !!}',
+                method: 'POST'
+            },
+            columns: $column,
+            columnDefs: [
+                {
+                    "targets": 0, // your case first column
+                    "className": "text-center",
+                    "width": "4%"
+                },
+                {
+                    "targets": 5,
+                    "width": "21%"
                 }
-            });
+            ],
+            initComplete: function () {
+                this.api().columns().every(function () {
+                    var column = this;
+                    var input = document.createElement("input");
+                    $(input).appendTo($(column.footer()).empty())
+                    .on('change', function () {
+                        column.search($(this).val(), false, false, true).draw();
+                    });
+                });
+            }
+        });
+
+        $('#table-list3').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: '{!! url('kepesertaan/skpensiunan/transaksiskpensiun/ajax-list') !!}',
+                method: 'POST'
+            },
+            columns: $column,
+            columnDefs: [
+                {
+                    "targets": 0, // your case first column
+                    "className": "text-center",
+                    "width": "4%"
+                },
+                {
+                    "targets": 5,
+                    "width": "21%"
+                }
+            ],
+            initComplete: function () {
+                this.api().columns().every(function () {
+                    var column = this;
+                    var input = document.createElement("input");
+                    $(input).appendTo($(column.footer()).empty())
+                    .on('change', function () {
+                        column.search($(this).val(), false, false, true).draw();
+                    });
+                });
+            }
         });
 
         $(document).on('click', '.delete-btn', function() {
@@ -148,28 +187,41 @@
     </div>
 </div>
 
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox ">
-                <div class="ibox-title">
-                    <h5>SK Pensiunan</h5>
-                    <div class="ibox-tools">
-                        <a href="{{ url('kepesertaan/skpensiunan/transaksiskpensiun/create') }}" class="btn btn-primary btn-xs modal-form">
-                            <i class="fa fa-plus"></i>
-                            Tambah data
-                        </a>
-                        <a href="#" class="btn btn-primary btn-xs modal-form">
-                            <i class="fa fa-plus"></i>
-                            Import data
-                        </a>
+<div class="row m-t-lg">
+    <div class="col-lg-12">
+        <div class="tabs-container">
+            <ul class="nav nav-tabs">
+                <li><a class="nav-link active" data-toggle="tab" href="#tab-1">
+                    <span class="class">Transaksi SK Pensiunan</span>
+                </a>
+                </li>
+                <li><a class="nav-link" data-toggle="tab" href="#tab-2">
+                    <span class="class">Manfaat Pensiunan</span>
+                </a>
+                </li>
+                <li><a class="nav-link" data-toggle="tab" href="#tab-3">
+                    <span class="class">Penerima Manfaat Pensiun</span>
+                </a>
+                </li>
+                <li><a class="nav-link" data-toggle="tab" href="#tab-4">
+                    <span class="class">Formula Manfaat Pensiunan</span>
+                </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane active">
+                    <div class="ibox-title">
+                        <div>
+                            <a href="{{ url('kepesertaan/skpensiunan/transaksiskpensiun/create') }}" class="btn btn-primary btn-xs modal-form">
+                                <i class="fa fa-plus"></i>
+                                Tambah data
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="ibox-content">
-                    @include('layouts.flashMessage')
-
-                    <div class="table-responsive">
-                        <table class="table table-striped" id="table-list">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                        @include('layouts.flashMessage')
+                        <table class="table table-striped " id="table-list1" style="width:100%">
                             <thead>
                             <tr>
                                 <th>No</th>
@@ -182,39 +234,84 @@
                             </thead>
                         </table>
                     </div>
-
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal inmodal fade" id="import-sk" tabindex="-1" role="dialog"  aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Import Data SK Pensiun</h4>
-                <small class="font-bold">Masukkan file csv</small>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <form action="{{ url('kepesertaan/skpensiunan/transaksiskpensiun/import') }}" method="POST" class="form-horizontal" id="inputForm" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                            <div class="form-group row">
-                                <div class="custom-file">
-                                    <input id="logo" type="file" class="custom-file-input" name="sk_file">
-                                    <label for="logo" class="custom-file-label">Choose file...</label>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-sm-offset-2">
-                                    <button class="btn btn-white btn-sm" type="reset">Cancel</button>
-                                    <button class="btn btn-primary btn-sm" type="submit">Submit data</button>
-                                </div>
-                            </div>
-                        </form>
+                <div id="tab-2" class="tab-pane">
+                    <div class="ibox-title">
+                        <div>
+                            <a href="{{ url('kepesertaan/skpensiunan/manfaatpensiun/create') }}" class="btn btn-primary btn-xs modal-form">
+                                <i class="fa fa-plus"></i>
+                                Tambah data
+                            </a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                        <table class="table table-striped " id="table-list2" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Penangguhan</th>
+                                <th>Nama Peserta</th>
+                                <th>Alasan Pensiun</th>
+                                <th>Tanggal Pensiun</th>
+                                <th>Aksi</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+                <div id="tab-3" class="tab-pane">
+                    <div class="ibox-title">
+                        <div>
+                            <a href="{{ url('kepesertaan/skpensiunan/transaksiskpensiun/create') }}" class="btn btn-primary btn-xs modal-form">
+                                <i class="fa fa-plus"></i>
+                                Tambah data
+                            </a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                        <table class="table table-striped " id="table-list3" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nomer KK</th>
+                                <th>Nama Penerima</th>
+                                <th>NPWP</th>
+                                <th>Alamat</th>
+                                <th>Aksi</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+                <div id="tab-4" class="tab-pane">
+                    <div class="ibox-title">
+                        <div>
+                            <a href="{{ url('kepesertaan/skpensiunan/transaksiskpensiun/create') }}" class="btn btn-primary btn-xs modal-form">
+                                <i class="fa fa-plus"></i>
+                                Tambah data
+                            </a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                        <table class="table table-striped " id="table-list4" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Penangguhan</th>
+                                <th>Nama Peserta</th>
+                                <th>Alasan Pensiun</th>
+                                <th>Tanggal Pensiun</th>
+                                <th>Aksi</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
                     </div>
                 </div>
             </div>

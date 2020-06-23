@@ -174,6 +174,12 @@ Route::group(['middleware' => ['auth']], function() {
             Route::post('transaksiskpensiun/destroy/{id}', 'SKPensiunanController@destroy');
             Route::post('transaksiskpensiun/import', 'SKPensiunanController@postImport');
 
+            //Penetapan Manfaat Pensiun
+            Route::get('manfaatpensiun/create', 'PenetapanSKMPController@getCreate');
+            Route::any('manfaatpensiun/ajax-list', 'PenetapanSKMPController@ajaxList');
+
+            //Penetapan Penerima Manfaat Pensiun
+
             //Simulasi Manfaat Pensiunan
             Route::get('simulasimp', 'SimulasiManfaatPensiunController@index');
             Route::get('simulasimp/create', 'SimulasiManfaatPensiunController@getCreate');
