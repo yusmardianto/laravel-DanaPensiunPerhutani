@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Gender;
 use App\Models\Kepesertaan\Kepesertaan;
+use App\Models\Masters\MasterUnitKerja;
 use App\Models\Masters\MasterBank;
 use App\Models\Masters\MasterGolongan;
 use App\Models\Masters\MasterStatus;
 use App\Models\Regencies;
 use App\Models\Religion;
 use App\Imports\KepesertaanImport;
+use App\Models\Masters\MasterTanggungan;
 use DataTables, Hasher, Validator, DB, Excel;
 
 class PesertaAktifController extends Controller
@@ -41,12 +43,14 @@ class PesertaAktifController extends Controller
 
     public function getCreate(Request $request)
     {
+        $unit_kerja = MasterUnitKerja::all();
         $regencies = Regencies::all();
         $gender = Gender::all();
         $religion = Religion::all();
+        $tanggungan = MasterTanggungan::all();
         $golongan = MasterGolongan::all();
         $status = MasterStatus::all();
-        return view('kepesertaan.peserta.create', compact('golongan','status','regencies','gender','religion'));
+        return view('kepesertaan.peserta.create', compact('unit_kerja','tanggungan','golongan','status','regencies','gender','religion'));
     }
 
     public function postCreate(Request $request)
@@ -72,6 +76,7 @@ class PesertaAktifController extends Controller
         $data->kode_aktif = $request->kode_aktif;
         $data->nama = $request->nama;
         $data->nip = $request->nip;
+        $data->unit_kerja = $request->unit_kerja;
         $data->tempat_lahir = $request->tempat_lahir;
         $data->birthdate = $request->birthdate;
         $data->jenis_kelamin = $request->jenis_kelamin;
@@ -81,9 +86,9 @@ class PesertaAktifController extends Controller
         $data->tgl_jadi_peserta = $request->tgl_jadi_peserta;
         $data->mk_peserta = $request->mk_peserta;
         $data->golongan = $request->golongan;
-        $data->golongan_gaji = $request->golongan_gaji;
+        $data->gaji_pokok = $request->gaji_pokok;
         $data->status = $request->status;
-        $data->status_gaji = $request->status_gaji;
+        $data->gaji_pns = $request->gaji_pns;
         $data->pangkat = $request->pangkat;
         $data->email = $request->email;
         $data->keterangan = $request->keterangan;
@@ -98,7 +103,7 @@ class PesertaAktifController extends Controller
 
     public function getDetail($id)
     {
-        $data = Kepesertaan::with('sk','regency','jeniskelamin','religi','gol','stat')->find($id);
+        $data = Kepesertaan::with('unit','tanggungan','sk','regency','jeniskelamin','religi','gol','stat')->find($id);
         if(isset($data))
         {
             return view('kepesertaan.peserta.detail', compact('data'));
@@ -111,16 +116,18 @@ class PesertaAktifController extends Controller
 
     public function getEdit($id)
     {
+        $unit_kerja = MasterUnitKerja::all();
         $regencies = Regencies::all();
         $gender = Gender::all();
         $religion = Religion::all();
+        $tanggungan = MasterTanggungan::all();
         $golongan = MasterGolongan::all();
         $status = MasterStatus::all();
 
         $data = Kepesertaan::find($id);
         if(isset($data))
         {
-            return view('kepesertaan.peserta.edit', compact('regencies','gender','religion','golongan','status','data'));
+            return view('kepesertaan.peserta.edit', compact('unit_kerja','tanggungan','regencies','gender','religion','golongan','status','data'));
         }
         else
         {
@@ -153,6 +160,7 @@ class PesertaAktifController extends Controller
             $data->kode_aktif = $request->kode_aktif;
             $data->nama = $request->nama;
             $data->nip = $request->nip;
+            $data->unit_kerja = $request->unit_kerja;
             $data->tempat_lahir = $request->tempat_lahir;
             $data->birthdate = $request->birthdate;
             $data->jenis_kelamin = $request->jenis_kelamin;
@@ -192,22 +200,22 @@ class PesertaAktifController extends Controller
 
     public function getByGolongan($golId)
     {
-        $html = 'Rp'. "";
+        // $html = 'Rp'. "";
         $data = MasterGolongan::where('id', $golId)->first();
         if(isset($data))
         {
-            $html = 'Rp '. number_format($data->gajipokok, 2, ".", ",");
+            $html = number_format($data->gajipokok, 2, ".", ",");
         }
         return response()->json(['html' => $html]);
     }
 
     public function getByStatus($statId)
     {
-        $html = 'Rp'. "";
+        // $html = 'Rp'. "";
         $data = MasterStatus::where('id', $statId)->first();
         if(isset($data))
         {
-            $html = 'Rp '. number_format($data->gajipokok, 2, ".", ",");
+            $html = number_format($data->gajipokok, 2, ".", ",");
         }
         return response()->json(['html' => $html]);
     }

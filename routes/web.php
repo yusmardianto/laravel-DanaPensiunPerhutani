@@ -145,6 +145,16 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('alasan/edit/{id}', 'AlasanPensiunController@postEdit');
         Route::post('alasan/destroy/{id}', 'AlasanPensiunController@destroy');
 
+        //Tanggungan
+        Route::get('tanggungan', 'MasterTanggunganController@index');
+        Route::get('tanggungan/create', 'MasterTanggunganController@getCreate');
+        Route::post('tanggungan/create', 'MasterTanggunganController@postCreate');
+        Route::any('tanggungan/ajax-list', 'MasterTanggunganController@ajaxList');
+        Route::get('tanggungan/detail/{id}', 'MasterTanggunganController@getDetail');
+        Route::get('tanggungan/edit/{id}', 'MasterTanggunganController@getEdit');
+        Route::post('tanggungan/edit/{id}', 'MasterTanggunganController@postEdit');
+        Route::post('tanggungan/destroy/{id}', 'MasterTanggunganController@destroy');
+
     });
 
     Route::prefix('kepesertaan')->group(function () {
