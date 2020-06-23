@@ -145,6 +145,16 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('alasan/edit/{id}', 'AlasanPensiunController@postEdit');
         Route::post('alasan/destroy/{id}', 'AlasanPensiunController@destroy');
 
+        //Tanggungan
+        Route::get('tanggungan', 'MasterTanggunganController@index');
+        Route::get('tanggungan/create', 'MasterTanggunganController@getCreate');
+        Route::post('tanggungan/create', 'MasterTanggunganController@postCreate');
+        Route::any('tanggungan/ajax-list', 'MasterTanggunganController@ajaxList');
+        Route::get('tanggungan/detail/{id}', 'MasterTanggunganController@getDetail');
+        Route::get('tanggungan/edit/{id}', 'MasterTanggunganController@getEdit');
+        Route::post('tanggungan/edit/{id}', 'MasterTanggunganController@postEdit');
+        Route::post('tanggungan/destroy/{id}', 'MasterTanggunganController@destroy');
+
     });
 
     Route::prefix('kepesertaan')->group(function () {
@@ -205,7 +215,7 @@ Route::group(['middleware' => ['auth']], function() {
 
         //manfaat pensiunan
         Route::prefix('manfaatpensiunan')->group(function(){
-
+            //rapelextra
             Route::get('rapelextramanfaat', 'RapelExtraManfaatController@index');
             Route::any('rapelextramanfaat/ajax-list', 'RapelExtraManfaatController@ajaxList');
             Route::get('rapelextramanfaat/create', 'RapelExtraManfaatController@getCreate');
@@ -213,7 +223,11 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('rapelextramanfaat/detail/{id}', 'RapelExtraManfaatController@getDetail');
             Route::get('rapelextramanfaat/edit/{id}', 'RapelExtraManfaatController@getEdit');
             Route::post('rapelextramanfaat/edit/{id}', 'RapelExtraManfaatController@postEdit');
-            Route::post('rapelextramanfaat/destroy/{id}', 'RapelExtraManfaatControllerr@destroy');
+            Route::post('rapelextramanfaat/delete/{id}', 'RapelExtraManfaatControllerr@destroy');
+            Route::post('rapelextramanfaat/hitung/{id}', 'RapelExtraManfaatControllerr@postcreate');
+            Route::post('rapelextramanfaat/upload', 'RapelExtraManfaatControllerr@uploadExcel');
+
+
 
         });
 

@@ -110,6 +110,11 @@
                                 <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->mk_peserta }}</dd></div>
                             </dl>
                             <dl class="row mb-0">
+                                <div class="col-sm-4 text-sm-left"><dt>Tanggungan</dt> </div>
+                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
+                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->tanggungan }}</dd> </div>
+                            </dl>
+                            <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Golongan</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
                                 <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->golongan }}</dd> </div>

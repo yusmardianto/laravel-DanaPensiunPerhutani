@@ -80,6 +80,7 @@
             }
         });
 
+        $("#select-unitkerja").select2({width:"100%", placeholder: "- Pilih Unit Kerja -", allowClear: true});
         $("#select-regencies").select2({width:"100%", placeholder: "Pilih Tempat", allowClear: true});
         $("#select-jeniskelamin").select2({width:"100%", placeholder: "Jenis Kelamin", allowClear: true});
         $("#select-agama").select2({width:"100%", placeholder: "Pilih Agama", allowClear: true});
@@ -146,13 +147,24 @@
                                 <input type="text" class="form-control" name="nip">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Unit Kerja</label>
+                            <div class="col-sm-6">
+                                <select name="unit_kerja" id="select-unitkerja">
+                                    <option value=""></option>
+                                    @foreach($unit_kerja as $kerjas)
+                                    <option value="{{ $kerjas->kd_unit }}">{{ $kerjas->kd_unit }} - {{ $kerjas->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group row" id="data_1">
                             <label class="col-sm-2 col-form-label">Tempat / Tanggal Lahir</label>
                             <div class="col-sm-3">
                                 <select name="tempat_lahir" id="select-regencies">
                                     <option value=""></option>
                                     @foreach($regencies as $regen)
-                                    <option value="{{ $regen->id }}">{{ $regen->name }}</option>
+                                    <option value="{{ $regen->name }}">{{ $regen->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -166,7 +178,7 @@
                                 <select name="jenis_kelamin" id="select-jeniskelamin">
                                     <option value=""></option>
                                     @foreach($gender as $gen)
-                                    <option value="{{ $gen->kode }}">{{ $gen->name }}</option>
+                                    <option value="{{ $gen->name }}">{{ $gen->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -177,7 +189,7 @@
                                 <select name="agama" id="select-agama">
                                     <option value=""></option>
                                     @foreach($religion as $rel)
-                                    <option value="{{ $rel->id }}">{{ $rel->name }}</option>
+                                    <option value="{{ $rel->name }}">{{ $rel->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -187,8 +199,8 @@
                             <div class="col-sm-6">
                                 <select name="tanggungan" id="select-tanggungan">
                                     <option value=""></option>
-                                    @foreach($golongan as $gol)
-                                    <option value="{{ $gol->id }}">{{ $gol->name }}</option>
+                                    @foreach($tanggungan as $row)
+                                    <option value="{{ $row->name }}">{{ $row->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -222,7 +234,7 @@
                                 </select>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" name="golongan_gaji" id="golongan_gaji" placeholder="Gaji Pokok" readonly style="text-align:right;">
+                                <input type="text" class="form-control" name="gaji_pokok" id="golongan_gaji" placeholder="Gaji Pokok" readonly style="text-align:right;">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -236,7 +248,7 @@
                                 </select>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" name="status_gaji" id="status_gaji" placeholder="Gaji Pokok" readonly style="text-align:right;">
+                                <input type="text" class="form-control" name="gaji_pns" id="status_gaji" placeholder="Gaji Pokok" readonly style="text-align:right;">
                             </div>
                         </div>
                         <div class="form-group row">
