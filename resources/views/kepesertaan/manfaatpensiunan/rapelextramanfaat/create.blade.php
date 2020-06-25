@@ -160,7 +160,7 @@
                                     <div class="col-sm-2 col-sm-offset-2">
                                         <button class="btn btn-white btn-sm" type="reset">Batal</button>
                                         <button class="btn btn-primary btn-sm" type="submit">Simpan</button>
-                                </div>
+                                    </div>
                             </div>
                     </form>
                 </div>

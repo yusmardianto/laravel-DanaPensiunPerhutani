@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\RapelExtraManfaatControllerr;
 use App\Models\Kepesertaan\ManfaatPensiunan\RapelExtraManfaat;
 use App\Models\Kepesertaan\Kepesertaan;
 use App\Models\Masters\MasterVoucher;
 use App\Models\JenisTransaksi;
-use App\Models\MasterAlasan;
 use App\Models\Masters\MasterAlasanPensiun;
-use DataTables, Hasher, Validator, DB;
+use App\Imports\RapelManfaatImport;
+use DataTables, Hasher, Excel, Validator, DB ;
 
 class RapelExtraManfaatController extends Controller
 {
@@ -52,7 +53,6 @@ class RapelExtraManfaatController extends Controller
         $peserta = $request->kode_pensiun;
         $arr_peserta = explode(' - ', $peserta);
 
-
         $data = new RapelExtraManfaat();
         $data->jenis_transaksi = $request->jenis_transaksi;
         $data->kode_voucher = $request->kode_voucher;
@@ -73,27 +73,6 @@ class RapelExtraManfaatController extends Controller
         }
     }
 
-    public function uploadExcel(Request $request)
-    {
-        set_time_limit(0);
-        ini_set('memory_limit', '-1');
-
-        $excel = $request->file('excel');
-        // Move Uploaded File
-        if(isset($excel))
-        {
-            $destinationPath = 'files';
-            $excel->move($destinationPath, $excel->getClientOriginalName());
-            $excel1 = $excel->getClientOriginalName();
-        }
-        else
-        {
-            $excel1 = null;
-        }
-
-        Excel::import(new ManfaatImport, public_path('/files/'.$excel1));
-        return redirect()->back()->with('success', 'Berhasil Upload File');
-    }
 
     public function getDetail($id)
     {
@@ -166,8 +145,27 @@ class RapelExtraManfaatController extends Controller
             return redirect()->back()->with('error', 'Data tidak ditemukan');
         }
     }
-    public function hitung($id)
+
+    public function uploadExcel(Request $request)
     {
 
+        set_time_limit(0);
+        ini_set('memory_limit', '-1');
+
+        $excel = $request->file('excel');
+        // Move Uploaded File
+        if(isset($excel))
+        {
+            $destinationPath = 'files';
+            $excel->move($destinationPath, $excel->getClientOriginalName());
+            $excel1 = $excel->getClientOriginalName();
+        }
+        else
+        {
+            $excel1 = null;
+        }
+
+        Excel::import(new RapelManfaatImport, public_path('/files/'.$excel1));
+        return redirect()->back()->with('success', 'Berhasil Upload File');
     }
 }

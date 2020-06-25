@@ -223,14 +223,11 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('rapelextramanfaat/detail/{id}', 'RapelExtraManfaatController@getDetail');
             Route::get('rapelextramanfaat/edit/{id}', 'RapelExtraManfaatController@getEdit');
             Route::post('rapelextramanfaat/edit/{id}', 'RapelExtraManfaatController@postEdit');
-            Route::post('rapelextramanfaat/delete/{id}', 'RapelExtraManfaatControllerr@destroy');
-            Route::post('rapelextramanfaat/hitung/{id}', 'RapelExtraManfaatControllerr@postcreate');
-            Route::post('rapelextramanfaat/upload', 'RapelExtraManfaatControllerr@uploadExcel');
-
-
+            Route::post('rapelextramanfaat/delete/{id}', 'RapelExtraManfaatController@destroy');
+            Route::post('rapelextramanfaat/hitung/{id}', 'RapelExtraManfaatController@postcreate');
+            Route::post('rapelextramanfaat/upload', 'RapelExtraManfaatController@uploadExcel');
 
         });
-
     });
 
     Route::prefix('investasi')->group(function () {
