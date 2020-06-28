@@ -17,7 +17,7 @@ class CreateRapelExtraManfaatsTable extends Migration
             $table->bigIncrements('id');
             $table->string('jenis_transaksi');
             $table->string('kode_voucher');
-            $table->string('no_trx');
+            $table->string('no_trx')->unique();
             $table->date('tgl_trx');
             $table->string('no_daftar_bayar_MP');
             $table->string('kode_pensiun');
