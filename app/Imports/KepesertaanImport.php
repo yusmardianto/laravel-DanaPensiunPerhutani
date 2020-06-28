@@ -13,6 +13,7 @@ class KepesertaanImport implements ToCollection, WithStartRow
     /**
     * @param Collection $collection
     */
+
     public function collection(Collection $collection)
     {
         foreach($collection as $row)
@@ -28,20 +29,41 @@ class KepesertaanImport implements ToCollection, WithStartRow
                 $iuran = $phdp*0.05;
             }
 
-            AppKepesertaan::create([
-                'kode_aktif' => $row[2],
-                'nip' => $row[3],
-                'nama' => $row[4],
-                'unit_kerja' => $row[5],
-                'mutasi_dari' => $row[6],
-                'golongan' => $row[7],
-                'tanggungan' => $row[8],
-                'gaji_pokok' => $row[9],
-                'gaji_pns' => $row[10],
-                'phdp' => $phdp,
-                'iuran' => $iuran,
-                'is_active' => 1,
-            ]);
+            $cek = AppKepesertaan::where('nip', $row[3])->first();
+            if(isset($cek))
+            {
+                AppKepesertaan::where('nip', $row[3])->update([
+                    'kode_aktif' => $row[2],
+                    'nip' => $row[3],
+                    'nama' => $row[4],
+                    'unit_kerja' => $row[5],
+                    'mutasi_dari' => $row[6],
+                    'golongan' => $row[7],
+                    'tanggungan' => $row[8],
+                    'gaji_pokok' => $row[9],
+                    'gaji_pns' => $row[10],
+                    'phdp' => $phdp,
+                    'iuran' => $iuran,
+                    'is_active' => 1,
+                ]);
+            }
+            else
+            {
+                AppKepesertaan::create([
+                    'kode_aktif' => $row[2],
+                    'nip' => $row[3],
+                    'nama' => $row[4],
+                    'unit_kerja' => $row[5],
+                    'mutasi_dari' => $row[6],
+                    'golongan' => $row[7],
+                    'tanggungan' => $row[8],
+                    'gaji_pokok' => $row[9],
+                    'gaji_pns' => $row[10],
+                    'phdp' => $phdp,
+                    'iuran' => $iuran,
+                    'is_active' => 1,
+                ]);
+            }
         }
     }
 

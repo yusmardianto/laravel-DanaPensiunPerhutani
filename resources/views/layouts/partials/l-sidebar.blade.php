@@ -139,7 +139,7 @@ $user = Auth::user();
                                     <a href="{{ url('kepesertaan/manfaatpensiunan/rapelextramanfaat') }}">Rapel Extra Manfaat Pensiunan</a>
                                 </li>
                                 <li @if(Request::segment(3) == 'kalkulasi-pembayaran-manfaat') class="active" @endif>
-                                    <a href="{{ url('kepesertaan/manfaatpensiunan/kalkulasimanfaat') }}">Kalkulasi Daftar Pembayaran Manfaat Pensiunan</a>
+                                    <a href="{{ url('kepesertaan/manfaatpensiunan/kalkulasidaftarmp') }}">Kalkulasi Daftar Pembayaran Manfaat Pensiunan</a>
                                 </li>
                                 <li @if(Request::segment(3) == 'koreksi-pembayaran-manfaat') class="active" @endif>
                                     <a href="{{ url('kepesertaan/manfaatpensiunan/koreksimanfaat') }}">Koreksi Daftar Pembayaran Manfaat Pensiunan</a>
