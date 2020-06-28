@@ -52,10 +52,9 @@
             autoclose: true
         });
 
-        $("#select-periode").select2({width:"100%", placeholder: "- Pilih Periode -", allowClear: true});
-        $("#select-voucher").select2({width:"100%", placeholder: "- Pilih Alasan -", allowClear: true});
-        $("#select-unitkerja").select2({width:"100%", placeholder: "- Pilih Unit Pembayaran -", allowClear: true});
-        $("#select-kode-aktif").select2({width:"100%", placeholder: "- Pilih Peserta Aktif -", allowClear: true});
+        $("#select-voucher").select2({width:"100%", placeholder: "Pilih Alasan", allowClear: true});
+        $("#select-unitkerja").select2({width:"100%", placeholder: "Pilih Unit Pembayaran", allowClear: true});
+        $("#select-kode-aktif").select2({width:"100%", placeholder: "Pilih Kode Aktif Peserta", allowClear: true});
     });
 </script>
 @endsection
@@ -109,11 +108,11 @@
                         <div class="form-group row" id="data_1">
                             <label class="col-sm-2 col-form-label">Total MKp/MK</label>
                             <div class="col-lg-4 input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="berlaku_dari">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="mkp_berlaku_dari">
                             </div>
                             <label class="col-sm-0 col-form-label"> - </label>
                             <div class="col-lg-4 input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="berlaku_sampai" style="text-align: right">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="mkp_berlaku_sampai" style="text-align: right">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -127,10 +126,29 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group row" id="data_1">
+                            <label class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-2">
+                                <label>Golongan</label>
+                                <input type="text" class="form-control" name="gaji_pokok" id="golongan_gaji" readonly style="text-align:left;">
+                            </div>
+                            <div class="col-sm-2">
+                                <label>Gaji Pokok</label>
+                                <input type="text" class="form-control" name="gaji_pokok" id="golongan_gaji" readonly style="text-align:left;">
+                            </div>
+                            <div class="col-sm-2">
+                                <label>PhDP</label>
+                                <input type="text" class="form-control" name="gaji_pokok" id="golongan_gaji" readonly style="text-align:left;">
+                            </div>
+                            <div class="col-sm-2">
+                                <label>Iuran</label>
+                                <input type="text" class="form-control" name="gaji_pokok" id="golongan_gaji" readonly style="text-align:left;">
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Alasan</label>
                             <div class="col-sm-10">
-                                <select name="voucher" id="select-voucher">
+                                <select name="alasan" id="select-voucher">
                                     <option value=""></option>
                                     @foreach($alasan as $rows)
                                     <option value="{{ $rows->kode }} - {{ $rows->name }}">{{ $rows->kode }} - {{ $rows->name }}</option>
@@ -141,13 +159,13 @@
                         <div class="form-group row" id="data_1">
                             <label class="col-sm-2 col-form-label">Tanggal Alasan</label>
                             <div class="col-lg-10 input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tanggal_pensiun">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_alasan">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Unit Pembayaran</label>
                             <div class="col-sm-10">
-                                <select name="unit_kerja" id="select-unitkerja">
+                                <select name="unit_pembayaran" id="select-unitkerja">
                                     <option value=""></option>
                                     @foreach($unit_pembayaran as $rows)
                                     <option value="{{ $rows->kode_unit }} - {{ $rows->name }}">{{ $rows->kode_unit }} - {{ $rows->name }}</option>
@@ -158,36 +176,35 @@
                         <div class="form-group row" id="data_1">
                             <label class="col-sm-2 col-form-label">Tanggal MP DIbayar</label>
                             <div class="col-lg-10 input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tanggal_pensiun">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_mpdibayar">
                             </div>
                         </div>
                         <div class="form-group row" id="data_1">
                             <label class="col-sm-2 col-form-label">Tanggal MP Turunan</label>
                             <div class="col-lg-10 input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tanggal_pensiun">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" name="tgl_mpturunan">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">MP Sekaligus</label>
                             <div class="col-lg-2 input-group date">
-                                <input type="text" class="form-control" name="berlaku_dari">
+                                <input type="text" class="form-control" name="mp_sekaligus">
                             </div>
                             <label class="col-sm-0 col-form-label">MP Pertama</label>
                             <div class="col-lg-2 input-group date">
-                                <input type="text" class="form-control" name="berlaku_sampai" style="text-align: right">
+                                <input type="text" class="form-control" name="mp_pertama" style="text-align: right">
                             </div>
                             <label class="col-sm-0 col-form-label">MP Bulanan</label>
                             <div class="col-lg-2 input-group date">
-                                <input type="text" class="form-control" name="berlaku_sampai" style="text-align: right">
+                                <input type="text" class="form-control" name="mp_bulanan" style="text-align: right">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">No.Rekening A/N Lain</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="no_trx_sk">
+                                <input type="text" class="form-control" name="no_rek_lain">
                             </div>
                         </div>
-                        <input type="text" class="form-control" hidden name="status" value="0">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Keterangan</label>
                             <div class="col-sm-10">

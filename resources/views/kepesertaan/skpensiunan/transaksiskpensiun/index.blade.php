@@ -55,6 +55,10 @@
                     "width": "4%"
                 },
                 {
+                    "targets": [0,1,2,3,4],
+                    "className": "text-center",
+                },
+                {
                     "targets": 5,
                     "width": "21%"
                 }
@@ -70,6 +74,16 @@
                 });
             }
         });
+
+        var $column = [
+            { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
+            { data: 'penangguhan_dari', name: 'penangguhan_dari' },
+            { data: 'penangguhan_sampai', name: 'penangguhan_sanpai' },
+            { data: 'nama_peserta', name: 'nama_peserta' },
+            { data: 'nama_alasan', name: 'nama_alasan' },
+            { data: 'mp_bulanan', name: 'mp_bulanan' },
+            { data: 'action', name: 'action', orderable: false, searchable: false },
+        ];
 
         $('#table-list2').DataTable({
             processing: true,
@@ -86,7 +100,11 @@
                     "width": "4%"
                 },
                 {
-                    "targets": 5,
+                    "targets": [0,1,2,3,4,5],
+                    "className": "text-center",
+                },
+                {
+                    "targets": 6,
                     "width": "21%"
                 }
             ],
@@ -102,11 +120,21 @@
             }
         });
 
+        var $column = [
+            { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
+            { data: 'no_kk', name: 'no_kk' },
+            { data: 'kode_aktif', name: 'kode_aktif' },
+            { data: 'penerima', name: 'penerima' },
+            { data: 'tempat_lahir', name: 'tempat_lahir' },
+            { data: 'tgl_lahir', name: 'tgl_lahir' },
+            { data: 'action', name: 'action', orderable: false, searchable: false },
+        ];
+
         $('#table-list3').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('kepesertaan/skpensiunan/transaksiskpensiun/ajax-list') !!}',
+                url: '{!! url('kepesertaan/skpensiunan/penerimamanfaat/ajax-list') !!}',
                 method: 'POST'
             },
             columns: $column,
@@ -117,7 +145,11 @@
                     "width": "4%"
                 },
                 {
-                    "targets": 5,
+                    "targets": [0,1,2,3,4,5],
+                    "className": "text-center",
+                },
+                {
+                    "targets": 6,
                     "width": "21%"
                 }
             ],
@@ -137,6 +169,39 @@
             var dataId = $(this).data('id');
             var dataName = $(this).data('name');
             var deleteUrl = "{{ url('kepesertaan/skpensiunan/transaksiskpensiun/destroy') }}" + "/" + dataId;
+            var csrf = "{{ csrf_token() }}";
+
+            swal({
+                text: "Hapus Data Pengguna "+ dataName +" ?" ,
+                icon: "warning",
+                dangerMode: true,
+                buttons: {
+                    cancel: {
+                        text: "Batal",
+                        value: false,
+                        visible: true,
+                        className: "btn btn-sm btn-white"
+                    },
+                    confirm: {
+                        text: "Hapus",
+                        value: true,
+                        visible: true,
+                        className: "btn btn-sm btn-danger",
+                        closeModal: true
+                    }
+                }
+            }).then((value) => {
+                if (value === true) {
+                    $.redirect(deleteUrl, {"_token": csrf});
+                }
+                swal.close();
+            });;
+        });
+
+        $(document).on('click', '.delete-btn', function() {
+            var dataId = $(this).data('id');
+            var dataName = $(this).data('name');
+            var deleteUrl = "{{ url('kepesertaan/skpensiunan/manfaatpensiun/destroy') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
@@ -251,10 +316,11 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Penangguhan</th>
+                                <th>Penangguhan Dari</th>
+                                <th>Penangguhan Sampai</th>
                                 <th>Nama Peserta</th>
                                 <th>Alasan Pensiun</th>
-                                <th>Tanggal Pensiun</th>
+                                <th>Manfaat Pensiun Bulanan</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
@@ -265,7 +331,7 @@
                 <div id="tab-3" class="tab-pane">
                     <div class="ibox-title">
                         <div>
-                            <a href="{{ url('kepesertaan/skpensiunan/transaksiskpensiun/create') }}" class="btn btn-primary btn-xs modal-form">
+                            <a href="{{ url('kepesertaan/skpensiunan/penerimamanfaat/create') }}" class="btn btn-primary btn-xs modal-form">
                                 <i class="fa fa-plus"></i>
                                 Tambah data
                             </a>
@@ -278,9 +344,10 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nomer KK</th>
+                                <th>Peserta</th>
                                 <th>Nama Penerima</th>
-                                <th>NPWP</th>
-                                <th>Alamat</th>
+                                <th>Tempat Lahir</th>
+                                <th>Tanggal Lahir</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>

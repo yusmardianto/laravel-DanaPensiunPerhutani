@@ -30,5 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call(GendersTableSeeder::class);
         $this->call(JenisTransaksiTableSeeder::class);
         $this->call(MasterTanggungansTableSeeder::class);
+        $this->call(MasterAlasanPensiunsTableSeeder::class);
     }
 }
