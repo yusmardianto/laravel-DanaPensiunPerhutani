@@ -32,7 +32,7 @@ class KepesertaanImport implements ToCollection, WithStartRow
             $cek = AppKepesertaan::where('nip', $row[3])->first();
             if(isset($cek))
             {
-                AppKepesertaan::where('nip', $row[3])->update([
+                AppKepesertaan::where('kode_aktif', $row[2])->update([
                     'kode_aktif' => $row[2],
                     'nip' => $row[3],
                     'nama' => $row[4],
