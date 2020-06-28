@@ -15,6 +15,20 @@ class CreatePenetapanPenerimaMPSTable extends Migration
     {
         Schema::create('penetapan_penerima_m_p_s', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('kode_aktif');
+            $table->string('penerima');
+            $table->bigInteger('no_kk');
+            $table->date('tgl_kk');
+            $table->string('tempat_lahir');
+            $table->date('tgl_lahir');
+            $table->string('alamat_tinggal');
+            $table->string('kota_tinggal');
+            $table->bigInteger('pos_tinggal');
+            $table->string('alamat_domisili');
+            $table->string('kota_domisili');
+            $table->bigInteger('pos_domisili');
+            $table->bigInteger('nik');
+            $table->text('keterangan');
             $table->timestamps();
         });
     }

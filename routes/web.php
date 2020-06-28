@@ -182,13 +182,23 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('transaksiskpensiun/edit/{id}', 'SKPensiunanController@getEdit');
             Route::post('transaksiskpensiun/edit/{id}', 'SKPensiunanController@postEdit');
             Route::post('transaksiskpensiun/destroy/{id}', 'SKPensiunanController@destroy');
-            Route::post('transaksiskpensiun/import', 'SKPensiunanController@postImport');
 
-            //Penetapan Manfaat Pensiun
+            //Penetapan SK Manfaat Pensiun
             Route::get('manfaatpensiun/create', 'PenetapanSKMPController@getCreate');
             Route::any('manfaatpensiun/ajax-list', 'PenetapanSKMPController@ajaxList');
+            Route::post('manfaatpensiun/create', 'PenetapanSKMPController@postCreate');
+            Route::get('manfaatpensiun/detail/{id}', 'PenetapanSKMPController@getDetail');
+            Route::get('manfaatpensiun/edit/{id}', 'PenetapanSKMPController@getEdit');
+            Route::post('manfaatpensiun/edit/{id}', 'PenetapanSKMPController@postEdit');
+            Route::post('manfaatpensiun/destroy/{id}', 'PenetapanSKMPController@destroy');
 
             //Penetapan Penerima Manfaat Pensiun
+            Route::get('penerimamanfaat/create', 'PenetapanPenerimaMPController@getCreate');
+            Route::any('penerimamanfaat/ajax-list', 'PenetapanPenerimaMPController@ajaxList');
+            Route::post('penerimamanfaat/create', 'PenetapanPenerimaMPController@postCreate');
+            Route::get('penerimamanfaat/edit/{id}', 'PenetapanPenerimaMPController@getEdit');
+            Route::post('penerimamanfaat/edit/{id}', 'PenetapanPenerimaMPController@postEdit');
+            Route::post('penerimamanfaat/destroy/{id}', 'PenetapanPenerimaMPController@destroy');
 
             //Simulasi Manfaat Pensiunan
             Route::get('simulasimp', 'SimulasiManfaatPensiunController@index');
