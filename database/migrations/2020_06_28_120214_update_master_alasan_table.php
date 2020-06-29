@@ -26,7 +26,7 @@ class UpdateMasterAlasanTable extends Migration
             $table->integer('jenis_sisa_mk')->nullable();
             $table->integer('usia_faktor_sekarang')->nullable();
             $table->integer('usia_faktor_sekaligus')->nullable();
-            $table->integer('kode_aktuaria')->nullable();
+            $table->string('kode_aktuaria')->nullable();
             $table->integer('created_by')->nullable();
             $table->timestamps();
         });
