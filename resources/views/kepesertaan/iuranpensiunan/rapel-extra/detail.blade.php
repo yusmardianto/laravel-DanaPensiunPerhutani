@@ -50,11 +50,6 @@
                     <div class="row">
                         <div class="col-md-6">
                             <dl class="row mb-0">
-                                <div class="col-sm-4 text-sm-left"><dt>Kode Voucher</dt> </div>
-                                <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
-                                <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->kd_voucher }}</dd></div>
-                            </dl>
-                            <dl class="row mb-0">
                                 <div class="col-sm-4 text-sm-left"><dt>Nomor Transaksi</dt> </div>
                                 <div class="col-sm-0 text-sm-left"><dt>:</dt> </div>
                                 <div class="col-sm-7 text-sm-left"><dd class="mb-1">{{ $data->no_transaksi }}</dd></div>

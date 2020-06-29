@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Imports\RapelIuranImport;
 use App\Models\Kepesertaan\IuranPensiunan\RapelExtra;
 use App\Models\Masters\MasterVoucher;
 use App\Models\Kepesertaan\Kepesertaan;
 use Illuminate\Http\Request;
-use DataTables, Hasher, Validator, DB;
+use DataTables, Hasher, Validator, DB, Excel;
 
 class RapelExtraController extends Controller
 {
@@ -161,7 +162,7 @@ class RapelExtraController extends Controller
             $excel1 = null;
         }
 
-        Excel::import(new IuranImport, public_path('/files/'.$excel1));
+        Excel::import(new RapelIuranImport, public_path('/files/'.$excel1));
         return redirect()->back()->with('success', 'Berhasil Upload File');
     }
 }

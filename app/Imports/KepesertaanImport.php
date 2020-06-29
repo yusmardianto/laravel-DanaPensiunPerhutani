@@ -5,7 +5,6 @@ namespace App\Imports;
 use App\Models\Kepesertaan\Kepesertaan as AppKepesertaan;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 
 class KepesertaanImport implements ToCollection, WithStartRow

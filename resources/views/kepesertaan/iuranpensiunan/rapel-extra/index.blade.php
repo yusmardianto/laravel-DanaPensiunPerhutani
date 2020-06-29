@@ -33,7 +33,6 @@
 
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
-            { data: 'kd_voucher', name: 'kd_voucher' },
             { data: 'no_transaksi', name: 'no_transaksi' },
             { data: 'tgl_transaksi', name: 'tgl_transaksi' },
             { data: 'nama_peserta', name: 'nama_peserta' },
@@ -55,7 +54,11 @@
                     "width": "4%"
                 },
                 {
-                    "targets": 5,
+                    "targets": [1,2],
+                    "className": "text-center",
+                },
+                {
+                    "targets": 4,
                     "width": "21%"
                 }
             ],
@@ -150,7 +153,6 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kode Voucher</th>
                                 <th>No Transaksi</th>
                                 <th>Tanggal Transaksi</th>
                                 <th>Nama Peserta</th>

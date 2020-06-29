@@ -41,8 +41,9 @@ class RapelManfaatImport implements ToCollection,WithStartRow
             return \Carbon\Carbon::createFromFormat($format, $value);
         }
     }
+
     public function startRow(): int
-        {
-            return 10;
-        }
+    {
+        return 10;
+    }
 }
