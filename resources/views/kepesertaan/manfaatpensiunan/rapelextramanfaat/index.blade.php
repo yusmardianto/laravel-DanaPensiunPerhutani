@@ -158,7 +158,6 @@
                 </div>
                 <div class="ibox-content">
                     @include('layouts.flashMessage')
-
                     <div class="table-responsive">
                         <table class="table table-striped" id="table-list">
                             <thead>
@@ -181,11 +180,12 @@
 
 <div class="modal inmodal" id="modalUpload" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
-    <div class="modal-content animated bounceInRight">
+        <div class="modal-content animated bounceInRight">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">Upload Excel</h4>
             </div>
+
             <form action="{{ url('kepesertaan/manfaatpensiunan/rapelextramanfaat/upload') }}" method="post" role="form" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">

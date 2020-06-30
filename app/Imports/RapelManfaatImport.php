@@ -12,6 +12,16 @@ class RapelManfaatImport implements ToCollection,WithStartRow
     /**
     * @param Collection $collection
     */
+
+    public function transformDate($value, $format = 'Y-m-d')
+    {
+        try {
+            return \Carbon\Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($value));
+        } catch (\ErrorException $e) {
+            return \Carbon\Carbon::createFromFormat($format, $value);
+        }
+    }
+
     public function collection(Collection $collection)
     {
         foreach($collection as $row)
@@ -30,15 +40,6 @@ class RapelManfaatImport implements ToCollection,WithStartRow
                 'nonpph21' => $row[12],
                 'keterangan' => $row[13],
             ]);
-        }
-    }
-
-    public function transformDate($value, $format = 'Y-m-d')
-    {
-        try {
-            return \Carbon\Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($value));
-        } catch (\ErrorException $e) {
-            return \Carbon\Carbon::createFromFormat($format, $value);
         }
     }
 

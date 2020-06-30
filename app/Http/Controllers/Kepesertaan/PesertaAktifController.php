@@ -43,7 +43,7 @@ class PesertaAktifController extends Controller
 
     public function getCreate(Request $request)
     {
-        $unit_kerja = MasterUnitKerja::all();
+        //$unit_kerja = MasterUnitKerja::yp_all(  , map, callback)();
         $regencies = Regencies::all();
         $gender = Gender::all();
         $religion = Religion::all();
