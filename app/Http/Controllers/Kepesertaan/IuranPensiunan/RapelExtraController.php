@@ -163,6 +163,6 @@ class RapelExtraController extends Controller
         }
 
         Excel::import(new RapelIuranImport, public_path('/files/'.$excel1));
-        return redirect()->back()->with('success', 'Berhasil Upload File');
+        return redirect('kepesertaan/iuranpensiunan/rapel-extra')->with('success', 'Berhasil Upload File');
     }
 }
