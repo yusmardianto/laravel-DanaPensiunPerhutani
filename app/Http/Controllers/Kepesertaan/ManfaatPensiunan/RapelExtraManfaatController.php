@@ -208,20 +208,6 @@ class RapelExtraManfaatController extends Controller
 
     public function uploadExcel(Request $request)
     {
-        $rules = [
-            'no_trx' => 'unique:rapel_extra_manfaats,no_trx',
-        ];
-
-        $messages = [
-            'no_trx.unique' => 'Nomor Transaksi sudah ada',
-        ];
-
-        $error = Validator::make($request->all(), $rules, $messages);
-
-        if ($error->fails())
-        {
-            return redirect()->back()->withErrors($error)->withInput();
-        }
         set_time_limit(0);
         ini_set('memory_limit', '-1');
 

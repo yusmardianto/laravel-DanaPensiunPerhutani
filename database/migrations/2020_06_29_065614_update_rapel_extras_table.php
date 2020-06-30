@@ -17,7 +17,7 @@ class UpdateRapelExtrasTable extends Migration
 
         Schema::create('rapel_extras', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('no_transaksi');
+            $table->string('no_transaksi')->unique();
             $table->date('tgl_transaksi');
             $table->string('kd_peserta');
             $table->string('nama_peserta');
