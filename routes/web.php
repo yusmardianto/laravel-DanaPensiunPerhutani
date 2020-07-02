@@ -245,7 +245,19 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('kalkulasidaftarmp/detail/{id}', 'KalkulasiDaftarManfaatController@getDetail');
             Route::get('kalkulasidaftarmp/hitung/{id}', 'KalkulasiDaftarManfaatController@getHitung');
             Route::post('Kalkulasidaftarmp/hitung/{id}', 'KalkulasiDaftarManfaatController@postHitung');
+
+            //pph21
+            Route::get('pph21manfaat', 'Pph21ManfaatController@index');
+            Route::any('pph21manfaat/ajax-list', 'Pph21ManfaatController@ajaxList');
+            Route::get('pph21manfaat/create', 'Pph21ManfaatController@getCreate');
+            Route::post('pph21manfaat/create', 'Pph21ManfaatController@postCreate');
+            Route::get('pph21manfaat/detail/{id}', 'Pph21ManfaatController@getDetail');
+            Route::get('pph21manfaat/edit/{id}', 'Pph21ManfaatController@getEdit');
+            Route::post('pph21manfaat/edit/{id}', 'Pph21ManfaatController@postEdit');
+            Route::post('pph21manfaat/delete/{id}', 'Pph21ManfaatController@destroy');
+            Route::post('pph21manfaat/hitung/{id}', 'Pph21ManfaatController@postcreate');
         });
+
     });
 
     Route::prefix('investasi')->group(function () {
