@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class RapelExtraManfaat extends Model
 {
 
-    protected $fillable = ['jenis_transaksi', 'kode_voucher', 'no_trx', 'tgl_trx', 'no_daftar_bayar_MP', 'kode_pensiun', 'nama','berlaku_dari', 'berlaku_sampai', 'pph21', 'nonpph21', 'keterangan'
+    protected $fillable = ['jenis_transaksi', 'kode_voucher', 'no_trx', 'tgl_trx', 'no_daftar_bayar_MP', 'kode_pensiun', 'nama','berlaku_dari', 'berlaku_sampai', 'pph21', 'nonpph21', 'keterangan', 'is_active'
     ];
     public function u_bayar()
     {

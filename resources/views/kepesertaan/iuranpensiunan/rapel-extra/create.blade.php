@@ -19,7 +19,7 @@
         $('#data_1 .input-group.date').datepicker({
             todayBtn: "linked",
             format: "yyyy-mm-dd",
-            keyboardNavigation: false,
+            keyboardNavigation: false,  
             forceParse: false,
             calendarWeeks: true,
             autoclose: true

@@ -26,7 +26,7 @@
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
             { data: 'kode_voucher', name: 'kode_voucher' },
-            { data: 'no_trx', name: 'no_trx' },
+            { data: 'no_trx', name: 'no_trx'},
             { data: 'kode_pensiun', name: 'kode_pensiun' },
             { data: 'nama', name: 'nama' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
@@ -103,7 +103,7 @@
                             <tr>
                                 <th>Kode Voucher</th>
 
-                                 <th>No Transaksi</th>
+                                <th>No Transaksi</th>
                                 <th>Kode Pensiun</th>
                                 <th>Nama Peserta</th>
                                 <th>Opsi</th>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRapelExtraManfaatsTable extends Migration
+class UpdateRapelExtraManfaatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateRapelExtraManfaatsTable extends Migration
      */
     public function up()
     {
+        Schema::drop('rapel_extra_manfaats');
+
         Schema::create('rapel_extra_manfaats', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('jenis_transaksi');
             $table->string('kode_voucher');
-            $table->string('no_trx');
+            $table->string('no_trx')->unique();
             $table->date('tgl_trx');
             $table->string('no_daftar_bayar_MP');
             $table->string('kode_pensiun');
@@ -26,9 +28,10 @@ class CreateRapelExtraManfaatsTable extends Migration
             $table->date('berlaku_sampai');
             $table->bigInteger('pph21');
             $table->bigInteger('nonpph21');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
             $table->timestamps();
         });
+
     }
 
     /**

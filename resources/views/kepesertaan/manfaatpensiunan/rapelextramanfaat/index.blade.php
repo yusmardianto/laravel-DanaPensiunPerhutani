@@ -24,9 +24,9 @@
 
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
-            { data: 'kode_voucher', name: 'kode_voucher' },
             { data: 'jenis_transaksi', name: 'jenis_transaksi' },
             { data: 'tgl_trx', name: 'tgl_trx' },
+            { data: 'kode_pensiun', name: 'kode_pensiun' },
             { data: 'nama', name: 'nama' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
@@ -46,7 +46,15 @@
                     "width": "4%"
                 },
                 {
-                    "targets": 4,
+                    "targets":[2, 3],
+                    "className":"text-center"
+                },
+                {
+                    "targets":1,
+                    "width": "120px"
+                },
+                {
+                    "targets": 5,
                     "width": "21%"
                 }
             ],
@@ -163,11 +171,11 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kode Voucher</th>
                                 <th>Jenis Transaksi</th>
                                 <th>Tanggal Transaksi</th>
+                                <th>Kode Pensiun</th>
                                 <th>Nama</th>
-                                <th>Opsi</th>
+                                <th>Aksi</th>
                             </tr>
                             </thead>
                         </table>
@@ -185,7 +193,6 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">Upload Excel</h4>
             </div>
-
             <form action="{{ url('kepesertaan/manfaatpensiunan/rapelextramanfaat/upload') }}" method="post" role="form" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">

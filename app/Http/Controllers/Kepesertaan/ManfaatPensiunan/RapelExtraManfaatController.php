@@ -11,6 +11,7 @@ use App\Models\Masters\MasterVoucher;
 use App\Models\JenisTransaksi;
 use App\Models\Masters\MasterAlasanPensiun;
 use App\Imports\RapelManfaatImport;
+use App\Models\Kepesertaan\IuranPensiunan\RapelExtra;
 use DataTables, Hasher, Excel, Validator, DB ;
 
 class RapelExtraManfaatController extends Controller
@@ -22,8 +23,13 @@ class RapelExtraManfaatController extends Controller
 
     public function ajaxList()
     {
-        $data = RapelExtraManfaat::whereNotNull('created_at');
 
+        //$data = RapelExtraManfaat::whereNotNull('created_at')
+        // $data = RapelExtraManfaat::selectRaw('DISTINCT kode_pensiun, jenis_transaksi, tgl_trx, nama, MAX(id)',)
+                        // ->orderBy('created_at', 'DESC');
+
+        $data = DB::table('v_rapel_manfaat')->get();
+        // return $data;
         $datatables = Datatables::of($data);
         return $datatables->addColumn('action', function ($row) {
             $hashed_id = Hasher::encode($row->id);
@@ -32,6 +38,7 @@ class RapelExtraManfaatController extends Controller
                 <a class=\"btn btn-xs btn-primary\" href=\"" . url('kepesertaan/manfaatpensiunan/rapelextramanfaat/edit/' . $hashed_id) . "\"><i class=\"glyphicon glyphicon-edit\"></i> Ubah</a>
                 <a class=\"btn btn-xs btn-warning delete-btn\" href=\"#\" data-id=\"" . $hashed_id . "\" data-name=\"" . $row->jenis_transaksi . "\"><i class=\"glyphicon glyphicon-trash\"></i> Hapus</a>
                 ";
+
 
         })
             ->rawColumns(['action'])
@@ -80,6 +87,7 @@ class RapelExtraManfaatController extends Controller
             $data->pph21 = $request->pph21;
             $data->nonpph21 = $request->nonpph21;
             $data->keterangan = $request->keterangan;
+            $data->is_active = 1;
 
             if (isset($data)) {
                 $data->save();
@@ -137,6 +145,7 @@ class RapelExtraManfaatController extends Controller
         $data->pph21 = $request->pph21;
         $data->nonpph21 = $request->nonpph21;
         $data->keterangan = $request->keterangan;
+        $data->is_active = $request->is_active;
 
         if (isset($data)){
             $data->save();
@@ -160,6 +169,7 @@ class RapelExtraManfaatController extends Controller
 
     public function uploadExcel(Request $request)
     {
+
         set_time_limit(0);
         ini_set('memory_limit', '-1');
 
@@ -167,19 +177,26 @@ class RapelExtraManfaatController extends Controller
         // Move Uploaded File
         if(isset($excel))
         {
-            $destinationPath = 'files/new';
+            $destinationPath = 'files';
             $excel->move($destinationPath, $excel->getClientOriginalName());
             $excel1 = $excel->getClientOriginalName();
-
-            // return $excel1;
         }
         else
         {
             $excel1 = null;
+
         }
 
+        // $var = Excel::toArray(new RapelManfaatImport, public_path('/files/'.$excel1));
+        // return $var;
         Excel::import(new RapelManfaatImport, public_path('/files/'.$excel1));
         return redirect()->back()->with('success', 'Berhasil Upload File');
+    }
+
+    public function validasi($id)
+    {
+
+
     }
 
 }
