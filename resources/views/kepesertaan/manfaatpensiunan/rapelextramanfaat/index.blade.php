@@ -24,6 +24,7 @@
 
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
+            { data: 'no_trx', name: 'no_trx' },
             { data: 'jenis_transaksi', name: 'jenis_transaksi' },
             { data: 'tgl_trx', name: 'tgl_trx' },
             { data: 'kode_pensiun', name: 'kode_pensiun' },
@@ -171,6 +172,7 @@
                             <thead>
                             <tr>
                                 <th>No</th>
+                                <th>No Transaksi</th>
                                 <th>Jenis Transaksi</th>
                                 <th>Tanggal Transaksi</th>
                                 <th>Kode Pensiun</th>

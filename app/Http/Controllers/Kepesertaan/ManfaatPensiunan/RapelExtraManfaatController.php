@@ -28,8 +28,11 @@ class RapelExtraManfaatController extends Controller
         // $data = RapelExtraManfaat::selectRaw('DISTINCT kode_pensiun, jenis_transaksi, tgl_trx, nama, MAX(id)',)
                         // ->orderBy('created_at', 'DESC');
 
-        $data = DB::table('v_rapel_manfaat')->get();
+        //$data = DB::table('v_rapel_manfaat')->get();
         // return $data;
+
+        $data = RapelExtraManfaat::whereNotNull('created_at');
+
         $datatables = Datatables::of($data);
         return $datatables->addColumn('action', function ($row) {
             $hashed_id = Hasher::encode($row->id);

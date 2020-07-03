@@ -28,7 +28,6 @@
     $("#select-jenis_pmb").select2({width:"100%", placeholder: "Pilih Jenis Pembayaran", allowClear: true});
     $("#select-voucher").select2({width:"100%", placeholder: "Pilih Voucher", allowClear: true});
 
-
     });
 </script>
 @endsection
