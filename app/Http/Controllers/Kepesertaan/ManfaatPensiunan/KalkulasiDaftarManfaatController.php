@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\KalkulasiDaftarManfaat;
-use App\Models\Kepesertaan\ManfaatPensiunan\RapelExtraManfaat;
 use App\Models\Kepesertaan\ManfaatPensiunan\KalkulasiManfaat;
 
 use DataTables, Hasher;
@@ -36,10 +35,27 @@ class KalkulasiDaftarManfaatController extends Controller
             ->make(true);
     }
 
+    public function getCreate(Request $request)
+    {
+
+        return view('kepesertaan.manfaatpensiunan.kalkulasidaftarmp.create');
+    }
+
+    public function postCreate(Request $request)
+    {
+
+        $data = new KalkulasiManfaat();
+        $data->jenis_pembayaran = $request->jenis_pembayaran;
+        $data->kode_voucher = $request->kode_voucher;
+
+        if (isset($data)) {
+            $data->save();
+            return redirect('kepesertaan/manfaatpensiunan/kalkulasidaftarmp')->with('success', 'Berhasil menambah kalkulasi Manfaat Pensiunan ');
+        }
+    }
 
     public function getDetail($id)
     {
-
         $data = KalkulasiManfaat::find($id);
         if(isset($data))
         {
@@ -50,6 +66,5 @@ class KalkulasiDaftarManfaatController extends Controller
             return redirect()->back()->with('error', 'Data Manfaat Pensiunan tidak ditemukan');
         }
     }
-
 
 }

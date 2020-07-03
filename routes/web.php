@@ -242,6 +242,8 @@ Route::group(['middleware' => ['auth']], function() {
             //kalkulasi daftar
             Route::get('kalkulasidaftarmp', 'KalkulasiDaftarManfaatController@index');
             Route::any('kalkulasidaftarmp/ajax-list', 'KalkulasiDaftarManfaatController@ajaxList');
+            Route::get('kalkulasidaftarmp/create', 'KalkulasiDaftarManfaatController@getCreate');
+            Route::post('kalkulasidaftarmp/create', 'KalkulasiDaftarManfaatController@postCreate');
             Route::get('kalkulasidaftarmp/detail/{id}', 'KalkulasiDaftarManfaatController@getDetail');
             Route::get('kalkulasidaftarmp/hitung/{id}', 'KalkulasiDaftarManfaatController@getHitung');
             Route::post('Kalkulasidaftarmp/hitung/{id}', 'KalkulasiDaftarManfaatController@postHitung');
