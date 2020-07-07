@@ -246,7 +246,6 @@ Route::group(['middleware' => ['auth']], function() {
             Route::post('kalkulasidaftarmp/create', 'KalkulasiDaftarManfaatController@postCreate');
             Route::get('kalkulasidaftarmp/detail/{id}', 'KalkulasiDaftarManfaatController@getDetail');
             Route::get('kalkulasidaftarmp/hitung/{id}', 'KalkulasiDaftarManfaatController@getHitung');
-            Route::post('Kalkulasidaftarmp/hitung/{id}', 'KalkulasiDaftarManfaatController@postHitung');
 
             //pph21
             Route::get('pph21manfaat', 'Pph21ManfaatController@index');
@@ -257,7 +256,12 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('pph21manfaat/edit/{id}', 'Pph21ManfaatController@getEdit');
             Route::post('pph21manfaat/edit/{id}', 'Pph21ManfaatController@postEdit');
             Route::post('pph21manfaat/delete/{id}', 'Pph21ManfaatController@destroy');
-            Route::post('pph21manfaat/hitung/{id}', 'Pph21ManfaatController@postcreate');
+
+            //koreksi
+            Route::get('koreksimanfaat', 'KoreksiManfaatController@index');
+            Route::any('koreksimanfaat/ajax-list', 'KoreksiManfaatController@ajaxList');
+            Route::get('koreksimanfaat/create', 'KoreksiManfaatController@getCreate');
+            Route::post('koreksimanfaat/create', 'KoreksiManfaatController@postCreate');
         });
 
     });

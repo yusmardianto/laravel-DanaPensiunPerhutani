@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Pph 21 Masa Sebelumnya Manfaat Pensiunan')
+@section('title', config('app.name').' | Koreksi Manfaat Pensiunan')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -35,7 +35,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{!! url('kepesertaan/manfaatpensiunan/pph21manfaat/ajax-list') !!}',
+                url: '{!! url('kepesertaan/manfaatpensiunan/koreksimanfaat/ajax-list') !!}',
                 method: 'POST'
             },
             columns: $column,
@@ -46,7 +46,7 @@
                     "width": "4%"
                 },
                 {
-                    "targets":[1, 2, 3, 4],
+                    "targets":[2, 3],
                     "className":"text-center"
                 },
                 {
@@ -72,7 +72,7 @@
 
         $(document).on('click', '.delete-btn', function() {
             var dataId = $(this).data('id');
-            var deleteUrl = "{{ url('kepesertaan/manfaatpensiunan/pph21manfaat/delete') }}" + "/" + dataId;
+            var deleteUrl = "{{ url('kepesertaan/manfaatpensiunan/koreksimanfaat/delete') }}" + "/" + dataId;
             var csrf = "{{ csrf_token() }}";
 
             swal({
@@ -134,7 +134,7 @@
                 <div class="ibox-title">
                     <h5>Manfaat Pensiunan</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('kepesertaan/manfaatpensiunan/pph21manfaat/create') }}" class="btn btn-primary btn-xs modal-form">
+                        <a href="{{ url('kepesertaan/manfaatpensiunan/koreksimanfaat/create') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-plus"></i>
                             Tambah Transaksi
                         </a>

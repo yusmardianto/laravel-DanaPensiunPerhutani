@@ -42,7 +42,6 @@ class RapelExtraManfaatController extends Controller
                 <a class=\"btn btn-xs btn-warning delete-btn\" href=\"#\" data-id=\"" . $hashed_id . "\" data-name=\"" . $row->jenis_transaksi . "\"><i class=\"glyphicon glyphicon-trash\"></i> Hapus</a>
                 ";
 
-
         })
             ->rawColumns(['action'])
             ->addIndexColumn()

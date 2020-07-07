@@ -37,7 +37,6 @@ class KalkulasiDaftarManfaatController extends Controller
 
     public function getCreate(Request $request)
     {
-
         return view('kepesertaan.manfaatpensiunan.kalkulasidaftarmp.create');
     }
 

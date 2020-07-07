@@ -47,7 +47,7 @@
                     "width": "4%"
                 },
                 {
-                    "targets":[2, 3],
+                    "targets":[1, 2, 3, 4, 5],
                     "className":"text-center"
                 },
                 {

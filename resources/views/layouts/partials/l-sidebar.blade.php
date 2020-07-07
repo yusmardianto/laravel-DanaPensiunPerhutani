@@ -141,11 +141,11 @@ $user = Auth::user();
                                 <li @if(Request::segment(3) == 'kalkulasidaftarmp') class="active" @endif>
                                     <a href="{{ url('kepesertaan/manfaatpensiunan/kalkulasidaftarmp') }}">Kalkulasi Daftar Pembayaran Manfaat Pensiunan</a>
                                 </li>
-                                <li @if(Request::segment(3) == 'koreksi-pembayaran-manfaat') class="active" @endif>
+                                <li @if(Request::segment(3) == 'koreksimanfaat') class="active" @endif>
                                     <a href="{{ url('kepesertaan/manfaatpensiunan/koreksimanfaat') }}">Koreksi Daftar Pembayaran Manfaat Pensiunan</a>
                                 </li>
                                 <li @if(Request::segment(3) == 'kalkulasi-ulang-manfaat') class="active" @endif>
-                                    <a href="{{ url('kepesertaan/manfaatpensiunan/kalkulasiulang') }}">Kalkulasi Ulang Manfaat Pensiunan</a>
+                                    <a href="{{ url('kepesertaan/manfaatpensiunan/kalkulasiutang') }}">Kalkulasi Utang Manfaat Pensiunan</a>
                                 </li>
                                 <li @if(Request::segment(3) == 'pph21') class="active" @endif>
                                     <a href="{{ url('kepesertaan/manfaatpensiunan/pph21manfaat') }}">Pph 21 Masa Sebelumnya Manfaat Pensiunan</a>

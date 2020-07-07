@@ -47,16 +47,20 @@
                     "width": "4%"
                 },
                 {
-                    "targets":[2, 3],
+                    "targets":[1, 2, 3, 4, 5],
                     "className":"text-center"
                 },
                 {
                     "targets":1,
-                    "width": "120px"
+                    "width": "50px"
                 },
                 {
                     "targets": 5,
-                    "width": "21%"
+                    "width": "70px"
+                },
+                {
+                    "targets": 6,
+                    "width": "180px"
                 }
             ],
             initComplete: function () {

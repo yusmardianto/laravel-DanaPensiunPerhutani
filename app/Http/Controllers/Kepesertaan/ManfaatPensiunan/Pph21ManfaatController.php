@@ -76,18 +76,18 @@ class Pph21ManfaatController extends Controller
 
             if (isset($data)) {
                 $data->save();
-                return redirect('kepesertaan/manfaatpensiunan/pph21manfaat')->with('success', 'Berhasil menambah PPH 21 Manfaat Pensiunan ');
+                return redirect('kepesertaan/manfaatpensiunan/pph21')->with('success', 'Berhasil menambah PPH 21 Manfaat Pensiunan ');
             }
         }
 
     public function destroy($id)
     {
-        $data = RapelExtraManfaat::find($id);
+        $data = Pph21Manfaat::find($id);
         if (isset($data)) {
 
             $data->delete();
 
-            return redirect('kepesertaan/manfaatpensiunan/rapelextramanfaat')->with('success', 'Berhasil menghapus data transaksi ');
+            return redirect('kepesertaan/manfaatpensiunan/pph21')->with('success', 'Berhasil menghapus data transaksi ');
         } else {
             return redirect()->back()->with('error', 'Data tidak ditemukan');
         }
