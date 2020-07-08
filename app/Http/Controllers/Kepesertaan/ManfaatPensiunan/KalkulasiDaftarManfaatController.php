@@ -37,7 +37,8 @@ class KalkulasiDaftarManfaatController extends Controller
 
     public function getCreate(Request $request)
     {
-        return view('kepesertaan.manfaatpensiunan.kalkulasidaftarmp.create');
+        $jenispmb = KalkulasiManfaat::all();
+        return view('kepesertaan.manfaatpensiunan.kalkulasidaftarmp.create', compact('jenispmb'));
     }
 
     public function postCreate(Request $request)

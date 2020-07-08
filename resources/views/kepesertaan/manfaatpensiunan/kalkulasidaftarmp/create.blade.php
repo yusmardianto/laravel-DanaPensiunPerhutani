@@ -75,8 +75,11 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Jenis Pembayaran</label>
                                     <div class="col-sm-6">
-                                        <select name="jenis_pmb" id="select-jenis_pmb">
+                                        <select name="jenis_pembayaran" id="select-jenis_pmb">
                                             <option value=""></option>
+                                            @foreach($jenispmb as $row)
+                                            <option value="{{ $row->name }}">{{ $row->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

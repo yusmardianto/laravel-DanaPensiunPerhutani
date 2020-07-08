@@ -48,10 +48,13 @@
                 <a href="{{ url('home') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ url('kepesertaan/manfaatpensiunan/koreksimanfaat') }}">Daftar Koreksi Manfaat Pensiunan</a>
+                <a href="{{ url('home') }}">Kepesertaan</a>
             </li>
-            <li class="breadcrumb-item active">
-                <strong>Tambah Koreksi Manfaat Pensiunan</strong>
+            <li class="breadcrumb-item">
+                <a href="{{ url('home') }}">Manfaat Pensiunan</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{{ url('kepesertaan/manfaatpensiunan/koreksimanfaat') }}">Tambah Transaksi</a>
             </li>
         </ol>
     </div>
@@ -63,7 +66,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Tambah Data Pensiunan</h5>
+                    <h5>Tambah Data Koreksi Pembayaran Pensiunan</h5>
                     <div class="ibox-tools">
                         <a href="{{ url('kepesertaan/manfaatpensiunan/koreksimanfaat') }}" class="btn btn-primary btn-xs modal-form">
                             <i class="fa fa-arrow-circle-o-left"></i>

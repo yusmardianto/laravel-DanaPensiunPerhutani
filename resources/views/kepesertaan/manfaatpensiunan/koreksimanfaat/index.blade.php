@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', config('app.name').' | Koreksi Manfaat Pensiunan')
+@section('title', config('app.name').' | Koreksi Pembayaran Manfaat Pensiunan')
 
 @section('stylesheets')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -24,10 +24,9 @@
 
         var $column = [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
-            { data: 'kode_pensiun', name: 'kode_pensiun' },
-            { data: 'nama', name: 'nama' },
-            { data: 'netto', name: 'netto' },
-            { data: 'pph21', name: 'pph21' },
+            { data: 'no_trx', name: 'no_trx' },
+            { data: 'kd_pensiun', name: 'kd_pensiun' },
+            { data: 'penerima', name: 'penerima' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ];
 
@@ -108,7 +107,7 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Pph 21 Masa Sebelumnya Manfaat Pensiunan</h2>
+        <h2>Koreksi Daftar Pembayaran Manfaat Pensiunan</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ url('home') }}">Home</a>
@@ -118,7 +117,7 @@
             <li class="breadcrumb-item">Manfaat Pensiunan
             </li>
             <li class="breadcrumb-item active">
-                <strong>Pph 21 Masa Sebelumnya </strong>
+                <strong>Koreksi Manfaat Pensiun </strong>
             </li>
         </ol>
     </div>
@@ -147,10 +146,9 @@
                             <thead>
                             <tr>
                                 <th>No</th>
+                                <th>No Transaksi</th>
                                 <th>Kode Pensiun</th>
-                                <th>Nama Pensiun</th>
-                                <th>Penghasilan Netto</th>
-                                <th>PPH21</th>
+                                <th>Penerima</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
